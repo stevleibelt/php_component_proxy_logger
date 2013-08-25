@@ -1,4 +1,9 @@
-php_component_logger_triggered_logger
-=====================================
+# Log Level Triggered Logger
 
-enables level triggered logging for each psr-3 LoggerInterface
+Enables level triggered logging for each psr-3 LoggerInterface.
+
+## Main Idea
+
+* collects all logger messages in memory
+* if logging level is reached, collected messages are written in real logger, otherwise thrown away
+* can handle each real logger that implements psr-3 logger interface
