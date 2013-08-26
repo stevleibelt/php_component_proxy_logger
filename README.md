@@ -33,3 +33,12 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 * implement locking
 
 # Version History
+
+* [next](https://github.com/stevleibelt/php_component_logger)
+    * ProxyLogger where you inject your real logger and set a trigger level
+    * ProxyLoggerFactory to easy up ProxyLogger creation
+    * LogEntry class to use a [simple value object](http://en.wikipedia.org/wiki/Data_Transfer_Object)
+    * LogEntryFactory to easy up LogEntry creation
+    * LogEntryCollection for easy dealing with multiple LogEntries
+    * IsValidLogLevel to validate if provided log level is meeting the LogLevel requirement as a well defined value
+    * DefaultMap to trigger inherited log levels by only providing one log level
