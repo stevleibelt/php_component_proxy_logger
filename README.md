@@ -10,6 +10,8 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 
 # Todo List
 
+* fix author mail issue
+* implement "trigger" method to overwrite setted trigger level
 * implement "unsetTriggerLevel"
 * implement locking
 
