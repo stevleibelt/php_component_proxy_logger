@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface
+interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface, LogEntryFactoryInjectInterface
 {
     /**
      * @return $this
@@ -74,6 +74,4 @@ interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface
      * @since 2013-08-26
      */
     public function setTriggerLevelToDebug();
-
-    public function setLogEntryFactory(LogEntryFactoryInterface $factory);
 }

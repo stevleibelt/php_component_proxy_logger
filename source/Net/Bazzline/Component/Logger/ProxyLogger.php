@@ -31,6 +31,12 @@ class ProxyLogger implements ProxyLoggerInterface
      * @since 2013-08-26
      */
     protected $logger;
+    /**
+     * @var LogEntryFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $logEntryFactory;
 
     /**
      * @var mixed
@@ -285,6 +291,19 @@ class ProxyLogger implements ProxyLoggerInterface
     public function setTriggerLevelToDebug()
     {
         $this->triggerLevel = LogLevel::DEBUG;
+
+        return $this;
+    }
+
+    /**
+     * @param LogEntryFactoryInterface $factory
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function injectLogEntryFactory(LogEntryFactoryInterface $factory)
+    {
+        $this->logEntryFactory = $factory;
 
         return $this;
     }
