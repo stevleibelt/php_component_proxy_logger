@@ -49,7 +49,6 @@ class ProxyLogger implements ProxyLoggerInterface
      * @param null $triggerLevel
      * @author sleibelt
      * @since 2013-08-26
-     * @todo implement triggerLevel validation
      */
     public function __construct($triggerLevel = null)
     {
@@ -194,7 +193,7 @@ class ProxyLogger implements ProxyLoggerInterface
             }
         } else {
             $this->logCollection->add(
-                new LogEntry($level, $message, $context)
+                $this->logEntryFactory->create($level, $message, $context)
             );
         }
     }
