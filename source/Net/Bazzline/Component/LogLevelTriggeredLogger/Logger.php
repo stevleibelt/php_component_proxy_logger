@@ -18,18 +18,23 @@ use Psr\Log\LoggerInterface;
 class Logger implements LoggerInterface
 {
     /**
+     * @var \Psr\Log\LoggerInterface
+     * @author sleibelt
+     * @since 2013-08-26
+     */
+    protected $logger;
+
+    /**
      * Sets a logger instance on the object
      *
      * @param LoggerInterface $logger
      *
      * @return null
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(\Psr\Log\LoggerInterface $logger)
     {
-        // TODO: Implement setLogger() method.
+        $this->logger = $logger;
     }
-
-
 
     /**
      * System is unusable.
@@ -43,8 +48,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement emergency() method.
     }
-
-
 
     /**
      * Action must be taken immediately.
@@ -61,8 +64,6 @@ class Logger implements LoggerInterface
         // TODO: Implement alert() method.
     }
 
-
-
     /**
      * Critical conditions.
      * Example: Application component unavailable, unexpected exception.
@@ -77,8 +78,6 @@ class Logger implements LoggerInterface
         // TODO: Implement critical() method.
     }
 
-
-
     /**
      * Runtime errors that do not require immediate action but should typically
      * be logged and monitored.
@@ -92,8 +91,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement error() method.
     }
-
-
 
     /**
      * Exceptional occurrences that are not errors.
@@ -110,8 +107,6 @@ class Logger implements LoggerInterface
         // TODO: Implement warning() method.
     }
 
-
-
     /**
      * Normal but significant events.
      *
@@ -124,8 +119,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement notice() method.
     }
-
-
 
     /**
      * Interesting events.
@@ -141,8 +134,6 @@ class Logger implements LoggerInterface
         // TODO: Implement info() method.
     }
 
-
-
     /**
      * Detailed debug information.
      *
@@ -155,8 +146,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement debug() method.
     }
-
-
 
     /**
      * Logs with an arbitrary level.
@@ -172,8 +161,6 @@ class Logger implements LoggerInterface
         // TODO: Implement log() method.
     }
 
-
-
     /**
      * @return $this
      * @author stev leibelt <artodeot@arcor.de>
@@ -183,8 +170,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement setTriggerLevelToEmergency() method.
     }
-
-
 
     /**
      * @return $this
@@ -196,8 +181,6 @@ class Logger implements LoggerInterface
         // TODO: Implement setTriggerLevelToAlert() method.
     }
 
-
-
     /**
      * @return $this
      * @author stev leibelt <artodeot@arcor.de>
@@ -207,8 +190,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement setTriggerLevelToCritical() method.
     }
-
-
 
     /**
      * @return $this
@@ -220,8 +201,6 @@ class Logger implements LoggerInterface
         // TODO: Implement setTriggerLevelToError() method.
     }
 
-
-
     /**
      * @return $this
      * @author stev leibelt <artodeot@arcor.de>
@@ -231,8 +210,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement setTriggerLevelToWarning() method.
     }
-
-
 
     /**
      * @return $this
@@ -244,8 +221,6 @@ class Logger implements LoggerInterface
         // TODO: Implement setTriggerLevelToNotice() method.
     }
 
-
-
     /**
      * @return $this
      * @author stev leibelt <artodeot@arcor.de>
@@ -255,8 +230,6 @@ class Logger implements LoggerInterface
     {
         // TODO: Implement setTriggerLevelToInfo() method.
     }
-
-
 
     /**
      * @return $this
