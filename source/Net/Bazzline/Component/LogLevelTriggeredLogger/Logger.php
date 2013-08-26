@@ -7,6 +7,7 @@
 namespace Net\Bazzline\Component\LogLevelTriggered\Logger;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * Class Logger
@@ -23,6 +24,13 @@ class Logger implements LoggerInterface
      * @since 2013-08-26
      */
     protected $logger;
+
+    /**
+     * @var mixed
+     * @author sleibelt
+     * @since 2013-08-26
+     */
+    protected $triggerLevel = LogLevel::DEBUG;
 
     /**
      * Sets a logger instance on the object
@@ -239,5 +247,16 @@ class Logger implements LoggerInterface
     public function setTriggerLevelToDebug()
     {
         // TODO: Implement setTriggerLevelToDebug() method.
+    }
+
+    /**
+     * @param mixed $level
+     * @return bool
+     * @author stev leibelt <artodeot@arcor.de>
+     * @since 2013-08-26
+     */
+    protected function isTriggeredLogLevel($level)
+    {
+        return true;
     }
 }
