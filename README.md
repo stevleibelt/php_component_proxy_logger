@@ -8,12 +8,15 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 * if logging level is reached, collected messages are written in real logger, otherwise thrown away
 * can handle each real logger that implements psr-3 logger interface
 
+## Features
+
+* full [PSR-3 Logger Interface](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) compatibility.
+* only logs if critical log level is triggered
+* regains freedom and silence in your log files
+
 # Todo List
 
 * implement unittests
-* implement Logger::isTriggeredLogLevel that way, that it returns true if the log level is at least that important
-    (log level "error" given and trigger level "warn" given, method will return true because warn is "as important as" warn)
-* implement "trigger" method to overwrite setted trigger level
 * implement "unsetTriggerLevel"
 * implement locking
 
