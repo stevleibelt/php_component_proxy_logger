@@ -7,13 +7,13 @@
 namespace Net\Bazzline\Component\Logger;
 
 /**
- * Class LogEntryFactory
+ * Class LogEntryFactoryInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryFactory implements LogEntryFactoryInterface
+interface LogEntryFactoryInterface
 {
     /**
      * @param $level
@@ -24,17 +24,5 @@ class LogEntryFactory implements LogEntryFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create($level, $message, array $context = array())
-    {
-        $validator = new isValidLogLevel();
-
-        if (!$validator->setLogLevel($level)->isMet())
-        {
-            throw new InvalidArgumentException(
-                'level is not valid'
-            );
-        }
-
-        return new LogEntry($level, $message, $context);
-    }
+    public function create($level, $message, array $context = array());
 }
