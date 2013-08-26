@@ -176,7 +176,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToEmergency()
     {
-        // TODO: Implement setTriggerLevelToEmergency() method.
+        $this->triggerLevel = LogLevel::EMERGENCY;
+
+        return $this;
     }
 
     /**
@@ -186,7 +188,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToAlert()
     {
-        // TODO: Implement setTriggerLevelToAlert() method.
+        $this->triggerLevel = LogLevel::ALERT;
+
+        return $this;
     }
 
     /**
@@ -196,7 +200,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToCritical()
     {
-        // TODO: Implement setTriggerLevelToCritical() method.
+        $this->triggerLevel = LogLevel::CRITICAL;
+
+        return $this;
     }
 
     /**
@@ -206,7 +212,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToError()
     {
-        // TODO: Implement setTriggerLevelToError() method.
+        $this->triggerLevel = LogLevel::ERROR;
+
+        return $this;
     }
 
     /**
@@ -216,7 +224,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToWarning()
     {
-        // TODO: Implement setTriggerLevelToWarning() method.
+        $this->triggerLevel = LogLevel::WARNING;
+
+        return $this;
     }
 
     /**
@@ -226,7 +236,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToNotice()
     {
-        // TODO: Implement setTriggerLevelToNotice() method.
+        $this->triggerLevel = LogLevel::NOTICE;
+
+        return $this;
     }
 
     /**
@@ -236,7 +248,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToInfo()
     {
-        // TODO: Implement setTriggerLevelToInfo() method.
+        $this->triggerLevel = LogLevel::INFO;
+
+        return $this;
     }
 
     /**
@@ -246,7 +260,9 @@ class Logger implements LoggerInterface
      */
     public function setTriggerLevelToDebug()
     {
-        // TODO: Implement setTriggerLevelToDebug() method.
+        $this->triggerLevel = LogLevel::DEBUG;
+
+        return $this;
     }
 
     /**
