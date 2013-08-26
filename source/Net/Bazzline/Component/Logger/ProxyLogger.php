@@ -361,6 +361,8 @@ class ProxyLogger implements ProxyLoggerInterface
         } else {
             $this->triggerLevels = (isset($this->triggeredLogLevelInheritanceMap[$this->triggerLevel]))
                 ? $this->triggeredLogLevelInheritanceMap[$this->triggerLevel] : array($this->triggerLevel);
+            //we want to gain fast access
+            $this->triggerLevels = array_flip($this->triggerLevels);
         }
 
         return $this;
@@ -374,6 +376,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     protected function isTriggeredLogLevel($level)
     {
-        return ($level == $this->triggerLevel);
+        return (($level == $this->triggerLevel)
+                || (isset($this->triggerLevels[$level])));
     }
 }
