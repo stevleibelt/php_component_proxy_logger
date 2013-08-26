@@ -175,9 +175,17 @@ class Logger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        // TODO: Implement log() method.
         if ($this->isTriggeredLogLevel($level)) {
-            //dump content of collection to logger
+            foreach ($this->logCollection as $logEntry) {
+                /**
+                 * @var LogEntry $logEntry
+                 */
+                $this->logger->log(
+                    $logEntry->getLevel(),
+                    $logEntry->getMessage(),
+                    $logEntry->getContext()
+                );
+            }
         } else {
             $this->logCollection->add(
                 new LogEntry($level, $message, $context)
