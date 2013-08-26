@@ -20,6 +20,19 @@ class LogEntryCollectionTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function testCreation()
+    {
+        $collection = $this->getNewCollection();
+        $entry = $this->getNewEntry();
+
+        $this->assertEquals(0, $collection->count());
+        $this->assertFalse($collection->contains($entry));
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function testAttach()
@@ -28,6 +41,36 @@ class LogEntryCollectionTest extends TestCase
         $collection->attach($this->getNewEntry());
 
         $this->assertEquals(1, $collection->count());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function testContains()
+    {
+        $collection = $this->getNewCollection();
+        $entry = $this->getNewEntry();
+        $collection->attach($entry);
+
+        $this->assertTrue($collection->contains($entry));
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function testDetach()
+    {
+        $collection = $this->getNewCollection();
+        $entry = $this->getNewEntry();
+        //no error expected when detaching a not attached entry
+        $collection->detach($entry);
+        //now attach and detach entry
+        $collection->attach($entry);
+        $collection->detach($entry);
+
+        $this->assertEquals(0, $collection->count());
     }
 
     /**
