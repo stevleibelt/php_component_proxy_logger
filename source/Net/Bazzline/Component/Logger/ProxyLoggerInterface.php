@@ -74,4 +74,20 @@ interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface, Lo
      * @since 2013-08-26
      */
     public function setTriggerLevelToDebug();
+
+    /**
+     * @param mixed $level
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerLevel($level);
+
+    /**
+     * @param array $map
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggeredLogLevelInheritanceMap(array $map);
 }

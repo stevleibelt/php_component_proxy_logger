@@ -23,7 +23,7 @@ class ProxyLogger implements ProxyLoggerInterface
      * @author sleibelt
      * @since 2013-08-26
      */
-    protected $logCollection;
+    protected $logEntryCacheCollection;
 
     /**
      * @var \Psr\Log\LoggerInterface
@@ -44,16 +44,21 @@ class ProxyLogger implements ProxyLoggerInterface
      * @since 2013-08-26
      */
     protected $triggerLevel;
+    /**
+     * @var @var array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $triggeredLogLevelInheritanceMap;
 
     /**
-     * @param null $triggerLevel
      * @author sleibelt
      * @since 2013-08-26
      */
-    public function __construct($triggerLevel = null)
+    public function __construct()
     {
-        $this->triggerLevel = (is_null($triggerLevel)) ? LogLevel::WARNING : $triggerLevel;
-        $this->logCollection = new LogEntryCollection();
+        $this->logEntryCacheCollection = new LogEntryCollection();
+        $this->triggeredLogLevelInheritanceMap = array();
     }
 
     /**
@@ -181,7 +186,7 @@ class ProxyLogger implements ProxyLoggerInterface
     public function log($level, $message, array $context = array())
     {
         if ($this->isTriggeredLogLevel($level)) {
-            foreach ($this->logCollection as $logEntry) {
+            foreach ($this->logEntryCacheCollection as $logEntry) {
                 /**
                  * @var LogEntry $logEntry
                  */
@@ -192,7 +197,7 @@ class ProxyLogger implements ProxyLoggerInterface
                 );
             }
         } else {
-            $this->logCollection->add(
+            $this->logEntryCacheCollection->add(
                 $this->logEntryFactory->create($level, $message, $context)
             );
         }
@@ -303,6 +308,32 @@ class ProxyLogger implements ProxyLoggerInterface
     public function injectLogEntryFactory(LogEntryFactoryInterface $factory)
     {
         $this->logEntryFactory = $factory;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $level
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerLevel($level)
+    {
+        $this->triggerLevel = $level;
+
+        return $this;
+    }
+
+    /**
+     * @param array $map
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggeredLogLevelInheritanceMap(array $map)
+    {
+        $this->triggeredLogLevelInheritanceMap = $map;
 
         return $this;
     }
