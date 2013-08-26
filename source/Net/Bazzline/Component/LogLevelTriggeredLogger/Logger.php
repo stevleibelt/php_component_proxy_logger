@@ -19,6 +19,13 @@ use Psr\Log\LogLevel;
 class Logger implements LoggerInterface
 {
     /**
+     * @var LogEntryCollection
+     * @author sleibelt
+     * @since 2013-08-26
+     */
+    protected $logCollection;
+
+    /**
      * @var \Psr\Log\LoggerInterface
      * @author sleibelt
      * @since 2013-08-26
@@ -30,7 +37,18 @@ class Logger implements LoggerInterface
      * @author sleibelt
      * @since 2013-08-26
      */
-    protected $triggerLevel = LogLevel::DEBUG;
+    protected $triggerLevel;
+
+    /**
+     * @param null $triggerLevel
+     * @author sleibelt
+     * @since 2013-08-26
+     */
+    public function __construct($triggerLevel = null)
+    {
+        $this->triggerLevel = (is_null($triggerLevel)) ? LogLevel::WARNING : $triggerLevel;
+        $this->logCollection = new LogEntryCollection();
+    }
 
     /**
      * Sets a logger instance on the object
