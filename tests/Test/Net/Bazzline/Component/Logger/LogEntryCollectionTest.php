@@ -4,9 +4,9 @@
  * @since 2013-08-26
  */
 
-namespace Test\Net\Bazzline\Component\LogLevelTriggered;
+namespace Test\Net\Bazzline\Component\Logger;
 
-use Net\Bazzline\Component\LogLevelTriggered\LogEntryCollection;
+use Net\Bazzline\Component\Logger\LogEntryCollection;
 use Mockery;
 use Psr\Log\LogLevel;
 
@@ -32,13 +32,13 @@ class LogEntryCollectionTest extends TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\LogLevelTriggered\LogEntry
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry
      * @author stev leibelt <artodeot@arcor.de>
      * @since 2013-08-26
      */
     private function getNewEntry()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\LogLevelTriggered\LogEntry');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry');
 
         $mock->shouldReceive('getLevel')
             ->andReturn(LogLevel::DEBUG)

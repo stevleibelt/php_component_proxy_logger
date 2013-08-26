@@ -4,7 +4,7 @@
  * @since 2013-08-26
  */
 
-namespace Test\Net\Bazzline\Component\LogLevelTriggered;
+namespace Test\Net\Bazzline\Component\Logger;
 
 use Mockery;
 use PHPUnit_Framework_TestCase;

@@ -1,9 +1,9 @@
 {
-    "name": "net_bazzline/component_log_level_triggered_logger",
+    "name": "net_bazzline/component_logger",
     "type": "library",
-    "description": "php component log level triggerd logger",
-    "keywords": ["php", "net_bazzline", "component", "logger", "psr-3", "triggerd"],
-    "homepage": "https://github.com/stevleibelt/php_component_log_level_triggered_logger",
+    "description": "php component logger proxy",
+    "keywords": ["php", "net_bazzline", "component", "logger", "psr-3", "proxy"],
+    "homepage": "https://github.com/stevleibelt/php_component_logger",
     "license": "LGPLv3",
     "authors": [
 	    {
@@ -24,8 +24,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\Component\\LogLevelTriggerdLogger\\": "source/",
-            "Test\\Net\\Bazzline\\Component\\LogLevelTriggerdLogger\\": "tests/",
+            "Net\\Bazzline\\Component\\Logger\\": "source/",
+            "Test\\Net\\Bazzline\\Component\\Logger\\": "tests/",
             "Example\\": "example/"
         }
     }
