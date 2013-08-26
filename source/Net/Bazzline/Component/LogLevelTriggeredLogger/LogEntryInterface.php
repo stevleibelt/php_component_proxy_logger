@@ -25,7 +25,7 @@ interface LogEntryInterface
     public function __construct($logLevel, $message, array $context = array());
 
     /**
-     * @return string
+     * @return mixed
      * @author stev leibelt <artodeot@arcor.de>
      * @since 2013-08-26
      */
