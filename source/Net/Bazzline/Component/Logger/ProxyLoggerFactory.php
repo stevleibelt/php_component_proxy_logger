@@ -30,8 +30,7 @@ class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
     {
         $validator = new isValidLogLevel();
 
-        if (!$validator->setLogLevel($triggeredLogLevel)->isMet())
-        {
+        if (!$validator->setLogLevel($triggeredLogLevel)->isMet()) {
             throw new InvalidArgumentException(
                 'triggered log level is not valid'
             );

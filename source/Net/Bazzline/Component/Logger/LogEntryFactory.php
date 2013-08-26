@@ -28,8 +28,7 @@ class LogEntryFactory implements LogEntryFactoryInterface
     {
         $validator = new isValidLogLevel();
 
-        if (!$validator->setLogLevel($level)->isMet())
-        {
+        if (!$validator->setLogLevel($level)->isMet()) {
             throw new InvalidArgumentException(
                 'level is not valid'
             );
