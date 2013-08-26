@@ -43,6 +43,7 @@ class Logger implements LoggerInterface
      * @param null $triggerLevel
      * @author sleibelt
      * @since 2013-08-26
+     * @todo implement triggerLevel validation
      */
     public function __construct($triggerLevel = null)
     {
@@ -175,6 +176,13 @@ class Logger implements LoggerInterface
     public function log($level, $message, array $context = array())
     {
         // TODO: Implement log() method.
+        if ($this->isTriggeredLogLevel($level)) {
+            //dump content of collection to logger
+        } else {
+            $this->logCollection->add(
+                new LogEntry($level, $message, $context)
+            );
+        }
     }
 
     /**
@@ -281,6 +289,6 @@ class Logger implements LoggerInterface
      */
     protected function isTriggeredLogLevel($level)
     {
-        return true;
+        return ($level == $this->triggerLevel);
     }
 }
