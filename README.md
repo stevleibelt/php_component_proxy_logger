@@ -16,13 +16,15 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 
 # Installation
 
-## GitHub
+## [GitHub](https://github.com/stevleibelt/php_component_logger)
 
-    [git clone https://github.com/stevleibelt/php_component_logger .](https://github.com/stevleibelt/php_component_logger)
+    mkdir -p $HOME/path/to/my/repostitories/php_component
+    cd $HOME/path/to/my/repostitories/php_component
+    git clone https://github.com/stevleibelt/php_component_logger .
 
-## Composer
+## [Composer](https://packagist.org/packages/net_bazzline/component_logger)
 
-    [require: "net_bazzline/component_logger": "dev-master"](https://packagist.org/packages/net_bazzline/component_logger)
+    require: "net_bazzline/component_logger": "dev-master"
 
 # Todo List
 
