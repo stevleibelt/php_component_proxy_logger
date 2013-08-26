@@ -74,4 +74,6 @@ interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface
      * @since 2013-08-26
      */
     public function setTriggerLevelToDebug();
+
+    public function setLogEntryFactory(LogEntryFactoryInterface $factory);
 }
