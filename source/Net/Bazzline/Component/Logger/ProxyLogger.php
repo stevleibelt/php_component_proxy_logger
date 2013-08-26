@@ -44,6 +44,14 @@ class ProxyLogger implements ProxyLoggerInterface
      * @since 2013-08-26
      */
     protected $triggerLevel;
+
+    /**
+     * @var array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $triggerLevels;
+
     /**
      * @var @var array
      * @author stev leibelt <artodeto@arcor.de>
@@ -59,6 +67,7 @@ class ProxyLogger implements ProxyLoggerInterface
     {
         $this->logEntryCacheCollection = new LogEntryCollection();
         $this->triggeredLogLevelInheritanceMap = array();
+        $this->buildTriggerLevels();
     }
 
     /**
@@ -320,7 +329,8 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevel($level)
     {
-        $this->triggerLevel = $level;
+        $this->triggerLevel = array($level);
+        $this->buildTriggerLevels();
 
         return $this;
     }
@@ -334,6 +344,24 @@ class ProxyLogger implements ProxyLoggerInterface
     public function setTriggeredLogLevelInheritanceMap(array $map)
     {
         $this->triggeredLogLevelInheritanceMap = $map;
+        $this->buildTriggerLevels();
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected function buildTriggerLevels()
+    {
+        if (is_null($this->triggerLevel)) {
+            $this->triggerLevels = array();
+        } else {
+            $this->triggerLevels = (isset($this->triggeredLogLevelInheritanceMap[$this->triggerLevel]))
+                ? $this->triggeredLogLevelInheritanceMap[$this->triggerLevel] : array($this->triggerLevel);
+        }
 
         return $this;
     }
