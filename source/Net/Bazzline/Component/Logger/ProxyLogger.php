@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeot@arcor.de>
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
 
@@ -13,7 +13,7 @@ use Psr\Log\LogLevel;
  * Class ProxyLogger
  *
  * @package Net\Bazzline\Component\Logger
- * @author stev leibelt <artodeot@arcor.de>
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
 class ProxyLogger implements ProxyLoggerInterface
@@ -195,7 +195,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToEmergency()
@@ -207,7 +207,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToAlert()
@@ -219,7 +219,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToCritical()
@@ -231,7 +231,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToError()
@@ -243,7 +243,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToWarning()
@@ -255,7 +255,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToNotice()
@@ -267,7 +267,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToInfo()
@@ -279,7 +279,7 @@ class ProxyLogger implements ProxyLoggerInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function setTriggerLevelToDebug()
@@ -292,7 +292,7 @@ class ProxyLogger implements ProxyLoggerInterface
     /**
      * @param mixed $level
      * @return bool
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected function isTriggeredLogLevel($level)

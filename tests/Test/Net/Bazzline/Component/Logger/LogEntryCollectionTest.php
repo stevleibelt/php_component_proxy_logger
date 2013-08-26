@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeot@arcor.de>
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
 
@@ -13,13 +13,13 @@ use Mockery;
  * Class LogEntryCollection
  *
  * @package Test\Net\Bazzline\Component\Logger
- * @author stev leibelt <artodeot@arcor.de>
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
 class LogEntryCollectionTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function testAdd()
@@ -32,7 +32,7 @@ class LogEntryCollectionTest extends TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     private function getNewEntry()
@@ -44,7 +44,7 @@ class LogEntryCollectionTest extends TestCase
 
     /**
      * @return LogEntryCollection
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     private function getNewCollection()

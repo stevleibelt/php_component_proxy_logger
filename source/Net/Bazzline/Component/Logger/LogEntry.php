@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeot@arcor.de>
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
 
@@ -17,21 +17,21 @@ class LogEntry implements LogEntryInterface
 {
     /**
      * @var mixed
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected $logLevel;
 
     /**
      * @var string
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected $message;
 
     /**
      * @var array
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected $context;
@@ -40,7 +40,7 @@ class LogEntry implements LogEntryInterface
      * @param mixed $logLevel
      * @param string $message
      * @param array $context
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      * @todo implement logLevel evaluation
      */
@@ -53,7 +53,7 @@ class LogEntry implements LogEntryInterface
 
     /**
      * @return mixed
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function getLevel()
@@ -63,7 +63,7 @@ class LogEntry implements LogEntryInterface
 
     /**
      * @return string
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function getMessage()
@@ -73,7 +73,7 @@ class LogEntry implements LogEntryInterface
 
     /**
      * @return mixed
-     * @author stev leibelt <artodeot@arcor.de>
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function getContext()
