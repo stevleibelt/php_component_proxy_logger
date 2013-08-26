@@ -197,7 +197,7 @@ class ProxyLogger implements ProxyLoggerInterface
                 );
             }
         } else {
-            $this->logEntryCacheCollection->add(
+            $this->logEntryCacheCollection->attach(
                 $this->logEntryFactory->create($level, $message, $context)
             );
         }
