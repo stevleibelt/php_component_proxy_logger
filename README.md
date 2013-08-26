@@ -1,4 +1,4 @@
-# Log Level Triggered Logger
+# Logger Component
 
 Enables level triggered logging for each psr-3 LoggerInterface.
 
