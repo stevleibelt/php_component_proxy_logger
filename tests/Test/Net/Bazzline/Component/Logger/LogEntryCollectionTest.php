@@ -40,21 +40,6 @@ class LogEntryCollectionTest extends TestCase
     {
         $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry');
 
-        $mock->shouldReceive('getLevel')
-            ->andReturn(LogLevel::DEBUG)
-            ->once()
-            ->byDefault();
-
-        $mock->shouldReceive('getMessage')
-            ->andReturn('the message is love')
-            ->once()
-            ->byDefault();
-
-        $mock->shouldReceive('getContext')
-            ->andReturn(array())
-            ->once()
-            ->byDefault();
-
         return $mock;
     }
 
