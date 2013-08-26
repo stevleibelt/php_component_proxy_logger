@@ -23,9 +23,33 @@ class LogEntryCollection extends SplObjectStorage
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function add(LogEntryInterface $entry)
+    public function attach(LogEntryInterface $entry)
     {
-        $this->attach($entry);
+        parent::attach($entry);
+
+        return $this;
+    }
+
+    /**
+     * @param LogEntryInterface $entry
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function contains(LogEntryInterface $entry)
+    {
+        return parent::contains($entry);
+    }
+
+    /**
+     * @param LogEntryInterface $entry
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function detach(LogEntryInterface $entry)
+    {
+        parent::detach($entry);
 
         return $this;
     }

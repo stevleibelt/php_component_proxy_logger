@@ -22,10 +22,10 @@ class LogEntryCollectionTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function testAdd()
+    public function testAttach()
     {
         $collection = $this->getNewCollection();
-        $collection->add($this->getNewEntry());
+        $collection->attach($this->getNewEntry());
 
         $this->assertEquals(1, $collection->count());
     }
