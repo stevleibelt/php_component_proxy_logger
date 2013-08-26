@@ -210,7 +210,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToEmergency()
     {
-        $this->triggerLevel = LogLevel::EMERGENCY;
+        $this->setTriggerLevel(LogLevel::EMERGENCY);
 
         return $this;
     }
@@ -222,7 +222,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToAlert()
     {
-        $this->triggerLevel = LogLevel::ALERT;
+        $this->setTriggerLevel(LogLevel::ALERT);
 
         return $this;
     }
@@ -234,7 +234,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToCritical()
     {
-        $this->triggerLevel = LogLevel::CRITICAL;
+        $this->setTriggerLevel(LogLevel::CRITICAL);
 
         return $this;
     }
@@ -246,7 +246,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToError()
     {
-        $this->triggerLevel = LogLevel::ERROR;
+        $this->setTriggerLevel(LogLevel::ERROR);
 
         return $this;
     }
@@ -258,7 +258,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToWarning()
     {
-        $this->triggerLevel = LogLevel::WARNING;
+        $this->setTriggerLevel(LogLevel::WARNING);
 
         return $this;
     }
@@ -270,7 +270,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToNotice()
     {
-        $this->triggerLevel = LogLevel::NOTICE;
+        $this->setTriggerLevel(LogLevel::NOTICE);
 
         return $this;
     }
@@ -282,7 +282,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToInfo()
     {
-        $this->triggerLevel = LogLevel::INFO;
+        $this->setTriggerLevel(LogLevel::INFO);
 
         return $this;
     }
@@ -294,7 +294,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function setTriggerLevelToDebug()
     {
-        $this->triggerLevel = LogLevel::DEBUG;
+        $this->setTriggerLevel(LogLevel::DEBUG);
 
         return $this;
     }
