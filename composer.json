@@ -25,7 +25,7 @@
     "autoload": {
         "psr-0": {
             "Net\\Bazzline\\Component\\LogLevelTriggerdLogger\\": "source/",
-            "Test\\Net\\Bazzline\\Component\\LogLevelTriggerdLogger\\": "test/",
+            "Test\\Net\\Bazzline\\Component\\LogLevelTriggerdLogger\\": "tests/",
             "Example\\": "example/"
         }
     }

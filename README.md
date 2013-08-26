@@ -10,6 +10,7 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 
 # Todo List
 
+* implement unittests
 * fix author mail issue
 * implement Logger::isTriggeredLogLevel that way, that it returns true if the log level is at least that important
     (log level "error" given and trigger level "warn" given, method will return true because warn is "as important as" warn)
