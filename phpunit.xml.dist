@@ -10,7 +10,7 @@
          stopOnSkipped="false">
 
     <testsuites>
-        <testsuite name="Logger Test Suite">
+        <testsuite name="ProxyLogger Test Suite">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>

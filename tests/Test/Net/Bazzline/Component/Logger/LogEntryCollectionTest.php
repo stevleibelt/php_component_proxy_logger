@@ -8,12 +8,11 @@ namespace Test\Net\Bazzline\Component\Logger;
 
 use Net\Bazzline\Component\Logger\LogEntryCollection;
 use Mockery;
-use Psr\Log\LogLevel;
 
 /**
  * Class LogEntryCollection
  *
- * @package Test\Net\Bazzline\Component\LogLevelTriggered
+ * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeot@arcor.de>
  * @since 2013-08-26
  */

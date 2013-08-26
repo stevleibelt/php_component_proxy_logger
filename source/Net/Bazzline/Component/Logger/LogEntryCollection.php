@@ -11,7 +11,7 @@ use SplObjectStorage;
 /**
  * Class LogEntryCollection
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\Logger
+ * @package Net\Bazzline\Component\LogLevelTriggered\ProxyLogger
  * @author stev leibelt <artodeot@arcor.de>
  * @since 2013-08-26
  */

@@ -7,16 +7,16 @@
 namespace Net\Bazzline\Component\Logger;
 
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface as ParentInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Class LoggerInterface
+ * Class ProxyLoggerInterface
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\Logger
+ * @package Net\Bazzline\Component\LogLevelTriggered\ProxyLogger
  * @author stev leibelt <artodeot@arcor.de>
  * @since 2013-08-26
  */
-interface LoggerInterface extends ParentInterface, LoggerAwareInterface
+interface ProxyLoggerInterface extends LoggerInterface, LoggerAwareInterface
 {
     /**
      * @return $this

@@ -12,7 +12,7 @@ use PHPUnit_Framework_TestCase;
 /**
  * Class TestCase
  *
- * @package Test\Net\Bazzline\Component\LogLevelTriggered
+ * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeot@arcor.de>
  * @since 2013-08-26
  */

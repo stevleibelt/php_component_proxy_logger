@@ -6,7 +6,13 @@
 
 namespace Net\Bazzline\Component\Logger;
 
-
+/**
+ * Class LogEntry
+ *
+ * @package Net\Bazzline\Component\Logger
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-08-26
+ */
 class LogEntry implements LogEntryInterface
 {
     /**

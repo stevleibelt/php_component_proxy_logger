@@ -10,13 +10,13 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 /**
- * Class Logger
+ * Class ProxyLogger
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\Logger
+ * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeot@arcor.de>
  * @since 2013-08-26
  */
-class Logger implements LoggerInterface
+class ProxyLogger implements ProxyLoggerInterface
 {
     /**
      * @var LogEntryCollection
