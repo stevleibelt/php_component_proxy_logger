@@ -36,6 +36,10 @@ class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
             );
         }
 
+        if (empty($triggeredLogLevelInheritanceMap)) {
+            $triggeredLogLevelInheritanceMap = require 'triggeredLogLevelInheritanceDefaultMap.php';
+        }
+
         $proxy = new ProxyLogger();
 
         $proxy->setLogger($logger);
