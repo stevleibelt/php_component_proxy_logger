@@ -42,7 +42,7 @@ class LogEntry implements LogEntryInterface
      * @param array $context
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
-     * @todo implement logLevel evaluation
+     * @todo implement level evaluation
      */
     public function __construct($logLevel, $message, array $context = array())
     {

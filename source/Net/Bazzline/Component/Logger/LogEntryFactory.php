@@ -6,8 +6,6 @@
 
 namespace Net\Bazzline\Component\Logger;
 
-use Psr\Log\LogLevel;
-
 /**
  * Class LogEntryFactory
  *
@@ -22,39 +20,21 @@ class LogEntryFactory
      * @param $message
      * @param array $context
      * @return LogEntry
+     * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     public function create($level, $message, array $context = array())
     {
-        $this->validateLogLevel($level);
+        $validator = new isValidLogLevel();
 
-        return new LogEntry($level, $message, $context);
-    }
-
-    /**
-     * @param $level
-     * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected function validateLogLevel($level)
-    {
-        $validLogLevels = array(
-            LogLevel::ALERT => true,
-            LogLevel::CRITICAL => true,
-            LogLevel::DEBUG => true,
-            LogLevel::EMERGENCY => true,
-            LogLevel::ERROR => true,
-            LogLevel::INFO => true,
-            LogLevel::NOTICE => true,
-            LogLevel::WARNING => true
-        );
-
-        if (!isset($validLogLevels[$level])) {
+        if (!$validator->setLogLevel($level)->isMet())
+        {
             throw new InvalidArgumentException(
-                'no valid log level provided'
+                'level is not valid'
             );
         }
+
+        return new LogEntry($level, $message, $context);
     }
 }
