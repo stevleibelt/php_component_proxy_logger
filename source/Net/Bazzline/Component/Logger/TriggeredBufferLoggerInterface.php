@@ -13,6 +13,6 @@ namespace Net\Bazzline\Component\Logger;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface TriggeredBufferLoggerInterface extends TriggeredBufferFlushByLogLevel, ProxyLoggerInterface
+interface TriggeredBufferLoggerInterface extends TriggeredBufferFlushByLogLevelInterface, ProxyLoggerInterface
 {
 }
