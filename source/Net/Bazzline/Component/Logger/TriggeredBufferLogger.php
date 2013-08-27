@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredBufferLogger extends BufferedLogger implements TriggeredProxyLoggerInterface
+class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLoggerInterface
 {
     /**
      * @var mixed

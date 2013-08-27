@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredProxyLoggerFactory implements TriggeredProxyLoggerFactoryInterface
+class TriggeredBufferLoggerFactory implements TriggeredBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
