@@ -8,6 +8,7 @@ namespace Test\Net\Bazzline\Component\Logger;
 
 use Net\Bazzline\Component\Logger\BufferedLogger;
 use Mockery;
+use Psr\Log\LogLevel;
 
 /**
  * Class BufferedLoggerTest
@@ -18,11 +19,116 @@ use Mockery;
  */
 class BufferedLoggerTest extends TestCase
 {
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
     public function testLog()
     {
+        $level = LogLevel::WARNING;
+        $message = 'the message is love';
+        $entry = $this->getLogEntry();
+        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+
         $logger = $this->getNewBufferedLogger();
-        $logger->injectLogEntryFactory($this->getLogEntryFactory());
-        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory());
+        $logger->injectLogEntryFactory($this->getLogEntryFactory($entry));
+        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+
+        $logger->log($level, $message);
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function testClean()
+    {
+        $entry = $this->getLogEntry();
+        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $buffer->shouldReceive('attach')
+            ->never();
+        $entryFactory = $this->getLogEntryFactory($entry);
+        $entryFactory->shouldReceive('create')
+            ->never();
+        $bufferFactory = $this->getLogEntryBufferFactory($buffer);
+        $bufferFactory->shouldReceive('create')
+            ->twice();
+
+        $logger = $this->getNewBufferedLogger();
+        $logger->injectLogEntryFactory($entryFactory);
+        $logger->injectLogEntryBufferFactory($bufferFactory);
+
+        $logger->clean();
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function testFlushWithNoEntry()
+    {
+        $entry = $this->getLogEntry();
+        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $buffer->shouldReceive('rewind')
+            ->once();
+        $buffer->shouldReceive('valid')
+            ->andReturn(false)
+            ->once();
+        $buffer->shouldReceive('attach')
+            ->never();
+        $entryFactory = $this->getLogEntryFactory($entry);
+        $entryFactory->shouldReceive('create')
+            ->never();
+
+        $logger = $this->getNewBufferedLogger();
+        $logger->injectLogEntryFactory($entryFactory);
+        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+
+        $logger->flush();
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function testFlushWithEntry()
+    {
+        $level = LogLevel::WARNING;
+        $message = 'the message is love';
+        $entry = $this->getLogEntry();
+        $entry->shouldReceive('getLevel')
+            ->andReturn($level)
+            ->once();
+        $entry->shouldReceive('getMessage')
+            ->andReturn($message)
+            ->once();
+        $entry->shouldReceive('getContext')
+            ->andReturn(array())
+            ->once();
+        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $buffer->shouldReceive('rewind')
+            ->once();
+        $buffer->shouldReceive('valid')
+            ->andReturn(true, false)
+            ->times(2);
+        $buffer->shouldReceive('current')
+            ->andReturn($entry)
+            ->once();
+        $buffer->shouldReceive('next')
+            ->once();
+        $entryFactory = $this->getLogEntryFactory($entry);
+        $realLogger = $this->getPsr3Logger();
+        $realLogger->shouldReceive('log')
+            ->with($level, $message, array())
+            ->once();
+
+        $logger = $this->getNewBufferedLogger();
+        $logger->setLogger($realLogger);
+        $logger->injectLogEntryFactory($entryFactory);
+        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+
+        $logger->log($level, $message);
+        $logger->flush();
     }
 
     /**
@@ -33,37 +139,5 @@ class BufferedLoggerTest extends TestCase
     protected function getNewBufferedLogger()
     {
         return new BufferedLogger();
-    }
-
-    /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-27
-     */
-    private function getLogEntry()
-    {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry');
-
-        return $mock;
-    }
-
-    /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntryFactory
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since
-     */
-    protected function getLogEntryFactory()
-    {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntryFactory');
-        $mock->shouldReceive('create')
-            ->andReturn($this->getLogEntry())
-            ->once();
-
-        return $mock;
-    }
-
-    protected function getLogEntryBufferFactory()
-    {
-        //@todo
     }
 }
