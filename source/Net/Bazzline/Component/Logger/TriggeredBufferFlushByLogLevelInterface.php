@@ -92,5 +92,5 @@ interface TriggeredBufferFlushByLogLevelInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function getTriggerToLovLevel();
+    public function getTriggerToLogLevel();
 }
