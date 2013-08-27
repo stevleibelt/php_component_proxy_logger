@@ -10,13 +10,13 @@ use Net\Bazzline\Component\Logger\LogEntryRuntimeBuffer;
 use Mockery;
 
 /**
- * Class LogEntryCollection
+ * Class LogEntryRuntimeBufferTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryCollectionTest extends TestCase
+class LogEntryRuntimeBufferTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -24,7 +24,7 @@ class LogEntryCollectionTest extends TestCase
      */
     public function testCreation()
     {
-        $collection = $this->getNewCollection();
+        $collection = $this->getNewBuffer();
         $entry = $this->getNewEntry();
 
         $this->assertEquals(0, $collection->count());
@@ -37,10 +37,10 @@ class LogEntryCollectionTest extends TestCase
      */
     public function testAttach()
     {
-        $collection = $this->getNewCollection();
-        $collection->attach($this->getNewEntry());
+        $buffer = $this->getNewBuffer();
+        $buffer->attach($this->getNewEntry());
 
-        $this->assertEquals(1, $collection->count());
+        $this->assertEquals(1, $buffer->count());
     }
 
     /**
@@ -49,11 +49,11 @@ class LogEntryCollectionTest extends TestCase
      */
     public function testContains()
     {
-        $collection = $this->getNewCollection();
+        $buffer = $this->getNewBuffer();
         $entry = $this->getNewEntry();
-        $collection->attach($entry);
+        $buffer->attach($entry);
 
-        $this->assertTrue($collection->contains($entry));
+        $this->assertTrue($buffer->contains($entry));
     }
 
     /**
@@ -62,15 +62,15 @@ class LogEntryCollectionTest extends TestCase
      */
     public function testDetach()
     {
-        $collection = $this->getNewCollection();
+        $buffer = $this->getNewBuffer();
         $entry = $this->getNewEntry();
         //no error expected when detaching a not attached entry
-        $collection->detach($entry);
+        $buffer->detach($entry);
         //now attach and detach entry
-        $collection->attach($entry);
-        $collection->detach($entry);
+        $buffer->attach($entry);
+        $buffer->detach($entry);
 
-        $this->assertEquals(0, $collection->count());
+        $this->assertEquals(0, $buffer->count());
     }
 
     /**
@@ -90,7 +90,7 @@ class LogEntryCollectionTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    private function getNewCollection()
+    private function getNewBuffer()
     {
         return new LogEntryRuntimeBuffer;
     }
