@@ -23,7 +23,7 @@ class ProxyLogger implements ProxyLoggerInterface
      * @author sleibelt
      * @since 2013-08-26
      */
-    protected $logEntryCacheCollection;
+    protected $logEntryBuffer;
 
     /**
      * @var \Psr\Log\LoggerInterface
@@ -44,7 +44,7 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function __construct()
     {
-        $this->logEntryCacheCollection = new LogEntryRuntimeBuffer();
+        $this->logEntryBuffer = new LogEntryRuntimeBuffer();
     }
 
     /**
@@ -172,5 +172,18 @@ class ProxyLogger implements ProxyLoggerInterface
     public function log($level, $message, array $context = array())
     {
         $this->logger->log($level, $message, $context);
+    }
+
+    /**
+     * @param LogEntryFactoryInterface $factory
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function injectLogEntryFactory(LogEntryFactoryInterface $factory)
+    {
+        $this->logEntryFactory = $factory;
+
+        return $this;
     }
 }
