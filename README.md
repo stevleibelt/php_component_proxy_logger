@@ -31,6 +31,7 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 * implement unittests
 * implement "unsetTriggerLevel"
 * implement locking
+* evaluate if it make sense to move the InjectFactory interfaces to a full quallified AwareInterface
 
 # Version History
 
