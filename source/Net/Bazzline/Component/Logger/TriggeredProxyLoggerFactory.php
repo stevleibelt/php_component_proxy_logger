@@ -43,7 +43,7 @@ class TriggeredProxyLoggerFactory implements TriggeredProxyLoggerFactoryInterfac
         $proxy = new TriggeredProxyLogger();
 
         $proxy->setLogger($logger);
-        $proxy->setTriggerLevel($triggeredLogLevel);
+        $proxy->setTriggerToLogLevel($triggeredLogLevel);
         $proxy->setTriggeredLogLevelInheritanceMap($triggeredLogLevelInheritanceMap);
 
         return $proxy;

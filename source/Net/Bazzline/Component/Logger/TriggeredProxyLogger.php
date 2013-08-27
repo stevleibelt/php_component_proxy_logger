@@ -82,9 +82,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToEmergency()
+    public function setTriggerToLogLevelEmergency()
     {
-        $this->setTriggerLevel(LogLevel::EMERGENCY);
+        $this->setTriggerToLogLevel(LogLevel::EMERGENCY);
 
         return $this;
     }
@@ -94,9 +94,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToAlert()
+    public function setTriggerToLogLevelAlert()
     {
-        $this->setTriggerLevel(LogLevel::ALERT);
+        $this->setTriggerToLogLevel(LogLevel::ALERT);
 
         return $this;
     }
@@ -106,9 +106,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToCritical()
+    public function setTriggerToLogLevelCritical()
     {
-        $this->setTriggerLevel(LogLevel::CRITICAL);
+        $this->setTriggerToLogLevel(LogLevel::CRITICAL);
 
         return $this;
     }
@@ -118,9 +118,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToError()
+    public function setTriggerToLogLevelError()
     {
-        $this->setTriggerLevel(LogLevel::ERROR);
+        $this->setTriggerToLogLevel(LogLevel::ERROR);
 
         return $this;
     }
@@ -130,9 +130,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToWarning()
+    public function setTriggerToLogLevelWarning()
     {
-        $this->setTriggerLevel(LogLevel::WARNING);
+        $this->setTriggerToLogLevel(LogLevel::WARNING);
 
         return $this;
     }
@@ -142,9 +142,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToNotice()
+    public function setTriggerToLogLevelNotice()
     {
-        $this->setTriggerLevel(LogLevel::NOTICE);
+        $this->setTriggerToLogLevel(LogLevel::NOTICE);
 
         return $this;
     }
@@ -154,9 +154,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToInfo()
+    public function setTriggerToLogLevelInfo()
     {
-        $this->setTriggerLevel(LogLevel::INFO);
+        $this->setTriggerToLogLevel(LogLevel::INFO);
 
         return $this;
     }
@@ -166,9 +166,9 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToDebug()
+    public function setTriggerToLogLevelDebug()
     {
-        $this->setTriggerLevel(LogLevel::DEBUG);
+        $this->setTriggerToLogLevel(LogLevel::DEBUG);
 
         return $this;
     }
@@ -192,7 +192,7 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevel($level)
+    public function setTriggerToLogLevel($level)
     {
         $this->triggerLevel = array($level);
         $this->buildTriggerLevels();

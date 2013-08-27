@@ -13,63 +13,63 @@ namespace Net\Bazzline\Component\Logger;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface TriggeredLogLevelInterface
+interface TriggeredBufferFlushByLogLevel
 {
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToEmergency();
+    public function setTriggerToLogLevelEmergency();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToAlert();
+    public function setTriggerToLogLevelAlert();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToCritical();
+    public function setTriggerToLogLevelCritical();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToError();
+    public function setTriggerToLogLevelError();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToWarning();
+    public function setTriggerToLogLevelWarning();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToNotice();
+    public function setTriggerToLogLevelNotice();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToInfo();
+    public function setTriggerToLogLevelInfo();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevelToDebug();
+    public function setTriggerToLogLevelDebug();
 
     /**
      * @param mixed $level
@@ -77,7 +77,7 @@ interface TriggeredLogLevelInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerLevel($level);
+    public function setTriggerToLogLevel($level);
 
     /**
      * @param array $map
