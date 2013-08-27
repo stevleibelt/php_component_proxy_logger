@@ -16,10 +16,10 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-abstract class AbstractProxyLogger implements ProxyLoggerInterface
+class ProxyLogger implements ProxyLoggerInterface
 {
     /**
-     * @var LogEntryCollection
+     * @var LogEntryRuntimeBuffer
      * @author sleibelt
      * @since 2013-08-26
      */
@@ -44,7 +44,7 @@ abstract class AbstractProxyLogger implements ProxyLoggerInterface
      */
     public function __construct()
     {
-        $this->logEntryCacheCollection = new LogEntryCollection();
+        $this->logEntryCacheCollection = new LogEntryRuntimeBuffer();
     }
 
     /**
@@ -159,5 +159,18 @@ abstract class AbstractProxyLogger implements ProxyLoggerInterface
     public function debug($message, array $context = array())
     {
         $this->log(LogLevel::DEBUG, $message, $context);
+    }
+
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function log($level, $message, array $context = array())
+    {
+        $this->logger->log($level, $message, $context);
     }
 }
