@@ -29,7 +29,7 @@ class LogEntryFactoryTest extends TestCase
         $message = 'the message is love';
         $entry = $factory->create($level, $message);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogEntry', $entry);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogEntryInterface', $entry);
         $this->assertEquals($level, $entry->getLevel());
         $this->assertEquals($message, $entry->getMessage());
         $this->assertEquals(array(), $entry->getContext());
