@@ -193,7 +193,7 @@ class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLog
      */
     public function setTriggerToLogLevel($level)
     {
-        $this->triggerLevel = array($level);
+        $this->triggerLevel = $level;
         $this->buildTriggerLevels();
 
         return $this;
