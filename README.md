@@ -34,11 +34,8 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 
 # Todo List
 
-* create interface "injectStorage" or "StorageAwareInterface" (currently LogEntryCollectionInterface)
-* add method "flush" to LogBuffer
-* refactor AbstractProxyLogger to LogBuffer
-* refactor TriggeredProxyLogger to ThresholdLogBuffer
-* implement unittests
+* update readme
+    * explain storage aka LogEntryBufferInterface
 * implement "unsetTriggerLevel"
 * implement locking
 * evaluate if it make sense to move the InjectFactory interfaces to a full qualified AwareInterface
