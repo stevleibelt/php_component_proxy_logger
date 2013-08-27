@@ -28,6 +28,11 @@ Enables level triggered logging for each psr-3 LoggerInterface.
 
 # Todo List
 
+* rename ProxyLogger to LogBuffer
+* create interface "injectStorage" or "StorageAwareInterface" (currently LogEntryCollectionInterface)
+* add method "flush" to LogBuffer
+* refactore AbstractProxyLogger to LogBuffer
+* refactore TriggeredProxyLogger to ThresholdLogBuffer
 * implement unittests
 * implement "unsetTriggerLevel"
 * implement locking
