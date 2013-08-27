@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\Logger;
 
-use Net\Bazzline\Component\Logger\LogEntryCollection;
+use Net\Bazzline\Component\Logger\LogEntryRuntimeBuffer;
 use Mockery;
 
 /**
@@ -86,12 +86,12 @@ class LogEntryCollectionTest extends TestCase
     }
 
     /**
-     * @return LogEntryCollection
+     * @return LogEntryRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     private function getNewCollection()
     {
-        return new LogEntryCollection;
+        return new LogEntryRuntimeBuffer;
     }
 }

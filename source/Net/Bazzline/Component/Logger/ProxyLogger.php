@@ -19,33 +19,11 @@ use Psr\Log\LogLevel;
 class ProxyLogger implements ProxyLoggerInterface
 {
     /**
-     * @var LogEntryRuntimeBuffer
-     * @author sleibelt
-     * @since 2013-08-26
-     */
-    protected $logEntryBuffer;
-
-    /**
      * @var \Psr\Log\LoggerInterface
      * @author sleibelt
      * @since 2013-08-26
      */
     protected $logger;
-    /**
-     * @var LogEntryFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected $logEntryFactory;
-
-    /**
-     * @author sleibelt
-     * @since 2013-08-26
-     */
-    public function __construct()
-    {
-        $this->logEntryBuffer = new LogEntryRuntimeBuffer();
-    }
 
     /**
      * Sets a logger instance on the object
@@ -172,18 +150,5 @@ class ProxyLogger implements ProxyLoggerInterface
     public function log($level, $message, array $context = array())
     {
         $this->logger->log($level, $message, $context);
-    }
-
-    /**
-     * @param LogEntryFactoryInterface $factory
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function injectLogEntryFactory(LogEntryFactoryInterface $factory)
-    {
-        $this->logEntryFactory = $factory;
-
-        return $this;
     }
 }

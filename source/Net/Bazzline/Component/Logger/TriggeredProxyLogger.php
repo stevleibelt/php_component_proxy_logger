@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredProxyLogger extends AbstractProxyLogger implements TriggeredProxyLoggerInterface
+class TriggeredProxyLogger extends ProxyLogger implements TriggeredProxyLoggerInterface
 {
     /**
      * @var mixed
@@ -60,7 +60,7 @@ class TriggeredProxyLogger extends AbstractProxyLogger implements TriggeredProxy
     public function log($level, $message, array $context = array())
     {
         if ($this->isTriggeredLogLevel($level)) {
-            foreach ($this->logEntryCacheCollection as $logEntry) {
+            foreach ($this->logEntryBuffer as $logEntry) {
                 /**
                  * @var LogEntry $logEntry
                  */
@@ -71,7 +71,7 @@ class TriggeredProxyLogger extends AbstractProxyLogger implements TriggeredProxy
                 );
             }
         } else {
-            $this->logEntryCacheCollection->attach(
+            $this->logEntryBuffer->attach(
                 $this->logEntryFactory->create($level, $message, $context)
             );
         }

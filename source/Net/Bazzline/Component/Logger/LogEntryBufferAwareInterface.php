@@ -13,27 +13,27 @@ namespace Net\Bazzline\Component\Logger;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface BufferLoggerAwareInterface
+interface LogEntryBufferAwareInterface
 {
     /**
-     * @return BufferLoggerInterface $buffer
+     * @return null|BufferLoggerInterface $buffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function getBufferLogger();
+    public function getLogEntryBuffer();
 
     /**
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function hasBufferLogger();
+    public function hasLogEntryBuffer();
 
     /**
-     * @param BufferLoggerInterface $buffer
+     * @param LogEntryBufferInterface $buffer
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function setBufferLogger(BufferLoggerInterface $buffer);
+    public function setLogEntryBuffer(LogEntryBufferInterface $buffer);
 }
