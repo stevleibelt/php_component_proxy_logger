@@ -11,9 +11,9 @@ namespace Net\Bazzline\Component\Logger;
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-26
+ * @since 2013-08-27
  */
-interface LogLevelTriggeredLoggerInterface
+interface TriggeredLogLevelInterface
 {
     /**
      * @return $this
