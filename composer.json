@@ -27,7 +27,7 @@
         "psr-0": {
             "Net\\Bazzline\\Component\\Logger\\": "source/",
             "Test\\Net\\Bazzline\\Component\\Logger\\": "tests/",
-            "Example\\": "example/"
+            "Example\\": "examples/"
         }
     }
 }
