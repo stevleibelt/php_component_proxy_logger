@@ -38,4 +38,11 @@ interface LogEntryBufferInterface
      * @since 2013-08-26
      */
     public function detach(LogEntryInterface $entry);
+
+    /**
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function count();
 }
