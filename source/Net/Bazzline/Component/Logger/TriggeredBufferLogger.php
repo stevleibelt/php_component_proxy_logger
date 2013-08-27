@@ -58,6 +58,10 @@ class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLog
      */
     public function log($level, $message, array $context = array())
     {
+        $this->logEntryBuffer->attach(
+            $this->logEntryFactory->create($level, $message, $context)
+        );
+
         if ($this->isTriggeredLogLevel($level)) {
             foreach ($this->logEntryBuffer as $logEntry) {
                 /**
@@ -69,10 +73,6 @@ class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLog
                     $logEntry->getContext()
                 );
             }
-        } else {
-            $this->logEntryBuffer->attach(
-                $this->logEntryFactory->create($level, $message, $context)
-            );
         }
     }
 
