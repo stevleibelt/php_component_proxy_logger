@@ -86,4 +86,11 @@ interface TriggeredBufferFlushByLogLevelInterface
      * @since 2013-08-26
      */
     public function setTriggeredLogLevelInheritanceMap(array $map);
+
+    /**
+     * @return null|mixed
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    public function getTriggerToLovLevel();
 }

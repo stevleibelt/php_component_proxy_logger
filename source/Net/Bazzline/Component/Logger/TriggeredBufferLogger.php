@@ -214,6 +214,16 @@ class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLog
     }
 
     /**
+     * @return null|mixed
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    public function getTriggerToLovLevel()
+    {
+        return $this->triggerLevel;
+    }
+
+    /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
