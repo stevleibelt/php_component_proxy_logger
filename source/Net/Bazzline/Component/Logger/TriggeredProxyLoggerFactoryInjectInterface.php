@@ -13,13 +13,13 @@ namespace Net\Bazzline\Component\Logger;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface ProxyLoggerFactoryInjectInterface
+interface TriggeredProxyLoggerFactoryInjectInterface
 {
     /**
-     * @param ProxyLoggerFactoryInterface $factory
+     * @param TriggeredProxyLoggerFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function injectProxyLoggerFactory(ProxyLoggerFactoryInterface $factory);
+    public function injectTriggeredProxyLoggerFactory(TriggeredProxyLoggerFactoryInterface $factory);
 }

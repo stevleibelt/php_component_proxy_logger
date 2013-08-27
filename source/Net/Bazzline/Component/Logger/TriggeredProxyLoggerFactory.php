@@ -15,13 +15,13 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
+class TriggeredProxyLoggerFactory implements TriggeredProxyLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
      * @param mixed $triggeredLogLevel
      * @param array $triggeredLogLevelInheritanceMap
-     * @return ProxyLogger
+     * @return TriggeredProxyLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
@@ -40,7 +40,7 @@ class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
             $triggeredLogLevelInheritanceMap = require 'triggeredLogLevelInheritanceDefaultMap.php';
         }
 
-        $proxy = new ProxyLogger();
+        $proxy = new TriggeredProxyLogger();
 
         $proxy->setLogger($logger);
         $proxy->setTriggerLevel($triggeredLogLevel);
