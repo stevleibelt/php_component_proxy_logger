@@ -21,7 +21,7 @@ class TriggeredProxyLoggerFactory implements TriggeredProxyLoggerFactoryInterfac
      * @param LoggerInterface $logger
      * @param mixed $triggeredLogLevel
      * @param array $triggeredLogLevelInheritanceMap
-     * @return TriggeredProxyLogger
+     * @return TriggeredBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
@@ -40,7 +40,7 @@ class TriggeredProxyLoggerFactory implements TriggeredProxyLoggerFactoryInterfac
             $triggeredLogLevelInheritanceMap = require 'triggeredLogLevelInheritanceDefaultMap.php';
         }
 
-        $proxy = new TriggeredProxyLogger();
+        $proxy = new TriggeredBufferLogger();
 
         $proxy->setLogger($logger);
         $proxy->setTriggerToLogLevel($triggeredLogLevel);

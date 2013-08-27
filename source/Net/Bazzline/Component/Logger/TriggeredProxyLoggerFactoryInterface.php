@@ -21,7 +21,7 @@ interface TriggeredProxyLoggerFactoryInterface
      * @param LoggerInterface $logger
      * @param mixed $triggeredLogLevel
      * @param array $triggeredLogLevelInheritanceMap
-     * @return TriggeredProxyLogger
+     * @return TriggeredBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26

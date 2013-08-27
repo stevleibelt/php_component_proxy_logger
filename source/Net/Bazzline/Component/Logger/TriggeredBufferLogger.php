@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLoggerInterface
+class TriggeredBufferLogger extends BufferedLogger implements TriggeredProxyLoggerInterface
 {
     /**
      * @var mixed
@@ -44,7 +44,6 @@ class TriggeredProxyLogger extends BufferedLogger implements TriggeredProxyLogge
      */
     public function __construct()
     {
-        parent::__construct();
         $this->triggeredLogLevelInheritanceMap = array();
         $this->buildTriggerLevels();
     }
