@@ -6,6 +6,8 @@
 
 namespace Test\Net\Bazzline\Component\Logger;
 
+use Net\Bazzline\Component\Logger\LogEntryFactory;
+use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\TriggeredBufferLogger;
 use Psr\Log\LogLevel;
 
@@ -26,12 +28,52 @@ class TriggeredBufferLoggerTest extends TestCase
     private $message;
 
     /**
+     * @var array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    private $map;
+
+    /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     protected function setUp()
     {
         $this->message = 'the message is love';
+        $this->map = array(
+            LogLevel::ALERT => array(
+                LogLevel::ERROR,
+                LogLevel::CRITICAL,
+                LogLevel::EMERGENCY
+            )
+        );
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    public function testLogWithoutReachingTrigger()
+    {
+        $logger = $this->getNewLogger();
+        $logger->setTriggeredLogLevelInheritanceMap($this->map);
+        $entry = $this->getLogEntry();
+        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $entryFactory = $this->getPlainLogEntryFactory();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::INFO, $this->message, array())
+            ->andReturn($entry)
+            ->once();
+        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
+            ->once();
+        $logger->injectLogEntryFactory($entryFactory);
+        $logger->injectLogEntryBufferFactory($bufferFactory);
+
+        $logger->setTriggerToLogLevelAlert();
+        $logger->info($this->message);
     }
 
     /**
@@ -163,13 +205,8 @@ class TriggeredBufferLoggerTest extends TestCase
     public function testSetTriggeredLogLevelInheritanceMap()
     {
         $logger = $this->getNewLogger();
-        $map = array(
-            LogLevel::CRITICAL => array(
-                LogLevel::EMERGENCY
-            )
-        );
 
-        $this->assertEquals($logger, $logger->setTriggeredLogLevelInheritanceMap($map));
+        $this->assertEquals($logger, $logger->setTriggeredLogLevelInheritanceMap($this->map));
     }
 
     /**
