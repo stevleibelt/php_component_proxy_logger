@@ -11,11 +11,11 @@ use SplObjectStorage;
 /**
  * Class LogEntryCollection
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\ProxyLogger
+ * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryCollection extends SplObjectStorage
+class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferInterface
 {
     /**
      * @param LogEntryInterface $entry
