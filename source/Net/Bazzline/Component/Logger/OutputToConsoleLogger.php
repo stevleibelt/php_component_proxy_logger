@@ -131,7 +131,7 @@ class OutputToConsoleLogger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        echo '[' . time() . ']' . '[' . $level . ']' . $message . PHP_EOL;
+        echo '[' . time() . '] [' . $level . '] [' . $message . ']' . PHP_EOL;
         if (!empty($context)) {
             foreach ($context as $value) {
                 echo "\t" . $value . PHP_EOL;
