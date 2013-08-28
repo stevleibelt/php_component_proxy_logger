@@ -2,6 +2,9 @@
 
 Enables level triggered logging for each psr-3 LoggerInterface.
 
+The build status of the current master branch is tracked by Travis CI:
+[![Build Status](https://travis-ci.org/stevleibelt/php_component_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_logger)
+
 # Main Idea
 
 * collects all logger messages in memory
