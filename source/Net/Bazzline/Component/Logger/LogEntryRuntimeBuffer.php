@@ -53,4 +53,14 @@ class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferIn
 
         return $this;
     }
+
+    /**
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function count()
+    {
+        return parent::count();
+    }
 }
