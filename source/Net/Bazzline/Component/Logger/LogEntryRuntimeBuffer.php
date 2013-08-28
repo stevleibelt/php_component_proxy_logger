@@ -23,7 +23,7 @@ class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferIn
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function attach(LogEntryInterface $entry)
+    public function add(LogEntryInterface $entry)
     {
         parent::attach($entry);
 
@@ -36,7 +36,7 @@ class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferIn
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function contains(LogEntryInterface $entry)
+    public function has(LogEntryInterface $entry)
     {
         return parent::contains($entry);
     }
@@ -47,7 +47,7 @@ class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferIn
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function detach(LogEntryInterface $entry)
+    public function remove(LogEntryInterface $entry)
     {
         parent::detach($entry);
 
