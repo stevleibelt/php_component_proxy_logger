@@ -4,7 +4,7 @@
  * @since 8/28/13
  */
 
-namespace Example;
+namespace Net\Bazzline\Component\Logger;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
