@@ -4,9 +4,9 @@
  * @since 8/28/13
  */
 
-namespace Example\BufferedLogger;
+namespace Example\TriggeredBufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferedLogger;
+use Net\Bazzline\Component\Logger\TriggeredBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
@@ -27,7 +27,7 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\BufferedLogger
+     * @var \Net\Bazzline\Component\Logger\TriggeredBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
@@ -50,7 +50,7 @@ class Example
      */
     public function setup()
     {
-        $this->logger = new BufferedLogger();
+        $this->logger = new TriggeredBufferLogger();
         $entryFactory = new LogEntryFactory();
         $bufferFactory = new LogEntryRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
@@ -68,10 +68,14 @@ class Example
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
+        echo 'Setting trigger to critical' . PHP_EOL;
+        $this->logger->setTriggerToLogLevelCritical();
+        echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
         $this->logger->alert('Current line is ' . __LINE__);
         $this->logger->critical('Current line is ' . __LINE__);
+        $this->logger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
         $this->logger->flush();

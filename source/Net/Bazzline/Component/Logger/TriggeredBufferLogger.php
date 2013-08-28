@@ -63,16 +63,7 @@ class TriggeredBufferLogger extends BufferedLogger implements TriggeredBufferLog
         );
 
         if ($this->isTriggeredLogLevel($level)) {
-            foreach ($this->logEntryBuffer as $logEntry) {
-                /**
-                 * @var LogEntry $logEntry
-                 */
-                $this->logger->log(
-                    $logEntry->getLevel(),
-                    $logEntry->getMessage(),
-                    $logEntry->getContext()
-                );
-            }
+            $this->flush();
         }
     }
 

@@ -97,6 +97,7 @@ class BufferedLogger extends ProxyLogger implements BufferedLoggerInterface
                 $logEntry->getContext()
             );
         }
+        $this->clean();
 
         return $this;
     }
