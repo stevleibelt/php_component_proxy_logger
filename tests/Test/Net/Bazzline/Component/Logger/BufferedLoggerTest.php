@@ -32,7 +32,11 @@ class BufferedLoggerTest extends TestCase
 
         $logger = $this->getNewBufferedLogger();
         $logger->injectLogEntryFactory($this->getLogEntryFactory($entry));
-        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $bufferFactory = $this->getLogEntryBufferFactory($buffer);
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
+            ->once();
+        $logger->injectLogEntryBufferFactory($bufferFactory);
 
         $logger->log($level, $message);
     }

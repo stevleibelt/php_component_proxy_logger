@@ -124,7 +124,7 @@ class TestCase extends PHPUnit_Framework_TestCase
         $mock = $this->getPlainLogEntryBufferFactory();
         $mock->shouldReceive('create')
             ->andReturn($buffer)
-            ->once()
+            ->twice()
             ->byDefault();
 
         return $mock;

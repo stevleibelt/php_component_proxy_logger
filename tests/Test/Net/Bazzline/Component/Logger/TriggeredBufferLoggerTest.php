@@ -141,7 +141,7 @@ class TriggeredBufferLoggerTest extends TestCase
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
-            ->once();
+            ->twice();
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
@@ -215,7 +215,7 @@ class TriggeredBufferLoggerTest extends TestCase
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
-            ->once();
+            ->twice();
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
