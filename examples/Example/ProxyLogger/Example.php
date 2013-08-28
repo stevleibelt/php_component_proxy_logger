@@ -4,7 +4,7 @@
  * @since 8/28/13
  */
 
-namespace Example\ProxyLoggerExample;
+namespace Example\ProxyLogger;
 
 use Net\Bazzline\Component\Logger\ProxyLogger;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
@@ -18,7 +18,7 @@ Example::create()
 /**
  * Class Example
  *
- * @package Example\ProxyLoggerExample
+ * @package Example\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
