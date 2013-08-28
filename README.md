@@ -1,21 +1,38 @@
 # Logger Component
 
-Enables level triggered logging for each psr-3 LoggerInterface.
+This component ships a collection of enhanced logger handling tools.
 
 The build status of the current master branch is tracked by Travis CI:
 [![Build Status](https://travis-ci.org/stevleibelt/php_component_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_logger)
 
-# Main Idea
-
-* collects all logger messages in memory
-* if logging level is reached, collected messages are written in real logger, otherwise thrown away
-* can handle each real logger that implements psr-3 logger interface
+The main component is the *TriggeredBufferLogger* which enables level triggered logging for each PSR-3 LoggerInterface.
 
 # Features
 
 * full [PSR-3 Logger Interface](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) compatibility.
 * only logs if critical log level is triggered
 * regains freedom and silence in your log files
+
+# Available Logger Components
+
+## ProxyLogger
+
+* simple proxy that needs a logger to work
+* implements PSR-3 LoggerInterface
+* real PSR-3 Logger has to be injected
+
+## BufferedLogger
+
+* based on *ProxyLogger*
+* stores each log message into buffer
+* provides generic method to plug in any kind of log message buffer
+* forwards all buffered messages to real logger when *flush* is called
+* deletes all buffered messages when *clean* is called
+
+## TriggeredBufferLogger
+
+* based on *BufferLogger*
+* implements automatically flushing if log level is reached
 
 # Installation
 
@@ -32,6 +49,8 @@ The build status of the current master branch is tracked by Travis CI:
 # Links
 
 ## PSR-3 Logger
+
+Following an uncompleted list of available PSR3-Logger components.
 
 * [talkback](https://github.com/chrisnoden/talkback)
 
