@@ -42,6 +42,10 @@ return array(
         LogLevel::ALERT,
         LogLevel::EMERGENCY
     ),
+    LogLevel::CRITICAL => array(
+        LogLevel::ALERT,
+        LogLevel::EMERGENCY
+    ),
     LogLevel::ALERT => array(
         LogLevel::EMERGENCY
     )
