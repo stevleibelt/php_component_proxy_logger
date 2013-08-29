@@ -62,6 +62,8 @@ class Example
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
+        echo 'Adding logging messages' . PHP_EOL;
+        echo str_repeat('-', 40) . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
         $this->logger->alert('Current line is ' . __LINE__);
         $this->logger->critical('Current line is ' . __LINE__);
