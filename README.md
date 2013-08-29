@@ -56,6 +56,7 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Todo List
 
+* add licence information
 * rename "BufferedLogger" to "BufferLogger"
 * rename "TriggeredBufferLogger" to "TriggerBufferLogger"
 * add test, factory, factoryTest for second LogEntry
