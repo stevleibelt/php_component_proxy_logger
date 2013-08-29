@@ -56,7 +56,6 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Todo List
 
-* add threshold level for TriggerBufferLogger that enables the possibility to bypass the buffer for certain levels
 * update readme
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
@@ -69,6 +68,8 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_logger)
+    * add threshold level for TriggerBufferLogger that enables the possibility to bypass the buffer for certain levels
+* [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
