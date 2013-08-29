@@ -9,7 +9,7 @@ namespace Net\Bazzline\Component\Logger;
 /**
  * Class LogEntryInterface
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\ProxyLogger
+ * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */

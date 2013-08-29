@@ -55,7 +55,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithoutReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggeredLogLevelInheritanceMap($this->map);
+        $logger->setLogLevelTriggerInheritanceMap($this->map);
         $entry = $this->getLogEntry();
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
         $entryFactory = $this->getPlainLogEntryFactory();
@@ -70,7 +70,7 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
-        $logger->setTriggerToLogLevelAlert();
+        $logger->setLogLevelTriggerToAlert();
         $logger->info($this->message);
     }
 
@@ -81,7 +81,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggeredLogLevelInheritanceMap($this->map);
+        $logger->setLogLevelTriggerInheritanceMap($this->map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -143,7 +143,7 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
-        $logger->setTriggerToLogLevelAlert();
+        $logger->setLogLevelTriggerToAlert();
         $logger->info($this->message);
         $logger->alert($this->message);
     }
@@ -155,7 +155,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggeredLogLevelInheritanceMap($this->map);
+        $logger->setLogLevelTriggerInheritanceMap($this->map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -217,7 +217,7 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
-        $logger->setTriggerToLogLevelAlert();
+        $logger->setLogLevelTriggerToAlert();
         $logger->info($this->message);
         $logger->error($this->message);
     }
@@ -235,7 +235,7 @@ class TriggerBufferLoggerTest extends TestCase
                 LogLevel::EMERGENCY
             )
         );
-        $logger->setTriggeredLogLevelInheritanceMap($map);
+        $logger->setLogLevelTriggerInheritanceMap($map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -289,7 +289,7 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
-        $logger->setTriggerToLogLevelAlert();
+        $logger->setLogLevelTriggerToAlert();
         $logger->info($this->message);
         $logger->error($this->message);
     }
@@ -301,9 +301,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelEmergency()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelEmergency();
+        $logger->setLogLevelTriggerToEmergency();
 
-        $this->assertEquals(LogLevel::EMERGENCY, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::EMERGENCY, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -313,9 +313,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelAlert()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelAlert();
+        $logger->setLogLevelTriggerToAlert();
 
-        $this->assertEquals(LogLevel::ALERT, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::ALERT, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -325,9 +325,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelCritical()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelCritical();
+        $logger->setLogLevelTriggerToCritical();
 
-        $this->assertEquals(LogLevel::CRITICAL, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::CRITICAL, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -337,9 +337,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelError()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelError();
+        $logger->setLogLevelTriggerToError();
 
-        $this->assertEquals(LogLevel::ERROR, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::ERROR, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -349,9 +349,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelWarning()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelWarning();
+        $logger->setLogLevelTriggerToWarning();
 
-        $this->assertEquals(LogLevel::WARNING, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::WARNING, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -361,9 +361,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelNotice()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelNotice();
+        $logger->setLogLevelTriggerToNotice();
 
-        $this->assertEquals(LogLevel::NOTICE, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::NOTICE, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -373,9 +373,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelInfo()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelInfo();
+        $logger->setLogLevelTriggerToInfo();
 
-        $this->assertEquals(LogLevel::INFO, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::INFO, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -385,9 +385,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevelDebug()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevelDebug();
+        $logger->setLogLevelTriggerToDebug();
 
-        $this->assertEquals(LogLevel::DEBUG, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::DEBUG, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -411,9 +411,9 @@ class TriggerBufferLoggerTest extends TestCase
     public function testSetTriggerToLogLevel()
     {
         $logger = $this->getNewLogger();
-        $logger->setTriggerToLogLevel(LogLevel::CRITICAL);
+        $logger->setLogLevelTrigger(LogLevel::CRITICAL);
 
-        $this->assertEquals(LogLevel::CRITICAL, $logger->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::CRITICAL, $logger->getLogLevelTrigger());
     }
 
     /**
@@ -424,7 +424,7 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->setTriggeredLogLevelInheritanceMap($this->map));
+        $this->assertEquals($logger, $logger->setLogLevelTriggerInheritanceMap($this->map));
     }
 
     /**

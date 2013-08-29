@@ -69,7 +69,7 @@ class Example
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to critical' . PHP_EOL;
-        $this->logger->setTriggerToLogLevelCritical();
+        $this->logger->setLogLevelTriggerToCritical();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);

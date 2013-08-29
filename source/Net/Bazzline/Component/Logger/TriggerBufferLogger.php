@@ -36,7 +36,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected $triggeredLogLevelInheritanceMap;
+    protected $logLevelTriggerInheritanceMap;
 
     /**
      * @author sleibelt
@@ -44,7 +44,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     public function __construct()
     {
-        $this->triggeredLogLevelInheritanceMap = array();
+        $this->logLevelTriggerInheritanceMap = array();
         $this->buildTriggerLevels();
     }
 
@@ -62,7 +62,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
             $this->logEntryFactory->create($level, $message, $context)
         );
 
-        if ($this->isTriggeredLogLevel($level)) {
+        if ($this->isTriggerLogLevel($level)) {
             $this->flush();
         }
     }
@@ -72,9 +72,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelEmergency()
+    public function setLogLevelTriggerToEmergency()
     {
-        $this->setTriggerToLogLevel(LogLevel::EMERGENCY);
+        $this->setLogLevelTrigger(LogLevel::EMERGENCY);
 
         return $this;
     }
@@ -84,9 +84,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelAlert()
+    public function setLogLevelTriggerToAlert()
     {
-        $this->setTriggerToLogLevel(LogLevel::ALERT);
+        $this->setLogLevelTrigger(LogLevel::ALERT);
 
         return $this;
     }
@@ -96,9 +96,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelCritical()
+    public function setLogLevelTriggerToCritical()
     {
-        $this->setTriggerToLogLevel(LogLevel::CRITICAL);
+        $this->setLogLevelTrigger(LogLevel::CRITICAL);
 
         return $this;
     }
@@ -108,9 +108,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelError()
+    public function setLogLevelTriggerToError()
     {
-        $this->setTriggerToLogLevel(LogLevel::ERROR);
+        $this->setLogLevelTrigger(LogLevel::ERROR);
 
         return $this;
     }
@@ -120,9 +120,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelWarning()
+    public function setLogLevelTriggerToWarning()
     {
-        $this->setTriggerToLogLevel(LogLevel::WARNING);
+        $this->setLogLevelTrigger(LogLevel::WARNING);
 
         return $this;
     }
@@ -132,9 +132,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelNotice()
+    public function setLogLevelTriggerToNotice()
     {
-        $this->setTriggerToLogLevel(LogLevel::NOTICE);
+        $this->setLogLevelTrigger(LogLevel::NOTICE);
 
         return $this;
     }
@@ -144,9 +144,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelInfo()
+    public function setLogLevelTriggerToInfo()
     {
-        $this->setTriggerToLogLevel(LogLevel::INFO);
+        $this->setLogLevelTrigger(LogLevel::INFO);
 
         return $this;
     }
@@ -156,9 +156,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelDebug()
+    public function setLogLevelTriggerToDebug()
     {
-        $this->setTriggerToLogLevel(LogLevel::DEBUG);
+        $this->setLogLevelTrigger(LogLevel::DEBUG);
 
         return $this;
     }
@@ -182,7 +182,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevel($level)
+    public function setLogLevelTrigger($level)
     {
         $this->triggerLevel = $level;
         $this->buildTriggerLevels();
@@ -196,9 +196,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggeredLogLevelInheritanceMap(array $map)
+    public function setLogLevelTriggerInheritanceMap(array $map)
     {
-        $this->triggeredLogLevelInheritanceMap = $map;
+        $this->logLevelTriggerInheritanceMap = $map;
         $this->buildTriggerLevels();
 
         return $this;
@@ -209,7 +209,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function getTriggerToLogLevel()
+    public function getLogLevelTrigger()
     {
         return $this->triggerLevel;
     }
@@ -224,8 +224,8 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
         if (is_null($this->triggerLevel)) {
             $this->triggerLevels = array();
         } else {
-            $this->triggerLevels = (isset($this->triggeredLogLevelInheritanceMap[$this->triggerLevel]))
-                ? $this->triggeredLogLevelInheritanceMap[$this->triggerLevel] : array($this->triggerLevel);
+            $this->triggerLevels = (isset($this->logLevelTriggerInheritanceMap[$this->triggerLevel]))
+                ? $this->logLevelTriggerInheritanceMap[$this->triggerLevel] : array($this->triggerLevel);
             //we want to gain fast access
             $this->triggerLevels = array_flip($this->triggerLevels);
         }
@@ -239,7 +239,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected function isTriggeredLogLevel($level)
+    protected function isTriggerLogLevel($level)
     {
         return (($level == $this->triggerLevel)
                 || (isset($this->triggerLevels[$level])));

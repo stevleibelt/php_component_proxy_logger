@@ -20,56 +20,56 @@ interface TriggerBufferFlushByLogLevelInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelEmergency();
+    public function setLogLevelTriggerToEmergency();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelAlert();
+    public function setLogLevelTriggerToAlert();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelCritical();
+    public function setLogLevelTriggerToCritical();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelError();
+    public function setLogLevelTriggerToError();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelWarning();
+    public function setLogLevelTriggerToWarning();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelNotice();
+    public function setLogLevelTriggerToNotice();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelInfo();
+    public function setLogLevelTriggerToInfo();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevelDebug();
+    public function setLogLevelTriggerToDebug();
 
     /**
      * @param mixed $level
@@ -77,7 +77,7 @@ interface TriggerBufferFlushByLogLevelInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggerToLogLevel($level);
+    public function setLogLevelTrigger($level);
 
     /**
      * @param array $map
@@ -85,12 +85,12 @@ interface TriggerBufferFlushByLogLevelInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setTriggeredLogLevelInheritanceMap(array $map);
+    public function setLogLevelTriggerInheritanceMap(array $map);
 
     /**
      * @return null|mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function getTriggerToLogLevel();
+    public function getLogLevelTrigger();
 }

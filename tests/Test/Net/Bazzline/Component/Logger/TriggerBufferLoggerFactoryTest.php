@@ -30,6 +30,6 @@ class TriggerBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\Logger\TriggerBufferLoggerInterface', $buffer);
         $this->assertInstanceOf('Net\Bazzline\Component\Logger\TriggerBufferLogger', $buffer);
-        $this->assertEquals(LogLevel::ERROR, $buffer->getTriggerToLogLevel());
+        $this->assertEquals(LogLevel::ERROR, $buffer->getLogLevelTrigger());
     }
 }

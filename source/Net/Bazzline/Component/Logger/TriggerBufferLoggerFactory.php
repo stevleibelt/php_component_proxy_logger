@@ -19,32 +19,32 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
-     * @param mixed $triggeredLogLevel
-     * @param array $triggeredLogLevelInheritanceMap
+     * @param mixed $logLevelTrigger
+     * @param array $logLevelTriggerInheritanceMap
      * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $triggeredLogLevel, array $triggeredLogLevelInheritanceMap = array())
+    public function create(LoggerInterface $logger, $logLevelTrigger, array $logLevelTriggerInheritanceMap = array())
     {
         $validator = new isValidLogLevel();
 
-        if (!$validator->setLogLevel($triggeredLogLevel)->isMet()) {
+        if (!$validator->setLogLevel($logLevelTrigger)->isMet()) {
             throw new InvalidArgumentException(
                 'triggered log level is not valid'
             );
         }
 
-        if (empty($triggeredLogLevelInheritanceMap)) {
-            $triggeredLogLevelInheritanceMap = require 'triggerLogLevelInheritanceDefaultMap.php';
+        if (empty($logLevelTriggerInheritanceMap)) {
+            $logLevelTriggerInheritanceMap = require 'triggerLogLevelInheritanceDefaultMap.php';
         }
 
         $proxy = new TriggerBufferLogger();
 
         $proxy->setLogger($logger);
-        $proxy->setTriggerToLogLevel($triggeredLogLevel);
-        $proxy->setTriggeredLogLevelInheritanceMap($triggeredLogLevelInheritanceMap);
+        $proxy->setLogLevelTrigger($logLevelTrigger);
+        $proxy->setLogLevelTriggerInheritanceMap($logLevelTriggerInheritanceMap);
 
         return $proxy;
     }

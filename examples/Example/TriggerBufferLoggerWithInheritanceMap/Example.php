@@ -58,7 +58,7 @@ class Example
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
         $this->logger->setLogger($logger);
-        $this->logger->setTriggeredLogLevelInheritanceMap($map);
+        $this->logger->setLogLevelTriggerInheritanceMap($map);
 
         return $this;
     }
@@ -71,7 +71,7 @@ class Example
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to warning' . PHP_EOL;
-        $this->logger->setTriggerToLogLevelWarning();
+        $this->logger->setLogLevelTriggerToWarning();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);

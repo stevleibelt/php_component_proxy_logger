@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  * Class ProxyLoggerInterface
  * based on: http://en.wikipedia.org/wiki/Proxy_pattern
  *
- * @package Net\Bazzline\Component\LogLevelTriggered\ProxyLogger
+ * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
