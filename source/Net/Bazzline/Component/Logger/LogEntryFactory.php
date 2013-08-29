@@ -16,11 +16,39 @@ namespace Net\Bazzline\Component\Logger;
 class LogEntryFactory implements LogEntryFactoryInterface
 {
     /**
-     * @param $level
-     * @param $message
+     * @var string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
+     */
+    protected $logEntryClassName;
+
+    /**
+     * @param string $className
+     * @return $this
+     * @throws InvalidArgumentException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
+     */
+    public function setLogEntryClassName($className)
+    {
+        if (!class_exists($className)) {
+            $message = 'classname "' . $className . '" does not exist';
+            $className = __NAMESPACE__ . '\\' . $className;
+            if (!class_exists($className)) {
+                throw new InvalidArgumentException(
+                    $message
+                );
+            }
+        }
+        $this->logEntryClassName = $className;
+    }
+
+    /**
+     * @param string $level
+     * @param string $message
      * @param array $context
      * @return LogEntry
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -33,7 +61,12 @@ class LogEntryFactory implements LogEntryFactoryInterface
                 'level is not valid'
             );
         }
+        if (is_null($this->logEntryClassName)) {
+            throw new RuntimeException(
+                'no log entry class name set'
+            );
+        }
 
-        return new LogEntry($level, $message, $context);
+        return new $this->logEntryClassName($level, $message, $context);
     }
 }

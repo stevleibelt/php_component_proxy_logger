@@ -57,7 +57,6 @@ Following an uncompleted list of available PSR3-Logger components.
 # Todo List
 
 * add licence information
-* add test, factory, factoryTest for second LogEntry
 * update readme
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data

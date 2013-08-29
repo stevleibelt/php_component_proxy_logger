@@ -65,6 +65,6 @@ class DateTimePrefixedMessageLogEntryTest extends TestCase
      */
     private function getPrefixedMessage($message)
     {
-        return '[ ' . date('Y-m-d H:i:s') . ' ]' . $message;
+        return date('Y-m-d H:i:s') . '] [' . $message;
     }
 }

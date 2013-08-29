@@ -26,7 +26,7 @@ class DateTimePrefixedMessageLogEntry extends LogEntry
      */
     public function __construct($logLevel, $message, array $context = array())
     {
-        $message = '[ ' . date('Y-m-d H:i:s') . ' ]' . $message;
+        $message = date('Y-m-d H:i:s') . '] [' . $message;
         parent::__construct($logLevel, $message, $context);
     }
 }

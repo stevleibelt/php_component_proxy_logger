@@ -16,8 +16,8 @@ namespace Net\Bazzline\Component\Logger;
 interface LogEntryFactoryInterface
 {
     /**
-     * @param $level
-     * @param $message
+     * @param string $level
+     * @param string $message
      * @param array $context
      * @return LogEntry
      * @throws InvalidArgumentException
@@ -25,4 +25,13 @@ interface LogEntryFactoryInterface
      * @since 2013-08-26
      */
     public function create($level, $message, array $context = array());
+
+    /**
+     * @param string $className
+     * @return $this
+     * @throws InvalidArgumentException|RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
+     */
+    public function setLogEntryClassName($className);
 }

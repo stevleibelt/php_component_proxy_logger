@@ -52,6 +52,7 @@ class Example
     {
         $this->logger = new BufferLogger();
         $entryFactory = new LogEntryFactory();
+        $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
