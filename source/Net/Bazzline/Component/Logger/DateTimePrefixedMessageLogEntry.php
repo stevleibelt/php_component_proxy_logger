@@ -7,13 +7,13 @@
 namespace Net\Bazzline\Component\Logger;
 
 /**
- * Class LogEntryWithTimestampPrefixMessage
+ * Class DateTimePrefixedMessageLogEntry
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class LogEntryWithDateTimePrefixedMessage extends LogEntry
+class DateTimePrefixedMessageLogEntry extends LogEntry
 {
     /**
      * Adds datetime as prefix to the message
