@@ -56,10 +56,16 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Todo List
 
+* rename "BufferedLogger" to "BufferLogger"
+* rename "TriggeredBufferLogger" to "TriggerBufferLogger"
 * update readme
     * explain storage aka LogEntryBufferInterface
+    * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
+    * mention all decoupled classes and the benefit of that
+* replace "setLogger" with "addLogger"
 * implement "unsetTriggerLevel"
 * implement locking
+* submit idea to [log4php](https://logging.apache.org/log4php/)
 * evaluate if it make sense to move the InjectFactory interfaces to a full qualified AwareInterface
 
 # Version History
