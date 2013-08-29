@@ -13,7 +13,7 @@ use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-Example::create()
+ExampleWithDateTimePrefixedMessageLogEntry::create()
     ->setup()
     ->andRun();
 

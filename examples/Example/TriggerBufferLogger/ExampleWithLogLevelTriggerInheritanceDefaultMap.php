@@ -13,7 +13,7 @@ use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-Example::create()
+ExampleWithLogLevelTriggerInheritanceDefaultMap::create()
     ->setup()
     ->andRun();
 
@@ -24,7 +24,7 @@ Example::create()
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class Example
+class ExampleWithLogLevelTriggerInheritanceDefaultMap
 {
     /**
      * @var \Net\Bazzline\Component\Logger\TriggerBufferLogger
@@ -34,7 +34,7 @@ class Example
     private $logger;
 
     /**
-     * @return Example
+     * @return ExampleWithLogLevelTriggerInheritanceDefaultMap
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
