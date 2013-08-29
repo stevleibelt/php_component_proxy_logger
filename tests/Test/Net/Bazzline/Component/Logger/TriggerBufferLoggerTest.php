@@ -89,7 +89,7 @@ class TriggerBufferLoggerTest extends TestCase
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ALERT, $this->message, array())
             ->once();
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
@@ -163,7 +163,7 @@ class TriggerBufferLoggerTest extends TestCase
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ERROR, $this->message, array())
             ->once();
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
@@ -243,7 +243,7 @@ class TriggerBufferLoggerTest extends TestCase
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ERROR, $this->message, array())
             ->never();
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->never();

@@ -61,7 +61,6 @@ Following an uncompleted list of available PSR3-Logger components.
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
     * mention all decoupled classes and the benefit of that
-* replace "setLogger" with "addLogger"
 * add threshold level for TriggerBufferLogger that enables the possibility to bypass the buffer for certain levels
 * implement "unsetTriggerLevel"
 * implement locking

@@ -38,11 +38,11 @@ class ProxyLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testSetLogger()
+    public function testAddLogger()
     {
         $logger = $this->getNewLogger();
 
-        $this->assertNull($logger->setLogger($this->getPsr3Logger()));
+        $this->assertEquals($logger, $logger->addLogger($this->getPsr3Logger()));
     }
 
     /**
@@ -57,7 +57,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::EMERGENCY, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->emergency($this->message);
     }
 
@@ -73,7 +73,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::ALERT, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->alert($this->message);
     }
 
@@ -89,7 +89,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::CRITICAL, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->critical($this->message);
     }
 
@@ -105,7 +105,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::ERROR, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->error($this->message);
     }
 
@@ -121,7 +121,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::WARNING, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->warning($this->message);
     }
 
@@ -137,7 +137,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::NOTICE, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->notice($this->message);
     }
 
@@ -153,7 +153,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::INFO, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->info($this->message);
     }
 
@@ -169,7 +169,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::DEBUG, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->debug($this->message);
     }
 
@@ -185,7 +185,7 @@ class ProxyLoggerTest extends TestCase
             ->with(LogLevel::INFO, $this->message, array())
             ->once();
 
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->log(LogLevel::INFO, $this->message);
     }
 

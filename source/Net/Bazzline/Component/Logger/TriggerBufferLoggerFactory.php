@@ -42,7 +42,7 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
 
         $proxy = new TriggerBufferLogger();
 
-        $proxy->setLogger($logger);
+        $proxy->addLogger($logger);
         $proxy->setLogLevelTrigger($logLevelTrigger);
         $proxy->setLogLevelTriggerInheritanceMap($logLevelTriggerInheritanceMap);
 

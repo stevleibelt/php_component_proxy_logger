@@ -19,21 +19,27 @@ use Psr\Log\LogLevel;
 class ProxyLogger implements ProxyLoggerInterface
 {
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var \Psr\Log\LoggerInterface[]
      * @author sleibelt
      * @since 2013-08-26
      */
-    protected $logger;
+    protected $loggers;
 
     /**
-     * Sets a logger instance on the object
-     *
      * @param LoggerInterface $logger
-     * @return null
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
      */
-    public function setLogger(LoggerInterface $logger)
+    public function addLogger(LoggerInterface $logger)
     {
-        $this->logger = $logger;
+        if (is_null($this->loggers)) {
+            $this->loggers = array($logger);
+        } else {
+            $this->loggers[] = $logger;
+        }
+
+        return $this;
     }
 
     /**
@@ -149,6 +155,21 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        $this->logger->log($level, $message, $context);
+        $this->pushToLoggers($level, $message, $context);
+    }
+
+    /**
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
+     */
+    protected function pushToLoggers($level, $message, array $context = array())
+    {
+        foreach ($this->loggers as $logger)
+        {
+            $logger->log($level, $message, $context);
+        }
     }
 }

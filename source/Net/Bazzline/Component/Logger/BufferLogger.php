@@ -91,7 +91,7 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
             /**
              * @var LogEntry $logEntry
              */
-            $this->logger->log(
+            $this->pushToLoggers(
                 $logEntry->getLevel(),
                 $logEntry->getMessage(),
                 $logEntry->getContext()

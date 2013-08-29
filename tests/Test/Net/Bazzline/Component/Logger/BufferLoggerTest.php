@@ -127,7 +127,7 @@ class BufferLoggerTest extends TestCase
             ->once();
 
         $logger = $this->getNewBufferedLogger();
-        $logger->setLogger($realLogger);
+        $logger->addLogger($realLogger);
         $logger->injectLogEntryFactory($entryFactory);
         $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
 

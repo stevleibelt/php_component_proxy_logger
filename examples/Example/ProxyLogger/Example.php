@@ -50,7 +50,7 @@ class Example
     {
         $this->logger = new ProxyLogger();
         $logger = new OutputToConsoleLogger();
-        $this->logger->setLogger($logger);
+        $this->logger->addLogger($logger);
 
         return $this;
     }
