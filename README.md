@@ -5,7 +5,7 @@ This component ships a collection of enhanced logger handling tools.
 The build status of the current master branch is tracked by Travis CI:
 [![Build Status](https://travis-ci.org/stevleibelt/php_component_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_logger)
 
-The main component is the *TriggeredBufferLogger* which enables level triggered logging for each PSR-3 LoggerInterface.
+The main component is the *TriggerBufferLogger* which enables level triggered logging for each PSR-3 LoggerInterface.
 
 # Features
 
@@ -29,7 +29,7 @@ The main component is the *TriggeredBufferLogger* which enables level triggered 
 * forwards all buffered messages to real logger when *flush* is called
 * deletes all buffered messages when *clean* is called
 
-## TriggeredBufferLogger
+## TriggerBufferLogger
 
 * based on *BufferLogger*
 * implements automatically flushing if log level is reached
@@ -57,8 +57,6 @@ Following an uncompleted list of available PSR3-Logger components.
 # Todo List
 
 * add licence information
-* rename "BufferLogger" to "BufferLogger"
-* rename "TriggeredBufferLogger" to "TriggerBufferLogger"
 * add test, factory, factoryTest for second LogEntry
 * update readme
     * explain storage aka LogEntryBufferInterface
@@ -74,7 +72,7 @@ Following an uncompleted list of available PSR3-Logger components.
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_logger)
-    * TriggeredBufferLogger - flushes the buffer by configured log level
+    * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
     * LogEntry class to use a [simple value object](http://en.wikipedia.org/wiki/Data_Transfer_Object)

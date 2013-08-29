@@ -9,19 +9,19 @@ namespace Net\Bazzline\Component\Logger;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class ProxyLoggerFactory
+ * Class TriggerBufferLoggerFactory
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredBufferLoggerFactory implements TriggeredBufferLoggerFactoryInterface
+class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
      * @param mixed $triggeredLogLevel
      * @param array $triggeredLogLevelInheritanceMap
-     * @return TriggeredBufferLogger
+     * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
@@ -37,10 +37,10 @@ class TriggeredBufferLoggerFactory implements TriggeredBufferLoggerFactoryInterf
         }
 
         if (empty($triggeredLogLevelInheritanceMap)) {
-            $triggeredLogLevelInheritanceMap = require 'triggeredLogLevelInheritanceDefaultMap.php';
+            $triggeredLogLevelInheritanceMap = require 'triggerLogLevelInheritanceDefaultMap.php';
         }
 
-        $proxy = new TriggeredBufferLogger();
+        $proxy = new TriggerBufferLogger();
 
         $proxy->setLogger($logger);
         $proxy->setTriggerToLogLevel($triggeredLogLevel);

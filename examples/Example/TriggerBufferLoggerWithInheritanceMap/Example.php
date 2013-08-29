@@ -4,9 +4,9 @@
  * @since 8/28/13
  */
 
-namespace Example\TriggeredBufferLoggerWithInheritanceMap;
+namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
-use Net\Bazzline\Component\Logger\TriggeredBufferLogger;
+use Net\Bazzline\Component\Logger\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
@@ -27,7 +27,7 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\TriggeredBufferLogger
+     * @var \Net\Bazzline\Component\Logger\TriggerBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
@@ -50,10 +50,10 @@ class Example
      */
     public function setup()
     {
-        $this->logger = new TriggeredBufferLogger();
+        $this->logger = new TriggerBufferLogger();
         $entryFactory = new LogEntryFactory();
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/triggeredLogLevelInheritanceDefaultMap.php';
+        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/triggerLogLevelInheritanceDefaultMap.php';
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);

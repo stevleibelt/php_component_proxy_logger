@@ -9,13 +9,13 @@ namespace Net\Bazzline\Component\Logger;
 use Psr\Log\LogLevel;
 
 /**
- * Class ProxyLogger
+ * Class TriggerLogger
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggeredBufferLogger extends BufferLogger implements TriggeredBufferLoggerInterface
+class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInterface
 {
     /**
      * @var mixed

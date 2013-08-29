@@ -6,19 +6,17 @@
 
 namespace Test\Net\Bazzline\Component\Logger;
 
-use Net\Bazzline\Component\Logger\LogEntryFactory;
-use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
-use Net\Bazzline\Component\Logger\TriggeredBufferLogger;
+use Net\Bazzline\Component\Logger\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 
 /**
- * Class TriggeredBufferLoggerTest
+ * Class TriggerBufferLoggerTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class TriggeredBufferLoggerTest extends TestCase
+class TriggerBufferLoggerTest extends TestCase
 {
     /**
      * @var string
@@ -430,12 +428,12 @@ class TriggeredBufferLoggerTest extends TestCase
     }
 
     /**
-     * @return TriggeredBufferLogger
+     * @return TriggerBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     private function getNewLogger()
     {
-        return new TriggeredBufferLogger();
+        return new TriggerBufferLogger();
     }
 }

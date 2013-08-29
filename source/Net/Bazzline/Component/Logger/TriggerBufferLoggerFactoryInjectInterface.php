@@ -7,19 +7,19 @@
 namespace Net\Bazzline\Component\Logger;
 
 /**
- * Class ProxyLoggerFactoryInjectInterface
+ * Class TriggerBufferLoggerFactoryInjectInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface TriggeredBufferLoggerFactoryInjectInterface
+interface TriggerBufferLoggerFactoryInjectInterface
 {
     /**
-     * @param TriggeredBufferLoggerFactoryInterface $factory
+     * @param TriggerBufferLoggerFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function injectTriggeredBufferLoggerFactory(TriggeredBufferLoggerFactoryInterface $factory);
+    public function injectTriggerBufferLoggerFactory(TriggerBufferLoggerFactoryInterface $factory);
 }
