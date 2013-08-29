@@ -56,12 +56,15 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Todo List
 
-* add licence information
 * update readme
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
     * mention all decoupled classes and the benefit of that
 * add threshold level for TriggerBufferLogger that enables the possibility to bypass the buffer for certain levels
+
+# Licence
+
+This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html). The full licence text is shipped with [this component](https://github.com/stevleibelt/php_component_logger/blob/master/LICENSE).
 
 # Version History
 
