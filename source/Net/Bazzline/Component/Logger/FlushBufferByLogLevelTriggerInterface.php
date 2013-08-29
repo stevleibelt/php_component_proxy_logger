@@ -7,13 +7,13 @@
 namespace Net\Bazzline\Component\Logger;
 
 /**
- * Class LogLevelTriggerLoggerInterface
+ * Class FlushBufferByLogLevelTriggerInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface TriggerBufferFlushByLogLevelInterface
+interface FlushBufferByLogLevelTriggerInterface
 {
     /**
      * @return $this
