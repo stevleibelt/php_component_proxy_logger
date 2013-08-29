@@ -20,7 +20,7 @@ Example::create()
 /**
  * Class Example
  *
- * @package Example\BufferedLogger
+ * @package Example\BufferLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */

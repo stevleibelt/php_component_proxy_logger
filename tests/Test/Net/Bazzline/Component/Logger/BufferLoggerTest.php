@@ -6,18 +6,18 @@
 
 namespace Test\Net\Bazzline\Component\Logger;
 
-use Net\Bazzline\Component\Logger\BufferedLogger;
+use Net\Bazzline\Component\Logger\BufferLogger;
 use Mockery;
 use Psr\Log\LogLevel;
 
 /**
- * Class BufferedLoggerTest
+ * Class BufferLoggerTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class BufferedLoggerTest extends TestCase
+class BufferLoggerTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -136,12 +136,12 @@ class BufferedLoggerTest extends TestCase
     }
 
     /**
-     * @return BufferedLogger
+     * @return BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
     protected function getNewBufferedLogger()
     {
-        return new BufferedLogger();
+        return new BufferLogger();
     }
 }

@@ -21,7 +21,7 @@ The main component is the *TriggeredBufferLogger* which enables level triggered 
 * implements PSR-3 LoggerInterface
 * real PSR-3 Logger has to be injected
 
-## BufferedLogger
+## BufferLogger
 
 * based on *ProxyLogger*
 * stores each log message into buffer
@@ -57,7 +57,7 @@ Following an uncompleted list of available PSR3-Logger components.
 # Todo List
 
 * add licence information
-* rename "BufferedLogger" to "BufferLogger"
+* rename "BufferLogger" to "BufferLogger"
 * rename "TriggeredBufferLogger" to "TriggerBufferLogger"
 * add test, factory, factoryTest for second LogEntry
 * update readme
@@ -75,7 +75,7 @@ Following an uncompleted list of available PSR3-Logger components.
 
 * [next](https://github.com/stevleibelt/php_component_logger)
     * TriggeredBufferLogger - flushes the buffer by configured log level
-    * BufferedLogger - buffers log messages and provides *flush* or *clean* for buffer control
+    * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
     * LogEntry class to use a [simple value object](http://en.wikipedia.org/wiki/Data_Transfer_Object)
     * LogEntryFactory to easy up LogEntry creation

@@ -4,9 +4,9 @@
  * @since 8/28/13
  */
 
-namespace Example\BufferedLogger;
+namespace Example\BufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferedLogger;
+use Net\Bazzline\Component\Logger\BufferLogger;
 use Net\Bazzline\Component\Logger\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
@@ -20,14 +20,14 @@ Example::create()
 /**
  * Class Example
  *
- * @package Example\BufferedLogger
+ * @package Example\BufferLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\BufferedLogger
+     * @var \Net\Bazzline\Component\Logger\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
@@ -50,7 +50,7 @@ class Example
      */
     public function setup()
     {
-        $this->logger = new BufferedLogger();
+        $this->logger = new BufferLogger();
         $entryFactory = new LogEntryFactory();
         $bufferFactory = new LogEntryRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
