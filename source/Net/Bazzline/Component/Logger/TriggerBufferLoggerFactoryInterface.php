@@ -19,12 +19,12 @@ interface TriggerBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
-     * @param mixed $triggerLogLevel
-     * @param array $triggerLogLevelInheritanceMap
+     * @param mixed $LogLevelTrigger
+     * @param array $logLevelTriggerInheritanceMap
      * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $triggerLogLevel, array $triggerLogLevelInheritanceMap = array());
+    public function create(LoggerInterface $logger, $LogLevelTrigger, array $logLevelTriggerInheritanceMap = array());
 }

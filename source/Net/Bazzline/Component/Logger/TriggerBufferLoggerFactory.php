@@ -37,7 +37,7 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
         }
 
         if (empty($logLevelTriggerInheritanceMap)) {
-            $logLevelTriggerInheritanceMap = require 'triggerLogLevelInheritanceDefaultMap.php';
+            $logLevelTriggerInheritanceMap = require 'logLevelTriggerInheritanceDefaultMap.php';
         }
 
         $proxy = new TriggerBufferLogger();

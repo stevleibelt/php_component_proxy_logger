@@ -53,7 +53,7 @@ class Example
         $this->logger = new TriggerBufferLogger();
         $entryFactory = new LogEntryFactory();
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/triggerLogLevelInheritanceDefaultMap.php';
+        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/logLevelTriggerInheritanceDefaultMap.php';
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
