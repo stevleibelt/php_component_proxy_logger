@@ -56,6 +56,7 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Todo List
 
+* style output - if level is reached, wrapp the bufferoutput with something like "==== log level buffer flush triggered ===="
 * update readme
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
