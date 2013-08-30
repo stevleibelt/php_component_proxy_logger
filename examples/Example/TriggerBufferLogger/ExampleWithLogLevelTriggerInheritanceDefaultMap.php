@@ -6,9 +6,9 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
-use Net\Bazzline\Component\Logger\TriggerBufferLogger;
-use Net\Bazzline\Component\Logger\LogEntryFactory;
-use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -27,7 +27,7 @@ ExampleWithLogLevelTriggerInheritanceDefaultMap::create()
 class ExampleWithLogLevelTriggerInheritanceDefaultMap
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\TriggerBufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */

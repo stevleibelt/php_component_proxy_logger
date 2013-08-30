@@ -6,7 +6,7 @@
 
 namespace Example\ProxyLogger;
 
-use Net\Bazzline\Component\Logger\ProxyLogger;
+use Net\Bazzline\Component\Logger\Proxy\ProxyLogger;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -25,7 +25,7 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\ProxyLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\ProxyLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */

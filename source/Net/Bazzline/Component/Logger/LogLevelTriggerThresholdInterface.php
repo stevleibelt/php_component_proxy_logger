@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger;
 
+use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
+
 /**
  * Class LogLevelTriggerThresholdInterface
  *

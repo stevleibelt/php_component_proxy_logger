@@ -6,9 +6,9 @@
 
 namespace Example\BufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferLogger;
-use Net\Bazzline\Component\Logger\LogEntryFactory;
-use Net\Bazzline\Component\Logger\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Proxy\BufferLogger;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -27,7 +27,7 @@ ExampleWithDateTimePrefixedMessageLogEntry::create()
 class ExampleWithDateTimePrefixedMessageLogEntry
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\BufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
