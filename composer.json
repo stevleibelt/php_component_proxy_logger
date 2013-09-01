@@ -17,7 +17,8 @@
     "require": {
         "php": ">=5.3.3",
         "psr/log": "1.0.0",
-        "net_bazzline/component_requirement": "1.0.4"
+        "net_bazzline/component_requirement": "1.0.4",
+        "net_bazzline/component_data_type": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",

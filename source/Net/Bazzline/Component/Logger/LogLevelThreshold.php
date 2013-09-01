@@ -6,6 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger;
 
+use Net\Bazzline\Component\DataType\DataArray;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
 /**
@@ -15,35 +16,29 @@ use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class LogLevelThreshold implements LogLevelTriggerThresholdInterface
+class LogLevelThreshold extends DataArray implements LogLevelTriggerThresholdInterface
 {
     /**
      * @var array
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    protected $map;
+    protected $transformedValue;
 
     /**
-     * @var
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-29
-     */
-    protected $transformedMap;
-
-    /**
-     * @param array $logLevelToThresholdMap
+     * @param array $logLevelsToThreshold
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      * @todo add validation for map?
      */
-    public function __construct(array $logLevelToThresholdMap)
+    public function __construct(array $logLevelsToThreshold)
     {
-        $this->map = $logLevelToThresholdMap;
-        $this->transformedMap = array();
+        parent::__construct($logLevelsToThreshold);
+        $this->transformedValue = array();
 
-        foreach ($this->map as $logLevelTrigger => $logLevelThresholds) {
-            $this->transformedMap[$logLevelTrigger] = array_flip($logLevelThresholds);
+        //validate (via unittest) how often "toArray" is called
+        foreach ($this->toArray() as $logLevelTrigger => $logLevelThresholds) {
+            $this->transformedValue[$logLevelTrigger] = array_flip($logLevelThresholds);
         }
     }
 
@@ -57,7 +52,7 @@ class LogLevelThreshold implements LogLevelTriggerThresholdInterface
      */
     public function isThresholdReached($logLevel, $logLevelTrigger)
     {
-        return (isset($this->transformedMap[$logLevelTrigger])
-                && isset($this->transformedMap[$logLevelTrigger][$logLevel]));
+        return (isset($this->transformedValue[$logLevelTrigger])
+                && isset($this->transformedValue[$logLevelTrigger][$logLevel]));
     }
 }

@@ -18,11 +18,11 @@ use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 interface LogLevelTriggerThresholdInterface
 {
     /**
-     * @param array $logLevelToThresholdMap
+     * @param array $logLevelsToThreshold
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function __construct(array $logLevelToThresholdMap);
+    public function __construct(array $logLevelsToThreshold);
 
     /**
      * @param mixed $logLevel
