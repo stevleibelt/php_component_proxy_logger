@@ -4,7 +4,7 @@
  * @since 2013-08-26
  */
 
-namespace Net\Bazzline\Component\Logger;
+namespace Net\Bazzline\Component\Logger\Proxy;
 
 /**
  * Class FlushBufferByLogLevelTriggerInterface

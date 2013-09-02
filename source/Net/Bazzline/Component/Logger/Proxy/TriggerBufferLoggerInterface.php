@@ -6,8 +6,6 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\FlushBufferByLogLevelTriggerInterface;
-
 /**
  * Class TriggerBufferLoggerInterface
  *
