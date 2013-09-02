@@ -6,6 +6,7 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
+use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelThreshold;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
@@ -54,12 +55,12 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/Configuration/logLevelTriggerInheritanceDefaultMap.php';
+        $logLevelThreshold = new DefaultLogLevelThreshold(array());
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setLogLevelThreshold($map);
+        $this->logger->setLogLevelThreshold($logLevelThreshold);
 
         return $this;
     }
