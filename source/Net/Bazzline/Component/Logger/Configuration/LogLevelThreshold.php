@@ -31,7 +31,7 @@ class LogLevelThreshold implements LogLevelThresholdInterface
      * @since 2013-08-29
      * @todo add validation for map?
      */
-    public function __construct(array $logLevelsToThreshold)
+    public function __construct(array $logLevelsToThreshold = array())
     {
         $this->transformedValue = array();
 

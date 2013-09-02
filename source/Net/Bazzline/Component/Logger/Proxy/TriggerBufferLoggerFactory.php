@@ -41,7 +41,7 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
         }
 
         if (is_null($logLevelThreshold)) {
-            $logLevelThreshold = new DefaultLogLevelThreshold(array());
+            $logLevelThreshold = new DefaultLogLevelThreshold();
         }
 
         $proxy = new TriggerBufferLogger();

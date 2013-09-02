@@ -22,7 +22,7 @@ class DefaultLogLevelThreshold extends LogLevelThreshold
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    public function __construct(array $logLevelsToPass)
+    public function __construct(array $logLevelsToPass = array())
     {
         $logLevelsToPass = array(
             LogLevel::DEBUG => array(

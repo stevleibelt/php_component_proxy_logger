@@ -55,7 +55,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $logLevelThreshold = new DefaultLogLevelThreshold(array());
+        $logLevelThreshold = new DefaultLogLevelThreshold();
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);

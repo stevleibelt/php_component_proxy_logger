@@ -22,7 +22,7 @@ interface LogLevelThresholdInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function __construct(array $logLevelsToThreshold);
+    public function __construct(array $logLevelsToThreshold = array());
 
     /**
      * @param string $currentLogLevel
