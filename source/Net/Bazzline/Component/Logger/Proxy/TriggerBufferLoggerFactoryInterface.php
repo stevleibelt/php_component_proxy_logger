@@ -6,6 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
@@ -21,11 +22,11 @@ interface TriggerBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param mixed $LogLevelTrigger
-     * @param array $logLevelTriggerInheritanceMap
+     * @param LogLevelThresholdInterface $logLevelThreshold
      * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $LogLevelTrigger, array $logLevelTriggerInheritanceMap = array());
+    public function create(LoggerInterface $logger, $LogLevelTrigger, LogLevelThresholdInterface $logLevelThreshold = null);
 }

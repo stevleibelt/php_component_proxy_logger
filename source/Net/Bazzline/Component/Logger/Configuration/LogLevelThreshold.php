@@ -16,7 +16,7 @@ use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class LogLevelThreshold extends DataArray implements LogLevelThresholdInterface
+class LogLevelThreshold implements LogLevelThresholdInterface
 {
     /**
      * @var array
@@ -26,18 +26,17 @@ class LogLevelThreshold extends DataArray implements LogLevelThresholdInterface
     protected $transformedValue;
 
     /**
-     * @param array $logLevelsToThreshold
+     * @param $logLevelsToThreshold
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      * @todo add validation for map?
      */
     public function __construct(array $logLevelsToThreshold)
     {
-        parent::__construct($logLevelsToThreshold);
         $this->transformedValue = array();
 
         //validate (via unittest) how often "toArray" is called
-        foreach ($this->toArray() as $logLevelTrigger => $logLevelThresholds) {
+        foreach ($logLevelsToThreshold as $logLevelTrigger => $logLevelThresholds) {
             $this->transformedValue[$logLevelTrigger] = array_flip($logLevelThresholds);
         }
     }

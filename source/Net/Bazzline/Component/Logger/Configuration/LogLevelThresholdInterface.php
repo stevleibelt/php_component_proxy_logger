@@ -25,12 +25,12 @@ interface LogLevelThresholdInterface
     public function __construct(array $logLevelsToThreshold);
 
     /**
-     * @param mixed $logLevel
-     * @param mixed $logLevelTrigger
+     * @param string $currentLogLevel
+     * @param string $logLevelThreshold
      * @return bool
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function isThresholdReached($logLevel, $logLevelTrigger);
+    public function isThresholdReached($currentLogLevel, $logLevelThreshold);
 }

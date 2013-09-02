@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelThreshold;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
@@ -22,13 +24,13 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param mixed $logLevelTrigger
-     * @param array $logLevelTriggerInheritanceMap
+     * @param LogLevelThresholdInterface $logLevelThreshold
      * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $logLevelTrigger, array $logLevelTriggerInheritanceMap = array())
+    public function create(LoggerInterface $logger, $logLevelTrigger, LogLevelThresholdInterface $logLevelThreshold = null)
     {
         $validator = new IsValidLogLevel();
 
@@ -38,15 +40,15 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
             );
         }
 
-        if (empty($logLevelTriggerInheritanceMap)) {
-            $logLevelTriggerInheritanceMap = require __DIR__ . '/../Configuration/logLevelTriggerInheritanceDefaultMap.php';
+        if (is_null($logLevelThreshold)) {
+            $logLevelThreshold = new DefaultLogLevelThreshold(array());
         }
 
         $proxy = new TriggerBufferLogger();
 
         $proxy->addLogger($logger);
         $proxy->setLogLevelTrigger($logLevelTrigger);
-        $proxy->setLogLevelThreshold($logLevelTriggerInheritanceMap);
+        $proxy->setLogLevelThreshold($logLevelThreshold);
 
         return $proxy;
     }

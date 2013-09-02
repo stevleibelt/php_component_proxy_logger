@@ -15,7 +15,7 @@ use Net\Bazzline\Component\DataType\DataArray;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class LogLevelPassThrough extends DataArray implements LogLevelPassThroughInterface
+class LogLevelPassThrough implements LogLevelPassThroughInterface
 {
     /**
      * @var array
@@ -31,10 +31,8 @@ class LogLevelPassThrough extends DataArray implements LogLevelPassThroughInterf
      */
     public function __construct(array $logLevelsToPass)
     {
-        parent::__construct($logLevelsToPass);
-
         //validate (via unittest) how often "toArray" is called
-        foreach ($this->toArray() as $logLevelToPass) {
+        foreach ($logLevelsToPass as $logLevelToPass) {
             $this->transformedValue[$logLevelToPass] = true;
         }
     }

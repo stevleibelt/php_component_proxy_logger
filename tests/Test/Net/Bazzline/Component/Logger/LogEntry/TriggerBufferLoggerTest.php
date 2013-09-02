@@ -6,6 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThreshold;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
@@ -31,7 +32,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    private $map;
+    private $logLevelThreshold;
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -40,11 +41,13 @@ class TriggerBufferLoggerTest extends TestCase
     protected function setUp()
     {
         $this->message = 'the message is love';
-        $this->map = array(
-            LogLevel::ALERT => array(
-                LogLevel::ERROR,
-                LogLevel::CRITICAL,
-                LogLevel::EMERGENCY
+        $this->logLevelThreshold = new LogLevelThreshold(
+            array(
+                LogLevel::ALERT => array(
+                    LogLevel::ERROR,
+                    LogLevel::CRITICAL,
+                    LogLevel::EMERGENCY
+                )
             )
         );
     }
@@ -56,7 +59,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithoutReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->map);
+        $logger->setLogLevelThreshold($this->logLevelThreshold);
         $entry = $this->getLogEntry();
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
         $entryFactory = $this->getPlainLogEntryFactory();
@@ -82,7 +85,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->map);
+        $logger->setLogLevelThreshold($this->logLevelThreshold);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -156,7 +159,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->map);
+        $logger->setLogLevelThreshold($this->logLevelThreshold);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -230,13 +233,15 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithNoReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $map = array(
-            LogLevel::ALERT => array(
-                LogLevel::CRITICAL,
-                LogLevel::EMERGENCY
+        $logLevelThreshold = new LogLevelThreshold(
+            array(
+                LogLevel::ALERT => array(
+                    LogLevel::CRITICAL,
+                    LogLevel::EMERGENCY
+                )
             )
         );
-        $logger->setLogLevelThreshold($map);
+        $logger->setLogLevelThreshold($logLevelThreshold);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -425,7 +430,7 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->setLogLevelThreshold($this->map));
+        $this->assertEquals($logger, $logger->setLogLevelThreshold($this->logLevelThreshold));
     }
 
     /**

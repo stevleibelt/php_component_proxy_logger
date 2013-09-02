@@ -6,7 +6,9 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\LogLevelPassThrough;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelPassThroughInterface;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThreshold;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
@@ -28,13 +30,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected $triggerLevel;
 
     /**
-     * @var array
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected $triggerLevels;
-
-    /**
      * @var LogLevelThresholdInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
@@ -47,6 +42,16 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @since 2013-09-02
      */
     protected $logLevelPassThrough;
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-02
+     */
+    public function __construct()
+    {
+        $this->logLevelThreshold = new LogLevelThreshold(array());
+        $this->logLevelPassThrough = new LogLevelPassThrough(array());
+    }
 
     /**
      * Logs with an arbitrary level.
@@ -234,6 +239,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected function isTriggerLogLevel($level)
     {
         return (($level == $this->triggerLevel)
-                || (isset($this->triggerLevels[$level])));
+                || ($this->logLevelThreshold->isThresholdReached($level, $this->triggerLevel)));
     }
 }
