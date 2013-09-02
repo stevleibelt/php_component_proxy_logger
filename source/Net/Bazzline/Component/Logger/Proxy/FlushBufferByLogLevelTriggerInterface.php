@@ -6,6 +6,9 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelPassThroughInterface;
+
 /**
  * Class FlushBufferByLogLevelTriggerInterface
  *
@@ -80,12 +83,20 @@ interface FlushBufferByLogLevelTriggerInterface
     public function setLogLevelTrigger($level);
 
     /**
-     * @param array $map
+     * @param LogLevelThresholdInterface $threshold
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setLogLevelTriggerInheritanceMap(array $map);
+    public function setLogLevelThreshold(LogLevelThresholdInterface $threshold);
+
+    /**
+     * @param LogLevelPassThroughInterface $passThrough
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-02
+     */
+    public function setLogLevelPassThrough(LogLevelPassThroughInterface $passThrough);
 
     /**
      * @return null|mixed

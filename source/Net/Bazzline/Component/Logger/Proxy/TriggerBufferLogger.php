@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\Configuration\LogLevelPassThroughInterface;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
 
@@ -33,21 +35,18 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected $triggerLevels;
 
     /**
-     * @var @var array
+     * @var LogLevelThresholdInterface
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
+     * @since 2013-09-02
      */
-    protected $logLevelTriggerInheritanceMap;
+    protected $logLevelThreshold;
 
     /**
-     * @author sleibelt
-     * @since 2013-08-26
+     * @var LogLevelPassThroughInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-02
      */
-    public function __construct()
-    {
-        $this->logLevelTriggerInheritanceMap = array();
-        $this->buildTriggerLevels();
-    }
+    protected $logLevelPassThrough;
 
     /**
      * Logs with an arbitrary level.
@@ -186,21 +185,32 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     public function setLogLevelTrigger($level)
     {
         $this->triggerLevel = $level;
-        $this->buildTriggerLevels();
 
         return $this;
     }
 
     /**
-     * @param array $map
+     * @param LogLevelThresholdInterface $threshold
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setLogLevelTriggerInheritanceMap(array $map)
+    public function setLogLevelThreshold(LogLevelThresholdInterface $threshold)
     {
-        $this->logLevelTriggerInheritanceMap = $map;
-        $this->buildTriggerLevels();
+        $this->logLevelThreshold = $threshold;
+
+        return $this;
+    }
+
+    /**
+     * @param LogLevelPassThroughInterface $passThrough
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-02
+     */
+    public function setLogLevelPassThrough(LogLevelPassThroughInterface $passThrough)
+    {
+        $this->logLevelPassThrough = $passThrough;
 
         return $this;
     }
@@ -213,25 +223,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     public function getLogLevelTrigger()
     {
         return $this->triggerLevel;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected function buildTriggerLevels()
-    {
-        if (is_null($this->triggerLevel)) {
-            $this->triggerLevels = array();
-        } else {
-            $this->triggerLevels = (isset($this->logLevelTriggerInheritanceMap[$this->triggerLevel]))
-                ? $this->logLevelTriggerInheritanceMap[$this->triggerLevel] : array($this->triggerLevel);
-            //we want to gain fast access
-            $this->triggerLevels = array_flip($this->triggerLevels);
-        }
-
-        return $this;
     }
 
     /**

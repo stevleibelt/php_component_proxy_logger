@@ -56,7 +56,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithoutReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelTriggerInheritanceMap($this->map);
+        $logger->setLogLevelThreshold($this->map);
         $entry = $this->getLogEntry();
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
         $entryFactory = $this->getPlainLogEntryFactory();
@@ -82,7 +82,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelTriggerInheritanceMap($this->map);
+        $logger->setLogLevelThreshold($this->map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -156,7 +156,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelTriggerInheritanceMap($this->map);
+        $logger->setLogLevelThreshold($this->map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -236,7 +236,7 @@ class TriggerBufferLoggerTest extends TestCase
                 LogLevel::EMERGENCY
             )
         );
-        $logger->setLogLevelTriggerInheritanceMap($map);
+        $logger->setLogLevelThreshold($map);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -425,7 +425,7 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->setLogLevelTriggerInheritanceMap($this->map));
+        $this->assertEquals($logger, $logger->setLogLevelThreshold($this->map));
     }
 
     /**

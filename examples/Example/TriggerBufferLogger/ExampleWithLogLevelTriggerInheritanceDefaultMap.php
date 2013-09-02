@@ -59,7 +59,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setLogLevelTriggerInheritanceMap($map);
+        $this->logger->setLogLevelThreshold($map);
 
         return $this;
     }

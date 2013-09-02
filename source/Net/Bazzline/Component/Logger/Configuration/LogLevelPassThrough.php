@@ -15,7 +15,7 @@ use Net\Bazzline\Component\DataType\DataArray;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class LogLevelPassThrough extends DataArray implements LogLevelPassInterface
+class LogLevelPassThrough extends DataArray implements LogLevelPassThroughInterface
 {
     /**
      * @var array
