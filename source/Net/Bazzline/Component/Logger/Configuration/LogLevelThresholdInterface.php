@@ -15,7 +15,7 @@ use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-interface LogLevelTriggerThresholdInterface
+interface LogLevelThresholdInterface
 {
     /**
      * @param array $logLevelsToThreshold
