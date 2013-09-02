@@ -4,7 +4,7 @@
  * @since 2013-09-02 
  */
 
-namespace Net\Bazzline\Component\Logger;
+namespace Net\Bazzline\Component\Logger\Configuration;
 
 use Net\Bazzline\Component\DataType\DataArray;
 

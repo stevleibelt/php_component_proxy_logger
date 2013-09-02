@@ -54,7 +54,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/logLevelTriggerInheritanceDefaultMap.php';
+        $map = require_once __DIR__ . '/../../../source/Net/Bazzline/Component/Logger/Configuration/logLevelTriggerInheritanceDefaultMap.php';
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
