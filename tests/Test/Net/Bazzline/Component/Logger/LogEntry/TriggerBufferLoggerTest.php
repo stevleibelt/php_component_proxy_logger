@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\LogLevelThreshold;
+use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelThreshold;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
@@ -41,7 +41,7 @@ class TriggerBufferLoggerTest extends TestCase
     protected function setUp()
     {
         $this->message = 'the message is love';
-        $this->logLevelThreshold = new LogLevelThreshold(
+        $this->logLevelThreshold = new EmptyLogLevelThreshold(
             array(
                 LogLevel::ALERT => array(
                     LogLevel::ERROR,
@@ -233,7 +233,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithNoReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logLevelThreshold = new LogLevelThreshold(
+        $logLevelThreshold = new EmptyLogLevelThreshold(
             array(
                 LogLevel::ALERT => array(
                     LogLevel::CRITICAL,

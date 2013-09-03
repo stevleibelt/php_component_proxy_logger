@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class DefaultLogLevelThreshold extends LogLevelThreshold
+class DefaultLogLevelThreshold extends EmptyLogLevelThreshold
 {
     /**
      * @param array $logLevelsToPass

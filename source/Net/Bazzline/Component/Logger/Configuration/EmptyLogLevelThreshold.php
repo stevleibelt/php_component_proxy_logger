@@ -10,13 +10,13 @@ use Net\Bazzline\Component\DataType\DataArray;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
 /**
- * Class LogLevelThreshold
+ * Class EmptyLogLevelThreshold
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class LogLevelThreshold implements LogLevelThresholdInterface
+class EmptyLogLevelThreshold implements LogLevelThresholdInterface
 {
     /**
      * @var array

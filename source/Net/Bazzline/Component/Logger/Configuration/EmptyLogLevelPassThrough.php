@@ -9,13 +9,13 @@ namespace Net\Bazzline\Component\Logger\Configuration;
 use Net\Bazzline\Component\DataType\DataArray;
 
 /**
- * Class LogLevelPassThrough
+ * Class EmptyLogLevelPassThrough
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class LogLevelPassThrough implements LogLevelPassThroughInterface
+class EmptyLogLevelPassThrough implements LogLevelPassThroughInterface
 {
     /**
      * @var array
