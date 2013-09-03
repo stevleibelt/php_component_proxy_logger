@@ -41,7 +41,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    protected $logLevelPassThrough;
+    protected $avoidBufferManipulator;
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -50,7 +50,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     public function __construct()
     {
         $this->logLevelThreshold = new EmptyLogLevelGateKeeper(array());
-        $this->logLevelPassThrough = new LogLevelBouncer(array());
     }
 
     /**
@@ -208,19 +207,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     }
 
     /**
-     * @param AvoidBufferInterface $passThrough
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-02
-     */
-    public function setLogLevelPassThrough(AvoidBufferInterface $passThrough)
-    {
-        $this->logLevelPassThrough = $passThrough;
-
-        return $this;
-    }
-
-    /**
      * @return null|mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
@@ -230,7 +216,38 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
         return $this->triggerLevel;
     }
 
+    /**
+     * @return null|AvoidBufferInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function getAvoidBufferManipulation()
+    {
+        return $this->avoidBufferManipulator;
+    }
 
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasAvoidBufferManipulation()
+    {
+        return (!is_null($this->avoidBufferManipulator));
+    }
+
+    /**
+     * @param AvoidBufferInterface $avoidBuffer
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function setAvoidBufferManipulation(AvoidBufferInterface $avoidBuffer)
+    {
+        $this->avoidBufferManipulator = $avoidBuffer;
+
+        return $this;
+    }
 
     /**
      * @param $level
@@ -240,7 +257,8 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     protected function letLogLevelPass($level)
     {
-        return ($this->logLevelPassThrough->letLogLevelPass($level));
+        return ($this->hasAvoidBufferManipulation()
+            && $this->avoidBufferManipulator->avoidBuffering($level));
     }
 
     /**

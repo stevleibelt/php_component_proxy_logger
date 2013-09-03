@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferManipulationAwareInterface;
+
 /**
  * Class TriggerBufferLoggerInterface
  *
@@ -13,6 +15,6 @@ namespace Net\Bazzline\Component\Logger\Proxy;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface TriggerBufferLoggerInterface extends FlushBufferByLogLevelTriggerInterface, PassThroughLogLevelInterface, BufferLoggerInterface
+interface TriggerBufferLoggerInterface extends FlushBufferByLogLevelTriggerInterface, AvoidBufferManipulationAwareInterface, BufferLoggerInterface
 {
 }
