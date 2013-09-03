@@ -4,12 +4,12 @@
  * @since 2013-08-26 
  */
 
-namespace Net\Bazzline\Component\Logger\Proxy;
+namespace Net\Bazzline\Component\Logger\Factory;
 
 /**
  * Class TriggerBufferLoggerFactoryInjectInterface
  *
- * @package Net\Bazzline\Component\Logger
+ * @package Net\Bazzline\Component\Logger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */

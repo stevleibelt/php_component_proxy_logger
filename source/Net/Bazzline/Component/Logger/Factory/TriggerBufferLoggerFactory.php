@@ -4,10 +4,11 @@
  * @since 2013-08-26 
  */
 
-namespace Net\Bazzline\Component\Logger\Proxy;
+namespace Net\Bazzline\Component\Logger\Factory;
 
 use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelGateKeeper;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
@@ -15,7 +16,7 @@ use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
 /**
  * Class TriggerBufferLoggerFactory
  *
- * @package Net\Bazzline\Component\Logger
+ * @package Net\Bazzline\Component\Logger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */

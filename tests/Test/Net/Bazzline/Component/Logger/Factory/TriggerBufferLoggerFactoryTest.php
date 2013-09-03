@@ -4,9 +4,9 @@
  * @since 2013-08-28 
  */
 
-namespace Test\Net\Bazzline\Component\Logger\Proxy;
+namespace Test\Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerFactory;
+use Net\Bazzline\Component\Logger\Factory\TriggerBufferLoggerFactory;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
