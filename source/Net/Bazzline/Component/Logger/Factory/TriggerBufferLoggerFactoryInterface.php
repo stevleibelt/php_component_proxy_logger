@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
@@ -22,11 +22,11 @@ interface TriggerBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param mixed $LogLevelTrigger
-     * @param LogLevelThresholdInterface $logLevelThreshold
+     * @param FlushBufferTriggerInterface $logLevelThreshold
      * @return \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $LogLevelTrigger, LogLevelThresholdInterface $logLevelThreshold = null);
+    public function create(LoggerInterface $logger, $LogLevelTrigger, FlushBufferTriggerInterface $logLevelThreshold = null);
 }

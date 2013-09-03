@@ -8,8 +8,8 @@ namespace Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelBouncer;
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
-use Net\Bazzline\Component\Logger\BufferManipulation\EmptyLogLevelGateKeeper;
-use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\VoidLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
 
@@ -30,11 +30,11 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected $triggerLevel;
 
     /**
-     * @var LogLevelThresholdInterface
+     * @var FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    protected $logLevelThreshold;
+    protected $flushBufferTrigger;
 
     /**
      * @var AvoidBufferInterface
@@ -42,15 +42,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @since 2013-09-02
      */
     protected $avoidBufferManipulator;
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-02
-     */
-    public function __construct()
-    {
-        $this->logLevelThreshold = new EmptyLogLevelGateKeeper(array());
-    }
 
     /**
      * Logs with an arbitrary level.
@@ -66,7 +57,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
             $this->logEntryFactory->create($level, $message, $context)
         );
 
-        if ($this->isTriggerLogLevel($level)) {
+        if ($this->flushTheBuffer($level)) {
             $this->flush();
         }
     }
@@ -194,19 +185,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     }
 
     /**
-     * @param LogLevelThresholdInterface $threshold
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelThreshold(LogLevelThresholdInterface $threshold)
-    {
-        $this->logLevelThreshold = $threshold;
-
-        return $this;
-    }
-
-    /**
      * @return null|mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
@@ -250,12 +228,45 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     }
 
     /**
+     * @return null|FlushBufferTriggerInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function getFlushBufferTrigger()
+    {
+        return $this->flushBufferTrigger;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasFlushBufferTrigger()
+    {
+        return (!is_null($this->flushBufferTrigger));
+    }
+
+    /**
+     * @param FlushBufferTriggerInterface $flushBufferTrigger
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function setFlushBufferTrigger(FlushBufferTriggerInterface $flushBufferTrigger)
+    {
+        $this->flushBufferTrigger = $flushBufferTrigger;
+
+        return $this;
+    }
+
+    /**
      * @param $level
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    protected function letLogLevelPass($level)
+    protected function letItPassThrough($level)
     {
         return ($this->hasAvoidBufferManipulation()
             && $this->avoidBufferManipulator->avoidBuffering($level));
@@ -267,9 +278,9 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected function isTriggerLogLevel($level)
+    protected function flushTheBuffer($level)
     {
         return (($level == $this->triggerLevel)
-                || ($this->logLevelThreshold->isThresholdReached($level, $this->triggerLevel)));
+                || ($this->flushBufferTrigger->triggerBufferFlush($level)));
     }
 }

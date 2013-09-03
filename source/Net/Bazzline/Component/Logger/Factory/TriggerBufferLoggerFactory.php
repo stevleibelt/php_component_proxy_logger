@@ -7,7 +7,7 @@
 namespace Net\Bazzline\Component\Logger\Factory;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\DefaultLogLevelGateKeeper;
-use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
@@ -25,13 +25,13 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param mixed $logLevelTrigger
-     * @param LogLevelThresholdInterface $logLevelThreshold
+     * @param FlushBufferTriggerInterface $logLevelThreshold
      * @return TriggerBufferLogger
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $logLevelTrigger, LogLevelThresholdInterface $logLevelThreshold = null)
+    public function create(LoggerInterface $logger, $logLevelTrigger, FlushBufferTriggerInterface $logLevelThreshold = null)
     {
         $validator = new IsValidLogLevel();
 

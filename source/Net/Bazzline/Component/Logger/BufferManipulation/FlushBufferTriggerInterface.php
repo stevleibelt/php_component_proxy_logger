@@ -15,22 +15,22 @@ use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-interface LogLevelThresholdInterface
+interface FlushBufferTriggerInterface
 {
     /**
-     * @param array $logLevelsToThreshold
+     * @param mixed $logLevel
+     * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-29
+     * @since 2013-09-03
      */
-    public function __construct(array $logLevelsToThreshold = array());
+    public function addTrigger($logLevel);
 
     /**
-     * @param string $currentLogLevel
-     * @param string $logLevelThreshold
+     * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function isThresholdReached($currentLogLevel, $logLevelThreshold);
+    public function triggerBufferFlush($logLevel);
 }

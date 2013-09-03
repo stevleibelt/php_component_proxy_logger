@@ -33,7 +33,6 @@ class LogLevelBouncer implements AvoidBufferInterface
     {
         $this->logLevelsAsKeys = array();
 
-        //validate (via unittest) how often "toArray" is called
         foreach ($avoidableLogLevels as $avoidableLogLevel) {
             $this->addAvoidableLogLevel($avoidableLogLevel);
         }

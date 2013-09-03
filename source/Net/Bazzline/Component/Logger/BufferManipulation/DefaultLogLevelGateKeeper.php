@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class DefaultLogLevelGateKeeper extends EmptyLogLevelGateKeeper
+class DefaultLogLevelGateKeeper extends VoidLogLevelGateKeeper
 {
     /**
      * @param array $logLevelsToPass
@@ -68,7 +68,5 @@ class DefaultLogLevelGateKeeper extends EmptyLogLevelGateKeeper
                 LogLevel::EMERGENCY
             )
         );
-
-        parent::__construct($logLevelsToPass);
     }
 }

@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 
 /**
  * Class FlushBufferByLogLevelTriggerInterface
@@ -83,12 +83,12 @@ interface FlushBufferByLogLevelTriggerInterface
     public function setLogLevelTrigger($level);
 
     /**
-     * @param LogLevelThresholdInterface $threshold
+     * @param FlushBufferTriggerInterface $threshold
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setLogLevelThreshold(LogLevelThresholdInterface $threshold);
+    public function setLogLevelThreshold(FlushBufferTriggerInterface $threshold);
 
     /**
      * @return null|mixed
