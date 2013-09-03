@@ -9,13 +9,13 @@ namespace Net\Bazzline\Component\Logger\Configuration;
 use Psr\Log\LogLevel;
 
 /**
- * Class DefaultLogLevelSupervisor
+ * Class DefaultLogLevelGateKeeper
  *
  * @package Net\Bazzline\Component\Logger\Configuration
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class DefaultLogLevelSupervisor extends EmptyLogLevelSupervisor
+class DefaultLogLevelGateKeeper extends EmptyLogLevelGateKeeper
 {
     /**
      * @param array $logLevelsToPass

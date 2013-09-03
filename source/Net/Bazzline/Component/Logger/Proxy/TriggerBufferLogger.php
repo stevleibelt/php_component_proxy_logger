@@ -6,9 +6,9 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\LogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelBouncer;
 use Net\Bazzline\Component\Logger\Configuration\LetLogLevelPassInterface;
-use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelSupervisor;
+use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelGateKeeper;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
@@ -49,8 +49,8 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     public function __construct()
     {
-        $this->logLevelThreshold = new EmptyLogLevelSupervisor(array());
-        $this->logLevelPassThrough = new LogLevelGateKeeper(array());
+        $this->logLevelThreshold = new EmptyLogLevelGateKeeper(array());
+        $this->logLevelPassThrough = new LogLevelBouncer(array());
     }
 
     /**
