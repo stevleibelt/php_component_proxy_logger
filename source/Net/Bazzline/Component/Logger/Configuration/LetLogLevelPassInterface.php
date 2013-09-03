@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\Logger\Configuration;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-interface LogLevelPassThroughInterface
+interface LetLogLevelPassInterface
 {
     /**
      * @param array $logLevelsToPass

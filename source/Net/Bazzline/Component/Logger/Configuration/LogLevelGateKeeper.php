@@ -9,13 +9,13 @@ namespace Net\Bazzline\Component\Logger\Configuration;
 use Net\Bazzline\Component\DataType\DataArray;
 
 /**
- * Class EmptyLogLevelPassThrough
+ * Class LogLevelGateKeeper
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class EmptyLogLevelPassThrough implements LogLevelPassThroughInterface
+class LogLevelGateKeeper implements LetLogLevelPassInterface
 {
     /**
      * @var array
@@ -38,8 +38,8 @@ class EmptyLogLevelPassThrough implements LogLevelPassThroughInterface
     }
 
     /**
-     * @param $logLevel
-     * @return mixed
+     * @param mixed $logLevel
+     * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-01
      */

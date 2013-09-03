@@ -6,9 +6,9 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelPassThrough;
-use Net\Bazzline\Component\Logger\Configuration\LogLevelPassThroughInterface;
-use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelThreshold;
+use Net\Bazzline\Component\Logger\Configuration\LogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\Configuration\LetLogLevelPassInterface;
+use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelSupervisor;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
@@ -37,7 +37,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected $logLevelThreshold;
 
     /**
-     * @var LogLevelPassThroughInterface
+     * @var LetLogLevelPassInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
@@ -49,8 +49,8 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     public function __construct()
     {
-        $this->logLevelThreshold = new EmptyLogLevelThreshold(array());
-        $this->logLevelPassThrough = new EmptyLogLevelPassThrough(array());
+        $this->logLevelThreshold = new EmptyLogLevelSupervisor(array());
+        $this->logLevelPassThrough = new LogLevelGateKeeper(array());
     }
 
     /**
@@ -208,12 +208,12 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     }
 
     /**
-     * @param LogLevelPassThroughInterface $passThrough
+     * @param LetLogLevelPassInterface $passThrough
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    public function setLogLevelPassThrough(LogLevelPassThroughInterface $passThrough)
+    public function setLogLevelPassThrough(LetLogLevelPassInterface $passThrough)
     {
         $this->logLevelPassThrough = $passThrough;
 
@@ -228,6 +228,19 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     public function getLogLevelTrigger()
     {
         return $this->triggerLevel;
+    }
+
+
+
+    /**
+     * @param $level
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    protected function letLogLevelPass($level)
+    {
+        return ($this->logLevelPassThrough->letLogLevelPass($level));
     }
 
     /**

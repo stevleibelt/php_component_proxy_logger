@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelThreshold;
+use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelSupervisor;
 use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
@@ -41,7 +41,7 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
         }
 
         if (is_null($logLevelThreshold)) {
-            $logLevelThreshold = new DefaultLogLevelThreshold();
+            $logLevelThreshold = new DefaultLogLevelSupervisor();
         }
 
         $proxy = new TriggerBufferLogger();
