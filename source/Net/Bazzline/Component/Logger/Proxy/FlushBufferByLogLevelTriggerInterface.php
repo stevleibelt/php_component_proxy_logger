@@ -10,6 +10,7 @@ use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
 
 /**
  * Class FlushBufferByLogLevelTriggerInterface
+ * Should be used to implement a triggered buffer flush
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
