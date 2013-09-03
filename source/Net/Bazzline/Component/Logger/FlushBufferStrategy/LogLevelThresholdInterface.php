@@ -4,7 +4,7 @@
  * @since 2013-08-29 
  */
 
-namespace Net\Bazzline\Component\Logger\Configuration;
+namespace Net\Bazzline\Component\Logger\FlushBufferStrategy;
 
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 

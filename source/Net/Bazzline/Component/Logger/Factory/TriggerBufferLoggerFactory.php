@@ -6,8 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\Configuration\DefaultLogLevelGateKeeper;
-use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\DefaultLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelThresholdInterface;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;

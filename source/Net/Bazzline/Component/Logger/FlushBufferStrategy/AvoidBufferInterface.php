@@ -4,7 +4,7 @@
  * @since 2013-09-02 
  */
 
-namespace Net\Bazzline\Component\Logger\Configuration;
+namespace Net\Bazzline\Component\Logger\FlushBufferStrategy;
 
 /**
  * Class LogLevelPassInterface
@@ -13,14 +13,15 @@ namespace Net\Bazzline\Component\Logger\Configuration;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-interface LetLogLevelPassInterface
+interface AvoidBufferInterface
 {
     /**
-     * @param array $logLevelsToPass
+     * @param $logLevel
+     * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-01
+     * @since 2013-09-03
      */
-    public function __construct(array $logLevelsToPass);
+    public function addAvoidableLogLevel($logLevel);
 
     /**
      * @param $logLevel
@@ -28,5 +29,5 @@ interface LetLogLevelPassInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-01
      */
-    public function letLogLevelPass($logLevel);
+    public function avoidBuffering($logLevel);
 }

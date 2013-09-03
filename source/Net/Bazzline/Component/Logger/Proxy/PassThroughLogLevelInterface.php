@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\LetLogLevelPassInterface;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\AvoidBufferInterface;
 
 /**
  * Class PassThroughLogLevelInterface
@@ -20,10 +20,10 @@ interface PassThroughLogLevelInterface
 
 
     /**
-     * @param LetLogLevelPassInterface $passThrough
+     * @param AvoidBufferInterface $passThrough
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    public function setLogLevelPassThrough(LetLogLevelPassInterface $passThrough);
+    public function setLogLevelPassThrough(AvoidBufferInterface $passThrough);
 }

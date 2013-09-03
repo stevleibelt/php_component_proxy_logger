@@ -6,10 +6,10 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\Configuration\LogLevelBouncer;
-use Net\Bazzline\Component\Logger\Configuration\LetLogLevelPassInterface;
-use Net\Bazzline\Component\Logger\Configuration\EmptyLogLevelGateKeeper;
-use Net\Bazzline\Component\Logger\Configuration\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelBouncer;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\AvoidBufferInterface;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\EmptyLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
 
@@ -37,7 +37,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     protected $logLevelThreshold;
 
     /**
-     * @var LetLogLevelPassInterface
+     * @var AvoidBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
@@ -208,12 +208,12 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
     }
 
     /**
-     * @param LetLogLevelPassInterface $passThrough
+     * @param AvoidBufferInterface $passThrough
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    public function setLogLevelPassThrough(LetLogLevelPassInterface $passThrough)
+    public function setLogLevelPassThrough(AvoidBufferInterface $passThrough)
     {
         $this->logLevelPassThrough = $passThrough;
 
