@@ -6,10 +6,10 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelBouncer;
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\AvoidBufferInterface;
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\EmptyLogLevelGateKeeper;
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelBouncer;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\EmptyLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
 

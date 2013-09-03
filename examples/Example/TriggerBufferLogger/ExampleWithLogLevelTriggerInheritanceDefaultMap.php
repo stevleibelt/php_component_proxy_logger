@@ -6,7 +6,7 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\DefaultLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\DefaultLogLevelGateKeeper;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;

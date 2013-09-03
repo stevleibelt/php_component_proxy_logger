@@ -4,7 +4,7 @@
  * @since 2013-09-02 
  */
 
-namespace Net\Bazzline\Component\Logger\FlushBufferStrategy;
+namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 /**
  * Class LogLevelPassInterface

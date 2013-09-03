@@ -4,14 +4,14 @@
  * @since 9/2/13
  */
 
-namespace Net\Bazzline\Component\Logger\FlushBufferStrategy;
+namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 use Psr\Log\LogLevel;
 
 /**
  * Class DefaultLogLevelGateKeeper
  *
- * @package Net\Bazzline\Component\Logger\FlushBufferStrategy
+ * @package Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */

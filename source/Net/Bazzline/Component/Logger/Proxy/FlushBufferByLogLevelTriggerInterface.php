@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\LogLevelThresholdInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelThresholdInterface;
 
 /**
  * Class FlushBufferByLogLevelTriggerInterface

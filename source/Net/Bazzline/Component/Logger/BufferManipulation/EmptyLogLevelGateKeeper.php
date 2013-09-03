@@ -4,7 +4,7 @@
  * @since 2013-08-29 
  */
 
-namespace Net\Bazzline\Component\Logger\FlushBufferStrategy;
+namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 use Net\Bazzline\Component\DataType\DataArray;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;

@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\AvoidBufferInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
 
 /**
  * Class PassThroughLogLevelInterface

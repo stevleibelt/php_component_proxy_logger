@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\FlushBufferStrategy\EmptyLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\EmptyLogLevelGateKeeper;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
