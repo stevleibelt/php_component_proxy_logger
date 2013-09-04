@@ -6,6 +6,7 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
+use Net\Bazzline\Component\Logger\BufferManipulation\NeverAvoidBuffer;
 use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
@@ -55,12 +56,12 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $logLevelThreshold = new UpwardFlushBufferTrigger();
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setLogLevelThreshold($logLevelThreshold);
+        $this->logger->setAvoidBufferManipulation(new NeverAvoidBuffer());
+        $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
 
         return $this;
     }
@@ -73,7 +74,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to warning' . PHP_EOL;
-        $this->logger->setLogLevelTriggerToWarning();
+        $this->logger->getFlushBufferTrigger()->setTriggerToWarning();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);

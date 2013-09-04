@@ -6,6 +6,8 @@
 
 namespace Example\TriggerBufferLogger;
 
+use Net\Bazzline\Component\Logger\BufferManipulation\NeverAvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
@@ -57,7 +59,8 @@ class Example
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
-        $this->logger->setAvoidBufferManipulation()
+        $this->logger->setAvoidBufferManipulation(new NeverAvoidBuffer());
+        $this->logger->setFlushBufferTrigger(new FlushBufferTrigger());
         $this->logger->addLogger($logger);
 
         return $this;
@@ -71,7 +74,7 @@ class Example
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to critical' . PHP_EOL;
-        $this->logger->setLogLevelTriggerToCritical();
+        $this->logger->getFlushBufferTrigger()->setTriggerToCritical();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
