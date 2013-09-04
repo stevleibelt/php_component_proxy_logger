@@ -7,6 +7,7 @@
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
+use Net\Bazzline\Component\Logger\Validator\IsValidLogLevelAwareInterface;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
@@ -17,8 +18,15 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-04
  */
-abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
+abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface, IsValidLogLevelAwareInterface
 {
+    /**
+     * @var IsValidLogLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    protected $isValidLogLevel;
+
     /**
      * @var null|mixed
      * @author stev leibelt <artodeto@arcor.de>
@@ -115,6 +123,39 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
     }
 
     /**
+     * @return null|IsValidLogLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function getIsValidLogLevel()
+    {
+        return $this->isValidLogLevel;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function hasIsValidLogLevel()
+    {
+        return (!is_null($this->isValidLogLevel));
+    }
+
+    /**
+     * @param IsValidLogLevel $isValidLogLevel
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function setIsValidLogLevel(IsValidLogLevel $isValidLogLevel)
+    {
+        $this->isValidLogLevel = $isValidLogLevel;
+
+        return $this;
+    }
+
+    /**
      * @param mixed $logLevel
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
@@ -123,12 +164,13 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     protected function setTrigger($logLevel)
     {
-        $validator = new IsValidLogLevel();
-        $validator->setLogLevel($logLevel);
-        if (!$validator->isMet()) {
-            throw new InvalidArgumentException(
-                'no valid log level provided'
-            );
+        if ($this->hasIsValidLogLevel()) {
+            $this->isValidLogLevel->setLogLevel($logLevel);
+            if (!$this->isValidLogLevel->isMet()) {
+                throw new InvalidArgumentException(
+                    'no valid log level provided'
+                );
+            }
         }
         $this->trigger = $logLevel;
     }

@@ -26,6 +26,13 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     protected $triggerAndUpwardLogLevelMap;
 
     /**
+     * @var array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    protected $upwardLogLevels;
+
+    /**
      * @param array $logLevelsToPass
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
@@ -79,6 +86,24 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     }
 
     /**
+     * @param mixed $logLevel
+     * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected function setTrigger($logLevel)
+    {
+        parent::setTrigger($logLevel);
+
+        $this->upwardLogLevels = (isset($this->triggerAndUpwardLogLevelMap[$this->trigger]))
+            ? $this->triggerAndUpwardLogLevelMap[$this->trigger]
+            : array();
+
+        return $this;
+    }
+
+    /**
      * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException
@@ -87,6 +112,8 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      */
     public function triggerBufferFlush($logLevel)
     {
-        // TODO: Implement triggerBufferFlush() method.
+        return ($this->hasTrigger()
+            && (($this->trigger == $logLevel)
+                || isset($this->upwardLogLevels[$logLevel])));
     }
 }
