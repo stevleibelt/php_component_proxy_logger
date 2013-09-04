@@ -57,6 +57,7 @@ class Example
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
+        $this->logger->setAvoidBufferManipulation()
         $this->logger->addLogger($logger);
 
         return $this;

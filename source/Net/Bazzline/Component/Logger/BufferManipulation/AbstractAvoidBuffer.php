@@ -1,21 +1,19 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-09-02 
+ * @since 2013-09-05 
  */
 
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
-use Net\Bazzline\Component\DataType\DataArray;
-
 /**
- * Class LogLevelBouncer
+ * Class AbstractAvoidBuffer
  *
- * @package Net\Bazzline\Component\Logger
+ * @package Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-09-02
+ * @since 2013-09-05
  */
-class LogLevelBouncer implements AvoidBufferInterface
+abstract class AbstractAvoidBuffer implements AvoidBufferInterface
 {
     /**
      * @var array
@@ -25,17 +23,12 @@ class LogLevelBouncer implements AvoidBufferInterface
     protected $logLevelsAsKeys;
 
     /**
-     * @param array $avoidableLogLevels
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-01
+     * @since 2013-09-05
      */
-    public function __construct(array $avoidableLogLevels = array())
+    public function __construct()
     {
         $this->logLevelsAsKeys = array();
-
-        foreach ($avoidableLogLevels as $avoidableLogLevel) {
-            $this->addAvoidableLogLevel($avoidableLogLevel);
-        }
     }
 
     /**

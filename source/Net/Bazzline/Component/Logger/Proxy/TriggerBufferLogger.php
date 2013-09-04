@@ -6,11 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelBouncer;
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
-use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
-use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
 
 /**
@@ -53,109 +50,17 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     public function log($level, $message, array $context = array())
     {
-        $this->logEntryBuffer->attach(
-            $this->logEntryFactory->create($level, $message, $context)
-        );
+        if ($this->letItPassThrough($level)) {
+            $this->pushToLoggers($level, $message, $context);
+        } else {
+            $this->logEntryBuffer->attach(
+                $this->logEntryFactory->create($level, $message, $context)
+            );
 
-        if ($this->flushTheBuffer($level)) {
-            $this->flush();
+            if ($this->flushTheBuffer($level)) {
+                $this->flush();
+            }
         }
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToEmergency()
-    {
-        $this->setLogLevelTrigger(LogLevel::EMERGENCY);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToAlert()
-    {
-        $this->setLogLevelTrigger(LogLevel::ALERT);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToCritical()
-    {
-        $this->setLogLevelTrigger(LogLevel::CRITICAL);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToError()
-    {
-        $this->setLogLevelTrigger(LogLevel::ERROR);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToWarning()
-    {
-        $this->setLogLevelTrigger(LogLevel::WARNING);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToNotice()
-    {
-        $this->setLogLevelTrigger(LogLevel::NOTICE);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToInfo()
-    {
-        $this->setLogLevelTrigger(LogLevel::INFO);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTriggerToDebug()
-    {
-        $this->setLogLevelTrigger(LogLevel::DEBUG);
-
-        return $this;
     }
 
     /**
@@ -169,29 +74,6 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
         $this->logEntryFactory = $factory;
 
         return $this;
-    }
-
-    /**
-     * @param mixed $level
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function setLogLevelTrigger($level)
-    {
-        $this->triggerLevel = $level;
-
-        return $this;
-    }
-
-    /**
-     * @return null|mixed
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
-     */
-    public function getLogLevelTrigger()
-    {
-        return $this->triggerLevel;
     }
 
     /**
