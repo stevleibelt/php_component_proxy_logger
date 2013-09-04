@@ -19,6 +19,7 @@ interface FlushBufferTriggerInterface
 {
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -26,6 +27,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -33,6 +35,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -40,6 +43,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -47,6 +51,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -54,6 +59,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -61,6 +67,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -68,6 +75,7 @@ interface FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */

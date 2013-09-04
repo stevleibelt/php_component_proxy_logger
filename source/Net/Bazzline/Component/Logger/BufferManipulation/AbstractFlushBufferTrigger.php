@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
+use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
+use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
 /**
@@ -26,6 +28,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -36,6 +39,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -46,6 +50,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -56,6 +61,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -66,6 +72,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -76,6 +83,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -86,6 +94,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -96,6 +105,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 
     /**
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
@@ -107,11 +117,19 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
     /**
      * @param mixed $logLevel
      * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected function setTrigger($logLevel)
     {
+        $validator = new IsValidLogLevel();
+        $validator->setLogLevel($logLevel);
+        if (!$validator->isMet()) {
+            throw new InvalidArgumentException(
+                'no valid log level provided'
+            );
+        }
         $this->trigger = $logLevel;
     }
 
