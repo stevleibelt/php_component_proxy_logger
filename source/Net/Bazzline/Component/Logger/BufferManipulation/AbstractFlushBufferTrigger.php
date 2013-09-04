@@ -42,7 +42,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToEmergency()
     {
-        return $this->setTrigger(LogLevel::EMERGENCY);
+        return $this->setTriggerTo(LogLevel::EMERGENCY);
     }
 
     /**
@@ -53,7 +53,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToAlert()
     {
-        return $this->setTrigger(LogLevel::ALERT);
+        return $this->setTriggerTo(LogLevel::ALERT);
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToCritical()
     {
-        return $this->setTrigger(LogLevel::CRITICAL);
+        return $this->setTriggerTo(LogLevel::CRITICAL);
     }
 
     /**
@@ -75,7 +75,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToError()
     {
-        return $this->setTrigger(LogLevel::ERROR);
+        return $this->setTriggerTo(LogLevel::ERROR);
     }
 
     /**
@@ -86,7 +86,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToWarning()
     {
-        return $this->setTrigger(LogLevel::WARNING);
+        return $this->setTriggerTo(LogLevel::WARNING);
     }
 
     /**
@@ -97,7 +97,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToNotice()
     {
-        return $this->setTrigger(LogLevel::NOTICE);
+        return $this->setTriggerTo(LogLevel::NOTICE);
     }
 
     /**
@@ -108,7 +108,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToInfo()
     {
-        return $this->setTrigger(LogLevel::INFO);
+        return $this->setTriggerTo(LogLevel::INFO);
     }
 
     /**
@@ -119,7 +119,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      */
     public function setTriggerToDebug()
     {
-        return $this->setTrigger(LogLevel::DEBUG);
+        return $this->setTriggerTo(LogLevel::DEBUG);
     }
 
     /**

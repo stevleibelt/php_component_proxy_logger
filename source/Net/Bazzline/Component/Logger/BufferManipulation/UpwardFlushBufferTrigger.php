@@ -92,9 +92,9 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected function setTrigger($logLevel)
+    public function setTriggerTo($logLevel)
     {
-        parent::setTrigger($logLevel);
+        parent::setTriggerTo($logLevel);
 
         $this->upwardLogLevels = (isset($this->triggerAndUpwardLogLevelMap[$this->trigger]))
             ? $this->triggerAndUpwardLogLevelMap[$this->trigger]
