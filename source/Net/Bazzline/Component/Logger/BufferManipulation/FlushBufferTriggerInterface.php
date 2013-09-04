@@ -82,6 +82,29 @@ interface FlushBufferTriggerInterface
     public function setTriggerToDebug();
 
     /**
+     * @param mixed $logLevel
+     * @return $this
+     * @throws \Psr\Log\InvalidArgumentException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function setTriggerTo($logLevel);
+
+    /**
+     * @return null|mixed
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function getTrigger();
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function hasTrigger();
+
+    /**
      * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException

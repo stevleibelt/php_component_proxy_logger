@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTrigger;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
@@ -25,13 +25,13 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param mixed $logLevelTrigger
-     * @param FlushBufferTriggerInterface $logLevelThreshold
+     * @param FlushBufferTriggerInterface $flushBufferTrigger
      * @return TriggerBufferLogger
-     * @throws InvalidArgumentException
+     * @throws \Net\Bazzline\Component\Logger\Exception\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $logLevelTrigger, FlushBufferTriggerInterface $logLevelThreshold = null)
+    public function create(LoggerInterface $logger, $logLevelTrigger = null, FlushBufferTriggerInterface $flushBufferTrigger = null)
     {
         $validator = new IsValidLogLevel();
 
@@ -41,15 +41,17 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
             );
         }
 
-        if (is_null($logLevelThreshold)) {
-            $logLevelThreshold = new UpwardFlushBufferTrigger();
+        if (is_null($flushBufferTrigger)) {
+            $flushBufferTrigger = new FlushBufferTrigger();
+        }
+
+        if (!is_null($logLevelTrigger)) {
+            $flushBufferTrigger->setTriggerTo($logLevelTrigger);
         }
 
         $proxy = new TriggerBufferLogger();
-
         $proxy->addLogger($logger);
-        $proxy->setLogLevelTrigger($logLevelTrigger);
-        $proxy->setLogLevelThreshold($logLevelThreshold);
+        $proxy->setFlushBufferTrigger($flushBufferTrigger);
 
         return $proxy;
     }

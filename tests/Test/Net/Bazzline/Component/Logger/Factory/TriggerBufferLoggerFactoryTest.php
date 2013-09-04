@@ -16,6 +16,7 @@ use Test\Net\Bazzline\Component\Logger\TestCase;
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
+ * @todo extend
  */
 class TriggerBufferLoggerFactoryTest extends TestCase
 {
@@ -31,6 +32,7 @@ class TriggerBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerInterface', $buffer);
         $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger', $buffer);
-        $this->assertEquals(LogLevel::ERROR, $buffer->getLogLevelTrigger());
+        $this->assertTrue($buffer->getFlushBufferTrigger()->hasTrigger());
+        $this->assertEquals(LogLevel::ERROR, $buffer->getFlushBufferTrigger()->getTrigger());
     }
 }

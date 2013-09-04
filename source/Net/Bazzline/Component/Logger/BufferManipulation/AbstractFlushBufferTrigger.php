@@ -162,7 +162,7 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected function setTrigger($logLevel)
+    public function setTriggerTo($logLevel)
     {
         if ($this->hasIsValidLogLevel()) {
             $this->isValidLogLevel->setLogLevel($logLevel);
@@ -176,11 +176,21 @@ abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
     }
 
     /**
+     * @return null|mixed
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function getTrigger()
+    {
+        return $this->trigger;
+    }
+
+    /**
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-04
      */
-    protected function hasTrigger()
+    public function hasTrigger()
     {
         return (!is_null($this->trigger));
     }

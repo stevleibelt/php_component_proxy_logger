@@ -7,6 +7,7 @@
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
+use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
@@ -28,28 +29,21 @@ class TriggerBufferLoggerTest extends TestCase
     private $message;
 
     /**
-     * @var array
+     * @var \Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    private $logLevelThreshold;
+    private $flushBufferTrigger;
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
+     * @todo extend
      */
     protected function setUp()
     {
         $this->message = 'the message is love';
-        $this->logLevelThreshold = new AlwaysFlushBufferTrigger(
-            array(
-                LogLevel::ALERT => array(
-                    LogLevel::ERROR,
-                    LogLevel::CRITICAL,
-                    LogLevel::EMERGENCY
-                )
-            )
-        );
+        $this->flushBufferTrigger = new UpwardFlushBufferTrigger();
     }
 
     /**
@@ -59,7 +53,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithoutReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->logLevelThreshold);
+        $logger->setLogLevelThreshold($this->flushBufferTrigger);
         $entry = $this->getLogEntry();
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
         $entryFactory = $this->getPlainLogEntryFactory();
@@ -85,7 +79,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->logLevelThreshold);
+        $logger->setLogLevelThreshold($this->flushBufferTrigger);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -159,7 +153,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logger->setLogLevelThreshold($this->logLevelThreshold);
+        $logger->setLogLevelThreshold($this->flushBufferTrigger);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -430,7 +424,7 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->setLogLevelThreshold($this->logLevelThreshold));
+        $this->assertEquals($logger, $logger->setLogLevelThreshold($this->flushBufferTrigger));
     }
 
     /**
