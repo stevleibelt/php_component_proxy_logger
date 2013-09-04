@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\LogLevelBouncer;
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
-use Net\Bazzline\Component\Logger\BufferManipulation\VoidLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Psr\Log\LogLevel;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;

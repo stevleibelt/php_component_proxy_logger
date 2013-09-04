@@ -10,25 +10,14 @@ use Net\Bazzline\Component\DataType\DataArray;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
 /**
- * Class VoidLogLevelGateKeeper
+ * Class AlwaysFlushBufferTrigger
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class VoidLogLevelGateKeeper implements FlushBufferTriggerInterface
+class AlwaysFlushBufferTrigger extends AbstractFlushBufferTrigger
 {
-    /**
-     * @param mixed $logLevel
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-03
-     */
-    public function addTrigger($logLevel)
-    {
-        return $this;
-    }
-
     /**
      * @param mixed $logLevel
      * @return bool

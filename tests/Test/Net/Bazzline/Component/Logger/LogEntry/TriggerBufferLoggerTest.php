@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\VoidLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
@@ -41,7 +41,7 @@ class TriggerBufferLoggerTest extends TestCase
     protected function setUp()
     {
         $this->message = 'the message is love';
-        $this->logLevelThreshold = new VoidLogLevelGateKeeper(
+        $this->logLevelThreshold = new AlwaysFlushBufferTrigger(
             array(
                 LogLevel::ALERT => array(
                     LogLevel::ERROR,
@@ -233,7 +233,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithNoReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logLevelThreshold = new VoidLogLevelGateKeeper(
+        $logLevelThreshold = new AlwaysFlushBufferTrigger(
             array(
                 LogLevel::ALERT => array(
                     LogLevel::CRITICAL,

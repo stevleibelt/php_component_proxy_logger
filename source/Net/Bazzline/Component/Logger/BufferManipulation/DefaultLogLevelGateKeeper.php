@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-class DefaultLogLevelGateKeeper extends VoidLogLevelGateKeeper
+class DefaultLogLevelGateKeeper extends AlwaysFlushBufferTrigger
 {
     /**
      * @param array $logLevelsToPass
@@ -68,5 +68,96 @@ class DefaultLogLevelGateKeeper extends VoidLogLevelGateKeeper
                 LogLevel::EMERGENCY
             )
         );
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToEmergency()
+    {
+        // TODO: Implement setTriggerToEmergency() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToAlert()
+    {
+        // TODO: Implement setTriggerToAlert() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToCritical()
+    {
+        // TODO: Implement setTriggerToCritical() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToError()
+    {
+        // TODO: Implement setTriggerToError() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToWarning()
+    {
+        // TODO: Implement setTriggerToWarning() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToNotice()
+    {
+        // TODO: Implement setTriggerToNotice() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToInfo()
+    {
+        // TODO: Implement setTriggerToInfo() method.
+    }
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToDebug()
+    {
+        // TODO: Implement setTriggerToDebug() method.
+    }
+
+    /**
+     * @param mixed $level
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected function setTrigger($level)
+    {
+        // TODO: Implement setTrigger() method.
     }
 }
