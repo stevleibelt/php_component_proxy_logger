@@ -9,7 +9,7 @@ namespace Net\Bazzline\Component\Logger\BufferManipulation;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 
 /**
- * Class LogLevelTriggerThresholdInterface
+ * Class FlushBufferTriggerInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
@@ -24,6 +24,70 @@ interface FlushBufferTriggerInterface
      * @since 2013-09-03
      */
     public function addTrigger($logLevel);
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToEmergency();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToAlert();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToCritical();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToError();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToWarning();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToNotice();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToInfo();
+
+    /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTriggerToDebug();
+
+    /**
+     * @param mixed $level
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setTrigger($level);
 
     /**
      * @param string $logLevel
