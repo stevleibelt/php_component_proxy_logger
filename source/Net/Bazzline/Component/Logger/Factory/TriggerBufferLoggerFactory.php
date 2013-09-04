@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\DefaultLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
@@ -42,7 +42,7 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
         }
 
         if (is_null($logLevelThreshold)) {
-            $logLevelThreshold = new DefaultLogLevelGateKeeper();
+            $logLevelThreshold = new UpwardFlushBufferTrigger();
         }
 
         $proxy = new TriggerBufferLogger();

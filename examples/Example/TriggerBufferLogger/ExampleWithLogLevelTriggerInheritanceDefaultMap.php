@@ -6,7 +6,7 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\DefaultLogLevelGateKeeper;
+use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
@@ -55,7 +55,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
-        $logLevelThreshold = new DefaultLogLevelGateKeeper();
+        $logLevelThreshold = new UpwardFlushBufferTrigger();
         $logger = new OutputToConsoleLogger();
         $this->logger->injectLogEntryFactory($entryFactory);
         $this->logger->injectLogEntryBufferFactory($bufferFactory);
