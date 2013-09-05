@@ -8,8 +8,8 @@ namespace Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryInterface;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferFactoryInterface;
+use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
+use Net\Bazzline\Component\Logger\Factory\LogEntryBufferFactoryInterface;
 
 /**
  * Class BufferLogger

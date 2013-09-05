@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInterface;
+use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
 
 /**
  * Class TriggerLogger

@@ -6,7 +6,6 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LogLevel;

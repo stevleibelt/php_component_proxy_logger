@@ -4,8 +4,9 @@
  * @since 2013-08-26 
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\Factory;
 
+use Net\Bazzline\Component\Logger\LogEntry\LogEntry;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Exception\RuntimeException;
 

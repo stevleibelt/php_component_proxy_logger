@@ -7,8 +7,8 @@
 namespace Example\BufferLogger;
 
 use Net\Bazzline\Component\Logger\Proxy\BufferLogger;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
+use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';

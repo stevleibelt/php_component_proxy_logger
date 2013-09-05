@@ -7,6 +7,8 @@
 namespace Net\Bazzline\Component\Logger\LogEntry;
 
 use SplObjectStorage;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferInterface;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryInterface;
 
 /**
  * Class LogEntryCollection

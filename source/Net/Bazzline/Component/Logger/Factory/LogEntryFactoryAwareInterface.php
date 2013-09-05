@@ -4,7 +4,7 @@
  * @since 2013-08-26 
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\Factory;
 
 /**
  * Class LogEntryFactoryAwareInterface

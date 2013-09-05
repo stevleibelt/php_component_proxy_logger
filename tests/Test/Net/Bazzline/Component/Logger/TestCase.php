@@ -73,20 +73,20 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     protected function getPlainLogEntryFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogEntryFactory');
 
         return $mock;
     }
 
     /**
      * @param LogEntryInterface $logEntry
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since
      */
@@ -102,20 +102,20 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
     protected function getPlainLogEntryBufferFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory');
 
         return $mock;
     }
 
     /**
      * @param LogEntryBufferInterface $buffer
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */

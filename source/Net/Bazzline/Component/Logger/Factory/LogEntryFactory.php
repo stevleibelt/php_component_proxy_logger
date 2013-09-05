@@ -4,8 +4,9 @@
  * @since 2013-08-26 
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\Factory;
 
+use Net\Bazzline\Component\Logger\LogEntry\LogEntry;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Exception\RuntimeException;
 use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
@@ -37,7 +38,7 @@ class LogEntryFactory implements LogEntryFactoryInterface
     {
         if (!class_exists($className)) {
             $message = 'classname "' . $className . '" does not exist';
-            $className = __NAMESPACE__ . '\\' . $className;
+            $className = 'Net\\Bazzline\\Component\\Logger\\LogEntry\\' . $className;
             if (!class_exists($className)) {
                 throw new InvalidArgumentException(
                     $message

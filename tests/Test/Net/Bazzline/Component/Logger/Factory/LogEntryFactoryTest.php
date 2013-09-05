@@ -4,9 +4,9 @@
  * @since 2013-08-27
  */
 
-namespace Test\Net\Bazzline\Component\Logger\LogEntry;
+namespace Test\Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactory;
+use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 

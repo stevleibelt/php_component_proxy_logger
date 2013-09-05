@@ -4,9 +4,9 @@
  * @since 2013-08-27 
  */
 
-namespace Test\Net\Bazzline\Component\Logger\LogEntry;
+namespace Test\Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
