@@ -66,7 +66,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->andReturn($buffer)
             ->once();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
@@ -140,7 +140,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->andReturn($buffer)
             ->twice();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
@@ -215,7 +215,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->andReturn($buffer)
             ->twice();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToWarning();
@@ -282,7 +282,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->andReturn($buffer)
             ->once();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();

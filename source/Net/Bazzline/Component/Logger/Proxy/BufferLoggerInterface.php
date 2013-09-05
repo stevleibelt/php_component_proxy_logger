@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferFactoryInjectInterface;
+use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferFactoryAwareInterface;
 use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInjectInterface;
 
 /**
@@ -16,7 +16,7 @@ use Net\Bazzline\Component\Logger\LogEntry\LogEntryFactoryInjectInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface BufferLoggerInterface extends ProxyLoggerInterface, LogEntryBufferFactoryInjectInterface, LogEntryFactoryInjectInterface
+interface BufferLoggerInterface extends ProxyLoggerInterface, LogEntryBufferFactoryAwareInterface, LogEntryFactoryInjectInterface
 {
     /**
      * Flushs buffer content to logger

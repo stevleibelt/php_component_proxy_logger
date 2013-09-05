@@ -37,7 +37,7 @@ class BufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->log($level, $message);
     }
@@ -61,7 +61,7 @@ class BufferLoggerTest extends TestCase
 
         $logger = $this->getNewBufferedLogger();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($bufferFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->clean();
     }
@@ -87,7 +87,7 @@ class BufferLoggerTest extends TestCase
 
         $logger = $this->getNewBufferedLogger();
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $logger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
 
         $logger->flush();
     }
@@ -130,7 +130,7 @@ class BufferLoggerTest extends TestCase
         $logger = $this->getNewBufferedLogger();
         $logger->addLogger($realLogger);
         $logger->injectLogEntryFactory($entryFactory);
-        $logger->injectLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $logger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
 
         $logger->log($level, $message);
         $logger->flush();

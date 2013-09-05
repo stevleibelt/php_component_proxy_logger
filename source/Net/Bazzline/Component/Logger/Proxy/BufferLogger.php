@@ -70,12 +70,32 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
     }
 
     /**
+     * @return null|LogEntryBufferFactoryInterface $factory
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function getLogEntryBufferFactory()
+    {
+        return $this->logEntryBufferFactory;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    public function hasLogEntryBufferFactory()
+    {
+        return (!is_null($this->logEntryBufferFactory));
+    }
+
+    /**
      * @param LogEntryBufferFactoryInterface $factory
      * @return mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function injectLogEntryBufferFactory(LogEntryBufferFactoryInterface $factory)
+    public function setLogEntryBufferFactory(LogEntryBufferFactoryInterface $factory)
     {
         $this->logEntryBufferFactory = $factory;
         $this->logEntryBuffer = $this->logEntryBufferFactory->create();
