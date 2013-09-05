@@ -230,15 +230,7 @@ class TriggerBufferLoggerTest extends TestCase
     public function testLogWithNoReachingInheritanceMapTrigger()
     {
         $logger = $this->getNewLogger();
-        $logLevelThreshold = new AlwaysFlushBufferTrigger(
-            array(
-                LogLevel::ALERT => array(
-                    LogLevel::CRITICAL,
-                    LogLevel::EMERGENCY
-                )
-            )
-        );
-        $logger->setFlushBufferTrigger($logLevelThreshold);
+        $logger->setFlushBufferTrigger($this->flushBufferTrigger);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
