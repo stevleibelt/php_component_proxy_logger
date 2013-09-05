@@ -65,7 +65,7 @@ class TriggerBufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
-        $logger->injectLogEntryFactory($entryFactory);
+        $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
@@ -139,7 +139,7 @@ class TriggerBufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
-        $logger->injectLogEntryFactory($entryFactory);
+        $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
@@ -214,7 +214,7 @@ class TriggerBufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
-        $logger->injectLogEntryFactory($entryFactory);
+        $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
@@ -281,7 +281,7 @@ class TriggerBufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
-        $logger->injectLogEntryFactory($entryFactory);
+        $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
@@ -405,7 +405,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->never();
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->injectLogEntryFactory($factory));
+        $this->assertEquals($logger, $logger->setLogEntryFactory($factory));
     }
 
     /**

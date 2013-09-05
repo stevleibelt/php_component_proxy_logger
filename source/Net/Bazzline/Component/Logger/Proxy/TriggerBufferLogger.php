@@ -69,7 +69,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function injectLogEntryFactory(LogEntryFactoryInterface $factory)
+    public function setLogEntryFactory(LogEntryFactoryInterface $factory)
     {
         $this->logEntryFactory = $factory;
 

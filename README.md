@@ -86,4 +86,3 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 * implement "unsetTriggerLevel"
 * implement locking
 * submit idea to [log4php](https://logging.apache.org/log4php/)
-* evaluate if it make sense to move the InjectFactory interfaces to a full qualified AwareInterface
