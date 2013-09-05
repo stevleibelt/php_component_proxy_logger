@@ -218,7 +218,7 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->injectLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
-            ->setTriggerToAlert();
+            ->setTriggerToWarning();
         $logger->info($this->message);
         $logger->error($this->message);
     }
