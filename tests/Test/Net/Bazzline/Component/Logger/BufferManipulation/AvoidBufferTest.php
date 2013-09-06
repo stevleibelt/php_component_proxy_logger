@@ -27,10 +27,25 @@ class AvoidBufferTest extends TestCase
     public static function testCaseDataProvider()
     {
         return array(
-            'no log level set' => array(
-                'logLevelToAdd' => null,
-                'logLevelToTest' => LogLevel::ALERT,
+            'no log level set no avoided' => array(
+                'logLevel' => null,
+                'logLevelToAvoid' => null,
                 'expectedAvoidBuffering' => false
+            ),
+            'log level set but not avoided' => array(
+                'logLevelToAdd' => LogLevel::INFO,
+                'logLevelToAvoid' => null,
+                'expectedAvoidBuffering' => false
+            ),
+            'log level set but different avoided' => array(
+                'logLevelToAdd' => LogLevel::DEBUG,
+                'logLevelToAvoid' => LogLevel::INFO,
+                'expectedAvoidBuffering' => false
+            ),
+            'log level set and same to avoid' => array(
+                'logLevelToAdd' => LogLevel::INFO,
+                'logLevelToAvoid' => LogLevel::INFO,
+                'expectedAvoidBuffering' => true
             )
         );
     }
@@ -38,19 +53,19 @@ class AvoidBufferTest extends TestCase
     /**
      * @dataProvider testCaseDataProvider
      *
-     * @param mixed $logLevelToAdd
-     * @param mixed $logLevelToTest
+     * @param mixed $logLevel
+     * @param mixed $logLevelToAvoid
      * @param bool $expectedAvoidBuffering
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function testAvoidBuffering($logLevelToAdd, $logLevelToTest, $expectedAvoidBuffering)
+    public function testAvoidBuffering($logLevel, $logLevelToAvoid, $expectedAvoidBuffering)
     {
         $avoidBuffer = new AvoidBuffer();
-        if (!is_null($logLevelToAdd)) {
-            $avoidBuffer->addAvoidableLogLevel($logLevelToAdd);
+        if (!is_null($logLevelToAvoid)) {
+            $avoidBuffer->addAvoidableLogLevel($logLevelToAvoid);
         }
 
-        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->avoidBuffering($logLevelToTest));
+        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->avoidBuffering($logLevel));
     }
 }
