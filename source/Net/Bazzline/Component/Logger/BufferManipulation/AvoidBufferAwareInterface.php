@@ -7,27 +7,27 @@
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 /**
- * Class AvoidBufferManipulationAwareInterface
+ * Class AvoidBufferAwareInterface
  *
  * @package Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-03
  */
-interface AvoidBufferManipulationAwareInterface
+interface AvoidBufferAwareInterface
 {
     /**
      * @return null|AvoidBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function getAvoidBufferManipulation();
+    public function getAvoidBuffer();
 
     /**
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function hasAvoidBufferManipulation();
+    public function hasAvoidBuffer();
 
     /**
      * @param AvoidBufferInterface $avoidBuffer
@@ -35,5 +35,5 @@ interface AvoidBufferManipulationAwareInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setAvoidBufferManipulation(AvoidBufferInterface $avoidBuffer);
+    public function setAvoidBuffer(AvoidBufferInterface $avoidBuffer);
 }

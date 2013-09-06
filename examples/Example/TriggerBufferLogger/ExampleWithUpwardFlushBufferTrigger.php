@@ -60,7 +60,7 @@ class ExampleWithLogLevelTriggerInheritanceDefaultMap
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setAvoidBufferManipulation(new NeverAvoidBuffer());
+        $this->logger->setAvoidBuffer(new NeverAvoidBuffer());
         $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
 
         return $this;

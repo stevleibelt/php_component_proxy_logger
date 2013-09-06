@@ -6,12 +6,10 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTrigger;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Psr\Log\LoggerInterface;
-use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
-use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
 
 /**
  * Class TriggerBufferLoggerFactory
@@ -24,35 +22,25 @@ class TriggerBufferLoggerFactory implements TriggerBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
-     * @param mixed $logLevelTrigger
-     * @param FlushBufferTriggerInterface $flushBufferTrigger
+     * @param null|FlushBufferTriggerInterface $flushBufferTrigger
+     * @param null|AvoidBufferInterface $avoidBuffer
      * @return TriggerBufferLogger
-     * @throws \Net\Bazzline\Component\Logger\Exception\InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, $logLevelTrigger = null, FlushBufferTriggerInterface $flushBufferTrigger = null)
+    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, AvoidBufferInterface $avoidBuffer = null)
     {
-        $validator = new IsValidLogLevel();
+        $triggerBufferLogger = new TriggerBufferLogger();
+        $triggerBufferLogger->addLogger($logger);
 
-        if (!$validator->setLogLevel($logLevelTrigger)->isMet()) {
-            throw new InvalidArgumentException(
-                'triggered log level is not valid'
-            );
+        if (!is_null($flushBufferTrigger)) {
+            $triggerBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
         }
 
-        if (is_null($flushBufferTrigger)) {
-            $flushBufferTrigger = new FlushBufferTrigger();
+        if (!is_null($avoidBuffer)) {
+            $triggerBufferLogger->setAvoidBuffer($avoidBuffer);
         }
 
-        if (!is_null($logLevelTrigger)) {
-            $flushBufferTrigger->setTriggerTo($logLevelTrigger);
-        }
-
-        $proxy = new TriggerBufferLogger();
-        $proxy->addLogger($logger);
-        $proxy->setFlushBufferTrigger($flushBufferTrigger);
-
-        return $proxy;
+        return $triggerBufferLogger;
     }
 }

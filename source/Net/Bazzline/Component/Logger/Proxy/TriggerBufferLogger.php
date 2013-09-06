@@ -81,7 +81,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function getAvoidBufferManipulation()
+    public function getAvoidBuffer()
     {
         return $this->avoidBufferManipulator;
     }
@@ -91,7 +91,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function hasAvoidBufferManipulation()
+    public function hasAvoidBuffer()
     {
         return (!is_null($this->avoidBufferManipulator));
     }
@@ -102,7 +102,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setAvoidBufferManipulation(AvoidBufferInterface $avoidBuffer)
+    public function setAvoidBuffer(AvoidBufferInterface $avoidBuffer)
     {
         $this->avoidBufferManipulator = $avoidBuffer;
 
@@ -150,7 +150,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      */
     protected function letItPassThrough($level)
     {
-        return ($this->hasAvoidBufferManipulation()
+        return ($this->hasAvoidBuffer()
             && $this->avoidBufferManipulator->avoidBuffering($level));
     }
 
