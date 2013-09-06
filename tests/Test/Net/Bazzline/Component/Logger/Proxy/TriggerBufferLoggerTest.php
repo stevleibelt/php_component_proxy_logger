@@ -21,11 +21,11 @@ use Test\Net\Bazzline\Component\Logger\TestCase;
 class TriggerBufferLoggerTest extends TestCase
 {
     /**
-     * @var string
+     * @var \Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-06
      */
-    private $message;
+    private $avoidBuffer;
 
     /**
      * @var \Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface
@@ -35,14 +35,21 @@ class TriggerBufferLoggerTest extends TestCase
     private $flushBufferTrigger;
 
     /**
+     * @var string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
-     * @todo extend - avoid buffer?
+     */
+    private $message;
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
      */
     protected function setUp()
     {
-        $this->message = 'the message is love';
+        $this->avoidBuffer = $this->getAvoidBuffer();
         $this->flushBufferTrigger = new UpwardFlushBufferTrigger();
+        $this->message = 'the message is love';
     }
 
     /**
@@ -151,10 +158,11 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testLogWithReachingInheritanceMapTrigger()
+    public function testLogWithReachingUpwardLogLevelMap()
     {
         $logger = $this->getNewLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
+
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -163,6 +171,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->with(LogLevel::ERROR, $this->message, array())
             ->once();
         $logger->addLogger($realLogger);
+
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
@@ -183,6 +192,7 @@ class TriggerBufferLoggerTest extends TestCase
         $errorEntry->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
+
         $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
         $buffer->shouldReceive('attach')
             ->with($infoEntry)
@@ -200,6 +210,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->twice();
         $buffer->shouldReceive('next')
             ->twice();
+
         $entryFactory = $this->getPlainLogEntryFactory();
         $entryFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
@@ -209,10 +220,12 @@ class TriggerBufferLoggerTest extends TestCase
             ->with(LogLevel::ERROR, $this->message, array())
             ->andReturn($errorEntry)
             ->once();
+
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
+
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
@@ -226,7 +239,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testLogWithNoReachingInheritanceMapTrigger()
+    public function testLogWithoutReachingUpwardLogLevelMap()
     {
         $logger = $this->getNewLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
@@ -238,6 +251,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->with(LogLevel::ERROR, $this->message, array())
             ->never();
         $logger->addLogger($realLogger);
+
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->never();
@@ -252,6 +266,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->never();
         $errorEntry->shouldReceive('getContext')
             ->never();
+
         $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
         $buffer->shouldReceive('attach')
             ->with($infoEntry)
@@ -267,6 +282,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->never();
         $buffer->shouldReceive('next')
             ->never();
+
         $entryFactory = $this->getPlainLogEntryFactory();
         $entryFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
@@ -276,15 +292,84 @@ class TriggerBufferLoggerTest extends TestCase
             ->with(LogLevel::ERROR, $this->message, array())
             ->andReturn($errorEntry)
             ->once();
+
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
+
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
+        $logger->info($this->message);
+        $logger->error($this->message);
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testLogWithAvoidBuffer()
+    {
+        $logger = $this->getNewLogger();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::INFO)
+            ->andReturn(true)
+            ->once();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::ERROR)
+            ->andReturn(false)
+            ->once();
+
+        $logger->setAvoidBuffer($this->avoidBuffer);
+        $realLogger = $this->getPsr3Logger();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::INFO, $this->message, array())
+            ->once();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->never();
+        $logger->addLogger($realLogger);
+
+        $errorEntry = $this->getLogEntry();
+        $errorEntry->shouldReceive('getLevel')
+            ->never();
+        $errorEntry->shouldReceive('getMessage')
+            ->never();
+        $errorEntry->shouldReceive('getContext')
+            ->never();
+
+        $buffer = $this->getLogEntryRuntimeBuffer($errorEntry);
+        $buffer->shouldReceive('attach')
+            ->with($errorEntry)
+            ->once();
+        $buffer->shouldReceive('rewind')
+            ->never();
+        $buffer->shouldReceive('valid')
+            ->never();
+        $buffer->shouldReceive('current')
+            ->never();
+        $buffer->shouldReceive('next')
+            ->never();
+
+        $entryFactory = $this->getPlainLogEntryFactory();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->andReturn($errorEntry)
+            ->once();
+
+        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
+            ->once();
+
+        $logger->setLogEntryFactory($entryFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
+
         $logger->info($this->message);
         $logger->error($this->message);
     }
@@ -397,7 +482,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testInjectLogEntryFactory()
+    public function testSetLogEntryFactory()
     {
         $factory = $this->getLogEntryFactory($this->getLogEntry());
         $factory->shouldReceive('create')
@@ -424,7 +509,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testSetTriggeredLogLevelInheritanceMap()
+    public function testSetFlushBufferTrigger()
     {
         $logger = $this->getNewLogger();
 
