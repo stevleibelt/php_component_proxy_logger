@@ -26,7 +26,7 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testCreation()
     {
         $collection = $this->getNewBuffer();
-        $entry = $this->getNewEntry();
+        $entry = $this->getLogEntry();
 
         $this->assertEquals(0, $collection->count());
         $this->assertFalse($collection->contains($entry));
@@ -39,7 +39,7 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testAttach()
     {
         $buffer = $this->getNewBuffer();
-        $buffer->attach($this->getNewEntry());
+        $buffer->attach($this->getLogEntry());
 
         $this->assertEquals(1, $buffer->count());
     }
@@ -51,7 +51,7 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testContains()
     {
         $buffer = $this->getNewBuffer();
-        $entry = $this->getNewEntry();
+        $entry = $this->getLogEntry();
         $buffer->attach($entry);
 
         $this->assertTrue($buffer->contains($entry));
@@ -64,7 +64,7 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testDetach()
     {
         $buffer = $this->getNewBuffer();
-        $entry = $this->getNewEntry();
+        $entry = $this->getLogEntry();
         //no error expected when detaching a not attached entry
         $buffer->detach($entry);
         //now attach and detach entry
@@ -72,18 +72,6 @@ class LogEntryRuntimeBufferTest extends TestCase
         $buffer->detach($entry);
 
         $this->assertEquals(0, $buffer->count());
-    }
-
-    /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntry
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    private function getNewEntry()
-    {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry\LogEntry');
-
-        return $mock;
     }
 
     /**
