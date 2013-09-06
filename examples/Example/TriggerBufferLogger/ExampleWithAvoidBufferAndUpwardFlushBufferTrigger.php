@@ -68,10 +68,12 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to error' . PHP_EOL;
-        $this->logger->getFlushBufferTrigger()
+        $this->logger
+            ->getFlushBufferTrigger()
             ->setTriggerToError();
         echo 'Setting avoid level to Notice' . PHP_EOL;
-        $this->logger->getAvoidBuffer()
+        $this->logger
+            ->getAvoidBuffer()
             ->addAvoidableNoticeLogLevel();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;

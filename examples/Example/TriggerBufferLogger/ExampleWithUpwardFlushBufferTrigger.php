@@ -74,7 +74,8 @@ class ExampleWithUpwardFlushBufferTrigger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to warning' . PHP_EOL;
-        $this->logger->getFlushBufferTrigger()
+        $this->logger
+            ->getFlushBufferTrigger()
             ->setTriggerToWarning();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
