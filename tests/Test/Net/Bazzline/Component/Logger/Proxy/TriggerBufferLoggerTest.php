@@ -376,6 +376,87 @@ class TriggerBufferLoggerTest extends TestCase
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testLogWithoutAvoidBuffer()
+    {
+        $logger = $this->getNewLogger();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::INFO)
+            ->andReturn(false)
+            ->once();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::ERROR)
+            ->andReturn(false)
+            ->once();
+
+        $logger->setAvoidBuffer($this->avoidBuffer);
+        $realLogger = $this->getPsr3Logger();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::INFO, $this->message, array())
+            ->never();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->never();
+        $logger->addLogger($realLogger);
+
+        $infoEntry = $this->getLogEntry();
+        $infoEntry->shouldReceive('getLevel')
+            ->never();
+        $infoEntry->shouldReceive('getMessage')
+            ->never();
+        $infoEntry->shouldReceive('getContext')
+            ->never();
+        $errorEntry = $this->getLogEntry();
+        $errorEntry->shouldReceive('getLevel')
+            ->never();
+        $errorEntry->shouldReceive('getMessage')
+            ->never();
+        $errorEntry->shouldReceive('getContext')
+            ->never();
+
+        $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
+        $buffer->shouldReceive('attach')
+            ->with($infoEntry)
+            ->once();
+        $buffer->shouldReceive('attach')
+            ->with($errorEntry)
+            ->once();
+        $buffer->shouldReceive('rewind')
+            ->never();
+        $buffer->shouldReceive('valid')
+            ->never();
+        $buffer->shouldReceive('current')
+            ->never();
+        $buffer->shouldReceive('next')
+            ->never();
+
+        $entryFactory = $this->getPlainLogEntryFactory();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::INFO, $this->message, array())
+            ->andReturn($infoEntry)
+            ->once();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->andReturn($errorEntry)
+            ->once();
+
+        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
+            ->once();
+
+        $logger->setLogEntryFactory($entryFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
+
+        $logger->info($this->message);
+        $logger->error($this->message);
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     public function testSetTriggerToLogLevelEmergency()
