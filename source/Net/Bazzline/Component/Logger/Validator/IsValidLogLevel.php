@@ -1,6 +1,6 @@
 <?php
 /**
- * @author sleibelt
+ * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-30
  */
 

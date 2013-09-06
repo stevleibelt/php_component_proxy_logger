@@ -21,7 +21,7 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
 {
     /**
      * @var mixed
-     * @author sleibelt
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected $triggerLevel;
@@ -47,6 +47,8 @@ class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInt
      * @param string $message
      * @param array $context
      * @return null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
      */
     public function log($level, $message, array $context = array())
     {

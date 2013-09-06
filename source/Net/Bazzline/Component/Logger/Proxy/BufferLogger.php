@@ -36,7 +36,7 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
 
     /**
      * @var LogEntryRuntimeBuffer
-     * @author sleibelt
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     protected $logEntryBuffer;
@@ -48,6 +48,8 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      * @param string $message
      * @param array $context
      * @return null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
      */
     public function log($level, $message, array $context = array())
     {
