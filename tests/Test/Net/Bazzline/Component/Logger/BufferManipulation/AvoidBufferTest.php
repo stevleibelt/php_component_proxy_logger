@@ -8,7 +8,7 @@ namespace Test\Net\Bazzline\Component\Logger\BufferManipulation;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
 use Psr\Log\LogLevel;
-use Test\Net\Bazzline\Component\DataType\TestCase;
+use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
  * Class AvoidBufferTest
