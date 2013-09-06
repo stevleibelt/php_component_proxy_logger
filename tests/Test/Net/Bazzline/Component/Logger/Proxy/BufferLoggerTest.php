@@ -31,7 +31,7 @@ class BufferLoggerTest extends TestCase
         $entry = $this->getLogEntry();
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
 
-        $logger = $this->getNewBufferedLogger();
+        $logger = $this->getNewBufferLogger();
         $logger->setLogEntryFactory($this->getLogEntryFactory($entry));
         $bufferFactory = $this->getLogEntryBufferFactory($buffer);
         $bufferFactory->shouldReceive('create')
@@ -59,7 +59,7 @@ class BufferLoggerTest extends TestCase
         $bufferFactory->shouldReceive('create')
             ->twice();
 
-        $logger = $this->getNewBufferedLogger();
+        $logger = $this->getNewBufferLogger();
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
@@ -85,7 +85,7 @@ class BufferLoggerTest extends TestCase
         $entryFactory->shouldReceive('create')
             ->never();
 
-        $logger = $this->getNewBufferedLogger();
+        $logger = $this->getNewBufferLogger();
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
 
@@ -127,13 +127,26 @@ class BufferLoggerTest extends TestCase
             ->with($level, $message, array())
             ->once();
 
-        $logger = $this->getNewBufferedLogger();
-        $logger->addLogger($realLogger);
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $bufferLogger = $this->getNewBufferLogger();
+        $bufferLogger->addLogger($realLogger);
+        $bufferLogger->setLogEntryFactory($entryFactory);
+        $bufferLogger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
 
-        $logger->log($level, $message);
-        $logger->flush();
+        $bufferLogger->log($level, $message);
+        $bufferLogger->flush();
+    }
+
+    public function testGetHasSetLogEntryFactory()
+    {
+        $bufferLogger = $this->getNewBufferLogger();
+        $this->assertNull($bufferLogger->getLogEntryFactory());
+        $this->assertFalse($bufferLogger->hasLogEntryFactory());
+
+        $logEntryFactory = $this->getPlainLogEntryFactory();
+        $bufferLogger->setLogEntryFactory($logEntryFactory);
+
+        $this->assertEquals($logEntryFactory, $bufferLogger->getLogEntryFactory());
+        $this->assertTrue($bufferLogger->hasLogEntryFactory());
     }
 
     /**
@@ -141,7 +154,7 @@ class BufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getNewBufferedLogger()
+    protected function getNewBufferLogger()
     {
         return new BufferLogger();
     }
