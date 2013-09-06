@@ -6,16 +6,17 @@
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\NeverAvoidBuffer;
-use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\NeverFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
+use Psr\Log\LogLevel;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithUpwardFlushBufferTrigger::create()
+ExampleWithAvoidBuffer::create()
     ->setup()
     ->andRun();
 
@@ -26,7 +27,7 @@ ExampleWithUpwardFlushBufferTrigger::create()
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class ExampleWithUpwardFlushBufferTrigger
+class ExampleWithAvoidBuffer
 {
     /**
      * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
@@ -36,7 +37,7 @@ class ExampleWithUpwardFlushBufferTrigger
     private $logger;
 
     /**
-     * @return ExampleWithUpwardFlushBufferTrigger
+     * @return ExampleWithAvoidBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
@@ -60,8 +61,8 @@ class ExampleWithUpwardFlushBufferTrigger
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setAvoidBuffer(new NeverAvoidBuffer());
-        $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
+        $this->logger->setAvoidBuffer(new AvoidBuffer());
+        $this->logger->setFlushBufferTrigger(new NeverFlushBufferTrigger());
 
         return $this;
     }
@@ -73,9 +74,9 @@ class ExampleWithUpwardFlushBufferTrigger
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
-        echo 'Setting trigger to warning' . PHP_EOL;
-        $this->logger->getFlushBufferTrigger()
-            ->setTriggerToWarning();
+        echo 'Setting avoid level to info' . PHP_EOL;
+        $this->logger->getAvoidBuffer()
+            ->addAvoidableLogLevel(LogLevel::INFO);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
