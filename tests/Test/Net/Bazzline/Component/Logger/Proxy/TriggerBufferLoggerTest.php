@@ -60,22 +60,28 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
+
         $entry = $this->getLogEntry();
+
         $buffer = $this->getLogEntryRuntimeBuffer($entry);
+
         $entryFactory = $this->getPlainLogEntryFactory();
         $entryFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
             ->andReturn($entry)
             ->once();
+
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
+
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
+
         $logger->info($this->message);
     }
 
@@ -87,6 +93,7 @@ class TriggerBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
+
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -94,7 +101,9 @@ class TriggerBufferLoggerTest extends TestCase
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ALERT, $this->message, array())
             ->once();
+
         $logger->addLogger($realLogger);
+
         $infoEntry = $this->getLogEntry();
         $infoEntry->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
@@ -115,6 +124,7 @@ class TriggerBufferLoggerTest extends TestCase
         $alertEntry->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
+
         $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
         $buffer->shouldReceive('attach')
             ->with($infoEntry)
@@ -132,6 +142,7 @@ class TriggerBufferLoggerTest extends TestCase
             ->twice();
         $buffer->shouldReceive('next')
             ->twice();
+
         $entryFactory = $this->getPlainLogEntryFactory();
         $entryFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
@@ -141,15 +152,18 @@ class TriggerBufferLoggerTest extends TestCase
             ->with(LogLevel::ALERT, $this->message, array())
             ->andReturn($alertEntry)
             ->once();
+
         $bufferFactory = $this->getPlainLogEntryBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
+
         $logger->setLogEntryFactory($entryFactory);
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
+
         $logger->info($this->message);
         $logger->alert($this->message);
     }
@@ -311,7 +325,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testLogWithAvoidBuffer()
+    public function testLogWithAvoidBuffering()
     {
         $logger = $this->getNewLogger();
         $this->avoidBuffer
@@ -378,7 +392,7 @@ class TriggerBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testLogWithoutAvoidBuffer()
+    public function testLogWithoutAvoidBuffering()
     {
         $logger = $this->getNewLogger();
         $this->avoidBuffer
@@ -452,6 +466,107 @@ class TriggerBufferLoggerTest extends TestCase
         $logger->setLogEntryBufferFactory($bufferFactory);
 
         $logger->info($this->message);
+        $logger->error($this->message);
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testLogWithTriggerFlushBufferAndWithAvoidBuffering()
+    {
+        $logger = $this->getNewLogger();
+
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::INFO)
+            ->andReturn(true)
+            ->once();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::ERROR)
+            ->andReturn(false)
+            ->once();
+        $this->avoidBuffer
+            ->shouldReceive('avoidBuffering')
+            ->with(LogLevel::ALERT)
+            ->andReturn(false)
+            ->once();
+
+        $logger->setFlushBufferTrigger($this->flushBufferTrigger);
+        $logger->setAvoidBuffer($this->avoidBuffer);
+
+        $realLogger = $this->getPsr3Logger();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::INFO, $this->message, array())
+            ->once();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::ALERT, $this->message, array())
+            ->once();
+        $realLogger->shouldReceive('log')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->never();
+        $logger->addLogger($realLogger);
+
+        $alertEntry = $this->getLogEntry();
+        $alertEntry->shouldReceive('getLevel')
+            ->andReturn(LogLevel::ALERT)
+            ->once();
+        $alertEntry->shouldReceive('getMessage')
+            ->andReturn($this->message)
+            ->once();
+        $alertEntry->shouldReceive('getContext')
+            ->andReturn(array())
+            ->once();
+        $errorEntry = $this->getLogEntry();
+        $errorEntry->shouldReceive('getLevel')
+            ->never();
+        $errorEntry->shouldReceive('getMessage')
+            ->never();
+        $errorEntry->shouldReceive('getContext')
+            ->never();
+
+        $buffer = $this->getLogEntryRuntimeBuffer($errorEntry);
+        $buffer->shouldReceive('attach')
+            ->with($errorEntry)
+            ->once();
+        $buffer->shouldReceive('attach')
+            ->with($alertEntry)
+            ->once();
+        $buffer->shouldReceive('rewind')
+            ->once();
+        $buffer->shouldReceive('valid')
+            ->andReturn(true, false)
+            ->twice();
+        $buffer->shouldReceive('current')
+            ->andReturn($alertEntry)
+            ->once();
+        $buffer->shouldReceive('next')
+            ->once();
+
+        $entryFactory = $this->getPlainLogEntryFactory();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::ERROR, $this->message, array())
+            ->andReturn($errorEntry)
+            ->once();
+        $entryFactory->shouldReceive('create')
+            ->with(LogLevel::ALERT, $this->message, array())
+            ->andReturn($alertEntry)
+            ->once();
+
+        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
+            ->twice();
+
+        $logger->setLogEntryFactory($entryFactory);
+        $logger->setLogEntryBufferFactory($bufferFactory);
+
+        $logger->getFlushBufferTrigger()
+            ->setTriggerToCritical();
+
+        $logger->info($this->message);
+        $logger->alert($this->message);
         $logger->error($this->message);
     }
 
