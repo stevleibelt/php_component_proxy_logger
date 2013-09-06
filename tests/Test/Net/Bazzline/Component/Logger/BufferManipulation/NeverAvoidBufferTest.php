@@ -15,14 +15,14 @@ use Test\Net\Bazzline\Component\DataType\TestCase;
  *
  * @package Test\Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-09-05
+ * @since 2013-09-06
  */
 class NeverAvoidBufferTest extends TestCase
 {
     /**
      * @return array
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
+     * @since 2013-09-06
      */
     public static function testCaseDataProvider()
     {
@@ -57,7 +57,7 @@ class NeverAvoidBufferTest extends TestCase
      * @param mixed $logLevelToAvoid
      * @param bool $expectedAvoidBuffering
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
+     * @since 2013-09-06
      */
     public function testAvoidBuffering($logLevel, $logLevelToAvoid, $expectedAvoidBuffering)
     {
