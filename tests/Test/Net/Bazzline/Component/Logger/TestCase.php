@@ -129,4 +129,24 @@ class TestCase extends PHPUnit_Framework_TestCase
 
         return $mock;
     }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    protected function getNewAbstractFlushBufferTrigger()
+    {
+        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger[triggerBufferFlush]');
+    }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Validator\IsValidLogLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    protected function getIsValidLogLevel()
+    {
+        return Mockery::mock('Net\Bazzline\Component\Logger\Validator\IsValidLogLevel');
+    }
 }

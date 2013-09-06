@@ -26,6 +26,8 @@ class AbstractFlushBufferTriggerTest extends TestCase
     public function testSetTriggerToEmergency()
     {
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
         $flushBufferTrigger->setTriggerToEmergency();
 
         $this->assertTrue($flushBufferTrigger->hasTrigger());
@@ -39,6 +41,8 @@ class AbstractFlushBufferTriggerTest extends TestCase
     public function testSetTriggerToAlert()
     {
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
         $flushBufferTrigger->setTriggerToAlert();
 
         $this->assertTrue($flushBufferTrigger->hasTrigger());
@@ -46,12 +50,166 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    private function getNewAbstractFlushBufferTrigger()
+    public function testSetTriggerToCritical()
     {
-        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger[triggerBufferFlush]');
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToCritical();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::CRITICAL, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerToError()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToError();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::ERROR, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerToWarning()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToWarning();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::WARNING, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerToNotice()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToNotice();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::NOTICE, $flushBufferTrigger->getTrigger());
+    }
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerToInfo()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToInfo();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::INFO, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerToDebug()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerToDebug();
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::DEBUG, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetTriggerTo()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerTo(LogLevel::DEBUG);
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals(LogLevel::DEBUG, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetInvalidTriggerToWithoutIsValidLogLevel()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $myLogLevel = 'love';
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $flushBufferTrigger->setTriggerTo($myLogLevel);
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals($myLogLevel, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @expectedException \Psr\Log\InvalidArgumentException
+     * @expectedExceptionMessage no valid log level provided
+     *
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testSetInvalidTriggerToWithIsValidLogLevel()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $myLogLevel = 'love';
+        $this->assertFalse($flushBufferTrigger->hasTrigger());
+
+        $isValidLogLevel = $this->getIsValidLogLevel();
+        $isValidLogLevel->shouldReceive('setLogLevel')
+            ->with($myLogLevel)
+            ->andReturn($isValidLogLevel)
+            ->once();
+        $isValidLogLevel->shouldReceive('isMet')
+            ->andReturn(false)
+            ->once();
+        $flushBufferTrigger->setIsValidLogLevel($isValidLogLevel);
+        $flushBufferTrigger->setTriggerTo($myLogLevel);
+
+        $this->assertTrue($flushBufferTrigger->hasTrigger());
+        $this->assertEquals($myLogLevel, $flushBufferTrigger->getTrigger());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    public function testGetHasSetValidLogLevel()
+    {
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $this->assertFalse($flushBufferTrigger->hasIsValidLogLevel());
+
+        $isValidLogLevel = $this->getIsValidLogLevel();
+        $flushBufferTrigger->setIsValidLogLevel($isValidLogLevel);
+
+        $this->assertTrue($flushBufferTrigger->hasIsValidLogLevel());
+        $this->assertEquals($isValidLogLevel, $flushBufferTrigger->getIsValidLogLevel());
     }
 }
