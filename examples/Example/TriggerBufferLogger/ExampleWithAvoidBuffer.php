@@ -1,7 +1,7 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 8/28/13
+ * @since 2013-09-07
  */
 
 namespace Example\TriggerBufferLoggerWithInheritanceMap;
@@ -25,21 +25,21 @@ ExampleWithAvoidBuffer::create()
  *
  * @package Example\BufferLogger
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
+ * @since 2013-09-07
  */
 class ExampleWithAvoidBuffer
 {
     /**
      * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     private $logger;
 
     /**
      * @return ExampleWithAvoidBuffer
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public static function create()
     {
@@ -49,7 +49,7 @@ class ExampleWithAvoidBuffer
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function setup()
     {
@@ -69,7 +69,7 @@ class ExampleWithAvoidBuffer
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function andRun()
     {

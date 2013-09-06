@@ -1,7 +1,7 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 8/28/13
+ * @since 2013-08-28
  */
 
 namespace Example\ProxyLogger;
