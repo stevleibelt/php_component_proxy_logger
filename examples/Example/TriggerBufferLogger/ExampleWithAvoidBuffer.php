@@ -4,7 +4,7 @@
  * @since 2013-09-07
  */
 
-namespace Example\TriggerBufferLoggerWithInheritanceMap;
+namespace Example\TriggerBufferLogger;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
 use Net\Bazzline\Component\Logger\BufferManipulation\NeverFlushBufferTrigger;

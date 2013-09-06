@@ -1,42 +1,38 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
+ * @since 2013-09-07 
  */
 
-namespace Example\BufferLogger;
+namespace Example\TriggerBufferLogger;
 
-use Net\Bazzline\Component\Logger\Proxy\BufferLogger;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
+use Psr\Log\LogLevel;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-Example::create()
+ExampleWithAvoidBufferAndUpwardFlushBufferTrigger::create()
     ->setup()
     ->andRun();
 
-/**
- * Class Example
- *
- * @package Example\BufferLogger
- * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
- */
-class Example
+class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\\Proxy\BufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     private $logger;
 
     /**
-     * @return Example
+     * @return ExampleWithAvoidBuffer
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public static function create()
     {
@@ -46,11 +42,11 @@ class Example
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function setup()
     {
-        $this->logger = new BufferLogger();
+        $this->logger = new TriggerBufferLogger();
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
@@ -58,21 +54,34 @@ class Example
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
+        $this->logger->setAvoidBuffer(new AvoidBuffer());
+        $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
 
         return $this;
     }
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
+        echo 'Setting trigger to error' . PHP_EOL;
+        $this->logger->getFlushBufferTrigger()
+            ->setTriggerToError();
+        echo 'Setting avoid level to Notice' . PHP_EOL;
+        $this->logger->getAvoidBuffer()
+            ->addAvoidableLogLevel(LogLevel::NOTICE);
+        echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
+        $this->logger->notice('Current line is ' . __LINE__);
         $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
+        $this->logger->notice('Current line is ' . __LINE__);
+        $this->logger->warning('Current line is ' . __LINE__);
         $this->logger->critical('Current line is ' . __LINE__);
+        $this->logger->notice('Current line is ' . __LINE__);
+        $this->logger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
         $this->logger->flush();
