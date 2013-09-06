@@ -1,23 +1,23 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-09-06
+ * @since 2013-09-06 
  */
 
 namespace Test\Net\Bazzline\Component\Logger\BufferManipulation;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTrigger;
-use Test\Net\Bazzline\Component\Logger\TestCase;
+use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger;
+use Test\Net\Bazzline\Component\DataType\TestCase;
 use Psr\Log\LogLevel;
 
 /**
- * Class FlushBufferTriggerTest
+ * Class AlwaysFlushBufferTriggerTest
  *
  * @package Test\Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class FlushBufferTriggerTest extends TestCase
+class AlwaysFlushBufferTriggerTest extends TestCase
 {
     /**
      * @return array
@@ -30,17 +30,17 @@ class FlushBufferTriggerTest extends TestCase
             'no log level set no trigger' => array(
                 'logLevel' => null,
                 'logLevelToTrigger' => null,
-                'expectedAvoidBuffering' => false
+                'expectedAvoidBuffering' => true
             ),
             'log level set but not trigger' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToTrigger' => null,
-                'expectedTriggerBufferFlush' => false
+                'expectedTriggerBufferFlush' => true
             ),
             'log level set but different trigger' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
                 'logLevelToTrigger' => LogLevel::INFO,
-                'expectedTriggerBufferFlush' => false
+                'expectedTriggerBufferFlush' => true
             ),
             'log level set and same to trigger' => array(
                 'logLevelToAdd' => LogLevel::INFO,
@@ -61,7 +61,7 @@ class FlushBufferTriggerTest extends TestCase
      */
     public function testTriggerBufferFlush($logLevelToAdd, $logLevelToTrigger, $expectedTriggerBufferFlush)
     {
-        $flushBufferTrigger = new FlushBufferTrigger();
+        $flushBufferTrigger = new AlwaysFlushBufferTrigger();
         if (!is_null($logLevelToTrigger)) {
             $flushBufferTrigger->setTriggerTo($logLevelToTrigger);
         }
