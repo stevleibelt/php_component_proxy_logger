@@ -61,11 +61,192 @@ class AvoidBufferTest extends TestCase
      */
     public function testAvoidBuffering($logLevel, $logLevelToAvoid, $expectedAvoidBuffering)
     {
-        $avoidBuffer = new AvoidBuffer();
+        $avoidBuffer = $this->getNewAvoidBuffer();
         if (!is_null($logLevelToAvoid)) {
             $avoidBuffer->addAvoidableLogLevel($logLevelToAvoid);
         }
 
         $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->avoidBuffering($logLevel));
+    }
+
+    /**
+     * @return array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public static function logLevelProvider()
+    {
+        return array(
+            LogLevel::INFO,
+            LogLevel::ALERT,
+            LogLevel::NOTICE,
+            LogLevel::CRITICAL,
+            LogLevel::DEBUG,
+            LogLevel::EMERGENCY,
+            LogLevel::ERROR,
+            LogLevel::WARNING
+        );
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableEmergencyLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableEmergencyLogLevel();
+
+        if ($logLevel == LogLevel::EMERGENCY) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableAlertLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableAlertLogLevel();
+
+        if ($logLevel == LogLevel::ALERT) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableCriticalLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableCriticalLogLevel();
+
+        if ($logLevel == LogLevel::CRITICAL) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableErrorLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableErrorLogLevel();
+
+        if ($logLevel == LogLevel::ERROR) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableWarningLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableWarningLogLevel();
+
+        if ($logLevel == LogLevel::WARNING) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableNoticeLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableNoticeLogLevel();
+
+        if ($logLevel == LogLevel::NOTICE) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableInfoLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableInfoLogLevel();
+
+        if ($logLevel == LogLevel::INFO) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @dataProvider logLevelProvider
+     *
+     * @param mixed $logLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    public function addAvoidableDebugLogLevel($logLevel)
+    {
+        $avoidBuffer = $this->getNewAvoidBuffer();
+        $avoidBuffer->addAvoidableDebugLogLevel();
+
+        if ($logLevel == LogLevel::DEBUG) {
+            $this->assertTrue($avoidBuffer->avoidBuffering($logLevel));
+        } else {
+            $this->assertFalse($avoidBuffer->avoidBuffering($logLevel));
+        }
+    }
+
+    /**
+     * @return AvoidBuffer
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-07
+     */
+    private function getNewAvoidBuffer()
+    {
+        return new AvoidBuffer();
     }
 }
