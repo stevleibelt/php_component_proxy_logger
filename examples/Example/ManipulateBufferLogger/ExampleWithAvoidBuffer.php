@@ -76,7 +76,7 @@ class ExampleWithAvoidBuffer
         echo 'Setting avoid level to info' . PHP_EOL;
         $this->logger
             ->getBypassBuffer()
-            ->addAvoidableInfoLogLevel();
+            ->addBypassForLogLevelInfo();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);

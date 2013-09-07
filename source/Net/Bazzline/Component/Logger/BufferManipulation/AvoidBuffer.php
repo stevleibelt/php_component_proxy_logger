@@ -38,9 +38,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableEmergencyLogLevel()
+    public function addBypassForLogLevelEmergency()
     {
-        return $this->addAvoidableLogLevel(LogLevel::EMERGENCY);
+        return $this->addBypassForLogLevel(LogLevel::EMERGENCY);
     }
 
     /**
@@ -48,9 +48,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableAlertLogLevel()
+    public function addBypassForLogLevelAlert()
     {
-        return $this->addAvoidableLogLevel(LogLevel::ALERT);
+        return $this->addBypassForLogLevel(LogLevel::ALERT);
     }
 
     /**
@@ -58,9 +58,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableCriticalLogLevel()
+    public function addBypassForLogLevelCritical()
     {
-        return $this->addAvoidableLogLevel(LogLevel::CRITICAL);
+        return $this->addBypassForLogLevel(LogLevel::CRITICAL);
     }
 
     /**
@@ -68,9 +68,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableErrorLogLevel()
+    public function addBypassForLogLevelError()
     {
-        return $this->addAvoidableLogLevel(LogLevel::ERROR);
+        return $this->addBypassForLogLevel(LogLevel::ERROR);
     }
 
     /**
@@ -78,9 +78,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableWarningLogLevel()
+    public function addBypassForLogLevelWarning()
     {
-        return $this->addAvoidableLogLevel(LogLevel::WARNING);
+        return $this->addBypassForLogLevel(LogLevel::WARNING);
     }
 
     /**
@@ -88,9 +88,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableNoticeLogLevel()
+    public function addBypassForLevelNotice()
     {
-        return $this->addAvoidableLogLevel(LogLevel::NOTICE);
+        return $this->addBypassForLogLevel(LogLevel::NOTICE);
     }
 
     /**
@@ -98,9 +98,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableInfoLogLevel()
+    public function addBypassForLogLevelInfo()
     {
-        return $this->addAvoidableLogLevel(LogLevel::INFO);
+        return $this->addBypassForLogLevel(LogLevel::INFO);
     }
 
     /**
@@ -108,9 +108,9 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableDebugLogLevel()
+    public function addBypassForLogLevelDebug()
     {
-        return $this->addAvoidableLogLevel(LogLevel::DEBUG);
+        return $this->addBypassForLogLevel(LogLevel::DEBUG);
     }
 
     /**
@@ -119,7 +119,7 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function addAvoidableLogLevel($logLevel)
+    public function addBypassForLogLevel($logLevel)
     {
         $this->logLevelsAsKeys[$logLevel] = true;
 
@@ -132,7 +132,7 @@ class AvoidBuffer implements BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-01
      */
-    public function avoidBuffering($logLevel)
+    public function bypassBuffer($logLevel)
     {
         return (isset($this->logLevelsAsKeys[$logLevel]));
     }

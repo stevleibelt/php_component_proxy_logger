@@ -20,56 +20,56 @@ interface BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableEmergencyLogLevel();
+    public function addBypassForLogLevelEmergency();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableAlertLogLevel();
+    public function addBypassForLogLevelAlert();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableCriticalLogLevel();
+    public function addBypassForLogLevelCritical();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableErrorLogLevel();
+    public function addBypassForLogLevelError();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableWarningLogLevel();
+    public function addBypassForLogLevelWarning();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableNoticeLogLevel();
+    public function addBypassForLevelNotice();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableInfoLogLevel();
+    public function addBypassForLogLevelInfo();
 
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableDebugLogLevel();
+    public function addBypassForLogLevelDebug();
 
     /**
      * @param $logLevel
@@ -77,7 +77,7 @@ interface BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function addAvoidableLogLevel($logLevel);
+    public function addBypassForLogLevel($logLevel);
 
     /**
      * @param $logLevel
@@ -85,5 +85,5 @@ interface BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-01
      */
-    public function avoidBuffering($logLevel);
+    public function bypassBuffer($logLevel);
 }

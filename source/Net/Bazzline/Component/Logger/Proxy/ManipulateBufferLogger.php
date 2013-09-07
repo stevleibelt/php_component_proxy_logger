@@ -153,7 +153,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     protected function letItPassThrough($level)
     {
         return ($this->hasBypassBuffer()
-            && $this->avoidBufferManipulator->avoidBuffering($level));
+            && $this->avoidBufferManipulator->bypassBuffer($level));
     }
 
     /**

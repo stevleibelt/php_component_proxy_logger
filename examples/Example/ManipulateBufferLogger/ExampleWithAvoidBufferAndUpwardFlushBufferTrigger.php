@@ -73,7 +73,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
         echo 'Setting avoid level to Notice' . PHP_EOL;
         $this->logger
             ->getBypassBuffer()
-            ->addAvoidableNoticeLogLevel();
+            ->addBypassForLevelNotice();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->notice('Current line is ' . __LINE__);

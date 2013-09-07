@@ -63,9 +63,9 @@ class NeverAvoidBufferTest extends TestCase
     {
         $avoidBuffer = new NeverAvoidBuffer();
         if (!is_null($logLevelToAvoid)) {
-            $avoidBuffer->addAvoidableLogLevel($logLevelToAvoid);
+            $avoidBuffer->addBypassForLogLevel($logLevelToAvoid);
         }
 
-        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->avoidBuffering($logLevel));
+        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->bypassBuffer($logLevel));
     }
 }

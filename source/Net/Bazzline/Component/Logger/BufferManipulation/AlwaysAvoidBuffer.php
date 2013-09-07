@@ -21,7 +21,7 @@ class AlwaysAvoidBuffer extends AvoidBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-01
      */
-    public function avoidBuffering($logLevel)
+    public function bypassBuffer($logLevel)
     {
         return true;
     }

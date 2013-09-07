@@ -331,12 +331,12 @@ class ManipulateBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::INFO)
             ->andReturn(true)
             ->once();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::ERROR)
             ->andReturn(false)
             ->once();
@@ -398,12 +398,12 @@ class ManipulateBufferLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::INFO)
             ->andReturn(false)
             ->once();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::ERROR)
             ->andReturn(false)
             ->once();
@@ -480,17 +480,17 @@ class ManipulateBufferLoggerTest extends TestCase
         $logger = $this->getNewLogger();
 
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::INFO)
             ->andReturn(true)
             ->once();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::ERROR)
             ->andReturn(false)
             ->once();
         $this->avoidBuffer
-            ->shouldReceive('avoidBuffering')
+            ->shouldReceive('bypassBuffer')
             ->with(LogLevel::ALERT)
             ->andReturn(false)
             ->once();
