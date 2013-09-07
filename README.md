@@ -127,6 +127,50 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
     require: "net_bazzline/component_logger": "dev-master"
 
+# Migration Tutorial
+
+For the sake of simplicity, i assume you have a LoggerFactory you are calling whenever you need a new Logger.
+
+    <?php
+    
+    /**
+     * Factory for creating loggers
+     */
+    class MyLoggerFactory
+    {
+        /**
+         * @return \Psr\Log\LoggerInterface
+         */
+        public function createMyProcessLogger()
+        {
+            return new Logger();
+        }
+    }
+
+All you have to do is, to adapt your create method the following way (as an example).
+
+    <?php
+    
+    /**
+     * Factory for creating loggers
+     */
+    class MyLoggerFactory
+    {
+        /**
+         * @return \Psr\Log\LoggerInterface
+         */
+        public function createMyProcessLogger()
+        {
+            $realLogger = new Logger();
+            $proxyLogger = new \Net\Bazzline\Component\Logger\Proxy\ProxyLogger();
+            $proxyLogger->addLogger($realLogger);
+        
+            return $proxyLogger;
+        }
+    }
+
+Thats it! Since all proxy loggers are implementing the *\Psr\Log\LoggerInterface*, the whole proxy is fully transparent and all your code will work as before.
+
 # Links
 
 ## PSR-3 Logger
