@@ -1,4 +1,4 @@
-# Logger Component
+# Logger Proxy Component
 
 This component ships a collection of enhanced proxy logger handling tools.
 
@@ -15,33 +15,60 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * regains freedom and silence in your log files
 * use the proxy logger component to combine management of multiple loggers
 
+# Common Terms
+
+**todo**
+
 # Components
 
-## Available Proxy Loggers
+## Available Proxy Logger Interfaces
 
-### ProxyLogger
+### ProxyLoggerInterface
 
 * simple proxy that needs at least one logger to work
 * implements PSR-3 LoggerInterface
 * real PSR-3 Logger has to be injected
 * pass-through logging requests to all added loggers
 
-### BufferLogger
+### BufferLoggerInterface
 
-* based on *ProxyLogger*
-* stores each log request into an buffer that implements the *LogEntryBufferInterface*
+* based on *ProxyLoggerInterface*
+* stores each log request into an buffer that implements the *LogRequestBufferInterface*
 * forwards all buffered log requests to all added loggers when *flush* is called
 * deletes all buffered log requests when *clean* is called
 
-### ManipulateBufferLogger
+### ManipulateBufferLoggerInterface
 
-* based on *BufferLogger*
+* based on *BufferLoggerInterface*
 * implements aware interface for *FlushBufferTriggerInterface* which enables automatically buffer flushing if a well defined log level is reached
 * implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the lob message directly to the available real loggers
 
+## BufferManipulation
+
+### BypassBufferInterface
+
+* adds opportunity to define log levels (*addBypassForLogLevel*) to bypass log requests from the buffer and pass this requests directory to all added loggers
+* provides method *bypassBuffer* to check if log level should be bypassed from the buffer
+* this interface is implemented in the following classes
+    * AlwaysBypassBuffer
+    * BypassBuffer
+    * NeverBypassBuffer
+
+## FlushBufferTriggerInterface
+
+* adds opportunity to set a trigger (*setTriggerTo*) for a log level that should trigger to flush the buffer
+* provides method *triggerBufferFlush* to check if log level should trigger a buffer flush
+* this interface is implemented in the following classes
+    * AbstractFlushBufferTrigger
+    * AlwaysFlushBufferTrigger
+    * FlushBufferTrigger
+    * NeverFlushBufferTrigger
+    * UpwardFlushBufferTrigger
+
+
 ## Validator
 
-### IsValidLogLevel
+### IsValidLogLevelInterface
 
 * can be injected by implementing the *IsValidLogLevelAwareInterface*
 * based on [component_requirement](https://packagist.org/packages/net_bazzline/component_requirement)
@@ -70,14 +97,14 @@ Following an uncompleted list of available PSR3-Logger components.
 # Todo List
 
 * update readme
-    * explain storage aka LogEntryBufferInterface
+    * explain storage aka LogRequestBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
     * show migration example
     * show code examples
     * mention all decoupled classes and the benefit of that
         * BufferManipulation
         * Factory
-        * LogEntry
+        * LogRequest
         * Proxy
         * Validator
 
@@ -89,13 +116,16 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 
 * [next](https://github.com/stevleibelt/php_component_logger)
     * big refactoring to easy up trigger and bypass handling for buffer manipulation
+    * renamed LogEntry to LogRequest
+    * restructured project
+    * added a lot more example
     * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
 * [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
     * LogEntry class to use a [simple value object](http://en.wikipedia.org/wiki/Data_Transfer_Object)
-    * LogEntryFactory to easy up LogEntry creation
+    * LogEntryFactory to easy up LogRequest creation
     * LogEntryCollection for easy dealing with multiple LogEntries
     * IsValidLogLevel to validate if provided log level is meeting the LogLevel requirement as a well defined value
     * DefaultMap to trigger inherited log levels by only providing one log level
