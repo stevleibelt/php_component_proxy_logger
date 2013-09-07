@@ -49,7 +49,7 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 * adds opportunity to define log levels (*addBypassForLogLevel*) to bypass log requests from the buffer and pass this requests directory to all added loggers
 * provides method *bypassBuffer* to check if log level should be bypassed from the buffer
-* this interface is implemented in the following classes
+* implemented by:
     * AlwaysBypassBuffer
     * BypassBuffer
     * NeverBypassBuffer
@@ -58,13 +58,30 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 * adds opportunity to set a trigger (*setTriggerTo*) for a log level that should trigger to flush the buffer
 * provides method *triggerBufferFlush* to check if log level should trigger a buffer flush
-* this interface is implemented in the following classes
+* implemented by:
     * AbstractFlushBufferTrigger
     * AlwaysFlushBufferTrigger
     * FlushBufferTrigger
     * NeverFlushBufferTrigger
     * UpwardFlushBufferTrigger
 
+## Factory
+
+### LogRequestBufferFactoryInterface
+
+* provides method *create* to return a *LogRequestBufferInterface* object
+* implement your own RuntimeBuffer (like file or database based)
+* implemented by *LogRequestRuntimeBufferFactory*
+
+### LogRequestFactoryInterface
+
+* provides method *create* to return a *LogRequestInterface* object
+* implemented by *LogRequestFactory*
+
+### ManipulateBufferLoggerFactoryInterface
+
+* provides method *create* to return a *ManipulateBufferLoggerFactoryInterface* object
+* implmenented by *ManipulateBufferLoggerFactory*
 
 ## Validator
 
