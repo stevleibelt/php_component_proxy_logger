@@ -17,7 +17,13 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 # Common Terms
 
-**todo**
+* *LogRequest* represents a log request (including log level, message and context)
+* *LogRequestBuffer* represents a collection of log requests
+* *ProxyLogger* represents a collection of psr-3 loggers
+* *BufferLogger* represents as a log request keeper that pass each log request to a buffer and pushs all buffered log request to all added psr-3 loggers when *flush* is called
+* *ManipulateBufferLogger* represents a enhanced BufferLogger to use BypassBufferInterface and/or FlushBufferTriggerInterface
+* *BypassBufferInterface* represents a buffer manipulation to bypass a certain log level to all added psr-3 loggers
+* *FlushBufferTriggerInterface* represents a buffer manipulation to trigger a buffer flush based on a log level
 
 # Components
 
@@ -132,16 +138,9 @@ Following an uncompleted list of available PSR3-Logger components.
 # Todo List
 
 * update readme
-    * explain storage aka LogRequestBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
     * show migration example
     * show code examples
-    * mention all decoupled classes and the benefit of that
-        * BufferManipulation
-        * Factory
-        * LogRequest
-        * Proxy
-        * Validator
 
 # Licence
 

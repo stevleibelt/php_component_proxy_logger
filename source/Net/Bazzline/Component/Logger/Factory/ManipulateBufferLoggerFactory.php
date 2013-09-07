@@ -24,7 +24,7 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
      * @param LoggerInterface $logger
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
      * @param null|BypassBufferInterface $bypassBuffer
-     * @return ManipulateBufferLogger
+     * @return \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
