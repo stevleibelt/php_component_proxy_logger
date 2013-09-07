@@ -83,7 +83,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function getAvoidBuffer()
+    public function getBypassBuffer()
     {
         return $this->avoidBufferManipulator;
     }
@@ -93,7 +93,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function hasAvoidBuffer()
+    public function hasBypassBuffer()
     {
         return (!is_null($this->avoidBufferManipulator));
     }
@@ -104,7 +104,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setAvoidBuffer(BypassBufferInterface $avoidBuffer)
+    public function setBypassBuffer(BypassBufferInterface $avoidBuffer)
     {
         $this->avoidBufferManipulator = $avoidBuffer;
 
@@ -152,7 +152,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      */
     protected function letItPassThrough($level)
     {
-        return ($this->hasAvoidBuffer()
+        return ($this->hasBypassBuffer()
             && $this->avoidBufferManipulator->avoidBuffering($level));
     }
 

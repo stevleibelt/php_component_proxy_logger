@@ -341,7 +341,7 @@ class ManipulateBufferLoggerTest extends TestCase
             ->andReturn(false)
             ->once();
 
-        $logger->setAvoidBuffer($this->avoidBuffer);
+        $logger->setBypassBuffer($this->avoidBuffer);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -408,7 +408,7 @@ class ManipulateBufferLoggerTest extends TestCase
             ->andReturn(false)
             ->once();
 
-        $logger->setAvoidBuffer($this->avoidBuffer);
+        $logger->setBypassBuffer($this->avoidBuffer);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
@@ -496,7 +496,7 @@ class ManipulateBufferLoggerTest extends TestCase
             ->once();
 
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
-        $logger->setAvoidBuffer($this->avoidBuffer);
+        $logger->setBypassBuffer($this->avoidBuffer);
 
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')

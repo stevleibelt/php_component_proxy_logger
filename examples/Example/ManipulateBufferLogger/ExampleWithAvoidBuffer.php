@@ -60,7 +60,7 @@ class ExampleWithAvoidBuffer
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setAvoidBuffer(new AvoidBuffer());
+        $this->logger->setBypassBuffer(new AvoidBuffer());
         $this->logger->setFlushBufferTrigger(new NeverFlushBufferTrigger());
 
         return $this;
@@ -75,7 +75,7 @@ class ExampleWithAvoidBuffer
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting avoid level to info' . PHP_EOL;
         $this->logger
-            ->getAvoidBuffer()
+            ->getBypassBuffer()
             ->addAvoidableInfoLogLevel();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;

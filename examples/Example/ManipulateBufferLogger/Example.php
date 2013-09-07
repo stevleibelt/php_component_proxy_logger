@@ -59,7 +59,7 @@ class Example
         $logger = new OutputToConsoleLogger();
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
-        $this->logger->setAvoidBuffer(new NeverAvoidBuffer());
+        $this->logger->setBypassBuffer(new NeverAvoidBuffer());
         $this->logger->setFlushBufferTrigger(new FlushBufferTrigger());
         $this->logger->addLogger($logger);
 

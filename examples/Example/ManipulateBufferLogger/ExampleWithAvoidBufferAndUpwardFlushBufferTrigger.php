@@ -53,7 +53,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setAvoidBuffer(new AvoidBuffer());
+        $this->logger->setBypassBuffer(new AvoidBuffer());
         $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
 
         return $this;
@@ -72,7 +72,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
             ->setTriggerToError();
         echo 'Setting avoid level to Notice' . PHP_EOL;
         $this->logger
-            ->getAvoidBuffer()
+            ->getBypassBuffer()
             ->addAvoidableNoticeLogLevel();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;

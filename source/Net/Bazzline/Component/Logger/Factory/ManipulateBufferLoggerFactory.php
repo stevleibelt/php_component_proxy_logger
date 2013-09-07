@@ -38,7 +38,7 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
         }
 
         if (!is_null($avoidBuffer)) {
-            $triggerBufferLogger->setAvoidBuffer($avoidBuffer);
+            $triggerBufferLogger->setBypassBuffer($avoidBuffer);
         }
 
         return $triggerBufferLogger;
