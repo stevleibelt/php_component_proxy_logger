@@ -6,18 +6,18 @@
 
 namespace Test\Net\Bazzline\Component\Logger\BufferManipulation;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class AvoidBufferTest
+ * Class BypassBufferTest
  *
  * @package Test\Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */
-class AvoidBufferTest extends TestCase
+class BypassBufferTest extends TestCase
 {
     /**
      * @return array
@@ -29,23 +29,23 @@ class AvoidBufferTest extends TestCase
         return array(
             'no log level set no avoided' => array(
                 'logLevel' => null,
-                'logLevelToAvoid' => null,
-                'expectedAvoidBuffering' => false
+                'logLevelToBypass' => null,
+                'expectedBypassBufferValue' => false
             ),
             'log level set but not avoided' => array(
                 'logLevelToAdd' => LogLevel::INFO,
-                'logLevelToAvoid' => null,
-                'expectedAvoidBuffering' => false
+                'logLevelToBypass' => null,
+                'expectedBypassBufferValue' => false
             ),
             'log level set but different avoided' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
-                'logLevelToAvoid' => LogLevel::INFO,
-                'expectedAvoidBuffering' => false
+                'logLevelToBypass' => LogLevel::INFO,
+                'expectedBypassBufferValue' => false
             ),
             'log level set and same to avoid' => array(
                 'logLevelToAdd' => LogLevel::INFO,
-                'logLevelToAvoid' => LogLevel::INFO,
-                'expectedAvoidBuffering' => true
+                'logLevelToBypass' => LogLevel::INFO,
+                'expectedBypassBufferValue' => true
             )
         );
     }
@@ -54,19 +54,19 @@ class AvoidBufferTest extends TestCase
      * @dataProvider testCaseDataProvider
      *
      * @param mixed $logLevel
-     * @param mixed $logLevelToAvoid
-     * @param bool $expectedAvoidBuffering
+     * @param mixed $logLevelToBypass
+     * @param bool $expectedBypassBufferValue
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function testAvoidBuffering($logLevel, $logLevelToAvoid, $expectedAvoidBuffering)
+    public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        if (!is_null($logLevelToAvoid)) {
-            $avoidBuffer->addBypassForLogLevel($logLevelToAvoid);
+        $avoidBuffer = $this->getNewBuffer();
+        if (!is_null($logLevelToBypass)) {
+            $avoidBuffer->addBypassForLogLevel($logLevelToBypass);
         }
 
-        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->bypassBuffer($logLevel));
+        $this->assertEquals($expectedBypassBufferValue, $avoidBuffer->bypassBuffer($logLevel));
     }
 
     /**
@@ -95,15 +95,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableEmergencyLogLevel($logLevel)
+    public function addBypassForLogLevelEmergency($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelEmergency();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelEmergency();
 
         if ($logLevel == LogLevel::EMERGENCY) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -114,15 +114,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableAlertLogLevel($logLevel)
+    public function addBypassForLogLevelAlert($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelAlert();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelAlert();
 
         if ($logLevel == LogLevel::ALERT) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -133,15 +133,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableCriticalLogLevel($logLevel)
+    public function addBypassForLogLevelCritical($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelCritical();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelCritical();
 
         if ($logLevel == LogLevel::CRITICAL) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -152,15 +152,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableErrorLogLevel($logLevel)
+    public function addBypassForLogLevelError($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelError();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelError();
 
         if ($logLevel == LogLevel::ERROR) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -171,15 +171,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableWarningLogLevel($logLevel)
+    public function addBypassForLogLevelWarning($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelWarning();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelWarning();
 
         if ($logLevel == LogLevel::WARNING) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -190,15 +190,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableNoticeLogLevel($logLevel)
+    public function addBypassForLogLevelNotice($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLevelNotice();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLevelNotice();
 
         if ($logLevel == LogLevel::NOTICE) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -209,15 +209,15 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableInfoLogLevel($logLevel)
+    public function addBypassForLogLevelInfo($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelInfo();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelInfo();
 
         if ($logLevel == LogLevel::INFO) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
@@ -228,25 +228,25 @@ class AvoidBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    public function addAvoidableDebugLogLevel($logLevel)
+    public function addBypassForLogLevelDebug($logLevel)
     {
-        $avoidBuffer = $this->getNewAvoidBuffer();
-        $avoidBuffer->addBypassForLogLevelDebug();
+        $buffer = $this->getNewBuffer();
+        $buffer->addBypassForLogLevelDebug();
 
         if ($logLevel == LogLevel::DEBUG) {
-            $this->assertTrue($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertTrue($buffer->bypassBuffer($logLevel));
         } else {
-            $this->assertFalse($avoidBuffer->bypassBuffer($logLevel));
+            $this->assertFalse($buffer->bypassBuffer($logLevel));
         }
     }
 
     /**
-     * @return AvoidBuffer
+     * @return BypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    private function getNewAvoidBuffer()
+    private function getNewBuffer()
     {
-        return new AvoidBuffer();
+        return new BypassBuffer();
     }
 }

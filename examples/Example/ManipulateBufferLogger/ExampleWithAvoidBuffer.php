@@ -6,7 +6,7 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer;
 use Net\Bazzline\Component\Logger\BufferManipulation\NeverFlushBufferTrigger;
 use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
@@ -60,7 +60,7 @@ class ExampleWithAvoidBuffer
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setBypassBuffer(new AvoidBuffer());
+        $this->logger->setBypassBuffer(new BypassBuffer());
         $this->logger->setFlushBufferTrigger(new NeverFlushBufferTrigger());
 
         return $this;

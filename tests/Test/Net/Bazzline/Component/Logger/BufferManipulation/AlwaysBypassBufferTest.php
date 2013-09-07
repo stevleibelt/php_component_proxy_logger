@@ -59,13 +59,13 @@ class AlwaysBypassBufferTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testAvoidBuffering($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
+    public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
     {
-        $avoidBuffer = new AlwaysBypassBuffer();
+        $buffer = new AlwaysBypassBuffer();
         if (!is_null($logLevelToBypass)) {
-            $avoidBuffer->addBypassForLogLevel($logLevelToBypass);
+            $buffer->addBypassForLogLevel($logLevelToBypass);
         }
 
-        $this->assertEquals($expectedBypassBufferValue, $avoidBuffer->bypassBuffer($logLevel));
+        $this->assertEquals($expectedBypassBufferValue, $buffer->bypassBuffer($logLevel));
     }
 }

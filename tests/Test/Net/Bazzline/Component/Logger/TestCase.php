@@ -151,7 +151,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */

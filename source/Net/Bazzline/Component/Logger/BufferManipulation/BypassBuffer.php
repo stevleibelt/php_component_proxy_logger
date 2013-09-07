@@ -9,13 +9,13 @@ namespace Net\Bazzline\Component\Logger\BufferManipulation;
 use Psr\Log\LogLevel;
 
 /**
- * Class AvoidBuffer
+ * Class BypassBuffer
  *
  * @package Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */
-class AvoidBuffer implements BypassBufferInterface
+class BypassBuffer implements BypassBufferInterface
 {
     /**
      * @var array
