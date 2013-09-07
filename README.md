@@ -15,27 +15,37 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * regains freedom and silence in your log files
 * use the proxy logger component to combine management of multiple loggers
 
-# Available Logger Components
+# Components
 
-## ProxyLogger
+## Available Proxy Loggers
+
+### ProxyLogger
 
 * simple proxy that needs at least one logger to work
 * implements PSR-3 LoggerInterface
 * real PSR-3 Logger has to be injected
+* pass-through logging requests to all added loggers
 
-## BufferLogger
+### BufferLogger
 
 * based on *ProxyLogger*
-* stores each log message into buffer
-* provides generic method to store in any kind of log message to the buffer
-* forwards all buffered messages to real logger when *flush* is called
-* deletes all buffered messages when *clean* is called
+* stores each log request into an buffer that implements the *LogEntryBufferInterface*
+* forwards all buffered log requests to all added loggers when *flush* is called
+* deletes all buffered log requests when *clean* is called
 
-## ManipulateBufferLogger
+### ManipulateBufferLogger
 
 * based on *BufferLogger*
 * implements aware interface for *FlushBufferTriggerInterface* which enables automatically buffer flushing if a well defined log level is reached
 * implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the lob message directly to the available real loggers
+
+## Validator
+
+### IsValidLogLevel
+
+* can be injected by implementing the *IsValidLogLevelAwareInterface*
+* based on [component_requirement](https://packagist.org/packages/net_bazzline/component_requirement)
+* validates if provided log level fits into defined [PSR-3 log levels](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
 
 # Installation
 
