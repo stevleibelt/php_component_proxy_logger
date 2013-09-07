@@ -7,13 +7,13 @@
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 /**
- * Class AvoidBufferInterface
+ * Class BypassBufferInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-interface AvoidBufferInterface
+interface BypassBufferInterface
 {
     /**
      * @return $this

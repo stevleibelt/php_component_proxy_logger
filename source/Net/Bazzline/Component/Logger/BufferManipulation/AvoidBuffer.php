@@ -15,7 +15,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */
-class AvoidBuffer implements AvoidBufferInterface
+class AvoidBuffer implements BypassBufferInterface
 {
     /**
      * @var array

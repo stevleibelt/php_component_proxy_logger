@@ -21,7 +21,7 @@ use Test\Net\Bazzline\Component\Logger\TestCase;
 class ManipulateBufferLoggerTest extends TestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface
+     * @var \Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */

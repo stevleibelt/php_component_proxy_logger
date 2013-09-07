@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\BypassBufferInterface;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Psr\Log\LoggerInterface;
@@ -23,12 +23,12 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
     /**
      * @param LoggerInterface $logger
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
-     * @param null|AvoidBufferInterface $avoidBuffer
+     * @param null|BypassBufferInterface $avoidBuffer
      * @return ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, AvoidBufferInterface $avoidBuffer = null)
+    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $avoidBuffer = null)
     {
         $triggerBufferLogger = new ManipulateBufferLogger();
         $triggerBufferLogger->addLogger($logger);

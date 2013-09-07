@@ -79,7 +79,7 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 
 * [next](https://github.com/stevleibelt/php_component_logger)
     * big refactoring to easy up trigger and avoid handling for buffer manipulation
-    * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by AvoidBufferInterface)
+    * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
 * [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control

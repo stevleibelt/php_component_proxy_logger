@@ -16,7 +16,7 @@ namespace Net\Bazzline\Component\Logger\BufferManipulation;
 interface AvoidBufferAwareInterface
 {
     /**
-     * @return null|AvoidBufferInterface
+     * @return null|BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
@@ -30,10 +30,10 @@ interface AvoidBufferAwareInterface
     public function hasAvoidBuffer();
 
     /**
-     * @param AvoidBufferInterface $avoidBuffer
+     * @param BypassBufferInterface $avoidBuffer
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setAvoidBuffer(AvoidBufferInterface $avoidBuffer);
+    public function setAvoidBuffer(BypassBufferInterface $avoidBuffer);
 }

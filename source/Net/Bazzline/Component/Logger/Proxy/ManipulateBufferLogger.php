@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface;
+use Net\Bazzline\Component\Logger\BufferManipulation\BypassBufferInterface;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
 
@@ -34,7 +34,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     protected $flushBufferTrigger;
 
     /**
-     * @var AvoidBufferInterface
+     * @var BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
@@ -79,7 +79,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     }
 
     /**
-     * @return null|AvoidBufferInterface
+     * @return null|BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
@@ -99,12 +99,12 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     }
 
     /**
-     * @param AvoidBufferInterface $avoidBuffer
+     * @param BypassBufferInterface $avoidBuffer
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setAvoidBuffer(AvoidBufferInterface $avoidBuffer)
+    public function setAvoidBuffer(BypassBufferInterface $avoidBuffer)
     {
         $this->avoidBufferManipulator = $avoidBuffer;
 
