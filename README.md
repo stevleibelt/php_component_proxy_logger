@@ -131,43 +131,45 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 For the sake of simplicity, i assume you have a LoggerFactory you are calling whenever you need a new Logger.
 
-    <?php
-    
+```php
+<?php
+
+/**
+ * Factory for creating loggers
+ */
+class MyLoggerFactory
+{
     /**
-     * Factory for creating loggers
+     * @return \Psr\Log\LoggerInterface
      */
-    class MyLoggerFactory
+    public function createMyProcessLogger()
     {
-        /**
-         * @return \Psr\Log\LoggerInterface
-         */
-        public function createMyProcessLogger()
-        {
-            return new Logger();
-        }
+        return new Logger();
     }
+}
 
 All you have to do is, to adapt your create method the following way (as an example).
 
-    <?php
-    
+```php
+<?php
+
+/**
+ * Factory for creating loggers
+ */
+class MyLoggerFactory
+{
     /**
-     * Factory for creating loggers
+     * @return \Psr\Log\LoggerInterface
      */
-    class MyLoggerFactory
+    public function createMyProcessLogger()
     {
-        /**
-         * @return \Psr\Log\LoggerInterface
-         */
-        public function createMyProcessLogger()
-        {
-            $realLogger = new Logger();
-            $proxyLogger = new \Net\Bazzline\Component\Logger\Proxy\ProxyLogger();
-            $proxyLogger->addLogger($realLogger);
-        
-            return $proxyLogger;
-        }
+        $realLogger = new Logger();
+        $proxyLogger = new \Net\Bazzline\Component\Logger\Proxy\ProxyLogger();
+        $proxyLogger->addLogger($realLogger);
+    
+        return $proxyLogger;
     }
+}
 
 Thats it! Since all proxy loggers are implementing the *\Psr\Log\LoggerInterface*, the whole proxy is fully transparent and all your code will work as before.
 
@@ -177,19 +179,20 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 
 ## Create A Buffer Logger That Flushs The Buffer If Log Level Error Or Above Is Used
 
-    <?php
-    
-    use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
-    use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
-    
-    $logger = MyPSR3Logger();
-    $flushBuffer = UpwardFlushBufferTrigger();
-    $flushBuffer->setTriggerToError();
-    $bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
-    
-    $bufferLogger->info('this is an info message');  //log request is added to the buffer
-    $bufferLogger->debug('a debug information');  //log request is added to the buffer
-    $buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
+```php
+<?php
+
+use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+
+$logger = MyPSR3Logger();
+$flushBuffer = UpwardFlushBufferTrigger();
+$flushBuffer->setTriggerToError();
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
+
+$bufferLogger->info('this is an info message');  //log request is added to the buffer
+$bufferLogger->debug('a debug information');  //log request is added to the buffer
+$buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
 
 # Links
 
