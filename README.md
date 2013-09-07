@@ -147,6 +147,7 @@ class MyLoggerFactory
         return new Logger();
     }
 }
+```
 
 All you have to do is, to adapt your create method the following way (as an example).
 
@@ -170,6 +171,7 @@ class MyLoggerFactory
         return $proxyLogger;
     }
 }
+```
 
 Thats it! Since all proxy loggers are implementing the *\Psr\Log\LoggerInterface*, the whole proxy is fully transparent and all your code will work as before.
 
@@ -193,6 +195,7 @@ $bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
 $bufferLogger->info('this is an info message');  //log request is added to the buffer
 $bufferLogger->debug('a debug information');  //log request is added to the buffer
 $buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
+```
 
 # Links
 
