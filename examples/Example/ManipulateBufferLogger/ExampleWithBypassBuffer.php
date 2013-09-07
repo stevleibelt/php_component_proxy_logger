@@ -15,7 +15,7 @@ use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithAvoidBuffer::create()
+ExampleWithBypassBuffer::create()
     ->setup()
     ->andRun();
 
@@ -26,7 +26,7 @@ ExampleWithAvoidBuffer::create()
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-07
  */
-class ExampleWithAvoidBuffer
+class ExampleWithBypassBuffer
 {
     /**
      * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
@@ -36,7 +36,7 @@ class ExampleWithAvoidBuffer
     private $logger;
 
     /**
-     * @return ExampleWithAvoidBuffer
+     * @return ExampleWithBypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
@@ -73,7 +73,7 @@ class ExampleWithAvoidBuffer
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
-        echo 'Setting avoid level to info' . PHP_EOL;
+        echo 'Setting bypass buffer level to info' . PHP_EOL;
         $this->logger
             ->getBypassBuffer()
             ->addBypassForLogLevelInfo();

@@ -15,11 +15,11 @@ use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithAvoidBufferAndUpwardFlushBufferTrigger::create()
+ExampleWithBypassBufferAndUpwardFlushBufferTrigger::create()
     ->setup()
     ->andRun();
 
-class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
+class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
 {
     /**
      * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
@@ -29,7 +29,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
     private $logger;
 
     /**
-     * @return ExampleWithAvoidBuffer
+     * @return ExampleWithBypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
@@ -70,7 +70,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
         $this->logger
             ->getFlushBufferTrigger()
             ->setTriggerToError();
-        echo 'Setting avoid level to Notice' . PHP_EOL;
+        echo 'Setting bypass buffer level to Notice' . PHP_EOL;
         $this->logger
             ->getBypassBuffer()
             ->addBypassForLevelNotice();

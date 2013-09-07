@@ -30,10 +30,10 @@ interface BypassBufferAwareInterface
     public function hasBypassBuffer();
 
     /**
-     * @param BypassBufferInterface $avoidBuffer
+     * @param BypassBufferInterface $bypassBuffer
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setBypassBuffer(BypassBufferInterface $avoidBuffer);
+    public function setBypassBuffer(BypassBufferInterface $bypassBuffer);
 }

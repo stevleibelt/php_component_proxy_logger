@@ -23,12 +23,12 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
     /**
      * @param LoggerInterface $logger
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
-     * @param null|BypassBufferInterface $avoidBuffer
+     * @param null|BypassBufferInterface $bypassBuffer
      * @return ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $avoidBuffer = null)
+    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null)
     {
         $triggerBufferLogger = new ManipulateBufferLogger();
         $triggerBufferLogger->addLogger($logger);
@@ -37,8 +37,8 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
             $triggerBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
         }
 
-        if (!is_null($avoidBuffer)) {
-            $triggerBufferLogger->setBypassBuffer($avoidBuffer);
+        if (!is_null($bypassBuffer)) {
+            $triggerBufferLogger->setBypassBuffer($bypassBuffer);
         }
 
         return $triggerBufferLogger;

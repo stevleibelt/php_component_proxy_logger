@@ -78,7 +78,7 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_logger)
-    * big refactoring to easy up trigger and avoid handling for buffer manipulation
+    * big refactoring to easy up trigger and bypass handling for buffer manipulation
     * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
 * [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
@@ -92,8 +92,8 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 
 # Upcoming Features
 
-* style output - if level is reached, wrap the buffer output with something like "==== log level buffer flush triggered ====" or "==== log level buffer avoided ===="
+* style output - if level is reached, wrap the buffer output with something like "==== log level buffer flush triggered ====" or "==== log level buffer bypassed ===="
 * implement locking
-* implement "unsetTrigger"
-* implement "unsetAvoidableLogLevel"
+* implement "unsetFlushBufferTrigger" to AwareInterface
+* implement "unsetBypassBuffer" to AwareInterface
 * submit idea to [log4php](https://logging.apache.org/log4php/)

@@ -38,7 +38,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
      */
-    protected $avoidBufferManipulator;
+    protected $bypassBuffer;
 
     /**
      * Logs with an arbitrary level.
@@ -85,7 +85,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      */
     public function getBypassBuffer()
     {
-        return $this->avoidBufferManipulator;
+        return $this->bypassBuffer;
     }
 
     /**
@@ -95,18 +95,18 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      */
     public function hasBypassBuffer()
     {
-        return (!is_null($this->avoidBufferManipulator));
+        return (!is_null($this->bypassBuffer));
     }
 
     /**
-     * @param BypassBufferInterface $avoidBuffer
+     * @param BypassBufferInterface $bypassBuffer
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setBypassBuffer(BypassBufferInterface $avoidBuffer)
+    public function setBypassBuffer(BypassBufferInterface $bypassBuffer)
     {
-        $this->avoidBufferManipulator = $avoidBuffer;
+        $this->bypassBuffer = $bypassBuffer;
 
         return $this;
     }
@@ -153,7 +153,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     protected function letItPassThrough($level)
     {
         return ($this->hasBypassBuffer()
-            && $this->avoidBufferManipulator->bypassBuffer($level));
+            && $this->bypassBuffer->bypassBuffer($level));
     }
 
     /**

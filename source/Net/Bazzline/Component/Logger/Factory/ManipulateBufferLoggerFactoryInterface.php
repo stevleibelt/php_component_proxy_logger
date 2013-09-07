@@ -22,10 +22,10 @@ interface ManipulateBufferLoggerFactoryInterface
     /**
      * @param LoggerInterface $logger
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
-     * @param null|BypassBufferInterface $avoidBuffer
+     * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $avoidBuffer = null);
+    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null);
 }
