@@ -49,20 +49,20 @@ class TestCase extends PHPUnit_Framework_TestCase
      */
     protected function getLogRequest()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogRequest\LogRequest');
+        $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequest');
 
         return $mock;
     }
 
     /**
      * @param LogRequestInterface $logRequest
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
     protected function getLogRequestRuntimeBuffer(LogRequestInterface $logRequest)
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer');
+        $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer');
 
         $mock->shouldReceive('attach')
             ->with($logRequest)
@@ -73,20 +73,20 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     protected function getPlainLogRequestFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogRequestFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory');
 
         return $mock;
     }
 
     /**
      * @param LogRequestInterface $logRequest
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since
      */
@@ -102,20 +102,20 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
     protected function getPlainLogRequestBufferFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory');
 
         return $mock;
     }
 
     /**
      * @param LogRequestBufferInterface $buffer
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
@@ -131,32 +131,32 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulation\AlwaysFlushBufferTrigger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     protected function getNewAbstractFlushBufferTrigger()
     {
-        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\AlwaysFlushBufferTrigger[triggerBufferFlush]');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulation\AlwaysFlushBufferTrigger[triggerBufferFlush]');
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Validator\IsValidLogLevel
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     protected function getIsValidLogLevel()
     {
-        return Mockery::mock('Net\Bazzline\Component\Logger\Validator\IsValidLogLevel');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel');
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     protected function getBypassBuffer()
     {
-        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer');
     }
 }

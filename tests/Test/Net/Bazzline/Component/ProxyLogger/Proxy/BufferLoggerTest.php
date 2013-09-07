@@ -4,7 +4,7 @@
  * @since 8/27/13
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger;
+namespace Test\Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Mockery;

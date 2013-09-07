@@ -31,7 +31,7 @@ class LogRequestFactoryTest extends TestCase
         $factory->setLogRequestClassName('LogRequest');
         $request = $factory->create($level, $message);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestInterface', $request);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface', $request);
         $this->assertEquals($level, $request->getLevel());
         $this->assertEquals($message, $request->getMessage());
         $this->assertEquals(array(), $request->getContext());
@@ -49,7 +49,7 @@ class LogRequestFactoryTest extends TestCase
         $factory->setLogRequestClassName('DateTimePrefixedMessageLogRequest');
         $request = $factory->create($level, $message);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestInterface', $request);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface', $request);
         $this->assertEquals($level, $request->getLevel());
         $this->assertEquals($this->getPrefixedMessage($message), $request->getMessage());
         $this->assertEquals(array(), $request->getContext());

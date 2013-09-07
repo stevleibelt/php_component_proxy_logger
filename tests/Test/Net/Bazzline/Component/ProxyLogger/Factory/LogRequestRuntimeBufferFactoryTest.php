@@ -27,8 +27,8 @@ class LogRequestRuntimeBufferFactoryTest extends TestCase
         $factory = new LogRequestRuntimeBufferFactory();
         $buffer = $factory->create();
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestBufferInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer', $buffer);
         $this->assertEquals(0, $buffer->count());
     }
 }
