@@ -29,10 +29,11 @@ The main component is the *TriggerBufferLogger* which enables level triggered lo
 * forwards all buffered messages to real logger when *flush* is called
 * deletes all buffered messages when *clean* is called
 
-## TriggerBufferLogger
+## ManipulateBufferLogger
 
 * based on *BufferLogger*
 * implements automatically flushing if log level is reached
+* implements mechanism to avoid log buffer
 
 # Installation
 

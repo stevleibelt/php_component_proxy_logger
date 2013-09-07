@@ -1,21 +1,21 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
+ * @since 2013-09-07
  */
 
-namespace Example\TriggerBufferLogger;
+namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\NeverAvoidBuffer;
-use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
+use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\NeverFlushBufferTrigger;
+use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithUpwardFlushBufferTrigger::create()
+ExampleWithAvoidBuffer::create()
     ->setup()
     ->andRun();
 
@@ -24,21 +24,21 @@ ExampleWithUpwardFlushBufferTrigger::create()
  *
  * @package Example\BufferLogger
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
+ * @since 2013-09-07
  */
-class ExampleWithUpwardFlushBufferTrigger
+class ExampleWithAvoidBuffer
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     private $logger;
 
     /**
-     * @return ExampleWithUpwardFlushBufferTrigger
+     * @return ExampleWithAvoidBuffer
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public static function create()
     {
@@ -48,11 +48,11 @@ class ExampleWithUpwardFlushBufferTrigger
     /**
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function setup()
     {
-        $this->logger = new TriggerBufferLogger();
+        $this->logger = new ManipulateBufferLogger();
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();
@@ -60,23 +60,23 @@ class ExampleWithUpwardFlushBufferTrigger
         $this->logger->setLogEntryFactory($entryFactory);
         $this->logger->setLogEntryBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
-        $this->logger->setAvoidBuffer(new NeverAvoidBuffer());
-        $this->logger->setFlushBufferTrigger(new UpwardFlushBufferTrigger());
+        $this->logger->setAvoidBuffer(new AvoidBuffer());
+        $this->logger->setFlushBufferTrigger(new NeverFlushBufferTrigger());
 
         return $this;
     }
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
+     * @since 2013-09-07
      */
     public function andRun()
     {
         echo str_repeat('-', 40) . PHP_EOL;
-        echo 'Setting trigger to warning' . PHP_EOL;
+        echo 'Setting avoid level to info' . PHP_EOL;
         $this->logger
-            ->getFlushBufferTrigger()
-            ->setTriggerToWarning();
+            ->getAvoidBuffer()
+            ->addAvoidableInfoLogLevel();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);

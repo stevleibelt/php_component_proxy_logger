@@ -4,11 +4,11 @@
  * @since 2013-08-28
  */
 
-namespace Example\TriggerBufferLogger;
+namespace Example\ManipulateBufferLogger;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\NeverAvoidBuffer;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTrigger;
-use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
+use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
@@ -29,7 +29,7 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
@@ -52,7 +52,7 @@ class Example
      */
     public function setup()
     {
-        $this->logger = new TriggerBufferLogger();
+        $this->logger = new ManipulateBufferLogger();
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();

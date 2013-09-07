@@ -4,15 +4,14 @@
  * @since 2013-09-07 
  */
 
-namespace Example\TriggerBufferLogger;
+namespace Example\ManipulateBufferLogger;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer;
 use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
+use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
 use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
-use Psr\Log\LogLevel;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
@@ -23,7 +22,7 @@ ExampleWithAvoidBufferAndUpwardFlushBufferTrigger::create()
 class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
+     * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
@@ -46,7 +45,7 @@ class ExampleWithAvoidBufferAndUpwardFlushBufferTrigger
      */
     public function setup()
     {
-        $this->logger = new TriggerBufferLogger();
+        $this->logger = new ManipulateBufferLogger();
         $entryFactory = new LogEntryFactory();
         $entryFactory->setLogEntryClassName('LogEntry');
         $bufferFactory = new LogEntryRuntimeBufferFactory();

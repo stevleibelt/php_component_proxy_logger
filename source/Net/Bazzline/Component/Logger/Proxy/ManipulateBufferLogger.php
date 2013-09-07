@@ -11,13 +11,13 @@ use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface
 use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
 
 /**
- * Class TriggerLogger
+ * Class ManipulateBufferLogger
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class TriggerBufferLogger extends BufferLogger implements TriggerBufferLoggerInterface
+class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLoggerInterface
 {
     /**
      * @var mixed

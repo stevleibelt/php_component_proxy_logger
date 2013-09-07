@@ -11,19 +11,19 @@ use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface
 use Psr\Log\LoggerInterface;
 
 /**
- * Class TriggerBufferLoggerFactoryInterface
+ * Class ManipulateBufferLoggerFactoryInterface
  *
  * @package Net\Bazzline\Component\Logger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface TriggerBufferLoggerFactoryInterface
+interface ManipulateBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
      * @param null|AvoidBufferInterface $avoidBuffer
-     * @return \Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger
+     * @return \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */

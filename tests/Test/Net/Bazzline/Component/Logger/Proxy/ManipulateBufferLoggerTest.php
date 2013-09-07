@@ -7,18 +7,18 @@
 namespace Test\Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger;
+use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class TriggerBufferLoggerTest
+ * Class ManipulateBufferLoggerTest
  *
  * @package Test\Net\Bazzline\Component\Logger\Proxy
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class TriggerBufferLoggerTest extends TestCase
+class ManipulateBufferLoggerTest extends TestCase
 {
     /**
      * @var \Mockery\MockInterface|\Net\Bazzline\Component\Logger\BufferManipulation\AvoidBufferInterface
@@ -245,6 +245,7 @@ class TriggerBufferLoggerTest extends TestCase
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToWarning();
+
         $logger->info($this->message);
         $logger->error($this->message);
     }
@@ -317,6 +318,7 @@ class TriggerBufferLoggerTest extends TestCase
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
+
         $logger->info($this->message);
         $logger->error($this->message);
     }
@@ -713,13 +715,13 @@ class TriggerBufferLoggerTest extends TestCase
     }
 
     /**
-     * @return TriggerBufferLogger
+     * @return ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     private function getNewLogger()
     {
-        $logger = new TriggerBufferLogger();
+        $logger = new ManipulateBufferLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
 
         return $logger;

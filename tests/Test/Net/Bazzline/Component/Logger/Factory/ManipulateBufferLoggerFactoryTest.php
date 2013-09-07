@@ -6,18 +6,17 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\Factory\TriggerBufferLoggerFactory;
-use Psr\Log\LogLevel;
+use Net\Bazzline\Component\Logger\Factory\ManipulateBufferLoggerFactory;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class TriggerBufferLoggerFactoryTest
+ * Class ManipulateBufferLoggerFactoryTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class TriggerBufferLoggerFactoryTest extends TestCase
+class ManipulateBufferLoggerFactoryTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -25,13 +24,13 @@ class TriggerBufferLoggerFactoryTest extends TestCase
      */
     public function testCreateWithoutFlushBufferTriggerAndWithoutAvoidBuffer()
     {
-        $factory = new TriggerBufferLoggerFactory();
+        $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
 
         $buffer = $factory->create($logger);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLoggerInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger', $buffer);
         $this->assertFalse($buffer->hasFlushBufferTrigger());
         $this->assertFalse($buffer->hasAvoidBuffer());
     }
@@ -42,14 +41,14 @@ class TriggerBufferLoggerFactoryTest extends TestCase
      */
     public function testCreateWithFlushBufferTriggerAndWithoutAvoidBuffer()
     {
-        $factory = new TriggerBufferLoggerFactory();
+        $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
 
         $buffer = $factory->create($logger, $flushBufferTrigger);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLoggerInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger', $buffer);
         $this->assertTrue($buffer->hasFlushBufferTrigger());
         $this->assertFalse($buffer->hasAvoidBuffer());
     }
@@ -60,14 +59,14 @@ class TriggerBufferLoggerFactoryTest extends TestCase
      */
     public function testCreateWithoutFlushBufferTriggerAndWithAvoidBuffer()
     {
-        $factory = new TriggerBufferLoggerFactory();
+        $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
         $avoidBuffer = $this->getAvoidBuffer();
 
         $buffer = $factory->create($logger, null, $avoidBuffer);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLoggerInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger', $buffer);
         $this->assertFalse($buffer->hasFlushBufferTrigger());
         $this->assertTrue($buffer->hasAvoidBuffer());
     }
@@ -78,15 +77,15 @@ class TriggerBufferLoggerFactoryTest extends TestCase
      */
     public function testCreateWithFlushBufferTriggerAndWithAvoidBuffer()
     {
-        $factory = new TriggerBufferLoggerFactory();
+        $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
         $avoidBuffer = $this->getAvoidBuffer();
 
         $buffer = $factory->create($logger, $flushBufferTrigger, $avoidBuffer);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLoggerInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\TriggerBufferLogger', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLoggerInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger', $buffer);
         $this->assertTrue($buffer->hasFlushBufferTrigger());
         $this->assertTrue($buffer->hasAvoidBuffer());
     }
