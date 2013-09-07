@@ -70,7 +70,6 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 ### LogRequestBufferFactoryInterface
 
 * provides method *create* to return a *LogRequestBufferInterface* object
-* implement your own RuntimeBuffer (like file or database based)
 * implemented by *LogRequestRuntimeBufferFactory*
 
 ### LogRequestFactoryInterface
@@ -81,7 +80,26 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 ### ManipulateBufferLoggerFactoryInterface
 
 * provides method *create* to return a *ManipulateBufferLoggerFactoryInterface* object
-* implmenented by *ManipulateBufferLoggerFactory*
+* implemented by *ManipulateBufferLoggerFactory*
+
+## LogRequest
+
+### LogRequestInterface
+
+* defines a log request that could be stored in a buffer
+* represents the general log request with properties *log level*, *message* and *context*
+* implemented by:
+    * LogRequest
+    * DateTimePrefixedMessageLogRequest
+
+### LogRequestBufferInterface
+
+* defines methods to handle a collection of log requests
+* defines method *count*
+* can be used to implement a file based buffer
+* can be used to implement a database based buffer
+* can be used to implement a session based buffer
+* implemented by *LogRequestRuntimeBuffer*
 
 ## Validator
 
