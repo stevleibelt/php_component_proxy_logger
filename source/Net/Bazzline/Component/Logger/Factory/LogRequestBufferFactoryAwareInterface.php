@@ -7,33 +7,33 @@
 namespace Net\Bazzline\Component\Logger\Factory;
 
 /**
- * Class LogEntryBufferFactoryAwareInterface
+ * Class LogRequestBufferFactoryAwareInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface LogEntryBufferFactoryAwareInterface
+interface LogRequestBufferFactoryAwareInterface
 {
     /**
-     * @return null|LogEntryBufferFactoryInterface $factory
+     * @return null|LogRequestBufferFactoryInterface $factory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function getLogEntryBufferFactory();
+    public function getLogRequestBufferFactory();
 
     /**
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function hasLogEntryBufferFactory();
+    public function hasLogRequestBufferFactory();
 
     /**
-     * @param LogEntryBufferFactoryInterface $factory
+     * @param LogRequestBufferFactoryInterface $factory
      * @return mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function setLogEntryBufferFactory(LogEntryBufferFactoryInterface $factory);
+    public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory);
 }

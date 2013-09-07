@@ -4,20 +4,20 @@
  * @since 2013-08-26
  */
 
-namespace Test\Net\Bazzline\Component\Logger;
+namespace Test\Net\Bazzline\Component\Logger\LogRequest;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer;
 use Mockery;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class LogEntryRuntimeBufferTest
+ * Class LogRequestRuntimeBufferTest
  *
- * @package Test\Net\Bazzline\Component\Logger\LogEntry
+ * @package Test\Net\Bazzline\Component\Logger\LogRequest
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryRuntimeBufferTest extends TestCase
+class LogRequestRuntimeBufferTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -26,10 +26,10 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testCreation()
     {
         $collection = $this->getNewBuffer();
-        $entry = $this->getLogEntry();
+        $request = $this->getLogRequest();
 
         $this->assertEquals(0, $collection->count());
-        $this->assertFalse($collection->contains($entry));
+        $this->assertFalse($collection->contains($request));
     }
 
     /**
@@ -39,7 +39,7 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testAttach()
     {
         $buffer = $this->getNewBuffer();
-        $buffer->attach($this->getLogEntry());
+        $buffer->attach($this->getLogRequest());
 
         $this->assertEquals(1, $buffer->count());
     }
@@ -51,10 +51,10 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testContains()
     {
         $buffer = $this->getNewBuffer();
-        $entry = $this->getLogEntry();
-        $buffer->attach($entry);
+        $request = $this->getLogRequest();
+        $buffer->attach($request);
 
-        $this->assertTrue($buffer->contains($entry));
+        $this->assertTrue($buffer->contains($request));
     }
 
     /**
@@ -64,23 +64,23 @@ class LogEntryRuntimeBufferTest extends TestCase
     public function testDetach()
     {
         $buffer = $this->getNewBuffer();
-        $entry = $this->getLogEntry();
-        //no error expected when detaching a not attached entry
-        $buffer->detach($entry);
-        //now attach and detach entry
-        $buffer->attach($entry);
-        $buffer->detach($entry);
+        $request = $this->getLogRequest();
+        //no error expected when detaching a not attached request
+        $buffer->detach($request);
+        //now attach and detach request
+        $buffer->attach($request);
+        $buffer->detach($request);
 
         $this->assertEquals(0, $buffer->count());
     }
 
     /**
-     * @return LogEntryRuntimeBuffer
+     * @return LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
     private function getNewBuffer()
     {
-        return new LogEntryRuntimeBuffer;
+        return new LogRequestRuntimeBuffer;
     }
 }

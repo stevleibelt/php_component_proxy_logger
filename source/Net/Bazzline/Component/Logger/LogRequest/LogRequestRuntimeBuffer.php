@@ -4,54 +4,54 @@
  * @since 2013-08-26
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\LogRequest;
 
 use SplObjectStorage;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestBufferInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestInterface;
 
 /**
- * Class LogEntryCollection
+ * Class LogRequestRuntimeBuffer
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryRuntimeBuffer extends SplObjectStorage implements LogEntryBufferInterface
+class LogRequestRuntimeBuffer extends SplObjectStorage implements LogRequestBufferInterface
 {
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function add(LogEntryInterface $entry)
+    public function add(LogRequestInterface $request)
     {
-        parent::attach($entry);
+        parent::attach($request);
 
         return $this;
     }
 
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function has(LogEntryInterface $entry)
+    public function has(LogRequestInterface $request)
     {
-        return parent::contains($entry);
+        return parent::contains($request);
     }
 
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function remove(LogEntryInterface $entry)
+    public function remove(LogRequestInterface $request)
     {
-        parent::detach($entry);
+        parent::detach($request);
 
         return $this;
     }

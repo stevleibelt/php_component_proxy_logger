@@ -4,40 +4,40 @@
  * @since 8/27/13
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\LogRequest;
 
 /**
- * Class LogEntryBufferInterface
+ * Class LogRequestBufferInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface LogEntryBufferInterface
+interface LogRequestBufferInterface
 {
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function add(LogEntryInterface $entry);
+    public function add(LogRequestInterface $request);
 
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function has(LogEntryInterface $entry);
+    public function has(LogRequestInterface $request);
 
     /**
-     * @param LogEntryInterface $entry
+     * @param LogRequestInterface $request
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function remove(LogEntryInterface $entry);
+    public function remove(LogRequestInterface $request);
 
     /**
      * @return int

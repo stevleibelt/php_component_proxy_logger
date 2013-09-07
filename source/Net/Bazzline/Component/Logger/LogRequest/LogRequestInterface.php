@@ -4,16 +4,16 @@
  * @since 2013-08-26
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\LogRequest;
 
 /**
- * Class LogEntryInterface
+ * Class LogRequestInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface LogEntryInterface
+interface LogRequestInterface
 {
     /**
      * @param mixed $logLevel

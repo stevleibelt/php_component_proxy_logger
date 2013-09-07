@@ -4,16 +4,16 @@
  * @since 2013-08-29
  */
 
-namespace Net\Bazzline\Component\Logger\LogEntry;
+namespace Net\Bazzline\Component\Logger\LogRequest;
 
 /**
- * Class DateTimePrefixedMessageLogEntry
+ * Class DateTimePrefixedMessageLogRequest
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-class DateTimePrefixedMessageLogEntry extends LogEntry
+class DateTimePrefixedMessageLogRequest extends LogRequest
 {
     /**
      * Adds datetime as prefix to the message

@@ -6,10 +6,10 @@
 
 namespace Net\Bazzline\Component\Logger\Proxy;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer;
-use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
-use Net\Bazzline\Component\Logger\Factory\LogEntryBufferFactoryInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer;
+use Net\Bazzline\Component\Logger\Factory\LogRequestFactoryInterface;
+use Net\Bazzline\Component\Logger\Factory\LogRequestBufferFactoryInterface;
 
 /**
  * Class BufferLogger
@@ -21,25 +21,25 @@ use Net\Bazzline\Component\Logger\Factory\LogEntryBufferFactoryInterface;
 class BufferLogger extends ProxyLogger implements BufferLoggerInterface
 {
     /**
-     * @var LogEntryFactoryInterface
+     * @var LogRequestFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected $logEntryFactory;
+    protected $logRequestFactory;
 
     /**
-     * @var LogEntryBufferFactoryInterface
+     * @var LogRequestBufferFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected $logEntryBufferFactory;
+    protected $logRequestBufferFactory;
 
     /**
-     * @var LogEntryRuntimeBuffer
+     * @var LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected $logEntryBuffer;
+    protected $logRequestBuffer;
 
     /**
      * Logs with an arbitrary level.
@@ -53,19 +53,19 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        $this->logEntryBuffer->attach(
-            $this->logEntryFactory->create($level, $message, $context)
+        $this->logRequestBuffer->attach(
+            $this->logRequestFactory->create($level, $message, $context)
         );
     }
 
     /**
-     * @return null|LogEntryFactoryInterface $factory
+     * @return null|LogRequestFactoryInterface $factory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function getLogEntryFactory()
+    public function getLogRequestFactory()
     {
-        return $this->logEntryFactory;
+        return $this->logRequestFactory;
     }
 
     /**
@@ -73,32 +73,32 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function hasLogEntryFactory()
+    public function hasLogRequestFactory()
     {
-        return (!is_null($this->logEntryFactory));
+        return (!is_null($this->logRequestFactory));
     }
 
     /**
-     * @param LogEntryFactoryInterface $factory
+     * @param LogRequestFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setLogEntryFactory(LogEntryFactoryInterface $factory)
+    public function setLogRequestFactory(LogRequestFactoryInterface $factory)
     {
-        $this->logEntryFactory = $factory;
+        $this->logRequestFactory = $factory;
 
         return $this;
     }
 
     /**
-     * @return null|LogEntryBufferFactoryInterface $factory
+     * @return null|LogRequestBufferFactoryInterface $factory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function getLogEntryBufferFactory()
+    public function getLogRequestBufferFactory()
     {
-        return $this->logEntryBufferFactory;
+        return $this->logRequestBufferFactory;
     }
 
     /**
@@ -106,21 +106,21 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    public function hasLogEntryBufferFactory()
+    public function hasLogRequestBufferFactory()
     {
-        return (!is_null($this->logEntryBufferFactory));
+        return (!is_null($this->logRequestBufferFactory));
     }
 
     /**
-     * @param LogEntryBufferFactoryInterface $factory
+     * @param LogRequestBufferFactoryInterface $factory
      * @return mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function setLogEntryBufferFactory(LogEntryBufferFactoryInterface $factory)
+    public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory)
     {
-        $this->logEntryBufferFactory = $factory;
-        $this->logEntryBuffer = $this->logEntryBufferFactory->create();
+        $this->logRequestBufferFactory = $factory;
+        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
 
         return $this;
     }
@@ -134,14 +134,14 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      */
     public function flush()
     {
-        foreach ($this->logEntryBuffer as $logEntry) {
+        foreach ($this->logRequestBuffer as $logRequest) {
             /**
-             * @var LogEntryInterface $logEntry
+             * @var LogRequestInterface $logRequest
              */
             $this->pushToLoggers(
-                $logEntry->getLevel(),
-                $logEntry->getMessage(),
-                $logEntry->getContext()
+                $logRequest->getLevel(),
+                $logRequest->getMessage(),
+                $logRequest->getContext()
             );
         }
         $this->clean();
@@ -158,6 +158,6 @@ class BufferLogger extends ProxyLogger implements BufferLoggerInterface
      */
     public function clean()
     {
-        $this->logEntryBuffer = $this->logEntryBufferFactory->create();
+        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
     }
 }

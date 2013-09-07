@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\Logger\Proxy;
 
 use Net\Bazzline\Component\Logger\BufferManipulation\BypassBufferInterface;
 use Net\Bazzline\Component\Logger\BufferManipulation\FlushBufferTriggerInterface;
-use Net\Bazzline\Component\Logger\Factory\LogEntryFactoryInterface;
+use Net\Bazzline\Component\Logger\Factory\LogRequestFactoryInterface;
 
 /**
  * Class ManipulateBufferLogger
@@ -55,8 +55,8 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
         if ($this->letItPassThrough($level)) {
             $this->pushToLoggers($level, $message, $context);
         } else {
-            $this->logEntryBuffer->attach(
-                $this->logEntryFactory->create($level, $message, $context)
+            $this->logRequestBuffer->attach(
+                $this->logRequestFactory->create($level, $message, $context)
             );
 
             if ($this->flushTheBuffer($level)) {
@@ -66,14 +66,14 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     }
 
     /**
-     * @param LogEntryFactoryInterface $factory
+     * @param LogRequestFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function setLogEntryFactory(LogEntryFactoryInterface $factory)
+    public function setLogRequestFactory(LogRequestFactoryInterface $factory)
     {
-        $this->logEntryFactory = $factory;
+        $this->logRequestFactory = $factory;
 
         return $this;
     }

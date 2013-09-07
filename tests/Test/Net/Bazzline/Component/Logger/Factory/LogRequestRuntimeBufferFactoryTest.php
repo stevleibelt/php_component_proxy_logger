@@ -6,17 +6,17 @@
 
 namespace Test\Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class LogEntryRuntimeBufferFactoryTest
+ * Class LogRequestRuntimeBufferFactoryTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class LogEntryRuntimeBufferFactoryTest extends TestCase
+class LogRequestRuntimeBufferFactoryTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -24,11 +24,11 @@ class LogEntryRuntimeBufferFactoryTest extends TestCase
      */
     public function testCreate()
     {
-        $factory = new LogEntryRuntimeBufferFactory();
+        $factory = new LogRequestRuntimeBufferFactory();
         $buffer = $factory->create();
 
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferInterface', $buffer);
-        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestBufferInterface', $buffer);
+        $this->assertInstanceOf('Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer', $buffer);
         $this->assertEquals(0, $buffer->count());
     }
 }

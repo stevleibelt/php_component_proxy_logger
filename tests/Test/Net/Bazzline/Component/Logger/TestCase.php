@@ -6,9 +6,9 @@
 
 namespace Test\Net\Bazzline\Component\Logger;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryInterface;
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestBufferInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer;
 use Mockery;
 use PHPUnit_Framework_TestCase;
 
@@ -43,29 +43,29 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntry
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogRequest\LogRequest
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getLogEntry()
+    protected function getLogRequest()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry\LogEntry');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogRequest\LogRequest');
 
         return $mock;
     }
 
     /**
-     * @param LogEntryInterface $logEntry
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer
+     * @param LogRequestInterface $logRequest
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getLogEntryRuntimeBuffer(LogEntryInterface $logEntry)
+    protected function getLogRequestRuntimeBuffer(LogRequestInterface $logRequest)
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer');
 
         $mock->shouldReceive('attach')
-            ->with($logEntry)
+            ->with($logRequest)
             ->once()
             ->byDefault();
 
@@ -73,28 +73,28 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    protected function getPlainLogEntryFactory()
+    protected function getPlainLogRequestFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogEntryFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogRequestFactory');
 
         return $mock;
     }
 
     /**
-     * @param LogEntryInterface $logEntry
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryFactory
+     * @param LogRequestInterface $logRequest
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since
      */
-    protected function getLogEntryFactory(LogEntryInterface $logEntry)
+    protected function getLogRequestFactory(LogRequestInterface $logRequest)
     {
-        $mock = $this->getPlainLogEntryFactory();
+        $mock = $this->getPlainLogRequestFactory();
         $mock->shouldReceive('create')
-            ->andReturn($logEntry)
+            ->andReturn($logRequest)
             ->once()
             ->byDefault();
 
@@ -102,26 +102,26 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getPlainLogEntryBufferFactory()
+    protected function getPlainLogRequestBufferFactory()
     {
-        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory');
+        $mock = Mockery::mock('Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory');
 
         return $mock;
     }
 
     /**
-     * @param LogEntryBufferInterface $buffer
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory
+     * @param LogRequestBufferInterface $buffer
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getLogEntryBufferFactory(LogEntryBufferInterface $buffer)
+    protected function getLogRequestBufferFactory(LogRequestBufferInterface $buffer)
     {
-        $mock = $this->getPlainLogEntryBufferFactory();
+        $mock = $this->getPlainLogRequestBufferFactory();
         $mock->shouldReceive('create')
             ->andReturn($buffer)
             ->twice()

@@ -61,23 +61,23 @@ class ManipulateBufferLoggerTest extends TestCase
         $logger = $this->getNewLogger();
         $logger->setFlushBufferTrigger($this->flushBufferTrigger);
 
-        $entry = $this->getLogEntry();
+        $request = $this->getLogRequest();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $buffer = $this->getLogRequestRuntimeBuffer($request);
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
-            ->andReturn($entry)
+            ->andReturn($request)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
@@ -104,33 +104,33 @@ class ManipulateBufferLoggerTest extends TestCase
 
         $logger->addLogger($realLogger);
 
-        $infoEntry = $this->getLogEntry();
-        $infoEntry->shouldReceive('getLevel')
+        $infoRequest = $this->getLogRequest();
+        $infoRequest->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
             ->once();
-        $infoEntry->shouldReceive('getMessage')
+        $infoRequest->shouldReceive('getMessage')
             ->andReturn($this->message)
             ->once();
-        $infoEntry->shouldReceive('getContext')
+        $infoRequest->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
-        $alertEntry = $this->getLogEntry();
-        $alertEntry->shouldReceive('getLevel')
+        $alertRequest = $this->getLogRequest();
+        $alertRequest->shouldReceive('getLevel')
             ->andReturn(LogLevel::ALERT)
             ->once();
-        $alertEntry->shouldReceive('getMessage')
+        $alertRequest->shouldReceive('getMessage')
             ->andReturn($this->message)
             ->once();
-        $alertEntry->shouldReceive('getContext')
+        $alertRequest->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($infoRequest);
         $buffer->shouldReceive('attach')
-            ->with($infoEntry)
+            ->with($infoRequest)
             ->once();
         $buffer->shouldReceive('attach')
-            ->with($alertEntry)
+            ->with($alertRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->once();
@@ -138,28 +138,28 @@ class ManipulateBufferLoggerTest extends TestCase
             ->andReturn(true, true, false)
             ->times(3);
         $buffer->shouldReceive('current')
-            ->andReturn($infoEntry, $alertEntry)
+            ->andReturn($infoRequest, $alertRequest)
             ->twice();
         $buffer->shouldReceive('next')
             ->twice();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
-            ->andReturn($infoEntry)
+            ->andReturn($infoRequest)
             ->once();
-        $entryFactory->shouldReceive('create')
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ALERT, $this->message, array())
-            ->andReturn($alertEntry)
+            ->andReturn($alertRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
@@ -186,33 +186,33 @@ class ManipulateBufferLoggerTest extends TestCase
             ->once();
         $logger->addLogger($realLogger);
 
-        $infoEntry = $this->getLogEntry();
-        $infoEntry->shouldReceive('getLevel')
+        $infoRequest = $this->getLogRequest();
+        $infoRequest->shouldReceive('getLevel')
             ->andReturn(LogLevel::INFO)
             ->once();
-        $infoEntry->shouldReceive('getMessage')
+        $infoRequest->shouldReceive('getMessage')
             ->andReturn($this->message)
             ->once();
-        $infoEntry->shouldReceive('getContext')
+        $infoRequest->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
-        $errorEntry = $this->getLogEntry();
-        $errorEntry->shouldReceive('getLevel')
+        $errorRequest = $this->getLogRequest();
+        $errorRequest->shouldReceive('getLevel')
             ->andReturn(LogLevel::ERROR)
             ->once();
-        $errorEntry->shouldReceive('getMessage')
+        $errorRequest->shouldReceive('getMessage')
             ->andReturn($this->message)
             ->once();
-        $errorEntry->shouldReceive('getContext')
+        $errorRequest->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($infoRequest);
         $buffer->shouldReceive('attach')
-            ->with($infoEntry)
+            ->with($infoRequest)
             ->once();
         $buffer->shouldReceive('attach')
-            ->with($errorEntry)
+            ->with($errorRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->once();
@@ -220,28 +220,28 @@ class ManipulateBufferLoggerTest extends TestCase
             ->andReturn(true, true, false)
             ->times(3);
         $buffer->shouldReceive('current')
-            ->andReturn($infoEntry, $errorEntry)
+            ->andReturn($infoRequest, $errorRequest)
             ->twice();
         $buffer->shouldReceive('next')
             ->twice();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
-            ->andReturn($infoEntry)
+            ->andReturn($infoRequest)
             ->once();
-        $entryFactory->shouldReceive('create')
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ERROR, $this->message, array())
-            ->andReturn($errorEntry)
+            ->andReturn($errorRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToWarning();
@@ -267,27 +267,27 @@ class ManipulateBufferLoggerTest extends TestCase
             ->never();
         $logger->addLogger($realLogger);
 
-        $infoEntry = $this->getLogEntry();
-        $infoEntry->shouldReceive('getLevel')
+        $infoRequest = $this->getLogRequest();
+        $infoRequest->shouldReceive('getLevel')
             ->never();
-        $infoEntry->shouldReceive('getMessage')
+        $infoRequest->shouldReceive('getMessage')
             ->never();
-        $infoEntry->shouldReceive('getContext')
+        $infoRequest->shouldReceive('getContext')
             ->never();
-        $errorEntry = $this->getLogEntry();
-        $errorEntry->shouldReceive('getLevel')
+        $errorRequest = $this->getLogRequest();
+        $errorRequest->shouldReceive('getLevel')
             ->never();
-        $errorEntry->shouldReceive('getMessage')
+        $errorRequest->shouldReceive('getMessage')
             ->never();
-        $errorEntry->shouldReceive('getContext')
+        $errorRequest->shouldReceive('getContext')
             ->never();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($infoRequest);
         $buffer->shouldReceive('attach')
-            ->with($infoEntry)
+            ->with($infoRequest)
             ->once();
         $buffer->shouldReceive('attach')
-            ->with($errorEntry)
+            ->with($errorRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->never();
@@ -298,23 +298,23 @@ class ManipulateBufferLoggerTest extends TestCase
         $buffer->shouldReceive('next')
             ->never();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
-            ->andReturn($infoEntry)
+            ->andReturn($infoRequest)
             ->once();
-        $entryFactory->shouldReceive('create')
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ERROR, $this->message, array())
-            ->andReturn($errorEntry)
+            ->andReturn($errorRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToAlert();
@@ -351,17 +351,17 @@ class ManipulateBufferLoggerTest extends TestCase
             ->never();
         $logger->addLogger($realLogger);
 
-        $errorEntry = $this->getLogEntry();
-        $errorEntry->shouldReceive('getLevel')
+        $errorRequest = $this->getLogRequest();
+        $errorRequest->shouldReceive('getLevel')
             ->never();
-        $errorEntry->shouldReceive('getMessage')
+        $errorRequest->shouldReceive('getMessage')
             ->never();
-        $errorEntry->shouldReceive('getContext')
+        $errorRequest->shouldReceive('getContext')
             ->never();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($errorEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($errorRequest);
         $buffer->shouldReceive('attach')
-            ->with($errorEntry)
+            ->with($errorRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->never();
@@ -372,19 +372,19 @@ class ManipulateBufferLoggerTest extends TestCase
         $buffer->shouldReceive('next')
             ->never();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ERROR, $this->message, array())
-            ->andReturn($errorEntry)
+            ->andReturn($errorRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->info($this->message);
         $logger->error($this->message);
@@ -418,27 +418,27 @@ class ManipulateBufferLoggerTest extends TestCase
             ->never();
         $logger->addLogger($realLogger);
 
-        $infoEntry = $this->getLogEntry();
-        $infoEntry->shouldReceive('getLevel')
+        $infoRequest = $this->getLogRequest();
+        $infoRequest->shouldReceive('getLevel')
             ->never();
-        $infoEntry->shouldReceive('getMessage')
+        $infoRequest->shouldReceive('getMessage')
             ->never();
-        $infoEntry->shouldReceive('getContext')
+        $infoRequest->shouldReceive('getContext')
             ->never();
-        $errorEntry = $this->getLogEntry();
-        $errorEntry->shouldReceive('getLevel')
+        $errorRequest = $this->getLogRequest();
+        $errorRequest->shouldReceive('getLevel')
             ->never();
-        $errorEntry->shouldReceive('getMessage')
+        $errorRequest->shouldReceive('getMessage')
             ->never();
-        $errorEntry->shouldReceive('getContext')
+        $errorRequest->shouldReceive('getContext')
             ->never();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($infoEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($infoRequest);
         $buffer->shouldReceive('attach')
-            ->with($infoEntry)
+            ->with($infoRequest)
             ->once();
         $buffer->shouldReceive('attach')
-            ->with($errorEntry)
+            ->with($errorRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->never();
@@ -449,23 +449,23 @@ class ManipulateBufferLoggerTest extends TestCase
         $buffer->shouldReceive('next')
             ->never();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::INFO, $this->message, array())
-            ->andReturn($infoEntry)
+            ->andReturn($infoRequest)
             ->once();
-        $entryFactory->shouldReceive('create')
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ERROR, $this->message, array())
-            ->andReturn($errorEntry)
+            ->andReturn($errorRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->info($this->message);
         $logger->error($this->message);
@@ -510,30 +510,30 @@ class ManipulateBufferLoggerTest extends TestCase
             ->never();
         $logger->addLogger($realLogger);
 
-        $alertEntry = $this->getLogEntry();
-        $alertEntry->shouldReceive('getLevel')
+        $alertRequest = $this->getLogRequest();
+        $alertRequest->shouldReceive('getLevel')
             ->andReturn(LogLevel::ALERT)
             ->once();
-        $alertEntry->shouldReceive('getMessage')
+        $alertRequest->shouldReceive('getMessage')
             ->andReturn($this->message)
             ->once();
-        $alertEntry->shouldReceive('getContext')
+        $alertRequest->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
-        $errorEntry = $this->getLogEntry();
-        $errorEntry->shouldReceive('getLevel')
+        $errorRequest = $this->getLogRequest();
+        $errorRequest->shouldReceive('getLevel')
             ->never();
-        $errorEntry->shouldReceive('getMessage')
+        $errorRequest->shouldReceive('getMessage')
             ->never();
-        $errorEntry->shouldReceive('getContext')
+        $errorRequest->shouldReceive('getContext')
             ->never();
 
-        $buffer = $this->getLogEntryRuntimeBuffer($errorEntry);
+        $buffer = $this->getLogRequestRuntimeBuffer($errorRequest);
         $buffer->shouldReceive('attach')
-            ->with($errorEntry)
+            ->with($errorRequest)
             ->once();
         $buffer->shouldReceive('attach')
-            ->with($alertEntry)
+            ->with($alertRequest)
             ->once();
         $buffer->shouldReceive('rewind')
             ->once();
@@ -541,28 +541,28 @@ class ManipulateBufferLoggerTest extends TestCase
             ->andReturn(true, false)
             ->twice();
         $buffer->shouldReceive('current')
-            ->andReturn($alertEntry)
+            ->andReturn($alertRequest)
             ->once();
         $buffer->shouldReceive('next')
             ->once();
 
-        $entryFactory = $this->getPlainLogEntryFactory();
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getPlainLogRequestFactory();
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ERROR, $this->message, array())
-            ->andReturn($errorEntry)
+            ->andReturn($errorRequest)
             ->once();
-        $entryFactory->shouldReceive('create')
+        $requestFactory->shouldReceive('create')
             ->with(LogLevel::ALERT, $this->message, array())
-            ->andReturn($alertEntry)
+            ->andReturn($alertRequest)
             ->once();
 
-        $bufferFactory = $this->getPlainLogEntryBufferFactory();
+        $bufferFactory = $this->getPlainLogRequestBufferFactory();
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->twice();
 
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->getFlushBufferTrigger()
             ->setTriggerToCritical();
@@ -680,14 +680,14 @@ class ManipulateBufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testSetLogEntryFactory()
+    public function testSetLogRequestFactory()
     {
-        $factory = $this->getLogEntryFactory($this->getLogEntry());
+        $factory = $this->getLogRequestFactory($this->getLogRequest());
         $factory->shouldReceive('create')
             ->never();
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->setLogEntryFactory($factory));
+        $this->assertEquals($logger, $logger->setLogRequestFactory($factory));
     }
 
     /**

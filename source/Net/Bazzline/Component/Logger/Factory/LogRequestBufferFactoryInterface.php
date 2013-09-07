@@ -6,19 +6,19 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryBufferInterface;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestBufferInterface;
 
 /**
- * Class LogEntryRuntimeBufferFactoryInterface
+ * Class LogRequestRuntimeBufferFactoryInterface
  *
- * @package Net\Bazzline\Component\Logger\LogEntry
+ * @package Net\Bazzline\Component\Logger\LogRequest
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface LogEntryBufferFactoryInterface
+interface LogRequestBufferFactoryInterface
 {
     /**
-     * @return LogEntryBufferInterface
+     * @return LogRequestBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */

@@ -6,24 +6,24 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntryRuntimeBuffer;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequestRuntimeBuffer;
 
 /**
- * Class LogEntryRuntimeBufferFactory
+ * Class LogRequestRuntimeBufferFactory
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class LogEntryRuntimeBufferFactory implements LogEntryBufferFactoryInterface
+class LogRequestRuntimeBufferFactory implements LogRequestBufferFactoryInterface
 {
     /**
-     * @return LogEntryRuntimeBuffer
+     * @return LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
     public function create()
     {
-        return new LogEntryRuntimeBuffer();
+        return new LogRequestRuntimeBuffer();
     }
 }

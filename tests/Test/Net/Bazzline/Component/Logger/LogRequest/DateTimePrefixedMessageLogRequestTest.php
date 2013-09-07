@@ -4,20 +4,20 @@
  * @since 2013-08-27
  */
 
-namespace Test\Net\Bazzline\Component\Logger\LogEntry;
+namespace Test\Net\Bazzline\Component\Logger\LogRequest;
 
-use Net\Bazzline\Component\Logger\LogEntry\DateTimePrefixedMessageLogEntry;
+use Net\Bazzline\Component\Logger\LogRequest\DateTimePrefixedMessageLogRequest;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class DateTimePrefixedMessageLogEntryTest
+ * Class DateTimePrefixedMessageLogRequestTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class DateTimePrefixedMessageLogEntryTest extends TestCase
+class DateTimePrefixedMessageLogRequestTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -27,9 +27,9 @@ class DateTimePrefixedMessageLogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new DateTimePrefixedMessageLogEntry($level, $message);
+        $request = new DateTimePrefixedMessageLogRequest($level, $message);
 
-        $this->assertEquals($level, $entry->getLevel());
+        $this->assertEquals($level, $request->getLevel());
     }
 
     /**
@@ -40,9 +40,9 @@ class DateTimePrefixedMessageLogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new DateTimePrefixedMessageLogEntry($level, $message);
+        $request = new DateTimePrefixedMessageLogRequest($level, $message);
 
-        $this->assertEquals($this->getPrefixedMessage($message), $entry->getMessage());
+        $this->assertEquals($this->getPrefixedMessage($message), $request->getMessage());
     }
 
     /**
@@ -53,9 +53,9 @@ class DateTimePrefixedMessageLogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new DateTimePrefixedMessageLogEntry($level, $message);
+        $request = new DateTimePrefixedMessageLogRequest($level, $message);
 
-        $this->assertEquals(array(), $entry->getContext());
+        $this->assertEquals(array(), $request->getContext());
     }
 
     /**

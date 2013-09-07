@@ -7,8 +7,8 @@
 namespace Example\BufferLogger;
 
 use Net\Bazzline\Component\Logger\Proxy\BufferLogger;
-use Net\Bazzline\Component\Logger\Factory\LogEntryFactory;
-use Net\Bazzline\Component\Logger\Factory\LogEntryRuntimeBufferFactory;
+use Net\Bazzline\Component\Logger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -51,12 +51,12 @@ class Example
     public function setup()
     {
         $this->logger = new BufferLogger();
-        $entryFactory = new LogEntryFactory();
-        $entryFactory->setLogEntryClassName('LogEntry');
-        $bufferFactory = new LogEntryRuntimeBufferFactory();
+        $requestFactory = new LogRequestFactory();
+        $requestFactory->setLogRequestClassName('LogRequest');
+        $bufferFactory = new LogRequestRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
-        $this->logger->setLogEntryFactory($entryFactory);
-        $this->logger->setLogEntryBufferFactory($bufferFactory);
+        $this->logger->setLogRequestFactory($requestFactory);
+        $this->logger->setLogRequestBufferFactory($bufferFactory);
         $this->logger->addLogger($logger);
 
         return $this;

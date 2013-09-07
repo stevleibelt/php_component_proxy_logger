@@ -4,20 +4,20 @@
  * @since 2013-08-27
  */
 
-namespace Test\Net\Bazzline\Component\Logger\LogEntry;
+namespace Test\Net\Bazzline\Component\Logger\LogRequest;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntry;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequest;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class LogEntryTest
+ * Class LogRequestTest
  *
  * @package Test\Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class LogEntryTest extends TestCase
+class LogRequestTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>
@@ -27,9 +27,9 @@ class LogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new LogEntry($level, $message);
+        $request = new LogRequest($level, $message);
 
-        $this->assertEquals($level, $entry->getLevel());
+        $this->assertEquals($level, $request->getLevel());
     }
 
     /**
@@ -40,9 +40,9 @@ class LogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new LogEntry($level, $message);
+        $request = new LogRequest($level, $message);
 
-        $this->assertEquals($message, $entry->getMessage());
+        $this->assertEquals($message, $request->getMessage());
     }
 
     /**
@@ -53,8 +53,8 @@ class LogEntryTest extends TestCase
     {
         $level = LogLevel::ALERT;
         $message = 'test';
-        $entry = new LogEntry($level, $message);
+        $request = new LogRequest($level, $message);
 
-        $this->assertEquals(array(), $entry->getContext());
+        $this->assertEquals(array(), $request->getContext());
     }
 }

@@ -6,24 +6,24 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntry;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequest;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Exception\RuntimeException;
 
 /**
- * Class LogEntryFactoryInterface
+ * Class LogRequestFactoryInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface LogEntryFactoryInterface
+interface LogRequestFactoryInterface
 {
     /**
      * @param string $level
      * @param string $message
      * @param array $context
-     * @return LogEntry
+     * @return LogRequest
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
@@ -37,5 +37,5 @@ interface LogEntryFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function setLogEntryClassName($className);
+    public function setLogRequestClassName($className);
 }

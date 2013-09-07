@@ -28,16 +28,16 @@ class BufferLoggerTest extends TestCase
     {
         $level = LogLevel::WARNING;
         $message = 'the message is love';
-        $entry = $this->getLogEntry();
-        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $request = $this->getLogRequest();
+        $buffer = $this->getLogRequestRuntimeBuffer($request);
 
         $logger = $this->getNewBufferLogger();
-        $logger->setLogEntryFactory($this->getLogEntryFactory($entry));
-        $bufferFactory = $this->getLogEntryBufferFactory($buffer);
+        $logger->setLogRequestFactory($this->getLogRequestFactory($request));
+        $bufferFactory = $this->getLogRequestBufferFactory($buffer);
         $bufferFactory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->log($level, $message);
     }
@@ -48,20 +48,20 @@ class BufferLoggerTest extends TestCase
      */
     public function testClean()
     {
-        $entry = $this->getLogEntry();
-        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $request = $this->getLogRequest();
+        $buffer = $this->getLogRequestRuntimeBuffer($request);
         $buffer->shouldReceive('attach')
             ->never();
-        $entryFactory = $this->getLogEntryFactory($entry);
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getLogRequestFactory($request);
+        $requestFactory->shouldReceive('create')
             ->never();
-        $bufferFactory = $this->getLogEntryBufferFactory($buffer);
+        $bufferFactory = $this->getLogRequestBufferFactory($buffer);
         $bufferFactory->shouldReceive('create')
             ->twice();
 
         $logger = $this->getNewBufferLogger();
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($bufferFactory);
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($bufferFactory);
 
         $logger->clean();
     }
@@ -70,10 +70,10 @@ class BufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function testFlushWithNoEntry()
+    public function testFlushWithNoLogRequest()
     {
-        $entry = $this->getLogEntry();
-        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $request = $this->getLogRequest();
+        $buffer = $this->getLogRequestRuntimeBuffer($request);
         $buffer->shouldReceive('rewind')
             ->once();
         $buffer->shouldReceive('valid')
@@ -81,13 +81,13 @@ class BufferLoggerTest extends TestCase
             ->once();
         $buffer->shouldReceive('attach')
             ->never();
-        $entryFactory = $this->getLogEntryFactory($entry);
-        $entryFactory->shouldReceive('create')
+        $requestFactory = $this->getLogRequestFactory($request);
+        $requestFactory->shouldReceive('create')
             ->never();
 
         $logger = $this->getNewBufferLogger();
-        $logger->setLogEntryFactory($entryFactory);
-        $logger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $logger->setLogRequestFactory($requestFactory);
+        $logger->setLogRequestBufferFactory($this->getLogRequestBufferFactory($buffer));
 
         $logger->flush();
     }
@@ -96,32 +96,32 @@ class BufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    public function testFlushWithEntry()
+    public function testFlushWithLogRequest()
     {
         $level = LogLevel::WARNING;
         $message = 'the message is love';
-        $entry = $this->getLogEntry();
-        $entry->shouldReceive('getLevel')
+        $request = $this->getLogRequest();
+        $request->shouldReceive('getLevel')
             ->andReturn($level)
             ->once();
-        $entry->shouldReceive('getMessage')
+        $request->shouldReceive('getMessage')
             ->andReturn($message)
             ->once();
-        $entry->shouldReceive('getContext')
+        $request->shouldReceive('getContext')
             ->andReturn(array())
             ->once();
-        $buffer = $this->getLogEntryRuntimeBuffer($entry);
+        $buffer = $this->getLogRequestRuntimeBuffer($request);
         $buffer->shouldReceive('rewind')
             ->once();
         $buffer->shouldReceive('valid')
             ->andReturn(true, false)
             ->times(2);
         $buffer->shouldReceive('current')
-            ->andReturn($entry)
+            ->andReturn($request)
             ->once();
         $buffer->shouldReceive('next')
             ->once();
-        $entryFactory = $this->getLogEntryFactory($entry);
+        $requestFactory = $this->getLogRequestFactory($request);
         $realLogger = $this->getPsr3Logger();
         $realLogger->shouldReceive('log')
             ->with($level, $message, array())
@@ -129,8 +129,8 @@ class BufferLoggerTest extends TestCase
 
         $bufferLogger = $this->getNewBufferLogger();
         $bufferLogger->addLogger($realLogger);
-        $bufferLogger->setLogEntryFactory($entryFactory);
-        $bufferLogger->setLogEntryBufferFactory($this->getLogEntryBufferFactory($buffer));
+        $bufferLogger->setLogRequestFactory($requestFactory);
+        $bufferLogger->setLogRequestBufferFactory($this->getLogRequestBufferFactory($buffer));
 
         $bufferLogger->log($level, $message);
         $bufferLogger->flush();
@@ -140,42 +140,42 @@ class BufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testGetHasSetLogEntryFactory()
+    public function testGetHasSetLogRequestFactory()
     {
         $bufferLogger = $this->getNewBufferLogger();
-        $this->assertNull($bufferLogger->getLogEntryFactory());
-        $this->assertFalse($bufferLogger->hasLogEntryFactory());
+        $this->assertNull($bufferLogger->getLogRequestFactory());
+        $this->assertFalse($bufferLogger->hasLogRequestFactory());
 
-        $logEntryFactory = $this->getPlainLogEntryFactory();
-        $bufferLogger->setLogEntryFactory($logEntryFactory);
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $bufferLogger->setLogRequestFactory($logRequestFactory);
 
-        $this->assertTrue($bufferLogger->hasLogEntryFactory());
-        $this->assertEquals($logEntryFactory, $bufferLogger->getLogEntryFactory());
+        $this->assertTrue($bufferLogger->hasLogRequestFactory());
+        $this->assertEquals($logRequestFactory, $bufferLogger->getLogRequestFactory());
     }
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testGetHasSetLogEntryBufferFactory()
+    public function testGetHasSetLogRequestBufferFactory()
     {
         $bufferLogger = $this->getNewBufferLogger();
-        $this->assertNull($bufferLogger->getLogEntryBufferFactory());
-        $this->assertFalse($bufferLogger->hasLogEntryBufferFactory());
+        $this->assertNull($bufferLogger->getLogRequestBufferFactory());
+        $this->assertFalse($bufferLogger->hasLogRequestBufferFactory());
 
-        $logEntry = $this->getLogEntry();
-        $logEntryBuffer = $this->getLogEntryRuntimeBuffer($logEntry);
-        $logEntryBuffer->shouldReceive('attach')
-            ->with($logEntry)
+        $logRequest = $this->getLogRequest();
+        $logRequestBuffer = $this->getLogRequestRuntimeBuffer($logRequest);
+        $logRequestBuffer->shouldReceive('attach')
+            ->with($logRequest)
             ->never();
-        $logEntryBufferFactory = $this->getLogEntryBufferFactory($logEntryBuffer);
-        $logEntryBufferFactory->shouldReceive('create')
-            ->andReturn($logEntryBuffer)
+        $logRequestBufferFactory = $this->getLogRequestBufferFactory($logRequestBuffer);
+        $logRequestBufferFactory->shouldReceive('create')
+            ->andReturn($logRequestBuffer)
             ->once();
-        $bufferLogger->setLogEntryBufferFactory($logEntryBufferFactory);
+        $bufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
 
-        $this->assertTrue($bufferLogger->hasLogEntryBufferFactory());
-        $this->assertEquals($logEntryBufferFactory, $bufferLogger->getLogEntryBufferFactory());
+        $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
+        $this->assertEquals($logRequestBufferFactory, $bufferLogger->getLogRequestBufferFactory());
     }
 
     /**

@@ -6,26 +6,26 @@
 
 namespace Net\Bazzline\Component\Logger\Factory;
 
-use Net\Bazzline\Component\Logger\LogEntry\LogEntry;
+use Net\Bazzline\Component\Logger\LogRequest\LogRequest;
 use Net\Bazzline\Component\Logger\Exception\InvalidArgumentException;
 use Net\Bazzline\Component\Logger\Exception\RuntimeException;
 use Net\Bazzline\Component\Logger\Validator\IsValidLogLevel;
 
 /**
- * Class LogEntryFactory
+ * Class LogRequestFactory
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class LogEntryFactory implements LogEntryFactoryInterface
+class LogRequestFactory implements LogRequestFactoryInterface
 {
     /**
      * @var string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    protected $logEntryClassName;
+    protected $logRequestClassName;
 
     /**
      * @param string $className
@@ -34,25 +34,25 @@ class LogEntryFactory implements LogEntryFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    public function setLogEntryClassName($className)
+    public function setLogRequestClassName($className)
     {
         if (!class_exists($className)) {
             $message = 'classname "' . $className . '" does not exist';
-            $className = 'Net\\Bazzline\\Component\\Logger\\LogEntry\\' . $className;
+            $className = 'Net\\Bazzline\\Component\\Logger\\LogRequest\\' . $className;
             if (!class_exists($className)) {
                 throw new InvalidArgumentException(
                     $message
                 );
             }
         }
-        $this->logEntryClassName = $className;
+        $this->logRequestClassName = $className;
     }
 
     /**
      * @param string $level
      * @param string $message
      * @param array $context
-     * @return LogEntry
+     * @return LogRequest
      * @throws InvalidArgumentException|RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
@@ -66,12 +66,12 @@ class LogEntryFactory implements LogEntryFactoryInterface
                 'level is not valid'
             );
         }
-        if (is_null($this->logEntryClassName)) {
+        if (is_null($this->logRequestClassName)) {
             throw new RuntimeException(
-                'no log entry class name set'
+                'no log request class name set'
             );
         }
 
-        return new $this->logEntryClassName($level, $message, $context);
+        return new $this->logRequestClassName($level, $message, $context);
     }
 }
