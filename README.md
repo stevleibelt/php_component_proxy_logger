@@ -175,6 +175,19 @@ Thats it! Since all proxy loggers are implementing the *\Psr\Log\LoggerInterface
 
 This component is shipped with a lot of [examples](https://github.com/stevleibelt/php_component_proxy_logger/tree/master/examples/Example), so take a look inside. All examples can be called on the command line like 'php examples/Example/BufferLogger/Example.php'.
 
+## Create A Buffer Logger That Flushs The Buffer If Log Level Error Or Above Is Used
+
+    <?php
+    
+    $logger = MyPSR3Logger();
+    $flushBuffer = \Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger();
+    $flushBuffer->setTriggerToError();
+    $bufferLogger = new \Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory($logger, $flushBuffer);
+    
+    $bufferLogger->info('this is an info message');  //log request is added to the buffer
+    $bufferLogger->debug('a debug information');  //log request is added to the buffer
+    $buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
+
 # Links
 
 ## PSR-3 Logger
