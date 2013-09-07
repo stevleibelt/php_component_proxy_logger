@@ -6,12 +6,12 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer;
-use Net\Bazzline\Component\Logger\BufferManipulation\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger;
-use Net\Bazzline\Component\Logger\Factory\LogRequestFactory;
-use Net\Bazzline\Component\Logger\Factory\LogRequestRuntimeBufferFactory;
-use Net\Bazzline\Component\Logger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
@@ -22,7 +22,7 @@ ExampleWithBypassBufferAndUpwardFlushBufferTrigger::create()
 class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
 {
     /**
-     * @var \Net\Bazzline\Component\Logger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */

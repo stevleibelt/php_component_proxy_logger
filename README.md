@@ -171,6 +171,10 @@ All you have to do is, to adapt your create method the following way (as an exam
 
 Thats it! Since all proxy loggers are implementing the *\Psr\Log\LoggerInterface*, the whole proxy is fully transparent and all your code will work as before.
 
+# Example Code
+
+This component is shipped with a lot of [examples](https://github.com/stevleibelt/php_component_proxy_logger/tree/master/examples/Example), so take a look inside. All examples can be called on the command line like 'php examples/Example/BufferLogger/Example.php'.
+
 # Links
 
 ## PSR-3 Logger
@@ -183,7 +187,6 @@ Following an uncompleted list of available PSR3-Logger components.
 
 * update readme
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
-    * show migration example
     * show code examples
 
 # Licence
