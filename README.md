@@ -179,10 +179,13 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 
     <?php
     
+    use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
+    use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+    
     $logger = MyPSR3Logger();
-    $flushBuffer = \Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger();
+    $flushBuffer = UpwardFlushBufferTrigger();
     $flushBuffer->setTriggerToError();
-    $bufferLogger = new \Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory($logger, $flushBuffer);
+    $bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
     
     $bufferLogger->info('this is an info message');  //log request is added to the buffer
     $bufferLogger->debug('a debug information');  //log request is added to the buffer
