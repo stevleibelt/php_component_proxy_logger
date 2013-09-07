@@ -47,7 +47,7 @@ class ManipulateBufferLoggerTest extends TestCase
      */
     protected function setUp()
     {
-        $this->avoidBuffer = $this->getAvoidBuffer();
+        $this->avoidBuffer = $this->getBypassBuffer();
         $this->flushBufferTrigger = new UpwardFlushBufferTrigger();
         $this->message = 'the message is love';
     }

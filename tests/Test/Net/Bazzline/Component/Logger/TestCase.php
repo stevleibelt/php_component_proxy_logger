@@ -155,8 +155,8 @@ class TestCase extends PHPUnit_Framework_TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    protected function getAvoidBuffer()
+    protected function getBypassBuffer()
     {
-        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\AvoidBuffer');
+        return Mockery::mock('Net\Bazzline\Component\Logger\BufferManipulation\BypassBuffer');
     }
 }
