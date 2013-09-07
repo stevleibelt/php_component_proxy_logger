@@ -7,7 +7,7 @@
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 /**
- * Class LogLevelPassInterface
+ * Class AvoidBufferInterface
  *
  * @package Net\Bazzline\Component\Logger
  * @author stev leibelt <artodeto@arcor.de>

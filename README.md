@@ -1,23 +1,25 @@
 # Logger Component
 
-This component ships a collection of enhanced logger handling tools.
+This component ships a collection of enhanced proxy logger handling tools.
 
 The build status of the current master branch is tracked by Travis CI:
 [![Build Status](https://travis-ci.org/stevleibelt/php_component_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_logger)
 
-The main component is the *TriggerBufferLogger* which enables level triggered logging for each PSR-3 LoggerInterface.
+The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 logger](https://github.com/php-fig/log) to add freedom and silence back to your log files.
 
 # Features
 
-* full [PSR-3 Logger Interface](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) compatibility.
+* full [PSR-3 Logger Interface](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) compatibility
+* allows you define when log messages are send to
 * only logs if critical log level is triggered
 * regains freedom and silence in your log files
+* use the proxy logger component to combine management of multiple loggers
 
 # Available Logger Components
 
 ## ProxyLogger
 
-* simple proxy that needs a logger to work
+* simple proxy that needs at least one logger to work
 * implements PSR-3 LoggerInterface
 * real PSR-3 Logger has to be injected
 
@@ -25,15 +27,15 @@ The main component is the *TriggerBufferLogger* which enables level triggered lo
 
 * based on *ProxyLogger*
 * stores each log message into buffer
-* provides generic method to plug in any kind of log message buffer
+* provides generic method to store in any kind of log message to the buffer
 * forwards all buffered messages to real logger when *flush* is called
 * deletes all buffered messages when *clean* is called
 
 ## ManipulateBufferLogger
 
 * based on *BufferLogger*
-* implements automatically flushing if log level is reached
-* implements mechanism to avoid log buffer
+* implements aware interface for *FlushBufferTriggerInterface* which enables automatically buffer flushing if a well defined log level is reached
+* implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the lob message directly to the available real loggers
 
 # Installation
 
@@ -60,7 +62,14 @@ Following an uncompleted list of available PSR3-Logger components.
 * update readme
     * explain storage aka LogEntryBufferInterface
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
+    * show migration example
+    * show code examples
     * mention all decoupled classes and the benefit of that
+        * BufferManipulation
+        * Factory
+        * LogEntry
+        * Proxy
+        * Validator
 
 # Licence
 
@@ -70,7 +79,7 @@ This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.
 
 * [next](https://github.com/stevleibelt/php_component_logger)
     * big refactoring to easy up trigger and avoid handling for buffer manipulation
-    * addd threshold level for TriggerBufferLogger that enables the possibility to bypass the buffer for certain levels (by AvoidBufferInterface)
+    * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by AvoidBufferInterface)
 * [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
