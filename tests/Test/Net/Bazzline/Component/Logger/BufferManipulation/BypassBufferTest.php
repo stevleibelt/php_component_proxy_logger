@@ -27,22 +27,22 @@ class BypassBufferTest extends TestCase
     public static function testCaseDataProvider()
     {
         return array(
-            'no log level set no avoided' => array(
+            'no log level set no bypass' => array(
                 'logLevel' => null,
                 'logLevelToBypass' => null,
                 'expectedBypassBufferValue' => false
             ),
-            'log level set but not avoided' => array(
+            'log level set but not bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => null,
                 'expectedBypassBufferValue' => false
             ),
-            'log level set but different avoided' => array(
+            'log level set but different bypass' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
                 'logLevelToBypass' => LogLevel::INFO,
                 'expectedBypassBufferValue' => false
             ),
-            'log level set and same to avoid' => array(
+            'log level set and same to bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => LogLevel::INFO,
                 'expectedBypassBufferValue' => true

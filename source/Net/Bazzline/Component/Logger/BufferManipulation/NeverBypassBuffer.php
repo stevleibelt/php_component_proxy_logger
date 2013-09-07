@@ -7,13 +7,13 @@
 namespace Net\Bazzline\Component\Logger\BufferManipulation;
 
 /**
- * Class NeverAvoidBuffer
+ * Class NeverBypassBuffer
  *
  * @package Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */
-class NeverAvoidBuffer extends BypassBuffer
+class NeverBypassBuffer extends BypassBuffer
 {
     /**
      * @param mixed $logLevel

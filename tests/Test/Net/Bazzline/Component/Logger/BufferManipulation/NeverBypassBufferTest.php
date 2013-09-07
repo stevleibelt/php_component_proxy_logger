@@ -6,18 +6,18 @@
 
 namespace Test\Net\Bazzline\Component\Logger\BufferManipulation;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysBypassBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\NeverBypassBuffer;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class AlwaysBypassBufferTest
+ * Class NeverBypassBufferTest
  *
  * @package Test\Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class AlwaysBypassBufferTest extends TestCase
+class NeverBypassBufferTest extends TestCase
 {
     /**
      * @return array
@@ -30,22 +30,22 @@ class AlwaysBypassBufferTest extends TestCase
             'no log level set no bypass' => array(
                 'logLevel' => null,
                 'logLevelToBypass' => null,
-                'expectedBypassBufferValue' => true
+                'expectedBypassBufferValue' => false
             ),
             'log level set but not bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => null,
-                'expectedBypassBufferValue' => true
+                'expectedBypassBufferValue' => false
             ),
             'log level set but different bypass' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
                 'logLevelToBypass' => LogLevel::INFO,
-                'expectedBypassBufferValue' => true
+                'expectedBypassBufferValue' => false
             ),
             'log level set and same to bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => LogLevel::INFO,
-                'expectedBypassBufferValue' => true
+                'expectedBypassBufferValue' => false
             )
         );
     }
@@ -61,7 +61,7 @@ class AlwaysBypassBufferTest extends TestCase
      */
     public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
     {
-        $buffer = new AlwaysBypassBuffer();
+        $buffer = new NeverBypassBuffer();
         if (!is_null($logLevelToBypass)) {
             $buffer->addBypassForLogLevel($logLevelToBypass);
         }
