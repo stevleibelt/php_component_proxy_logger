@@ -6,18 +6,18 @@
 
 namespace Test\Net\Bazzline\Component\Logger\BufferManipulation;
 
-use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysAvoidBuffer;
+use Net\Bazzline\Component\Logger\BufferManipulation\AlwaysBypassBuffer;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\Logger\TestCase;
 
 /**
- * Class AlwaysAvoidBufferTest
+ * Class AlwaysBypassBufferTest
  *
  * @package Test\Net\Bazzline\Component\Logger\BufferManipulation
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class AlwaysAvoidBufferTest extends TestCase
+class AlwaysBypassBufferTest extends TestCase
 {
     /**
      * @return array
@@ -29,23 +29,23 @@ class AlwaysAvoidBufferTest extends TestCase
         return array(
             'no log level set no avoided' => array(
                 'logLevel' => null,
-                'logLevelToAvoid' => null,
-                'expectedAvoidBuffering' => true
+                'logLevelToBypass' => null,
+                'expectedBypassBufferValue' => true
             ),
             'log level set but not avoided' => array(
                 'logLevelToAdd' => LogLevel::INFO,
-                'logLevelToAvoid' => null,
-                'expectedAvoidBuffering' => true
+                'logLevelToBypass' => null,
+                'expectedBypassBufferValue' => true
             ),
             'log level set but different avoided' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
-                'logLevelToAvoid' => LogLevel::INFO,
-                'expectedAvoidBuffering' => true
+                'logLevelToBypass' => LogLevel::INFO,
+                'expectedBypassBufferValue' => true
             ),
             'log level set and same to avoid' => array(
                 'logLevelToAdd' => LogLevel::INFO,
-                'logLevelToAvoid' => LogLevel::INFO,
-                'expectedAvoidBuffering' => true
+                'logLevelToBypass' => LogLevel::INFO,
+                'expectedBypassBufferValue' => true
             )
         );
     }
@@ -54,18 +54,18 @@ class AlwaysAvoidBufferTest extends TestCase
      * @dataProvider testCaseDataProvider
      *
      * @param mixed $logLevel
-     * @param mixed $logLevelToAvoid
-     * @param bool $expectedAvoidBuffering
+     * @param mixed $logLevelToBypass
+     * @param bool $expectedBypassBufferValue
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testAvoidBuffering($logLevel, $logLevelToAvoid, $expectedAvoidBuffering)
+    public function testAvoidBuffering($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
     {
-        $avoidBuffer = new AlwaysAvoidBuffer();
-        if (!is_null($logLevelToAvoid)) {
-            $avoidBuffer->addBypassForLogLevel($logLevelToAvoid);
+        $avoidBuffer = new AlwaysBypassBuffer();
+        if (!is_null($logLevelToBypass)) {
+            $avoidBuffer->addBypassForLogLevel($logLevelToBypass);
         }
 
-        $this->assertEquals($expectedAvoidBuffering, $avoidBuffer->bypassBuffer($logLevel));
+        $this->assertEquals($expectedBypassBufferValue, $avoidBuffer->bypassBuffer($logLevel));
     }
 }
