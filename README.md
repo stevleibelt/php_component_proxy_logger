@@ -146,9 +146,9 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
     cd $HOME/path/to/my/repositories/php_component
     git clone https://github.com/stevleibelt/php_component_logger .
 
-## [Composer](https://packagist.org/packages/net_bazzline/component_logger)
+## [Composer](https://packagist.org/packages/net_bazzline/component_proxy_logger)
 
-    require: "net_bazzline/component_logger": "dev-master"
+    require: "net_bazzline/component_proxy_logger": "dev-master"
 
 # Migration Tutorial
 
