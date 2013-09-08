@@ -26,8 +26,12 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logRequestBufferFactory->shouldReceive('create')
+            ->once();
 
-        $manipulateBufferLogger = $factory->create($logger);
+        $manipulateBufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory);
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
@@ -43,9 +47,13 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logRequestBufferFactory->shouldReceive('create')
+            ->once();
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
 
-        $manipulateBufferLogger = $factory->create($logger, $flushBufferTrigger);
+        $manipulateBufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory, $flushBufferTrigger);
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
@@ -61,9 +69,13 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logRequestBufferFactory->shouldReceive('create')
+            ->once();
         $bypassBuffer = $this->getBypassBuffer();
 
-        $manipulateBufferLogger = $factory->create($logger, null, $bypassBuffer);
+        $manipulateBufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory, null, $bypassBuffer);
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
@@ -79,10 +91,14 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logRequestBufferFactory->shouldReceive('create')
+            ->once();
         $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
         $bypassBuffer = $this->getBypassBuffer();
 
-        $manipulateBufferLogger = $factory->create($logger, $flushBufferTrigger, $bypassBuffer);
+        $manipulateBufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory, $flushBufferTrigger, $bypassBuffer);
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);

@@ -21,11 +21,13 @@ interface ManipulateBufferLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
+     * @param LogRequestFactoryInterface $logRequestFactory
+     * @param LogRequestBufferFactoryInterface $logRequestBufferFactory
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
      * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null);
+    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory, LogRequestBufferFactoryInterface $logRequestBufferFactory, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null);
 }
