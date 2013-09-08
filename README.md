@@ -365,11 +365,6 @@ Following an uncompleted list of available PSR3-Logger components.
 
 * [talkback](https://github.com/chrisnoden/talkback)
 
-# Todo List
-
-* update readme
-    * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
-
 # Licence
 
 This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html). The full licence text is shipped [within](https://github.com/stevleibelt/php_component_logger/blob/master/LICENSE) this component package.
