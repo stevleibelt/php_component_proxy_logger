@@ -84,9 +84,19 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * provides method *create* to return a *LogRequestInterface* object
 * implemented by *LogRequestFactory*
 
+### ProxyLoggerFactoryInterface
+
+* provides method *create* to return a *ProxyLoggerInterface* object
+* implemented by *ProxyLoggerFactory*
+
+### BufferLoggerFactoryInterface
+
+* provides method *create* to return a *BufferLoggerInterface* object
+* implemented by *BufferLoggerFactory*
+
 ### ManipulateBufferLoggerFactoryInterface
 
-* provides method *create* to return a *ManipulateBufferLoggerFactoryInterface* object
+* provides method *create* to return a *ManipulateBufferLoggerInterface* object
 * implemented by *ManipulateBufferLoggerFactory*
 
 ## LogRequest
@@ -116,6 +126,18 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * based on [component_requirement](https://packagist.org/packages/net_bazzline/component_requirement)
 * validates if provided log level fits into defined [PSR-3 log levels](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
 
+## Additional Code
+
+### LoggerAwareInterface
+
+* extends *\Psr\Logger\LoggerAwareInterface*
+* provides methods *getLogger* and *hasLogger*
+
+### OutputToConsoleLogger
+
+* implements *\Psr\Logger\LoggerInterface*
+* prints formated log request to console
+
 # Installation
 
 ## [GitHub](https://github.com/stevleibelt/php_component_logger)
@@ -134,6 +156,10 @@ For the sake of simplicity, i assume you have a LoggerFactory you are calling wh
 
 ```php
 <?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
 
 /**
  * Factory for creating loggers
@@ -154,6 +180,10 @@ All you have to do is, to adapt your create method the following way (as an exam
 
 ```php
 <?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
 
 /**
  * Factory for creating loggers
@@ -166,6 +196,7 @@ class MyLoggerFactory
     public function createMyProcessLogger()
     {
         $realLogger = new Logger();
+
         $proxyLogger = new \Net\Bazzline\Component\Logger\Proxy\ProxyLogger();
         $proxyLogger->addLogger($realLogger);
     
@@ -184,6 +215,10 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 
 ```php
 <?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
@@ -202,6 +237,10 @@ $bufferLogger->error('the server made a boo boo');  //buffer flush is triggered
 
 ```php
 <?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
@@ -216,6 +255,54 @@ $bufferLogger->debug('a debug information');  //log request is passed to all add
 $bufferLogger->error('the server made a boo boo');  //log request is added to the buffer
 ```
 
+## Use Buffer Logger Inside A Process That Iterates Over A Collection Of Items
+
+```php
+<?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
+
+use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
+
+//it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
+$realLogger = $this->getMyLogger();
+$logRequestFactory = new LogRequestFactory();
+$logRequestBufferFactory = new LogRequestBufferFactory();
+$bufferLoggerFactory = BufferLoggerFactory($realLogger, $logRequestFactory, $logRequestBufferFactory);
+
+$bufferLogger = $bufferLoggerFactory->create();
+
+//it is assumed that a collection object or a plain array with items is returned
+$collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
+
+//it is assumed that a class is returned, that can handle a item from the collection of items
+//it is assumed that a class is returned, that implements the LoggerAwareInterface
+//it is assumed that a class throws an RuntimeException if a item could not be processed
+$itemProcessor = $this->getItemProcessor();
+$itemProcessor->setLogger($bufferLogger);
+
+//this example shows the benefit of reclaimed silence and freedom on your log
+//only if something happens, log requests are send to your logger
+foreach ($collectionOfItemsToProcess as $itemToProcess) {
+    try {
+        $itemProcessor->setItem($itemToProcess);
+        $itemProcessor->execute();
+        //clean log buffer if nothing happens
+        $itemProcessor->getLogger()->clean();
+    } catch (RuntimeException $exception) {
+        //add exception message as log request to the buffer
+        $itemProcessor->getLogger()->error($exception->getMessage());
+        //flush buffer to the real logger to debug what has happen
+        $itemProcessor->getLogger()->flush();
+    }
+}
+
+```
+
 # Links
 
 ## PSR-3 Logger
@@ -228,7 +315,6 @@ Following an uncompleted list of available PSR3-Logger components.
 
 * update readme
     * show example with benefits of using buffer->flush or buffer->clean when you are in a process that iterates over a bunch of data
-    * show code examples
 
 # Licence
 
