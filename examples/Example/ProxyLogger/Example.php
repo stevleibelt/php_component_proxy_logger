@@ -6,6 +6,7 @@
 
 namespace Example\ProxyLogger;
 
+use Net\Bazzline\Component\ProxyLogger\Factory\ProxyLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLogger;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
@@ -48,9 +49,10 @@ class Example
      */
     public function setup()
     {
-        $this->logger = new ProxyLogger();
+        $factory = new ProxyLoggerFactory();
         $logger = new OutputToConsoleLogger();
-        $this->logger->addLogger($logger);
+
+        $this->logger = $factory->create($logger);
 
         return $this;
     }
