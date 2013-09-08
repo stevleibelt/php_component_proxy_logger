@@ -404,13 +404,13 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 # Version History
 
-* [next](https://github.com/stevleibelt/php_component_logger)
+* [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * big refactoring to easy up trigger and bypass handling for buffer manipulation
     * renamed LogEntry to LogRequest
     * restructured project
     * added a lot more example
     * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
-* [0.9.0](https://github.com/stevleibelt/php_component_logger/tree/0.9.0)
+* [0.9.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/0.9.0)
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
