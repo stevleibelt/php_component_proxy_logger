@@ -188,14 +188,14 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 
-$logger = MyPSR3Logger();
-$flushBuffer = UpwardFlushBufferTrigger();
-$flushBuffer->setTriggerToError();
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
+$logger = MyPSR3Logger();  //craete a psr3 logger
+$flushBuffer = UpwardFlushBufferTrigger();  //create the trigger
+$flushBuffer->setTriggerToError();  //set trigger to log level \Psr\Log\LogLevel::ERROR
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);  //use factory to create manipulate buffer logger
 
 $bufferLogger->info('this is an info message');  //log request is added to the buffer
 $bufferLogger->debug('a debug information');  //log request is added to the buffer
-$buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
+$bufferLogger->error('the server made a boo boo');  //buffer flush is triggered
 ```
 
 ## Create A Buffer Logger That Bypass Configured Log Requests From Buffer
@@ -206,14 +206,14 @@ $buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 
-$logger = MyPSR3Logger();
-$bypassBuffer = new BypassBuffer();
-$bypassBuffer->addBypassForLogLevelInfo();
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);
+$logger = MyPSR3Logger();  //craete a psr3 logger
+$bypassBuffer = new BypassBuffer();  //create bypass
+$bypassBuffer->addBypassForLogLevelInfo();  //set log Level \Psr\Log\LogLevel::INFO to bypass
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);  //use factory to create manipulate buffer logger
 
 $bufferLogger->info('this is an info message');  //log request is added to the buffer
 $bufferLogger->debug('a debug information');  //log request is passed to all added real loggers
-$buggerLogger->error('the server made a boo boo');  //log request is added to the buffer
+$bufferLogger->error('the server made a boo boo');  //log request is added to the buffer
 ```
 
 # Links
