@@ -7,6 +7,7 @@
 namespace Example\BufferLogger;
 
 use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
+use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
@@ -50,14 +51,12 @@ class Example
      */
     public function setup()
     {
-        $this->bufferLogger = new BufferLogger();
-        $requestFactory = new LogRequestFactory();
-        $requestFactory->setLogRequestClassName('LogRequest');
-        $bufferFactory = new LogRequestRuntimeBufferFactory();
+        $bufferLoggerFactory = new BufferLoggerFactory();
+        $logRequestFactory = new LogRequestFactory();
+        $logRequestFactory->setLogRequestClassName('LogRequest');
+        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
-        $this->bufferLogger->setLogRequestFactory($requestFactory);
-        $this->bufferLogger->setLogRequestBufferFactory($bufferFactory);
-        $this->bufferLogger->addLogger($logger);
+        $this->bufferLogger = $bufferLoggerFactory->create($logger, $logRequestFactory, $logRequestBufferFactory);
 
         return $this;
     }
