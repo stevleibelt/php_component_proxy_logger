@@ -31,7 +31,7 @@ class ExampleWithDateTimePrefixedMessageLogRequest
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-29
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return ExampleWithDateTimePrefixedMessageLogRequest
@@ -50,14 +50,14 @@ class ExampleWithDateTimePrefixedMessageLogRequest
      */
     public function setup()
     {
-        $this->logger = new BufferLogger();
+        $this->bufferLogger = new BufferLogger();
         $requestFactory = new LogRequestFactory();
         $requestFactory->setLogRequestClassName('DateTimePrefixedMessageLogRequest');
         $bufferFactory = new LogRequestRuntimeBufferFactory();
         $logger = new OutputToConsoleLogger();
-        $this->logger->setLogRequestFactory($requestFactory);
-        $this->logger->setLogRequestBufferFactory($bufferFactory);
-        $this->logger->addLogger($logger);
+        $this->bufferLogger->setLogRequestFactory($requestFactory);
+        $this->bufferLogger->setLogRequestBufferFactory($bufferFactory);
+        $this->bufferLogger->addLogger($logger);
 
         return $this;
     }
@@ -70,12 +70,12 @@ class ExampleWithDateTimePrefixedMessageLogRequest
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->alert('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
-        $this->logger->flush();
+        $this->bufferLogger->flush();
         echo str_repeat('-', 40) . PHP_EOL;
     }
 }
