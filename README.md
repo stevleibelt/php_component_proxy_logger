@@ -17,6 +17,7 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 # Common Terms
 
+* *RealLogger* represents a logger that implements the psr-3 logger interface that is added to the *ProxyLogger*
 * *LogRequest* represents a log request (including log level, message and context)
 * *LogRequestBuffer* represents a collection of log requests
 * *ProxyLogger* represents a collection of psr-3 loggers
@@ -195,6 +196,24 @@ $bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
 $bufferLogger->info('this is an info message');  //log request is added to the buffer
 $bufferLogger->debug('a debug information');  //log request is added to the buffer
 $buggerLogger->error('the server made a boo boo');  //buffer flush is triggered
+```
+
+## Create A Buffer Logger That Bypass Configured Log Requests From Buffer
+
+```php
+<?php
+
+use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+
+$logger = MyPSR3Logger();
+$bypassBuffer = new BypassBuffer();
+$bypassBuffer->addBypassForLogLevelInfo();
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);
+
+$bufferLogger->info('this is an info message');  //log request is added to the buffer
+$bufferLogger->debug('a debug information');  //log request is passed to all added real loggers
+$buggerLogger->error('the server made a boo boo');  //log request is added to the buffer
 ```
 
 # Links
