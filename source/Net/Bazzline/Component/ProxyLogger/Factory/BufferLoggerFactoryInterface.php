@@ -21,7 +21,7 @@ interface BufferLoggerFactoryInterface
      * @param LoggerInterface $logger
      * @param LogRequestFactoryInterface $logRequestFactory
      * @param LogRequestBufferFactoryInterface $logRequestBufferFactory
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
+     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-08
      */
