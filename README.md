@@ -10,20 +10,20 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 # Features
 
 * full [PSR-3 Logger Interface](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) compatibility
-* allows you define when log messages are send to
-* only logs if critical log level is triggered
+* allows you define when log messages are pushed to your loggers
+* only logs if configured log level is reached
 * regains freedom and silence in your log files
 * use the proxy logger component to combine management of multiple loggers
 
 # Common Terms
 
-* *RealLogger* represents a logger that implements the psr-3 logger interface that is added to the *ProxyLogger*
+* *RealLogger* represents a logger that implements the psr-3 logger interface and who is added to a *ProxyLogger*
 * *LogRequest* represents a log request (including log level, message and context)
-* *LogRequestBuffer* represents a collection of log requests
-* *ProxyLogger* represents a collection of psr-3 loggers
-* *BufferLogger* represents as a log request keeper that pass each log request to a buffer and pushs all buffered log request to all added psr-3 loggers when *flush* is called
-* *ManipulateBufferLogger* represents a enhanced BufferLogger to use BypassBufferInterface and/or FlushBufferTriggerInterface
-* *BypassBufferInterface* represents a buffer manipulation to bypass a certain log level to all added psr-3 loggers
+* *LogRequestBuffer* represents a collection of log requests that are not pushed to the real loggers
+* *ProxyLogger* represents a collection of real loggers
+* *BufferLogger* represents as a log request keeper that pass each log request to a buffer and pushs all buffered log request to all added real loggers when *flush* is called
+* *ManipulateBufferLogger* represents an enhanced BufferLogger to use *BypassBufferInterface* and/or *FlushBufferTriggerInterface*
+* *BypassBufferInterface* represents a buffer manipulation to bypass a certain log level to all added real loggers
 * *FlushBufferTriggerInterface* represents a buffer manipulation to trigger a buffer flush based on a log level
 
 # Components
@@ -32,29 +32,29 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 ### ProxyLoggerInterface
 
-* simple proxy that needs at least one logger to work
+* simple proxy that needs at least one real logger to work
 * implements PSR-3 LoggerInterface
 * real PSR-3 Logger has to be injected
-* pass-through logging requests to all added loggers
+* pass-through logging requests to all added real loggers
 
 ### BufferLoggerInterface
 
 * based on *ProxyLoggerInterface*
 * stores each log request into an buffer that implements the *LogRequestBufferInterface*
-* forwards all buffered log requests to all added loggers when *flush* is called
+* forwards all buffered log requests to all added real loggers when *flush* is called
 * deletes all buffered log requests when *clean* is called
 
 ### ManipulateBufferLoggerInterface
 
 * based on *BufferLoggerInterface*
 * implements aware interface for *FlushBufferTriggerInterface* which enables automatically buffer flushing if a well defined log level is reached
-* implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the lob message directly to the available real loggers
+* implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the log requests directly to the available real loggers
 
 ## BufferManipulation
 
 ### BypassBufferInterface
 
-* adds opportunity to define log levels (*addBypassForLogLevel*) to bypass log requests from the buffer and pass this requests directory to all added loggers
+* adds opportunity to define log levels (*addBypassForLogLevel*) to bypass log requests from the buffer and pass this requests directory to all added real loggers
 * provides method *bypassBuffer* to check if log level should be bypassed from the buffer
 * implemented by:
     * AlwaysBypassBuffer
@@ -124,7 +124,7 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 * can be injected by implementing the *IsValidLogLevelAwareInterface*
 * based on [component_requirement](https://packagist.org/packages/net_bazzline/component_requirement)
-* validates if provided log level fits into defined [PSR-3 log levels](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+* validates if provided log level fits into defined [PSR-3 log levels](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md)
 
 ## Additional Code
 
@@ -138,13 +138,23 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * implements *\Psr\Logger\LoggerInterface*
 * prints formated log request to console
 
+### DateTimePrefixedMessageLogRequest
+
+* implements *LogRequestInterface*
+* prefix the log request message with a date time (format 'Y-m-d H:i:s')
+
+### LogRequestRuntimeBuffer
+
+* implements *LogRequestBufferInterface*
+* buffers all log requests for the time of instantiation
+
 # Installation
 
 ## [GitHub](https://github.com/stevleibelt/php_component_logger)
 
-    mkdir -p $HOME/path/to/my/repositories/php_component
+    mkdir -p $HOME/path/to/my/repositories/php_component_proxy_logger
     cd $HOME/path/to/my/repositories/php_component
-    git clone https://github.com/stevleibelt/php_component_logger .
+    git clone https://github.com/stevleibelt/php_component_proxy_logger .
 
 ## [Composer](https://packagist.org/packages/net_bazzline/component_proxy_logger)
 
@@ -176,7 +186,7 @@ class MyLoggerFactory
 }
 ```
 
-All you have to do is, to adapt your create method the following way (as an example).
+All you have to do is to adapt your create method the following way (as an example).
 
 ```php
 <?php
@@ -184,6 +194,8 @@ All you have to do is, to adapt your create method the following way (as an exam
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-09
  */
+
+use \Net\Bazzline\Component\ProxyLogger\Factory\ProxyLoggerFactory();
 
 /**
  * Factory for creating loggers
@@ -197,8 +209,9 @@ class MyLoggerFactory
     {
         $realLogger = new Logger();
 
-        $proxyLogger = new \Net\Bazzline\Component\Logger\Proxy\ProxyLogger();
-        $proxyLogger->addLogger($realLogger);
+        //of course this should not be done on each create call
+        $proxyLoggerFactory = new ProxyLoggerFactory();
+        $proxyLogger = $proxyLoggerFactory->create($realLogger);
     
         return $proxyLogger;
     }
@@ -223,14 +236,23 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 
-$logger = MyPSR3Logger();  //craete a psr3 logger
-$flushBuffer = UpwardFlushBufferTrigger();  //create the trigger
-$flushBuffer->setTriggerToError();  //set trigger to log level \Psr\Log\LogLevel::ERROR
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);  //use factory to create manipulate buffer logger
+//craete a psr3 logger
+$logger = MyPSR3Logger();
 
-$bufferLogger->info('this is an info message');  //log request is added to the buffer
-$bufferLogger->debug('a debug information');  //log request is added to the buffer
-$bufferLogger->error('the server made a boo boo');  //buffer flush is triggered
+//create the trigger
+$flushBuffer = UpwardFlushBufferTrigger();
+//set trigger to log level \Psr\Log\LogLevel::ERROR
+$flushBuffer->setTriggerToError();
+
+//use factory to create manipulate buffer logger
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
+
+//log request is added to the buffer
+$bufferLogger->info('this is an info message');
+//log request is added to the buffer
+$bufferLogger->debug('a debug information');
+//buffer flush is triggered
+$bufferLogger->error('the server made a boo boo');
 ```
 
 ## Create A Buffer Logger That Bypass Configured Log Requests From Buffer
@@ -245,14 +267,23 @@ $bufferLogger->error('the server made a boo boo');  //buffer flush is triggered
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 
-$logger = MyPSR3Logger();  //craete a psr3 logger
-$bypassBuffer = new BypassBuffer();  //create bypass
-$bypassBuffer->addBypassForLogLevelInfo();  //set log Level \Psr\Log\LogLevel::INFO to bypass
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);  //use factory to create manipulate buffer logger
+//craete a psr3 logger
+$logger = MyPSR3Logger();
 
-$bufferLogger->info('this is an info message');  //log request is added to the buffer
-$bufferLogger->debug('a debug information');  //log request is passed to all added real loggers
-$bufferLogger->error('the server made a boo boo');  //log request is added to the buffer
+//create bypass
+$bypassBuffer = new BypassBuffer();
+//set log Level \Psr\Log\LogLevel::INFO to bypass
+$bypassBuffer->addBypassForLogLevelInfo();
+
+//use factory to create manipulate buffer logger
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);
+
+//log request is added to the buffer
+$bufferLogger->info('this is an info message');
+//log request is passed to all added real loggers
+$bufferLogger->debug('a debug information');
+//log request is added to the buffer
+$bufferLogger->error('the server made a boo boo');
 ```
 
 ## Use Buffer Logger Inside A Process That Iterates Over A Collection Of Items
@@ -322,10 +353,10 @@ $realLogger = $this->getMyLogger();
 $logRequestFactory = new LogRequestFactory();
 $logRequestBufferFactory = new LogRequestBufferFactory();
 $bypassBuffer = new BypassBuffer();
+
 //enable bypass for log requests with log level info
 $bypassBuffer->addBypassForLogLevelInfo();
 $manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger, $logRequestFactory, $logRequestBufferFactory);
-
 $manipulateBufferLogger = $bufferLoggerFactory->create();
 
 //it is assumed that a collection object or a plain array with items is returned
@@ -341,7 +372,9 @@ $itemProcessor->setLogger($manipulateBufferLogger);
 //you are not losing the info log level requests but all other except a RuntimeException is thrown
 foreach ($collectionOfItemsToProcess as $itemToProcess) {
     try {
-        $itemProcessor->getLogger()->info('processing item with id: ' . $itemToProcess->getId());
+        $itemProcessor->getLogger()->info(
+            'processing item with id: ' . $itemToProcess->getId()
+        );
         $itemProcessor->setItem($itemToProcess);
         $itemProcessor->execute();
         //clean log buffer if nothing happens
@@ -356,7 +389,6 @@ foreach ($collectionOfItemsToProcess as $itemToProcess) {
 
 ```
 
-
 # Links
 
 ## PSR-3 Logger
@@ -367,7 +399,8 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Licence
 
-This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html). The full licence text is shipped [within](https://github.com/stevleibelt/php_component_logger/blob/master/LICENSE) this component package.
+This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html).   
+The full licence text is shipped [within](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/LICENSE) this component package.
 
 # Version History
 
