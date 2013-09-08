@@ -303,6 +303,60 @@ foreach ($collectionOfItemsToProcess as $itemToProcess) {
 
 ```
 
+## Use Manipulate Buffer Logger Inside A Process That Iterates Over A Collection Of Items And Log All Info Log Requests
+
+```php
+<?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-09-09
+ */
+
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
+
+//it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
+$realLogger = $this->getMyLogger();
+$logRequestFactory = new LogRequestFactory();
+$logRequestBufferFactory = new LogRequestBufferFactory();
+$bypassBuffer = new BypassBuffer();
+//enable bypass for log requests with log level info
+$bypassBuffer->addBypassForLogLevelInfo();
+$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger, $logRequestFactory, $logRequestBufferFactory);
+
+$manipulateBufferLogger = $bufferLoggerFactory->create();
+
+//it is assumed that a collection object or a plain array with items is returned
+$collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
+
+//it is assumed that a class is returned, that can handle a item from the collection of items
+//it is assumed that a class is returned, that implements the LoggerAwareInterface
+//it is assumed that a class throws an RuntimeException if a item could not be processed
+$itemProcessor = $this->getItemProcessor();
+$itemProcessor->setLogger($manipulateBufferLogger);
+
+//this example shows the benefit of using the bypass buffer manipulation
+//you are not losing the info log level requests but all other except a RuntimeException is thrown
+foreach ($collectionOfItemsToProcess as $itemToProcess) {
+    try {
+        $itemProcessor->getLogger()->info('processing item with id: ' . $itemToProcess->getId());
+        $itemProcessor->setItem($itemToProcess);
+        $itemProcessor->execute();
+        //clean log buffer if nothing happens
+        $itemProcessor->getLogger()->clean();
+    } catch (RuntimeException $exception) {
+        //add exception message as log request to the buffer
+        $itemProcessor->getLogger()->error($exception->getMessage());
+        //flush buffer to the real logger to debug what has happen
+        $itemProcessor->getLogger()->flush();
+    }
+}
+
+```
+
+
 # Links
 
 ## PSR-3 Logger
