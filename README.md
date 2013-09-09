@@ -423,6 +423,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 # Upcoming Features
 
+* add description about benefits of using *UpwardFlushBufferTrigger*
 * style output - if level is reached, wrap the buffer output with something like "==== log level buffer flush triggered ====" or "==== log level buffer bypassed ===="
 * implement locking
 * implement "unsetFlushBufferTrigger" to AwareInterface
