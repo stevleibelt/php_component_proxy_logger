@@ -3,7 +3,7 @@
 This component ships a collection of enhanced proxy logger handling tools.
 
 The build status of the current master branch is tracked by Travis CI:
-[![Build Status](https://travis-ci.org/stevleibelt/php_component_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_logger)
+[![Build Status](https://travis-ci.org/stevleibelt/php_component_proxy_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_proxy_logger)
 
 The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 logger](https://github.com/php-fig/log) to add freedom and silence back to your log files.
 
@@ -150,7 +150,7 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 
 # Installation
 
-## [GitHub](https://github.com/stevleibelt/php_component_logger)
+## [GitHub](https://github.com/stevleibelt/php_component_proxy_logger)
 
     mkdir -p $HOME/path/to/my/repositories/php_component_proxy_logger
     cd $HOME/path/to/my/repositories/php_component
