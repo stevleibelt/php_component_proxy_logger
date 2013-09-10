@@ -19,6 +19,10 @@ use Psr\Log\LoggerInterface;
 class BufferLoggerFactory implements BufferLoggerFactoryInterface
 {
     /**
+     * If not provided, following factories are used as default.
+     *  - LogRequestFactory with log request class name of LogRequest
+     *  - LogRequestRuntimeBufferFactory
+     *
      * @param LoggerInterface $logger
      * @param null|LogRequestFactoryInterface $logRequestFactory
      * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
@@ -29,6 +33,15 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
     public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory = null, LogRequestBufferFactoryInterface $logRequestBufferFactory = null)
     {
         $bufferLogger = new BufferLogger();
+
+        if (is_null($logRequestFactory)) {
+            $logRequestFactory = new LogRequestFactory();
+            $logRequestFactory->setLogRequestClassName('LogRequest');
+        }
+
+        if (is_null($logRequestBufferFactory)) {
+            $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
+        }
 
         $bufferLogger->addLogger($logger);
         $bufferLogger->setLogRequestFactory($logRequestFactory);
