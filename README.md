@@ -245,7 +245,8 @@ $flushBuffer = UpwardFlushBufferTrigger();
 $flushBuffer->setTriggerToError();
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, null, $flushBuffer);
+$bufferLogger = new ManipulateBufferLoggerFactory(
+    $logger, null, null, $flushBuffer);
 
 //log request is added to the buffer
 $bufferLogger->info('this is an info message');
@@ -276,7 +277,8 @@ $bypassBuffer = new BypassBuffer();
 $bypassBuffer->addBypassForLogLevelInfo();
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, null, null, $bypassBuffer);
+$bufferLogger = new ManipulateBufferLoggerFactory(
+    $logger, null, null, null, $bypassBuffer);
 
 //log request is added to the buffer
 $bufferLogger->info('this is an info message');
@@ -351,7 +353,8 @@ $realLogger = $this->getMyLogger();
 
 //enable bypass for log requests with log level info
 $bypassBuffer->addBypassForLogLevelInfo();
-$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger, null, null, null $bypassBuffer);
+$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory(
+    $realLogger, null, null, null $bypassBuffer);
 $manipulateBufferLogger = $bufferLoggerFactory->create();
 
 //it is assumed that a collection object or a plain array with items is returned
