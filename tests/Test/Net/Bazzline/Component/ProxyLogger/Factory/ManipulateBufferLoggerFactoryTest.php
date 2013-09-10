@@ -15,10 +15,46 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * @package Test\Net\Bazzline\Component\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
- * @todo add test cases for "with no log request factory" and "no log request buffer factory", extend assertInstanceOf tests
  */
 class ManipulateBufferLoggerFactoryTest extends TestCase
 {
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    public function testCreateWithLogger()
+    {
+        $factory = new ManipulateBufferLoggerFactory();
+        $logger = $this->getPsr3Logger();
+
+        $manipulateBufferLogger = $factory->create($logger);
+
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface', $manipulateBufferLogger->getLogRequestFactory());
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface', $manipulateBufferLogger->getLogRequestBufferFactory());
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
+        $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
+        $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-28
+     */
+    public function testCreateWithLoggerAndWithLogRequestFactory()
+    {
+        $factory = new ManipulateBufferLoggerFactory();
+        $logger = $this->getPsr3Logger();
+        $logRequestFactory = $this->getPlainLogRequestFactory();
+
+        $manipulateBufferLogger = $factory->create($logger, $logRequestFactory);
+
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
+        $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
+        $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
+    }
+
     /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
