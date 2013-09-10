@@ -15,6 +15,7 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * @package Test\Net\Bazzline\Component\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
+ * @todo add test cases for "with no log request factory" and "no log request buffer factory", extend assertInstanceOf tests
  */
 class ManipulateBufferLoggerFactoryTest extends TestCase
 {
@@ -22,7 +23,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    public function testCreateWithoutFlushBufferTriggerAndWithoutAvoidBuffer()
+    public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactory()
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
@@ -43,7 +44,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testCreateWithFlushBufferTriggerAndWithoutAvoidBuffer()
+    public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithFlushBufferTrigger()
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
@@ -65,7 +66,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testCreateWithoutFlushBufferTriggerAndWithAvoidBuffer()
+    public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithAvoidBuffer()
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
@@ -87,7 +88,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testCreateWithFlushBufferTriggerAndWithAvoidBuffer()
+    public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithFlushBufferTriggerAndWithAvoidBuffer()
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getPsr3Logger();
