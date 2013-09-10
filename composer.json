@@ -2,7 +2,7 @@
     "name": "net_bazzline/component_proxy_logger",
     "type": "library",
     "description": "php component proxy logger",
-    "keywords": ["php", "net_bazzline", "proxy", "component", "logger", "psr-3", "proxy"],
+    "keywords": ["php", "net_bazzline", "proxy", "component", "logger", "psr-3", "proxy", "log", "logging"],
     "homepage": "https://github.com/stevleibelt/php_component_proxy_logger",
     "license": "LGPLv3",
     "authors": [
