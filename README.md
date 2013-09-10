@@ -245,7 +245,7 @@ $flushBuffer = UpwardFlushBufferTrigger();
 $flushBuffer->setTriggerToError();
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, $flushBuffer);
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, null, $flushBuffer);
 
 //log request is added to the buffer
 $bufferLogger->info('this is an info message');
@@ -276,7 +276,7 @@ $bypassBuffer = new BypassBuffer();
 $bypassBuffer->addBypassForLogLevelInfo();
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, $bypassBuffer);
+$bufferLogger = new ManipulateBufferLoggerFactory($logger, null, null, null, $bypassBuffer);
 
 //log request is added to the buffer
 $bufferLogger->info('this is an info message');
@@ -350,13 +350,10 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 
 //it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
 $realLogger = $this->getMyLogger();
-$logRequestFactory = new LogRequestFactory();
-$logRequestBufferFactory = new LogRequestBufferFactory();
-$bypassBuffer = new BypassBuffer();
 
 //enable bypass for log requests with log level info
 $bypassBuffer->addBypassForLogLevelInfo();
-$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger, $logRequestFactory, $logRequestBufferFactory);
+$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger);
 $manipulateBufferLogger = $bufferLoggerFactory->create();
 
 //it is assumed that a collection object or a plain array with items is returned
