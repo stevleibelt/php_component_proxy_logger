@@ -431,7 +431,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 * implement "unsetFlushBufferTrigger" to AwareInterface
 * implement "unsetBypassBuffer" to AwareInterface
 * submit idea to [log4php](https://logging.apache.org/log4php/)
-    * [Contributin](http://wiki.apache.org/logging-log4php/Contributing)
+    * [Contributing](http://wiki.apache.org/logging-log4php/Contributing)
     * [Installing](http://logging.apache.org/log4php/install.html)
     * [Volunteering](https://logging.apache.org/log4php/volunteering.html)
     * [How ASF works](http://www.apache.org/foundation/how-it-works.html)
