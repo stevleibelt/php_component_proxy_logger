@@ -55,9 +55,8 @@ class ExampleWithDateTimePrefixedMessageLogRequest
         $logger = new OutputToConsoleLogger();
         $logRequestFactory = new LogRequestFactory();
         $logRequestFactory->setLogRequestClassName('DateTimePrefixedMessageLogRequest');
-        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
 
-        $this->bufferLogger = $bufferLoggerFactory->create($logger, $logRequestFactory, $logRequestBufferFactory);
+        $this->bufferLogger = $bufferLoggerFactory->create($logger, $logRequestFactory);
 
         return $this;
     }
