@@ -301,7 +301,8 @@ use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
 
-//it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
+//it is assumed that a logger is returned,
+// that implements the \Psr\Log\LoggerInterface
 $realLogger = $this->getMyLogger();
 $bufferLoggerFactory = BufferLoggerFactory($realLogger);
 
@@ -310,9 +311,12 @@ $bufferLogger = $bufferLoggerFactory->create();
 //it is assumed that a collection object or a plain array with items is returned
 $collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
 
-//it is assumed that a class is returned, that can handle a item from the collection of items
-//it is assumed that a class is returned, that implements the LoggerAwareInterface
-//it is assumed that a class throws an RuntimeException if a item could not be processed
+//it is assumed that a class is returned,
+// that can handle a item from the collection of items
+//it is assumed that a class is returned,
+// that implements the LoggerAwareInterface
+//it is assumed that a class throws an RuntimeException
+// if a item could not be processed
 $itemProcessor = $this->getItemProcessor();
 $itemProcessor->setLogger($bufferLogger);
 
@@ -348,7 +352,8 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 
-//it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
+//it is assumed that a logger is returned,
+// that implements the \Psr\Log\LoggerInterface
 $realLogger = $this->getMyLogger();
 
 //enable bypass for log requests with log level info
@@ -360,9 +365,12 @@ $manipulateBufferLogger = $bufferLoggerFactory->create();
 //it is assumed that a collection object or a plain array with items is returned
 $collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
 
-//it is assumed that a class is returned, that can handle a item from the collection of items
-//it is assumed that a class is returned, that implements the LoggerAwareInterface
-//it is assumed that a class throws an RuntimeException if a item could not be processed
+//it is assumed that a class is returned,
+// that can handle a item from the collection of items
+//it is assumed that a class is returned,
+// that implements the LoggerAwareInterface
+//it is assumed that a class throws an RuntimeException
+// if a item could not be processed
 $itemProcessor = $this->getItemProcessor();
 $itemProcessor->setLogger($manipulateBufferLogger);
 
