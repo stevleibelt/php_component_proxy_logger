@@ -53,11 +53,8 @@ class Example
     {
         $bufferLoggerFactory = new BufferLoggerFactory();
         $logger = new OutputToConsoleLogger();
-        $logRequestFactory = new LogRequestFactory();
-        $logRequestFactory->setLogRequestClassName('LogRequest');
-        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
 
-        $this->bufferLogger = $bufferLoggerFactory->create($logger, $logRequestFactory, $logRequestBufferFactory);
+        $this->bufferLogger = $bufferLoggerFactory->create($logger);
 
         return $this;
     }
