@@ -55,13 +55,10 @@ class ExampleWithUpwardFlushBufferTrigger
     {
         $bypassBuffer = new NeverBypassBuffer();
         $logger = new OutputToConsoleLogger();
-        $logRequestFactory = new LogRequestFactory();
-        $logRequestFactory->setLogRequestClassName('LogRequest');
-        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTrigger = new UpwardFlushBufferTrigger();
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger, $logRequestFactory, $logRequestBufferFactory, $flushBufferTrigger, $bypassBuffer);
+        $this->logger = $manipulateBufferLoggerFactory->create($logger, null, null, $flushBufferTrigger, $bypassBuffer);
 
         return $this;
     }
