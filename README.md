@@ -405,6 +405,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
+    * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *BufferLoggerFactoryInterface*
 * [1.0.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.0)
     * big refactoring to easy up trigger and bypass handling for buffer manipulation
     * renamed LogEntry to LogRequest
