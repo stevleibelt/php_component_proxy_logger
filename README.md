@@ -401,7 +401,11 @@ foreach ($collectionOfItemsToProcess as $itemToProcess) {
 
 Following an uncompleted list of available PSR3-Logger components.
 
-* [talkback](https://github.com/chrisnoden/talkback)
+* [Talkback](https://github.com/chrisnoden/talkback)
+* [Logger](https://github.com/geoffroy-aubry/Logger)
+* [Simple Logger](https://github.com/fguillot/simpleLogger)
+* [Analog](https://github.com/jbroadway/analog)
+* [Packagist Search For PSR-3](https://packagist.org/search/?tags=psr-3)
 
 # Licence
 
