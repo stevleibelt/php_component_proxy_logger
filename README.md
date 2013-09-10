@@ -301,9 +301,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
 
 //it is assumed that a logger is returned, that implements the \Psr\Log\LoggerInterface
 $realLogger = $this->getMyLogger();
-$logRequestFactory = new LogRequestFactory();
-$logRequestBufferFactory = new LogRequestBufferFactory();
-$bufferLoggerFactory = BufferLoggerFactory($realLogger, $logRequestFactory, $logRequestBufferFactory);
+$bufferLoggerFactory = BufferLoggerFactory($realLogger);
 
 $bufferLogger = $bufferLoggerFactory->create();
 
@@ -353,7 +351,7 @@ $realLogger = $this->getMyLogger();
 
 //enable bypass for log requests with log level info
 $bypassBuffer->addBypassForLogLevelInfo();
-$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger);
+$manipulateBufferLoggerFactory = ManipulateBufferLoggerFactory($realLogger, null, null, null $bypassBuffer);
 $manipulateBufferLogger = $bufferLoggerFactory->create();
 
 //it is assumed that a collection object or a plain array with items is returned
