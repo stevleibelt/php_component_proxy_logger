@@ -21,18 +21,32 @@ use Psr\Log\LoggerInterface;
 class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInterface
 {
     /**
+     * If not provided, following factories are used as default.
+     *  - LogRequestFactory with log request class name of LogRequest
+     *  - LogRequestRuntimeBufferFactory
+     *
      * @param LoggerInterface $logger
-     * @param LogRequestFactoryInterface $logRequestFactory
-     * @param LogRequestBufferFactoryInterface $logRequestBufferFactory
+     * @param null|LogRequestFactoryInterface $logRequestFactory
+     * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
      * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory, LogRequestBufferFactoryInterface $logRequestBufferFactory, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null)
+    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory = null, LogRequestBufferFactoryInterface $logRequestBufferFactory = null, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null)
     {
         $manipulateBufferLogger = new ManipulateBufferLogger();
+
+        if (is_null($logRequestFactory)) {
+            $logRequestFactory = new LogRequestFactory();
+            $logRequestFactory->setLogRequestClassName('LogRequest');
+        }
+
+        if (is_null($logRequestBufferFactory)) {
+            $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
+        }
+
         $manipulateBufferLogger->addLogger($logger);
         $manipulateBufferLogger->setLogRequestFactory($logRequestFactory);
         $manipulateBufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
