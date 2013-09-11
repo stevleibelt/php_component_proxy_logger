@@ -20,13 +20,6 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
 class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLoggerInterface
 {
     /**
-     * @var mixed
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected $triggerLevel;
-
-    /**
      * @var FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-02
@@ -164,7 +157,7 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      */
     protected function flushTheBuffer($level)
     {
-        return (($level == $this->triggerLevel)
-                || ($this->flushBufferTrigger->triggerBufferFlush($level)));
+        return ($this->hasFlushBufferTrigger()
+            && $this->flushBufferTrigger->triggerBufferFlush($level));
     }
 }

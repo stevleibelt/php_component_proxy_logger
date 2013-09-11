@@ -416,6 +416,8 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * readme examples are also provided as try out code example
+* [1.0.2](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.2)
+    * fixed error in *ManipulateBufferLogger::flushTheBuffer*
 * [1.0.1](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.1)
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *BufferLoggerFactoryInterface*
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *ManipulateBufferLoggerFactoryInterface*
