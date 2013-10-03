@@ -10,8 +10,6 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulation\NeverFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
