@@ -425,22 +425,22 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *BufferLoggerFactoryInterface*
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *ManipulateBufferLoggerFactoryInterface*
 * [1.0.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.0) - released at 2013-09-08
+    * added a lot more example
+    * added threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
     * big refactoring to easy up trigger and bypass handling for buffer manipulation
     * renamed LogEntry to LogRequest
     * restructured project
-    * added a lot more example
-    * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
 * [0.9.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/0.9.0) - released at 2013-08-29
-    * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
+    * DefaultMap to trigger inherited log levels by only providing one log level
+    * IsValidLogLevel to validate if provided log level is meeting the LogLevel requirement as a well defined value
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
     * LogEntry class to use a [simple value object](http://en.wikipedia.org/wiki/Data_Transfer_Object)
-    * LogEntryFactory to easy up LogRequest creation
     * LogEntryCollection for easy dealing with multiple LogEntries
-    * IsValidLogLevel to validate if provided log level is meeting the LogLevel requirement as a well defined value
-    * DefaultMap to trigger inherited log levels by only providing one log level
+    * LogEntryFactory to easy up LogRequest creation
+    * TriggerBufferLogger - flushes the buffer by configured log level
 
-# Upcoming Features
+# Future Thoughts
 
 * think about using a numbers internal instead of log level arrays for validating if current log level is below or in (in the hierarchy point of view) the trigger
 * add description about benefits of using *UpwardFlushBufferTrigger*
