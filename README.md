@@ -453,6 +453,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 * implement locking
 * implement "unsetFlushBufferTrigger" to AwareInterface
 * implement "unsetBypassBuffer" to AwareInterface
+* validate if [monolog](https://github.com/Seldaek/monolog) is not doing the same thing
 * submit idea to [log4php](https://logging.apache.org/log4php/)
     * [Contributing](http://wiki.apache.org/logging-log4php/Contributing)
     * [Installing](http://logging.apache.org/log4php/install.html)
