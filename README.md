@@ -416,20 +416,21 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * readme examples are also provided as try out code example
-    * add example that provides same logging code with and without proxy logger
     * refactor UpwardFlushBufferTrigger - replace complex array with numbers
-* [1.0.2](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.2)
+* [1.0.3](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.3) - released at 2013-10-04
+    * add example that provides same logging code with and without proxy logger
+* [1.0.2](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.2) - released at 2013-09-11
     * fixed error in *ManipulateBufferLogger::flushTheBuffer*
-* [1.0.1](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.1)
+* [1.0.1](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.1) - released at 2013-09-10
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *BufferLoggerFactoryInterface*
     * declare *LogRequestFactoryInterface* and *LogRequestBufferFactoryInterface* as optional for factory *ManipulateBufferLoggerFactoryInterface*
-* [1.0.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.0)
+* [1.0.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.0) - released at 2013-09-08
     * big refactoring to easy up trigger and bypass handling for buffer manipulation
     * renamed LogEntry to LogRequest
     * restructured project
     * added a lot more example
     * add threshold level for ManipulateBufferLogger that enables the possibility to bypass the buffer for certain levels (by BypassBufferInterface)
-* [0.9.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/0.9.0)
+* [0.9.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/0.9.0) - released at 2013-08-29
     * TriggerBufferLogger - flushes the buffer by configured log level
     * BufferLogger - buffers log messages and provides *flush* or *clean* for buffer control
     * ProxyLogger - generic proxy class that is working internally with the injected the [PSR-3 logger](https://github.com/php-fig/log)
