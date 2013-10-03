@@ -6,10 +6,7 @@
 
 namespace Example\BufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
