@@ -19,18 +19,25 @@ use Psr\Log\LogLevel;
 class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
 {
     /**
-     * @var array
+     * @var int
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-04
+     * @since 2013-09-05
      */
-    protected $triggerAndUpwardLogLevelMap;
+    private $logLevelDefaultWeight;
+
+    /**
+     * @var int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-05
+     */
+    private $logLevelMinimumWeight;
 
     /**
      * @var array
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
+     * @since 2013-09-04
      */
-    protected $upwardLogLevel;
+    private $logLevelToWeight;
 
     /**
      * @param array $logLevelsToPass
@@ -39,7 +46,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      */
     public function __construct(array $logLevelsToPass = array())
     {
-        $this->triggerAndUpwardLogLevelMap = array(
+        $this->logLevelToWeight = array(
             LogLevel::DEBUG => 0,
             LogLevel::INFO => 1,
             LogLevel::NOTICE => 2,
@@ -49,6 +56,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
             LogLevel::ALERT => 6,
             LogLevel::EMERGENCY => 7
         );
+        $this->logLevelDefaultWeight = $this->mapLogLevelToWeight(LogLevel::DEBUG);
     }
 
     /**
@@ -62,9 +70,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     {
         parent::setTriggerTo($logLevel);
 
-        $this->upwardLogLevel = (isset($this->triggerAndUpwardLogLevelMap[$this->trigger]))
-            ? $this->triggerAndUpwardLogLevelMap[$this->trigger]
-            : $this->triggerAndUpwardLogLevelMap[LogLevel::DEBUG];
+        $this->logLevelMinimumWeight = $this->mapLogLevelToWeight($logLevel);
 
         return $this;
     }
@@ -80,6 +86,19 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     {
         return ($this->hasTrigger()
             && (($this->trigger == $logLevel)
-                || ($this->upwardLogLevel >= $logLevel)));
+                || ($this->logLevelMinimumWeight <= $this->mapLogLevelToWeight($logLevel))));
+    }
+
+    /**
+     * @param $logLevel
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-05
+     */
+    protected function mapLogLevelToWeight($logLevel)
+    {
+        return (isset($this->logLevelToWeight[$logLevel]))
+            ? $this->logLevelToWeight[$logLevel]
+            : $this->logLevelDefaultWeight;
     }
 }
