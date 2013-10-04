@@ -420,6 +420,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * readme examples are also provided as try out code example
+* [1.0.4](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.4) - not yet released
     * refactor UpwardFlushBufferTrigger - replace complex array with numbers
 * [1.0.3](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.3) - released at 2013-10-04
     * add example that provides same logging code with and without proxy logger
