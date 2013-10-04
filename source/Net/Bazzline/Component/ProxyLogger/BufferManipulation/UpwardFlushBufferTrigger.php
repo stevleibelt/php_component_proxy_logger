@@ -30,7 +30,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-05
      */
-    protected $upwardLogLevels;
+    protected $upwardLogLevel;
 
     /**
      * @param array $logLevelsToPass
@@ -40,48 +40,14 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     public function __construct(array $logLevelsToPass = array())
     {
         $this->triggerAndUpwardLogLevelMap = array(
-            LogLevel::DEBUG => array(
-                LogLevel::INFO => true,
-                LogLevel::NOTICE => true,
-                LogLevel::WARNING => true,
-                LogLevel::ERROR => true,
-                LogLevel::CRITICAL => true,
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::INFO => array(
-                LogLevel::NOTICE => true,
-                LogLevel::WARNING => true,
-                LogLevel::ERROR => true,
-                LogLevel::CRITICAL => true,
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::NOTICE => array(
-                LogLevel::WARNING => true,
-                LogLevel::ERROR => true,
-                LogLevel::CRITICAL => true,
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::WARNING => array(
-                LogLevel::ERROR => true,
-                LogLevel::CRITICAL => true,
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::ERROR => array(
-                LogLevel::CRITICAL => true,
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::CRITICAL => array(
-                LogLevel::ALERT => true,
-                LogLevel::EMERGENCY => true
-            ),
-            LogLevel::ALERT => array(
-                LogLevel::EMERGENCY => true
-            )
+            LogLevel::DEBUG => 0,
+            LogLevel::INFO => 1,
+            LogLevel::NOTICE => 2,
+            LogLevel::WARNING => 3,
+            LogLevel::ERROR => 4,
+            LogLevel::CRITICAL => 5,
+            LogLevel::ALERT => 6,
+            LogLevel::EMERGENCY => 7
         );
     }
 
@@ -96,9 +62,9 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     {
         parent::setTriggerTo($logLevel);
 
-        $this->upwardLogLevels = (isset($this->triggerAndUpwardLogLevelMap[$this->trigger]))
+        $this->upwardLogLevel = (isset($this->triggerAndUpwardLogLevelMap[$this->trigger]))
             ? $this->triggerAndUpwardLogLevelMap[$this->trigger]
-            : array();
+            : $this->triggerAndUpwardLogLevelMap[LogLevel::DEBUG];
 
         return $this;
     }
@@ -114,6 +80,6 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     {
         return ($this->hasTrigger()
             && (($this->trigger == $logLevel)
-                || isset($this->upwardLogLevels[$logLevel])));
+                || ($this->upwardLogLevel >= $logLevel)));
     }
 }
