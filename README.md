@@ -419,6 +419,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
+    * add example how to add a proxy logger in a proxy logger
     * readme examples are also provided as try out code example
     * rename *BufferManipulation* to *BufferManipulator*
     * replace AwareInterfaces with DependendInterfaces where needed
