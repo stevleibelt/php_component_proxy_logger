@@ -4,20 +4,20 @@
  * @since 2013-09-06 
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\NeverFlushBufferTrigger;
-use Psr\Log\LogLevel;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\AlwaysFlushBufferTrigger;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
+use Psr\Log\LogLevel;
 
 /**
- * Class NeverFlushBufferTriggerTest
+ * Class AlwaysFlushBufferTriggerTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class NeverFlushBufferTriggerTest extends TestCase
+class AlwaysFlushBufferTriggerTest extends TestCase
 {
     /**
      * @return array
@@ -30,22 +30,22 @@ class NeverFlushBufferTriggerTest extends TestCase
             'no log level set no trigger' => array(
                 'logLevel' => null,
                 'logLevelToTrigger' => null,
-                'expectedAvoidBuffering' => false
+                'expectedAvoidBuffering' => true
             ),
             'log level set but not trigger' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToTrigger' => null,
-                'expectedTriggerBufferFlush' => false
+                'expectedTriggerBufferFlush' => true
             ),
             'log level set but different trigger' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
                 'logLevelToTrigger' => LogLevel::INFO,
-                'expectedTriggerBufferFlush' => false
+                'expectedTriggerBufferFlush' => true
             ),
             'log level set and same to trigger' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToTrigger' => LogLevel::INFO,
-                'expectedTriggerBufferFlush' => false
+                'expectedTriggerBufferFlush' => true
             )
         );
     }
@@ -61,7 +61,7 @@ class NeverFlushBufferTriggerTest extends TestCase
      */
     public function testTriggerBufferFlush($logLevelToAdd, $logLevelToTrigger, $expectedTriggerBufferFlush)
     {
-        $flushBufferTrigger = new NeverFlushBufferTrigger();
+        $flushBufferTrigger = new AlwaysFlushBufferTrigger();
         if (!is_null($logLevelToTrigger)) {
             $flushBufferTrigger->setTriggerTo($logLevelToTrigger);
         }

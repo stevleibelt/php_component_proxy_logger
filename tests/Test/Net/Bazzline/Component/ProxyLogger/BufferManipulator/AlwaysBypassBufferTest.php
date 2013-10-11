@@ -4,20 +4,20 @@
  * @since 2013-09-06
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\NeverBypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\AlwaysBypassBuffer;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
- * Class NeverBypassBufferTest
+ * Class AlwaysBypassBufferTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class NeverBypassBufferTest extends TestCase
+class AlwaysBypassBufferTest extends TestCase
 {
     /**
      * @return array
@@ -30,22 +30,22 @@ class NeverBypassBufferTest extends TestCase
             'no log level set no bypass' => array(
                 'logLevel' => null,
                 'logLevelToBypass' => null,
-                'expectedBypassBufferValue' => false
+                'expectedBypassBufferValue' => true
             ),
             'log level set but not bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => null,
-                'expectedBypassBufferValue' => false
+                'expectedBypassBufferValue' => true
             ),
             'log level set but different bypass' => array(
                 'logLevelToAdd' => LogLevel::DEBUG,
                 'logLevelToBypass' => LogLevel::INFO,
-                'expectedBypassBufferValue' => false
+                'expectedBypassBufferValue' => true
             ),
             'log level set and same to bypass' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToBypass' => LogLevel::INFO,
-                'expectedBypassBufferValue' => false
+                'expectedBypassBufferValue' => true
             )
         );
     }
@@ -61,7 +61,7 @@ class NeverBypassBufferTest extends TestCase
      */
     public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
     {
-        $buffer = new NeverBypassBuffer();
+        $buffer = new AlwaysBypassBuffer();
         if (!is_null($logLevelToBypass)) {
             $buffer->addBypassForLogLevel($logLevelToBypass);
         }

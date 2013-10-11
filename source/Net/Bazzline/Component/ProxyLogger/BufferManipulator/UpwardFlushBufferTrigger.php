@@ -4,7 +4,7 @@
  * @since 9/2/13
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
 use Psr\Log\LogLevel;
@@ -12,7 +12,7 @@ use Psr\Log\LogLevel;
 /**
  * Class UpwardFlushBufferTrigger
  *
- * @package Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */

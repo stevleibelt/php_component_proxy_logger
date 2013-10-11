@@ -1,23 +1,23 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-09-06
+ * @since 2013-09-06 
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\FlushBufferTrigger;
-use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverFlushBufferTrigger;
 use Psr\Log\LogLevel;
+use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
- * Class FlushBufferTriggerTest
+ * Class NeverFlushBufferTriggerTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
-class FlushBufferTriggerTest extends TestCase
+class NeverFlushBufferTriggerTest extends TestCase
 {
     /**
      * @return array
@@ -45,7 +45,7 @@ class FlushBufferTriggerTest extends TestCase
             'log level set and same to trigger' => array(
                 'logLevelToAdd' => LogLevel::INFO,
                 'logLevelToTrigger' => LogLevel::INFO,
-                'expectedTriggerBufferFlush' => true
+                'expectedTriggerBufferFlush' => false
             )
         );
     }
@@ -61,7 +61,7 @@ class FlushBufferTriggerTest extends TestCase
      */
     public function testTriggerBufferFlush($logLevelToAdd, $logLevelToTrigger, $expectedTriggerBufferFlush)
     {
-        $flushBufferTrigger = new FlushBufferTrigger();
+        $flushBufferTrigger = new NeverFlushBufferTrigger();
         if (!is_null($logLevelToTrigger)) {
             $flushBufferTrigger->setTriggerTo($logLevelToTrigger);
         }

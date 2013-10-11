@@ -6,8 +6,8 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\NeverFlushBufferTrigger;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;

@@ -4,7 +4,7 @@
  * @since 2013-09-02 
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 /**
  * Class BypassBufferInterface

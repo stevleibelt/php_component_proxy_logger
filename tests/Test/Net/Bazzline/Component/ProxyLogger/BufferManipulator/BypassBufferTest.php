@@ -4,16 +4,16 @@
  * @since 2013-09-05 
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
  * Class BypassBufferTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */

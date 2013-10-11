@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\Proxy;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
@@ -21,14 +21,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 class ManipulateBufferLoggerTest extends TestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBufferInterface
+     * @var \Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     private $avoidBuffer;
 
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\BufferManipulation\FlushBufferTriggerInterface
+     * @var \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */

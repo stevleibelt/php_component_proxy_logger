@@ -4,7 +4,7 @@
  * @since 2013-08-29 
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
 

@@ -4,12 +4,12 @@
  * @since 2013-09-05 
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 /**
  * Class NeverBypassBuffer
  *
- * @package Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-05
  */

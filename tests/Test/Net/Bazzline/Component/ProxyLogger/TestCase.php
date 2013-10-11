@@ -131,13 +131,13 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulation\AlwaysFlushBufferTrigger
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\AlwaysFlushBufferTrigger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     protected function getNewAbstractFlushBufferTrigger()
     {
-        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulation\AlwaysFlushBufferTrigger[triggerBufferFlush]');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulator\AlwaysFlushBufferTrigger[triggerBufferFlush]');
     }
 
     /**
@@ -151,12 +151,12 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
     protected function getBypassBuffer()
     {
-        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer');
     }
 }

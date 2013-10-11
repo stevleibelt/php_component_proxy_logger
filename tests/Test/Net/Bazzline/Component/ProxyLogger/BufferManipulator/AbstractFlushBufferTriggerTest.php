@@ -4,7 +4,7 @@
  * @since 2013-09-06
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation;
+namespace Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 use Mockery;
 use Psr\Log\LogLevel;
@@ -13,7 +13,7 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class AbstractFlushBufferTriggerTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulation
+ * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-06
  */
