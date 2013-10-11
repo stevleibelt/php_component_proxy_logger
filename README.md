@@ -421,8 +421,9 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * add example how to add a proxy logger in a proxy logger
     * readme examples are also provided as try out code example
-    * rename *BufferManipulation* to *BufferManipulator*
     * replace AwareInterfaces with DependendInterfaces where needed
+* [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
+    * rename *BufferManipulation* to *BufferManipulator*
 * [1.0.4](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.4) - released at 2013-10-05
     * refactor UpwardFlushBufferTrigger - replace complex array with numbers
 * [1.0.3](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.3) - released at 2013-10-04
