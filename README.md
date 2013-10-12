@@ -420,6 +420,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * add example how to add a proxy logger in a proxy logger
+    * adapt factories, replace all the parameters in the create call with some "setBufferClassName" methods
     * readme examples are also provided as try out code example
     * replace AwareInterfaces with DependendInterfaces where needed
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
