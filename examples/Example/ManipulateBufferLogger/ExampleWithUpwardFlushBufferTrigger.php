@@ -6,7 +6,6 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverBypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
@@ -51,12 +50,12 @@ class ExampleWithUpwardFlushBufferTrigger
      */
     public function setup()
     {
-        $bypassBuffer = new NeverBypassBuffer();
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTrigger = new UpwardFlushBufferTrigger();
+        $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger, null, null, $flushBufferTrigger, $bypassBuffer);
+        $this->logger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }

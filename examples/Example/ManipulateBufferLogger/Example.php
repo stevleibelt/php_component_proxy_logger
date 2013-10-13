@@ -55,8 +55,10 @@ class Example
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTrigger = new FlushBufferTrigger();
+        $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
+        $manipulateBufferLoggerFactory->setBypassBuffer($bypassBuffer);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger, null, null, $flushBufferTrigger, $bypassBuffer);
+        $this->logger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }
