@@ -6,9 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
-use Psr\Log\LoggerInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferAwareInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerAwareInterface;
 
 /**
  * Class ManipulateBufferLoggerFactoryInterface
@@ -16,24 +15,8 @@ use Psr\Log\LoggerInterface;
  * @package Net\Bazzline\Component\ProxyLogger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
+ * @todo replace injection of BypassBuffer and FlushBufferTrigger with factories
  */
-interface ManipulateBufferLoggerFactoryInterface
+interface ManipulateBufferLoggerFactoryInterface extends BufferLoggerFactoryInterface, FlushBufferTriggerAwareInterface, BypassBufferAwareInterface
 {
-    /**
-     * @param LoggerInterface $logger
-     * @param null|LogRequestFactoryInterface $logRequestFactory
-     * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
-     * @param null|FlushBufferTriggerInterface $flushBufferTrigger
-     * @param null|BypassBufferInterface $bypassBuffer
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function create(
-        LoggerInterface $logger,
-        LogRequestFactoryInterface $logRequestFactory = null,
-        LogRequestBufferFactoryInterface $logRequestBufferFactory = null,
-        FlushBufferTriggerInterface $flushBufferTrigger = null,
-        BypassBufferInterface $bypassBuffer = null
-    );
 }

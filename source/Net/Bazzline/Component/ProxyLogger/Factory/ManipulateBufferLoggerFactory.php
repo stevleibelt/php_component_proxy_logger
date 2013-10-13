@@ -18,32 +18,46 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInterface
+class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements ManipulateBufferLoggerFactoryInterface
 {
+    /**
+     * @var BypassBufferInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-13
+     */
+    protected $bypassBuffer;
+
+    /**
+     * @var FlushBufferTriggerInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-13
+     */
+    protected $flushBufferTrigger;
+
     /**
      * If not provided, following factories are used as default.
      *  - LogRequestFactory with log request class name of LogRequest
      *  - LogRequestRuntimeBufferFactory
      *
      * @param LoggerInterface $logger
-     * @param null|LogRequestFactoryInterface $logRequestFactory
-     * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
-     * @param null|FlushBufferTriggerInterface $flushBufferTrigger
-     * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory = null, LogRequestBufferFactoryInterface $logRequestBufferFactory = null, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null)
+    public function create(LoggerInterface $logger)
     {
         $manipulateBufferLogger = new ManipulateBufferLogger();
 
-        if (is_null($logRequestFactory)) {
+        if ($this->hasLogRequestFactory()) {
+            $logRequestFactory = $this->logRequestFactory;
+        } else {
             $logRequestFactory = new LogRequestFactory();
             $logRequestFactory->setLogRequestClassName('LogRequest');
         }
 
-        if (is_null($logRequestBufferFactory)) {
+        if ($this->hasLogRequestBufferFactory()) {
+            $logRequestBufferFactory = $this->logRequestBufferFactory;
+        } else {
             $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         }
 
@@ -51,14 +65,80 @@ class ManipulateBufferLoggerFactory implements ManipulateBufferLoggerFactoryInte
         $manipulateBufferLogger->setLogRequestFactory($logRequestFactory);
         $manipulateBufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
 
-        if (!is_null($flushBufferTrigger)) {
-            $manipulateBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
+        if ($this->hasFlushBufferTrigger()) {
+            $manipulateBufferLogger->setFlushBufferTrigger($this->flushBufferTrigger);
         }
 
-        if (!is_null($bypassBuffer)) {
-            $manipulateBufferLogger->setBypassBuffer($bypassBuffer);
+        if ($this->hasBypassBuffer()) {
+            $manipulateBufferLogger->setBypassBuffer($this->bypassBuffer);
         }
 
         return $manipulateBufferLogger;
+    }
+
+    /**
+     * @return null|BypassBufferInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function getBypassBuffer()
+    {
+        return $this->bypassBuffer;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasBypassBuffer()
+    {
+        return (!is_null($this->bypassBuffer));
+    }
+
+    /**
+     * @param BypassBufferInterface $bypassBuffer
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function setBypassBuffer(BypassBufferInterface $bypassBuffer)
+    {
+        $this->bypassBuffer = $bypassBuffer;
+
+        return $this;
+    }
+
+    /**
+     * @return null|FlushBufferTriggerInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function getFlushBufferTrigger()
+    {
+        return $this->flushBufferTrigger;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasFlushBufferTrigger()
+    {
+        return (!is_null($this->flushBufferTrigger));
+    }
+
+    /**
+     * @param FlushBufferTriggerInterface $flushBufferTrigger
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function setFlushBufferTrigger(FlushBufferTriggerInterface $flushBufferTrigger)
+    {
+        $this->flushBufferTrigger = $flushBufferTrigger;
+
+        return $this;
     }
 }
