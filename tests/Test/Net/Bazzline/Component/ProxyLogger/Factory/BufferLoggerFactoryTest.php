@@ -64,6 +64,8 @@ class BufferLoggerFactoryTest extends TestCase
         $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
+        $factory->setLogRequestFactory($logRequestFactory);
+        $factory->setLogRequestBufferFactory($logRequestBufferFactory);
 
         $bufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory);
 
