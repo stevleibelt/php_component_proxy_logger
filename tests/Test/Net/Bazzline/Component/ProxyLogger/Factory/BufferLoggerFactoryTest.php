@@ -15,6 +15,7 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-08
+ * @todo implement tests for AwareInterfaces
  */
 class BufferLoggerFactoryTest extends TestCase
 {
@@ -67,7 +68,7 @@ class BufferLoggerFactoryTest extends TestCase
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
 
-        $bufferLogger = $factory->create($logger, $logRequestFactory, $logRequestBufferFactory);
+        $bufferLogger = $factory->create($logger);
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
