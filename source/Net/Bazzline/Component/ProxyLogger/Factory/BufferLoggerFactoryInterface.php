@@ -19,11 +19,9 @@ interface BufferLoggerFactoryInterface extends LogRequestFactoryAwareInterface, 
 {
     /**
      * @param LoggerInterface $logger
-     * @param null|LogRequestFactoryInterface $logRequestFactory
-     * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
      * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-08
      */
-    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory = null, LogRequestBufferFactoryInterface $logRequestBufferFactory = null);
+    public function create(LoggerInterface $logger);
 }

@@ -38,22 +38,24 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
      *  - LogRequestRuntimeBufferFactory
      *
      * @param LoggerInterface $logger
-     * @param null|LogRequestFactoryInterface $logRequestFactory
-     * @param null|LogRequestBufferFactoryInterface $logRequestBufferFactory
      * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-08
      */
-    public function create(LoggerInterface $logger, LogRequestFactoryInterface $logRequestFactory = null, LogRequestBufferFactoryInterface $logRequestBufferFactory = null)
+    public function create(LoggerInterface $logger)
     {
         $bufferLogger = new BufferLogger();
 
-        if (is_null($logRequestFactory)) {
+        if ($this->hasLogRequestFactory()) {
+            $logRequestFactory = $this->logRequestBufferFactory;
+        } else {
             $logRequestFactory = new LogRequestFactory();
             $logRequestFactory->setLogRequestClassName('LogRequest');
         }
 
-        if (is_null($logRequestBufferFactory)) {
+        if ($this->hasLogRequestBufferFactory()) {
+            $logRequestBufferFactory = $this->logRequestBufferFactory;
+        } else {
             $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         }
 
