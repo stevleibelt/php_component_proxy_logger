@@ -47,7 +47,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
         $bufferLogger = new BufferLogger();
 
         if ($this->hasLogRequestFactory()) {
-            $logRequestFactory = $this->logRequestBufferFactory;
+            $logRequestFactory = $this->logRequestFactory;
         } else {
             $logRequestFactory = new LogRequestFactory();
             $logRequestFactory->setLogRequestClassName('LogRequest');
