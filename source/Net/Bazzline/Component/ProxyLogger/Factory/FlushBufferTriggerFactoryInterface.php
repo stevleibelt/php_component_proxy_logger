@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
+
 /**
  * Class FlushBufferTriggerFactoryInterface
  *
@@ -13,7 +15,7 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-10-13
  */
-interface FlushBufferTriggerFactoryInterface
+interface FlushBufferTriggerFactoryInterface extends IsValidLogLevelAwareInterface
 {
     /**
      * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
