@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger;
+
 /**
  * Class FlushBufferTriggerFactory
  *
@@ -29,7 +31,13 @@ class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
      */
     public function create()
     {
-        // TODO: Implement create() method.
+        $flushBufferTrigger = new FlushBufferTrigger();
+
+        if (!is_null($this->triggerToLogLevel)) {
+            $flushBufferTrigger->setTriggerTo($this->triggerToLogLevel);
+        }
+
+        return $flushBufferTrigger;
     }
 
     /**
