@@ -7,7 +7,6 @@
 namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
-use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 
@@ -18,7 +17,7 @@ use Psr\Log\LogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-04
  */
-abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface, IsValidLogLevelAwareInterface
+abstract class AbstractFlushBufferTrigger implements FlushBufferTriggerInterface
 {
     /**
      * @var IsValidLogLevel

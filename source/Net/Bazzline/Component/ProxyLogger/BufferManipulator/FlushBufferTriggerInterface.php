@@ -7,6 +7,7 @@
 namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
 
 use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
+use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
 
 /**
  * Class FlushBufferTriggerInterface
@@ -15,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-interface FlushBufferTriggerInterface
+interface FlushBufferTriggerInterface extends IsValidLogLevelAwareInterface
 {
     /**
      * @return $this
