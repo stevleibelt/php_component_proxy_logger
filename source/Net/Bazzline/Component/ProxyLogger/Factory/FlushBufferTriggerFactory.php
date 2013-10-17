@@ -16,6 +16,13 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
 {
     /**
+     * @var string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-18
+     */
+    private $triggerToLogLevel;
+
+    /**
      * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-13
@@ -33,6 +40,8 @@ class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
      */
     public function setTriggerToLogLevel($logLevel)
     {
-        // TODO: Implement setTriggerToLogLevel() method.
+        $this->triggerToLogLevel = $logLevel;
+
+        return $this;
     }
 }
