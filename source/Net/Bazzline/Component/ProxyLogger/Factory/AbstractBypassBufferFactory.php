@@ -10,14 +10,21 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
 
 /**
- * Class BypassBufferFactory
+ * Class AbstractBypassBufferFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-10-14
  */
-class BypassBufferFactory implements BypassBufferFactoryInterface
+class AbstractBypassBufferFactory implements BypassBufferFactoryInterface
 {
+    /**
+     * @var string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-19
+     */
+    protected $bypassBufferClassName;
+
     /**
      * @var array
      * @author stev leibelt <artodeto@arcor.de>
@@ -32,8 +39,10 @@ class BypassBufferFactory implements BypassBufferFactoryInterface
      */
     public function create()
     {
-        $bypassBuffer = new BypassBuffer();
-
+        $bypassBuffer = new $this->bypassBufferClassName();
+        /**
+         * @var \Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface $bypassBuffer
+         */
         foreach ($this->logLevelsToBypass as $logLevelToBypass) {
             $bypassBuffer->addBypassForLogLevel($logLevelToBypass);
         }
