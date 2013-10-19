@@ -423,6 +423,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
     * adapt factories, replace all the parameters in the create call with some "setBufferClassName" methods
     * adapt factories added awareInterfaces to fitting buffer manipulators
     * adapt interfaces by renameing fitting once from AwareInterface to DependInterface
+    * create factories for buffer manipulator
     * readme examples are also provided as try out code example
     * replace AwareInterfaces with DependendInterfaces where needed
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
