@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverBypassBuffer;
+
 /**
  * Class NeverBypassBufferFactory
  *
@@ -16,11 +18,12 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 class NeverBypassBufferFactory extends AbstractBypassBufferFactory
 {
     /**
+     * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-10-19
+     * @since 2013-10-20
      */
-    public function __construct()
+    protected function createNewBypassBufferInstance()
     {
-        $this->bypassBufferClassName = '\Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverBypassBuffer';
+        return new NeverBypassBuffer();
     }
 }
