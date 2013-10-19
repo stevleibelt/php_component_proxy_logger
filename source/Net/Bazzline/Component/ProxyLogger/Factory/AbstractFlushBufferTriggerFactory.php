@@ -6,7 +6,6 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger;
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
 
 /**
@@ -16,7 +15,7 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-10-15
  */
-class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
+abstract class AbstractFlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel
@@ -39,7 +38,7 @@ class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
      */
     public function create()
     {
-        $flushBufferTrigger = new FlushBufferTrigger();
+        $flushBufferTrigger = $this->createNewFlushBufferInstance();
 
         if (!is_null($this->triggerToLogLevel)) {
             $flushBufferTrigger->setTriggerTo($this->triggerToLogLevel);
@@ -97,4 +96,11 @@ class FlushBufferTriggerFactory implements FlushBufferTriggerFactoryInterface
 
         return $this;
     }
+
+    /**
+     * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
+    abstract protected function createNewFlushBufferInstance();
 }
