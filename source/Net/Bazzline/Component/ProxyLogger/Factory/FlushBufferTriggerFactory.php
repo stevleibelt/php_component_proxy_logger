@@ -15,7 +15,7 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-10-20
  */
-class FlushBufferLoggerFactory extends AbstractFlushBufferTriggerFactory
+class FlushBufferTriggerFactory extends AbstractFlushBufferTriggerFactory
 {
     /**
      * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
