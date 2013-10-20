@@ -420,10 +420,12 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * add example how to add a proxy logger in a proxy logger
+    * add output of example flush buffer trigger logger versus normal logger to readme
     * adapt factories, replace all the parameters in the create call with some "setBufferClassName" methods
     * adapt factories added awareInterfaces to fitting buffer manipulators
     * readme examples are also provided as try out code example
     * replace AwareInterfaces with DependInterfaces where needed
+    * update factory section in readme and usage in examples
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
     * create factories for buffer manipulator
     * rename *BufferManipulation* to *BufferManipulator*
