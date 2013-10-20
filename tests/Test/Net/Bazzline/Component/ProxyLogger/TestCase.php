@@ -172,4 +172,14 @@ class TestCase extends PHPUnit_Framework_TestCase
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\AbstractBypassBufferFactory[createNewBypassBufferInstance]');
     }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\AbstractFlushBufferTriggerFactory
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
+    protected function getNewAbstractFlushBufferTriggerFactoryMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\AbstractFlushBufferTriggerFactory[createNewFlushBufferTriggerInstance]');
+    }
 }

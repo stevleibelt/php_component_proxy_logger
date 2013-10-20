@@ -26,6 +26,7 @@ interface FlushBufferTriggerFactoryInterface extends IsValidLogLevelAwareInterfa
 
     /**
      * @param string $logLevel
+     * @throws \Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-15

@@ -7,6 +7,7 @@
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
+use Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException;
 
 /**
  * Class FlushBufferTriggerFactory
@@ -53,12 +54,23 @@ abstract class AbstractFlushBufferTriggerFactory implements FlushBufferTriggerFa
 
     /**
      * @param string $logLevel
+     * @throws \Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-15
      */
     public function setTriggerToLogLevel($logLevel)
     {
+        if ($this->hasIsValidLogLevel()) {
+            $this->isValidLogLevel->setLogLevel($logLevel);
+
+            if (!$this->isValidLogLevel->isMet()) {
+                throw new RuntimeException(
+                    'invalid log level provided'
+                );
+            }
+        }
+
         $this->triggerToLogLevel = $logLevel;
 
         return $this;
