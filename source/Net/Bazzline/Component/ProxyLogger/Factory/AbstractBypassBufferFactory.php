@@ -41,8 +41,10 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
     {
         $bypassBuffer = $this->createNewBypassBufferInstance();
 
-        foreach ($this->logLevelsToBypass as $logLevelToBypass) {
-            $bypassBuffer->addBypassForLogLevel($logLevelToBypass);
+        if (is_array($this->logLevelsToBypass)) {
+            foreach ($this->logLevelsToBypass as $logLevelToBypass) {
+                $bypassBuffer->addBypassForLogLevel($logLevelToBypass);
+            }
         }
 
         return $bypassBuffer;
