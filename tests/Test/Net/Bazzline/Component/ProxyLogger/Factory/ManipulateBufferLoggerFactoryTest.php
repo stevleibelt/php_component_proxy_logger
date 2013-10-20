@@ -25,7 +25,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLogger()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
+        $logger = $this->getNewPsr3LoggerMock();
 
         $manipulateBufferLogger = $factory->create($logger);
 
@@ -46,8 +46,8 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndWithLogRequestFactory()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
         $factory->setLogRequestFactory($logRequestFactory);
 
         $manipulateBufferLogger = $factory->create($logger);
@@ -67,9 +67,9 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactory()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
         $factory->setLogRequestFactory($logRequestFactory);
@@ -92,12 +92,12 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithFlushBufferTrigger()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
         $factory->setFlushBufferTrigger($flushBufferTrigger);
@@ -119,12 +119,12 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithAvoidBuffer()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $bypassBuffer = $this->getBypassBuffer();
+        $bypassBuffer = $this->getNewBypassBufferMock();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
         $factory->setBypassBuffer($bypassBuffer);
@@ -146,13 +146,13 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndWithLogRequestFactoryAndWithLogRequestBufferFactoryAndWithFlushBufferTriggerAndWithAvoidBuffer()
     {
         $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
-        $bypassBuffer = $this->getBypassBuffer();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
+        $bypassBuffer = $this->getNewBypassBufferMock();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
         $factory->setFlushBufferTrigger($flushBufferTrigger);

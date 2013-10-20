@@ -6,8 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
+use Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException;
 
 /**
  * Class AbstractBypassBufferFactory
@@ -18,6 +18,13 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
  */
 abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterface
 {
+    /**
+     * @var \Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
+    protected $isValidLogLevel;
+
     /**
      * @var array
      * @author stev leibelt <artodeto@arcor.de>
@@ -50,15 +57,52 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
      */
     public function setLogLevelsToBypass(array $logLevelsToBypass)
     {
-        $validator = new IsValidLogLevel();
+        if ($this->hasIsValidLogLevel()) {
+            foreach ($logLevelsToBypass as $logLevelToBypass) {
+                $this->isValidLogLevel->setLogLevel($logLevelToBypass);
 
-        foreach ($logLevelsToBypass as $logLevelToBypass) {
-            $validator->setLogLevel($logLevelsToBypass);
-
-            $validator->isMet();
+                if (!$this->isValidLogLevel->isMet()) {
+                    throw new RuntimeException(
+                        'invalid log level provided'
+                    );
+                }
+            }
         }
 
         $this->logLevelsToBypass = $logLevelsToBypass;
+
+        return $this;
+    }
+
+    /**
+     * @return null|IsValidLogLevel
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function getIsValidLogLevel()
+    {
+        return $this->isValidLogLevel;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function hasIsValidLogLevel()
+    {
+        return (!is_null($this->isValidLogLevel));
+    }
+
+    /**
+     * @param IsValidLogLevel $isValidLogLevel
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-04
+     */
+    public function setIsValidLogLevel(IsValidLogLevel $isValidLogLevel)
+    {
+        $this->isValidLogLevel = $isValidLogLevel;
 
         return $this;
     }

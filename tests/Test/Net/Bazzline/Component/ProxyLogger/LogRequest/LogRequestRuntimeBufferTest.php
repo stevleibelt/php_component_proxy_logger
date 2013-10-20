@@ -26,7 +26,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     public function testCreation()
     {
         $collection = $this->getNewBuffer();
-        $request = $this->getLogRequest();
+        $request = $this->getNewLogRequestMock();
 
         $this->assertEquals(0, $collection->count());
         $this->assertFalse($collection->contains($request));
@@ -39,7 +39,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     public function testAttach()
     {
         $buffer = $this->getNewBuffer();
-        $buffer->attach($this->getLogRequest());
+        $buffer->attach($this->getNewLogRequestMock());
 
         $this->assertEquals(1, $buffer->count());
     }
@@ -51,7 +51,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     public function testContains()
     {
         $buffer = $this->getNewBuffer();
-        $request = $this->getLogRequest();
+        $request = $this->getNewLogRequestMock();
         $buffer->attach($request);
 
         $this->assertTrue($buffer->contains($request));
@@ -64,7 +64,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     public function testDetach()
     {
         $buffer = $this->getNewBuffer();
-        $request = $this->getLogRequest();
+        $request = $this->getNewLogRequestMock();
         //no error expected when detaching a not attached request
         $buffer->detach($request);
         //now attach and detach request

@@ -42,14 +42,4 @@ class IsValidLogLevelTest extends TestCase
 
         $this->assertFalse($isValidLogLevel->isMet());
     }
-
-    /**
-     * @return IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-06
-     */
-    private function getNewIsValidLogLevel()
-    {
-        return new IsValidLogLevel();
-    }
 }

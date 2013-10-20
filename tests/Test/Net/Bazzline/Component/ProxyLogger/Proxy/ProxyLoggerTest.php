@@ -43,7 +43,7 @@ class ProxyLoggerTest extends TestCase
     {
         $logger = $this->getNewLogger();
 
-        $this->assertEquals($logger, $logger->addLogger($this->getPsr3Logger()));
+        $this->assertEquals($logger, $logger->addLogger($this->getNewPsr3LoggerMock()));
     }
 
     /**
@@ -53,7 +53,7 @@ class ProxyLoggerTest extends TestCase
     public function testEmergency()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::EMERGENCY, $this->message, array())
             ->once();
@@ -69,7 +69,7 @@ class ProxyLoggerTest extends TestCase
     public function testAlert()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ALERT, $this->message, array())
             ->once();
@@ -85,7 +85,7 @@ class ProxyLoggerTest extends TestCase
     public function testCritical()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::CRITICAL, $this->message, array())
             ->once();
@@ -101,7 +101,7 @@ class ProxyLoggerTest extends TestCase
     public function testError()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::ERROR, $this->message, array())
             ->once();
@@ -117,7 +117,7 @@ class ProxyLoggerTest extends TestCase
     public function testWarning()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::WARNING, $this->message, array())
             ->once();
@@ -133,7 +133,7 @@ class ProxyLoggerTest extends TestCase
     public function testNotice()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::NOTICE, $this->message, array())
             ->once();
@@ -149,7 +149,7 @@ class ProxyLoggerTest extends TestCase
     public function testInfo()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
             ->once();
@@ -165,7 +165,7 @@ class ProxyLoggerTest extends TestCase
     public function testDebug()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::DEBUG, $this->message, array())
             ->once();
@@ -181,7 +181,7 @@ class ProxyLoggerTest extends TestCase
     public function testLog()
     {
         $logger = $this->getNewLogger();
-        $realLogger = $this->getPsr3Logger();
+        $realLogger = $this->getNewPsr3LoggerMock();
         $realLogger->shouldReceive('log')
             ->with(LogLevel::INFO, $this->message, array())
             ->once();

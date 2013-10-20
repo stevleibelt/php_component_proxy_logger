@@ -25,7 +25,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToEmergency()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToEmergency();
@@ -40,7 +40,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToAlert()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToAlert();
@@ -55,7 +55,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToCritical()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToCritical();
@@ -70,7 +70,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToError()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToError();
@@ -85,7 +85,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToWarning()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToWarning();
@@ -100,7 +100,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToNotice()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToNotice();
@@ -114,7 +114,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToInfo()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToInfo();
@@ -129,7 +129,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerToDebug()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerToDebug();
@@ -144,7 +144,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetTriggerTo()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
         $flushBufferTrigger->setTriggerTo(LogLevel::DEBUG);
@@ -159,7 +159,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetInvalidTriggerToWithoutIsValidLogLevel()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $myLogLevel = 'love';
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
@@ -178,11 +178,11 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testSetInvalidTriggerToWithIsValidLogLevel()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $myLogLevel = 'love';
         $this->assertFalse($flushBufferTrigger->hasTrigger());
 
-        $isValidLogLevel = $this->getIsValidLogLevel();
+        $isValidLogLevel = $this->getNewIsValidLogLevelMock();
         $isValidLogLevel->shouldReceive('setLogLevel')
             ->with($myLogLevel)
             ->andReturn($isValidLogLevel)
@@ -203,10 +203,10 @@ class AbstractFlushBufferTriggerTest extends TestCase
      */
     public function testGetHasSetValidLogLevel()
     {
-        $flushBufferTrigger = $this->getNewAbstractFlushBufferTrigger();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
         $this->assertFalse($flushBufferTrigger->hasIsValidLogLevel());
 
-        $isValidLogLevel = $this->getIsValidLogLevel();
+        $isValidLogLevel = $this->getNewIsValidLogLevelMock();
         $flushBufferTrigger->setIsValidLogLevel($isValidLogLevel);
 
         $this->assertTrue($flushBufferTrigger->hasIsValidLogLevel());

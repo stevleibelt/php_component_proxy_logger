@@ -25,7 +25,7 @@ class BufferLoggerFactoryTest extends TestCase
     public function testCreateWithLogger()
     {
         $factory = new BufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
+        $logger = $this->getNewPsr3LoggerMock();
 
         $bufferLogger = $factory->create($logger);
 
@@ -44,8 +44,8 @@ class BufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndLogRequestFactory()
     {
         $factory = new BufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
         $factory->setLogRequestFactory($logRequestFactory);
 
         $bufferLogger = $factory->create($logger);
@@ -65,8 +65,8 @@ class BufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerLogRequestBufferFactory()
     {
         $factory = new BufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
@@ -88,9 +88,9 @@ class BufferLoggerFactoryTest extends TestCase
     public function testCreateWithLoggerAndLogRequestFactoryAndLogRequestBufferFactory()
     {
         $factory = new BufferLoggerFactory();
-        $logger = $this->getPsr3Logger();
-        $logRequestFactory = $this->getPlainLogRequestFactory();
-        $logRequestBufferFactory = $this->getPlainLogRequestBufferFactory();
+        $logger = $this->getNewPsr3LoggerMock();
+        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
         $factory->setLogRequestFactory($logRequestFactory);
