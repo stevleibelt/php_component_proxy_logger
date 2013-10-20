@@ -422,11 +422,10 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
     * add example how to add a proxy logger in a proxy logger
     * adapt factories, replace all the parameters in the create call with some "setBufferClassName" methods
     * adapt factories added awareInterfaces to fitting buffer manipulators
-    * adapt interfaces by renameing fitting once from AwareInterface to DependInterface
-    * create factories for buffer manipulator
     * readme examples are also provided as try out code example
-    * replace AwareInterfaces with DependendInterfaces where needed
+    * replace AwareInterfaces with DependInterfaces where needed
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
+    * create factories for buffer manipulator
     * rename *BufferManipulation* to *BufferManipulator*
 * [1.0.4](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.4) - released at 2013-10-05
     * refactor UpwardFlushBufferTrigger - replace complex array with numbers
