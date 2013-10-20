@@ -6,6 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger;
 
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer;

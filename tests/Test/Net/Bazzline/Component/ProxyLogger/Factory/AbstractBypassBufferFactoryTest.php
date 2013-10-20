@@ -21,6 +21,24 @@ class AbstractBypassBufferFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-20
      */
+    public function testIsValidLogLevelAwareInterface()
+    {
+        $factory = $this->getNewAbstractBypassBufferFactoryMock();
+
+        $this->assertFalse($factory->hasIsValidLogLevel());
+        $this->assertNull($factory->getIsValidLogLevel());
+
+        $isValidLogLevel = $this->getNewIsValidLogLevelMock();
+
+        $this->assertEquals($factory, $factory->setIsValidLogLevel($isValidLogLevel));
+        $this->assertTrue($factory->hasIsValidLogLevel());
+        $this->assertEquals($isValidLogLevel, $factory->getIsValidLogLevel());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
     public function testSetInvalidLogLevelsToBypassWithoutIsValidLogLevel()
     {
         $factory = $this->getNewAbstractBypassBufferFactoryMock();
