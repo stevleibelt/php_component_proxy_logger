@@ -6,9 +6,8 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -52,7 +51,8 @@ class ExampleWithUpwardFlushBufferTrigger
     {
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
-        $flushBufferTrigger = new UpwardFlushBufferTrigger();
+        $flushBufferTriggerFactory = new UpwardFlushBufferTriggerFactory();
+        $flushBufferTrigger = $flushBufferTriggerFactory->create();
         $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
 
         $this->logger = $manipulateBufferLoggerFactory->create($logger);

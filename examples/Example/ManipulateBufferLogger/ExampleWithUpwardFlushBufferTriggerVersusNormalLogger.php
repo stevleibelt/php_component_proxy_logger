@@ -6,9 +6,8 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
@@ -60,7 +59,8 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
     {
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
-        $flushBufferTrigger = new UpwardFlushBufferTrigger();
+        $flushBufferTriggerFactory = new UpwardFlushBufferTriggerFactory();
+        $flushBufferTrigger = $flushBufferTriggerFactory->create();
         $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
 
         $this->manipulateBufferLogger = $manipulateBufferLoggerFactory->create($logger);

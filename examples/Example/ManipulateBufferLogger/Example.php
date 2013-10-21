@@ -6,10 +6,9 @@
 
 namespace Example\ManipulateBufferLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\NeverBypassBuffer;
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\NeverBypassBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -51,10 +50,12 @@ class Example
      */
     public function setup()
     {
-        $bypassBuffer = new NeverBypassBuffer();
+        $bypassBufferFactory = new NeverBypassBufferFactory();
+        $bypassBuffer = $bypassBufferFactory->create();
+        $flushBufferTriggerFactory = new FlushBufferTriggerFactory();
+        $flushBufferTrigger = $flushBufferTriggerFactory->create();
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
-        $flushBufferTrigger = new FlushBufferTrigger();
         $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
         $manipulateBufferLoggerFactory->setBypassBuffer($bypassBuffer);
 
