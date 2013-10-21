@@ -99,6 +99,16 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * provides method *create* to return a *ManipulateBufferLoggerInterface* object
 * implemented by *ManipulateBufferLoggerFactory*
 
+### BypassBufferFactoryInterface
+
+* provides method *create* to return a *BypassBufferInterface* object
+* implemented by *AbstractBypassBufferFactory*, *AlwaysBypassBufferFactory*, *BypassBufferFactory* and *NeverBypassBufferFactory*
+
+### FlushBufferTriggerFactoryInterface
+
+* provides method *create* to return *FlushBufferTriggerinterface* object
+* implemented by *AbstractFlushBufferTriggerFactory*, *AlwaysFlushBufferTriggerFactory*, *FlushBufferTriggerFactory*, *NeverFlushBufferTriggerFactory* and *UpwardFlushBufferTriggerFactory*
+
 ## LogRequest
 
 ### LogRequestInterface
