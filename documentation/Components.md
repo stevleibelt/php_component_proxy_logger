@@ -54,7 +54,7 @@
 ### LogRequestFactoryInterface
 
 * provides method *create* to return a *LogRequestInterface* object
-* implemented by *LogRequestFactory*
+* implemented by *LogRequestFactory* and *DateTimePrefixedMessageLogRequestFactory*
 
 ### ProxyLoggerFactoryInterface
 
