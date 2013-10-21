@@ -3,7 +3,7 @@
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
     * add example how to add a proxy logger in a proxy logger
     * add output of example flush buffer trigger logger versus normal logger to readme
-    * adapt factories, replace all the parameters in the create call with some "setBufferClassName" methods
+    * adapt factories, replace setter with factory setters where possible
     * adapt factories added awareInterfaces to fitting buffer manipulators
     * readme examples are also provided as try out code example
     * replace AwareInterfaces with DependInterfaces where needed
