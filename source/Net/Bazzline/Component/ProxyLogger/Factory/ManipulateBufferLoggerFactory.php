@@ -52,7 +52,6 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
             $logRequestFactory = $this->logRequestFactory;
         } else {
             $logRequestFactory = new LogRequestFactory();
-            $logRequestFactory->setLogRequestClassName('LogRequest');
         }
 
         if ($this->hasLogRequestBufferFactory()) {

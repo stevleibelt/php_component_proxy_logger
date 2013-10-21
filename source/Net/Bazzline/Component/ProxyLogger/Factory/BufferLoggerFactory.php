@@ -50,7 +50,6 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
             $logRequestFactory = $this->logRequestFactory;
         } else {
             $logRequestFactory = new LogRequestFactory();
-            $logRequestFactory->setLogRequestClassName('LogRequest');
         }
 
         if ($this->hasLogRequestBufferFactory()) {

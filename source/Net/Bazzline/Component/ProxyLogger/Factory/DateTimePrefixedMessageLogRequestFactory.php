@@ -6,27 +6,28 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\LogRequest\DateTimePrefixedMessageLogRequest;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
-use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
-use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
 
 /**
- * Class LogRequestFactoryInterface
+ * Class DateTimePrefixedMessageLogRequestFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface LogRequestFactoryInterface extends IsValidLogLevelAwareInterface
+class DateTimePrefixedMessageLogRequestFactory extends AbstractLogRequestFactory
 {
     /**
      * @param string $level
      * @param string $message
      * @param array $context
      * @return LogRequestInterface
-     * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
+     * @since 2013-10-21
      */
-    public function create($level, $message, array $context = array());
+    protected function createNewLogRequestInstance($level, $message, array $context = array())
+    {
+        return new DateTimePrefixedMessageLogRequest($level, $message, $context);
+    }
 }
