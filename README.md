@@ -435,10 +435,11 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
     * adapt factories added awareInterfaces to fitting buffer manipulators
     * readme examples are also provided as try out code example
     * replace AwareInterfaces with DependInterfaces where needed
-    * update factory section in readme and usage in examples
+    * update examples for buffer manipulator factories
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
     * create factories for buffer manipulator
     * rename *BufferManipulation* to *BufferManipulator*
+    * update factory section for buffer manipulator factories
 * [1.0.4](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.4) - released at 2013-10-05
     * refactor UpwardFlushBufferTrigger - replace complex array with numbers
 * [1.0.3](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.3) - released at 2013-10-04
