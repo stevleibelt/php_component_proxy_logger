@@ -21,18 +21,18 @@ use Psr\Log\LoggerInterface;
 class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements ManipulateBufferLoggerFactoryInterface
 {
     /**
-     * @var BypassBufferInterface
+     * @var BypassBufferFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-13
      */
-    protected $bypassBuffer;
+    protected $bypassBufferFactory;
 
     /**
-     * @var FlushBufferTriggerInterface
+     * @var FlushBufferTriggerFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-13
      */
-    protected $flushBufferTrigger;
+    protected $flushBufferTriggerFactory;
 
     /**
      * If not provided, following factories are used as default.
@@ -64,12 +64,14 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
         $manipulateBufferLogger->setLogRequestFactory($logRequestFactory);
         $manipulateBufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
 
-        if ($this->hasFlushBufferTrigger()) {
-            $manipulateBufferLogger->setFlushBufferTrigger($this->flushBufferTrigger);
+        if ($this->hasFlushBufferTriggerFactory()) {
+            $flushBufferTrigger = $this->flushBufferTriggerFactory->create();
+            $manipulateBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
         }
 
-        if ($this->hasBypassBuffer()) {
-            $manipulateBufferLogger->setBypassBuffer($this->bypassBuffer);
+        if ($this->hasBypassBufferFactory()) {
+            $bypassBuffer = $this->bypassBufferFactory->create();
+            $manipulateBufferLogger->setBypassBuffer($bypassBuffer);
         }
 
         return $manipulateBufferLogger;
@@ -80,9 +82,9 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function getBypassBuffer()
+    public function getBypassBufferFactory()
     {
-        return $this->bypassBuffer;
+        return $this->bypassBufferFactory;
     }
 
     /**
@@ -90,20 +92,20 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function hasBypassBuffer()
+    public function hasBypassBufferFactory()
     {
-        return (!is_null($this->bypassBuffer));
+        return (!is_null($this->bypassBufferFactory));
     }
 
     /**
-     * @param BypassBufferInterface $bypassBuffer
+     * @param BypassBufferFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setBypassBuffer(BypassBufferInterface $bypassBuffer)
+    public function setBypassBufferFactory(BypassBufferFactoryInterface $factory)
     {
-        $this->bypassBuffer = $bypassBuffer;
+        $this->bypassBufferFactory = $factory;
 
         return $this;
     }
@@ -113,9 +115,9 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function getFlushBufferTrigger()
+    public function getFlushBufferTriggerFactory()
     {
-        return $this->flushBufferTrigger;
+        return $this->flushBufferTriggerFactory;
     }
 
     /**
@@ -123,20 +125,20 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function hasFlushBufferTrigger()
+    public function hasFlushBufferTriggerFactory()
     {
-        return (!is_null($this->flushBufferTrigger));
+        return (!is_null($this->flushBufferTriggerFactory));
     }
 
     /**
-     * @param FlushBufferTriggerInterface $flushBufferTrigger
+     * @param FlushBufferTriggerFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-03
      */
-    public function setFlushBufferTrigger(FlushBufferTriggerInterface $flushBufferTrigger)
+    public function setFlushBufferTriggerFactory(FlushBufferTriggerFactoryInterface $factory)
     {
-        $this->flushBufferTrigger = $flushBufferTrigger;
+        $this->flushBufferTriggerFactory = $factory;
 
         return $this;
     }

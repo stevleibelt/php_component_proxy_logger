@@ -56,8 +56,8 @@ class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTriggerFactory = new UpwardFlushBufferTriggerFactory();
         $flushBufferTrigger = $flushBufferTriggerFactory->create();
-        $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
-        $manipulateBufferLoggerFactory->setBypassBuffer($bypassBuffer);
+        $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTrigger);
+        $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBuffer);
 
         $this->logger = $manipulateBufferLoggerFactory->create($logger);
 

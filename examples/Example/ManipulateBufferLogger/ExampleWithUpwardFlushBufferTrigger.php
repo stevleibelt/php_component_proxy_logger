@@ -53,7 +53,7 @@ class ExampleWithUpwardFlushBufferTrigger
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTriggerFactory = new UpwardFlushBufferTriggerFactory();
         $flushBufferTrigger = $flushBufferTriggerFactory->create();
-        $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
+        $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTrigger);
 
         $this->logger = $manipulateBufferLoggerFactory->create($logger);
 

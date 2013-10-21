@@ -53,7 +53,7 @@ class ExampleWithBypassBuffer
         $bypassBuffer = $bypassBufferFactory->create();
         $logger = new OutputToConsoleLogger();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
-        $manipulateBufferLoggerFactory->setBypassBuffer($bypassBuffer);
+        $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBuffer);
 
         $this->logger = $manipulateBufferLoggerFactory->create($logger);
 

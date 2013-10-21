@@ -61,7 +61,7 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $flushBufferTriggerFactory = new UpwardFlushBufferTriggerFactory();
         $flushBufferTrigger = $flushBufferTriggerFactory->create();
-        $manipulateBufferLoggerFactory->setFlushBufferTrigger($flushBufferTrigger);
+        $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTrigger);
 
         $this->manipulateBufferLogger = $manipulateBufferLoggerFactory->create($logger);
         $this->normalLogger = new OutputToConsoleLogger();
