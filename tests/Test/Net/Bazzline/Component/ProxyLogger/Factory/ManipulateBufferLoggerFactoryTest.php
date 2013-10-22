@@ -97,9 +97,10 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
         $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $flushBufferTriggerFactory = $this->getNewAbstractFlushBufferTriggerFactoryMock();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
+        $flushBufferTriggerFactory = $this->getNewFlushBufferTriggerFactoryMock();
         $flushBufferTriggerFactory->shouldReceive('create')
-            ->andReturn($this->getNewAbstractFlushBufferTriggerMock())
+            ->andReturn($flushBufferTrigger)
             ->once();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
@@ -127,9 +128,10 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
         $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $bypassBufferFactory = $this->getNewAbstractBypassBufferFactoryMock();
+        $bypassBuffer = $this->getNewBypassBufferMock();
+        $bypassBufferFactory = $this->getNewBypassBufferFactoryMock();
         $bypassBufferFactory->shouldReceive('create')
-            ->andReturn($this->getNewBypassBufferMock())
+            ->andReturn($bypassBuffer)
             ->once();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);
@@ -157,13 +159,15 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
         $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
         $logRequestBufferFactory->shouldReceive('create')
             ->once();
-        $flushBufferTriggerFactory = $this->getNewAbstractFlushBufferTriggerFactoryMock();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
+        $flushBufferTriggerFactory = $this->getNewFlushBufferTriggerFactoryMock();
         $flushBufferTriggerFactory->shouldReceive('create')
-            ->andReturn($this->getNewAbstractFlushBufferTriggerMock())
+            ->andReturn($flushBufferTrigger)
             ->once();
-        $bypassBufferFactory = $this->getNewAbstractBypassBufferFactoryMock();
+        $bypassBuffer = $this->getNewBypassBufferMock();
+        $bypassBufferFactory = $this->getNewBypassBufferFactoryMock();
         $bypassBufferFactory->shouldReceive('create')
-            ->andReturn($this->getNewBypassBufferMock())
+            ->andReturn($bypassBuffer)
             ->once();
         $factory->setLogRequestFactory($logRequestFactory);
         $factory->setLogRequestBufferFactory($logRequestBufferFactory);

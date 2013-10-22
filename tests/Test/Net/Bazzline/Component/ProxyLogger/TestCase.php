@@ -7,6 +7,7 @@
 namespace Test\Net\Bazzline\Component\ProxyLogger;
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
+use Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer;
@@ -174,6 +175,16 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
+    protected function getNewBypassBufferFactoryMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory');
+    }
+
+    /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-20
@@ -181,5 +192,15 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function getNewAbstractFlushBufferTriggerFactoryMock()
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\AbstractFlushBufferTriggerFactory[createNewFlushBufferTriggerInstance]');
+    }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-20
+     */
+    protected function getNewFlushBufferTriggerFactoryMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactory');
     }
 }
