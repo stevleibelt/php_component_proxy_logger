@@ -46,9 +46,9 @@ Following an uncompleted list of available PSR3-Logger components.
 
 Taken from the example [upward flush buffer trigger versus normal logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php).
 
-This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example) shows an example process that is working on a collection of items.
+This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example) shows a process that is working on a collection of items.
 
-The first run outputs all logging information's.
+The first run is simple *logging all information's*. This fills up your logs pretty fast.
 
 ```shell
 ----------------------------------------
@@ -88,7 +88,9 @@ First run with normal logger without log level restriction.
 [1382566548] [debug] [done]
 ```
 
-Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's.
+Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests.
+
+But too bad, when something happens *you are loosing information's*.
 
 ```shell
 ----------------------------------------
@@ -102,7 +104,9 @@ Second run with normal logger and log level restriction to warning and above.
 [1382566548] [alert] [can not unlock and schedule processing to id 6]
 ```
 
-The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
+The third run is logging everything without any restriction only, if and for the area where something happens.
+
+You are *not loosing information* and *don't fill up your log* with not needed log requests.
 
 ```shell
 ----------------------------------------
