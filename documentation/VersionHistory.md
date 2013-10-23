@@ -5,12 +5,12 @@
     * add output of example flush buffer trigger logger versus normal logger to readme
     * adapt factories, replace setter with factory setters where possible
     * readme examples are also provided as try out code example
-    * replace AwareInterfaces with DependInterfaces where needed
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
     * adapt proxy logger factories and add awareInterfaces for buffer manipulator factories
     * create factories for buffer manipulator
     * create documentation directory with code from readme
     * rename *BufferManipulation* to *BufferManipulator*
+    * replace AwareInterfaces with DependInterfaces where needed
     * update factory section for buffer manipulator factories
     * update examples for buffer manipulator factories
 * [1.0.4](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.0.4) - released at 2013-10-05
