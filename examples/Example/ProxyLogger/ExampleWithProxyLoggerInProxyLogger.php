@@ -12,18 +12,18 @@ use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithTwoLoggers::create()
+ExampleWithProxyLoggerInProxyLogger::create()
     ->setup()
     ->andRun();
 
 /**
- * Class ExampleWithTwoLoggers
+ * Class ExampleWithProxyLoggerInProxyLogger
  *
  * @package Example\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */
-class ExampleWithTwoLoggers
+class ExampleWithProxyLoggerInProxyLogger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLogger
@@ -53,7 +53,8 @@ class ExampleWithTwoLoggers
         $loggerOne = new OutputToConsoleLogger();
         $loggerTwo = new OutputToConsoleLogger();
 
-        $this->logger = $factory->create($loggerOne);
+        $innerProxyLogger = $factory->create($loggerOne);
+        $this->logger = $factory->create($innerProxyLogger);
         $this->logger->addLogger($loggerTwo);
 
         return $this;
