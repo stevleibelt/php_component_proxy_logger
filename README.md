@@ -49,7 +49,9 @@ Taken from the example [upward flush buffer trigger versus normal logger](https:
 This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example) shows an example process that is working on a collection of items.
 
 The first run outputs all logging information's.
+
 Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's.
+
 The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
 
 ```shell
