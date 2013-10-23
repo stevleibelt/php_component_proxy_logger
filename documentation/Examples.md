@@ -7,34 +7,46 @@ This example shows an example output of a process that deals with some data. Fir
 
 ## Create A Buffer Logger That Flushs The Buffer If Log Level Error Or Above Is Used
 
+Take from (Example01)[https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/Documentation/Example01.php].
+
 ```php
 <?php
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
+use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Psr\Log\LogLevel;
+
 /**
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-09
  */
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+//easy up autoloading by using composer autoloader
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 //craete a psr3 logger
-$logger = MyPSR3Logger();
+$innerLogger = new OutputToConsoleLogger();
 
 //create the trigger
-$flushBuffer = UpwardFlushBufferTrigger();
+$triggerFactory = new UpwardFlushBufferTriggerFactory();
 //set trigger to log level \Psr\Log\LogLevel::ERROR
-$flushBuffer->setTriggerToError();
+$triggerFactory->setTriggerToLogLevel(LogLevel::ERROR);
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory(
-    $logger, null, null, $flushBuffer);
+$loggerFactory = new ManipulateBufferLoggerFactory($innerLogger);
+$loggerFactory->setLogRequestFactory(new LogRequestFactory());
+$loggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
+$loggerFactory->setFlushBufferTriggerFactory($triggerFactory);
+$logger = $loggerFactory->create($innerLogger);
 
 //log request is added to the buffer
-$bufferLogger->info('this is an info message');
+$logger->info('this is an info message');
 //log request is added to the buffer
-$bufferLogger->debug('a debug information');
+$logger->debug('a debug information');
 //buffer flush is triggered
-$bufferLogger->error('the server made a boo boo');
+$logger->error('the server made a boo boo');
 ```
 
 ## Create A Buffer Logger That Bypass Configured Log Requests From Buffer
