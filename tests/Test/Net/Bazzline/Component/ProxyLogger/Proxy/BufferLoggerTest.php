@@ -140,17 +140,12 @@ class BufferLoggerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-06
      */
-    public function testGetHasSetLogRequestFactory()
+    public function testSetLogRequestFactory()
     {
         $bufferLogger = $this->getNewBufferLogger();
-        $this->assertNull($bufferLogger->getLogRequestFactory());
-        $this->assertFalse($bufferLogger->hasLogRequestFactory());
 
         $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
-        $bufferLogger->setLogRequestFactory($logRequestFactory);
-
-        $this->assertTrue($bufferLogger->hasLogRequestFactory());
-        $this->assertEquals($logRequestFactory, $bufferLogger->getLogRequestFactory());
+        $this->assertEquals($bufferLogger, $bufferLogger->setLogRequestFactory($logRequestFactory));
     }
 
     /**

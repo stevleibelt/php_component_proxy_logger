@@ -46,12 +46,6 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
     {
         $bufferLogger = new BufferLogger();
 
-        if ($this->hasLogRequestFactory()) {
-            $logRequestFactory = $this->logRequestFactory;
-        } else {
-            $logRequestFactory = new LogRequestFactory();
-        }
-
         if ($this->hasLogRequestBufferFactory()) {
             $logRequestBufferFactory = $this->logRequestBufferFactory;
         } else {
@@ -59,7 +53,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
         }
 
         $bufferLogger->addLogger($logger);
-        $bufferLogger->setLogRequestFactory($logRequestFactory);
+        $bufferLogger->setLogRequestFactory($this->logRequestFactory);
         $bufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
 
         return $bufferLogger;
@@ -96,26 +90,6 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
         $this->logRequestBufferFactory = $factory;
 
         return $this;
-    }
-
-    /**
-     * @return null|LogRequestFactoryInterface $factory
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function getLogRequestFactory()
-    {
-        return $this->logRequestFactory;
-    }
-
-    /**
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function hasLogRequestFactory()
-    {
-        return (!is_null($this->logRequestFactory));
     }
 
     /**

@@ -26,35 +26,14 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     {
         $factory = new ManipulateBufferLoggerFactory();
         $logger = $this->getNewPsr3LoggerMock();
-
-        $manipulateBufferLogger = $factory->create($logger);
-
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface', $manipulateBufferLogger->getLogRequestFactory());
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface', $manipulateBufferLogger->getLogRequestBufferFactory());
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
-        $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
-        $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-28
-     */
-    public function testCreateWithLoggerAndWithLogRequestFactory()
-    {
-        $factory = new ManipulateBufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
         $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
         $factory->setLogRequestFactory($logRequestFactory);
 
         $manipulateBufferLogger = $factory->create($logger);
 
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface', $manipulateBufferLogger->getLogRequestBufferFactory());
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
         $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
         $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
         $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
@@ -79,7 +58,6 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
         $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
         $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
         $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
@@ -110,7 +88,6 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
         $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
         $this->assertTrue($manipulateBufferLogger->hasFlushBufferTrigger());
         $this->assertFalse($manipulateBufferLogger->hasBypassBuffer());
@@ -141,7 +118,6 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
         $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
         $this->assertFalse($manipulateBufferLogger->hasFlushBufferTrigger());
         $this->assertTrue($manipulateBufferLogger->hasBypassBuffer());
@@ -178,7 +154,6 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $manipulateBufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $manipulateBufferLogger);
-        $this->assertTrue($manipulateBufferLogger->hasLogRequestFactory());
         $this->assertTrue($manipulateBufferLogger->hasLogRequestBufferFactory());
         $this->assertTrue($manipulateBufferLogger->hasFlushBufferTrigger());
         $this->assertTrue($manipulateBufferLogger->hasBypassBuffer());

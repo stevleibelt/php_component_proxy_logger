@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-08
  */
-interface BufferLoggerFactoryInterface extends LogRequestFactoryAwareInterface, LogRequestBufferFactoryAwareInterface
+interface BufferLoggerFactoryInterface extends LogRequestFactoryDependInterface, LogRequestBufferFactoryAwareInterface
 {
     /**
      * @param LoggerInterface $logger

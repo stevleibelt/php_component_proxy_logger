@@ -26,25 +26,6 @@ class BufferLoggerFactoryTest extends TestCase
     {
         $factory = new BufferLoggerFactory();
         $logger = $this->getNewPsr3LoggerMock();
-
-        $bufferLogger = $factory->create($logger);
-
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
-        $this->assertTrue($bufferLogger->hasLogRequestFactory());
-        $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
-        $this->assertFalse($factory->hasLogRequestFactory());
-        $this->assertFalse($factory->hasLogRequestBufferFactory());
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-10
-     */
-    public function testCreateWithLoggerAndLogRequestFactory()
-    {
-        $factory = new BufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
         $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
         $factory->setLogRequestFactory($logRequestFactory);
 
@@ -52,33 +33,8 @@ class BufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
-        $this->assertTrue($bufferLogger->hasLogRequestFactory());
         $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
-        $this->assertTrue($factory->hasLogRequestFactory());
         $this->assertFalse($factory->hasLogRequestBufferFactory());
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-08
-     */
-    public function testCreateWithLoggerLogRequestBufferFactory()
-    {
-        $factory = new BufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
-        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
-        $logRequestBufferFactory->shouldReceive('create')
-            ->once();
-        $factory->setLogRequestBufferFactory($logRequestBufferFactory);
-
-        $bufferLogger = $factory->create($logger);
-
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
-        $this->assertTrue($bufferLogger->hasLogRequestFactory());
-        $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
-        $this->assertFalse($factory->hasLogRequestFactory());
-        $this->assertTrue($factory->hasLogRequestBufferFactory());
     }
 
     /**
@@ -100,9 +56,7 @@ class BufferLoggerFactoryTest extends TestCase
 
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
-        $this->assertTrue($bufferLogger->hasLogRequestFactory());
         $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
-        $this->assertTrue($factory->hasLogRequestFactory());
         $this->assertTrue($factory->hasLogRequestBufferFactory());
     }
 }

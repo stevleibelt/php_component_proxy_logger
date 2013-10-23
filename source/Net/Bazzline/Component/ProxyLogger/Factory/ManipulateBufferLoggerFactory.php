@@ -48,12 +48,6 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
     {
         $manipulateBufferLogger = new ManipulateBufferLogger();
 
-        if ($this->hasLogRequestFactory()) {
-            $logRequestFactory = $this->logRequestFactory;
-        } else {
-            $logRequestFactory = new LogRequestFactory();
-        }
-
         if ($this->hasLogRequestBufferFactory()) {
             $logRequestBufferFactory = $this->logRequestBufferFactory;
         } else {
@@ -61,7 +55,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
         }
 
         $manipulateBufferLogger->addLogger($logger);
-        $manipulateBufferLogger->setLogRequestFactory($logRequestFactory);
+        $manipulateBufferLogger->setLogRequestFactory($this->logRequestFactory);
         $manipulateBufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
 
         if ($this->hasFlushBufferTriggerFactory()) {
