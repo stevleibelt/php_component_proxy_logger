@@ -43,6 +43,16 @@ class ProxyLogger implements ProxyLoggerInterface
     }
 
     /**
+     * @return null|LoggerInterface[]
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-23
+     */
+    public function getLoggers()
+    {
+        return $this->loggers;
+    }
+
+    /**
      * System is unusable.
      *
      * @param string $message

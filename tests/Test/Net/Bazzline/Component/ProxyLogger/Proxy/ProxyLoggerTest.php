@@ -48,6 +48,20 @@ class ProxyLoggerTest extends TestCase
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-23
+     */
+    public function testGetLoggers()
+    {
+        $proxyLogger = $this->getNewLogger();
+        $logger = $this->getNewPsr3LoggerMock();
+        $this->assertNull($proxyLogger->getLoggers());
+
+        $proxyLogger->addLogger($logger);
+        $this->assertEquals(array($logger), $proxyLogger->getLoggers());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
     public function testEmergency()

@@ -25,4 +25,11 @@ interface ProxyLoggerInterface extends LoggerInterface
      * @since 2013-08-29
      */
     public function addLogger(LoggerInterface $logger);
+
+    /**
+     * @return null|LoggerInterface[]
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-23
+     */
+    public function getLoggers();
 }
