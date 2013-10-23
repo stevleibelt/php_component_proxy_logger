@@ -15,6 +15,11 @@ The main idea is to use a proxy with a buffer for one or a collection of [PSR-3 
 * regains freedom and silence in your log files
 * use the proxy logger component to combine management of multiple loggers
 
+# Licence
+
+This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html).
+The full licence text is shipped [within](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/LICENSE) this component package.
+
 # Links
 
 ## Documentation
@@ -36,8 +41,3 @@ Following an uncompleted list of available PSR3-Logger components.
 * [Simple Logger](https://github.com/fguillot/simpleLogger)
 * [Analog](https://github.com/jbroadway/analog)
 * [Packagist Search For PSR-3](https://packagist.org/search/?tags=psr-3)
-
-# Licence
-
-This software is licenced under [GNU LESSER GENERAL PUBLIC LICENSE](https://www.gnu.org/copyleft/lesser.html).   
-The full licence text is shipped [within](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/LICENSE) this component package.
