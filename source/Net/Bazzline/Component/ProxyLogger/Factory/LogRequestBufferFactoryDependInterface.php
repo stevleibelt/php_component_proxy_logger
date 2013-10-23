@@ -7,28 +7,14 @@
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
 /**
- * Class LogRequestBufferFactoryAwareInterface
+ * Class LogRequestBufferFactoryDependInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface LogRequestBufferFactoryAwareInterface
+interface LogRequestBufferFactoryDependInterface
 {
-    /**
-     * @return null|LogRequestBufferFactoryInterface $factory
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function getLogRequestBufferFactory();
-
-    /**
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function hasLogRequestBufferFactory();
-
     /**
      * @param LogRequestBufferFactoryInterface $factory
      * @return mixed

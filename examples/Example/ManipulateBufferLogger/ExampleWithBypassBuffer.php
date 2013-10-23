@@ -7,6 +7,7 @@
 namespace Example\ManipulateBufferLogger;
 
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
@@ -53,8 +54,10 @@ class ExampleWithBypassBuffer
         $bypassBufferFactory = new BypassBufferFactory();
         $logger = new OutputToConsoleLogger();
         $logRequestFactory = new LogRequestFactory();
+        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         $manipulateBufferLoggerFactory = new ManipulateBufferLoggerFactory();
         $manipulateBufferLoggerFactory->setLogRequestFactory($logRequestFactory);
+        $manipulateBufferLoggerFactory->setLogRequestBufferFactory($logRequestBufferFactory);
         $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBufferFactory);
 
         $this->logger = $manipulateBufferLoggerFactory->create($logger);

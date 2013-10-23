@@ -9,6 +9,7 @@ namespace Example\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\DateTimePrefixedMessageLogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -53,7 +54,9 @@ class ExampleWithDateTimePrefixedMessageLogRequest
         $bufferLoggerFactory = new BufferLoggerFactory();
         $logger = new OutputToConsoleLogger();
         $logRequestFactory = new DateTimePrefixedMessageLogRequestFactory();
+        $logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
         $bufferLoggerFactory->setLogRequestFactory($logRequestFactory);
+        $bufferLoggerFactory->setLogRequestBufferFactory($logRequestBufferFactory);
 
         $this->bufferLogger = $bufferLoggerFactory->create($logger);
 
