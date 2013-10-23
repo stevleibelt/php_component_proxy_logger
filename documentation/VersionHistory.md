@@ -1,10 +1,10 @@
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger)
-    * add output of example flush buffer trigger logger versus normal logger to readme
     * add factories with default/standard factories if dependencies exists
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
     * add example how to add a proxy logger in a proxy logger
+    * add output of example flush buffer trigger logger versus normal logger to readme
     * adapt factories, replace setter with factory setters where possible
     * adapt proxy logger factories and add awareInterfaces for buffer manipulator factories
     * create factories for buffer manipulator
