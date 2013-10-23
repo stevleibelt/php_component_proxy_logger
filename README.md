@@ -50,10 +50,6 @@ This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/ma
 
 The first run outputs all logging information's.
 
-Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's.
-
-The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
-
 ```shell
 ----------------------------------------
 Setting trigger to warning
@@ -90,6 +86,11 @@ First run with normal logger without log level restriction.
 [1382566548] [critical] [lost connection to storage]
 [1382566548] [alert] [can not unlock and schedule processing to id 6]
 [1382566548] [debug] [done]
+```
+
+Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's.
+
+```shell
 ----------------------------------------
 Second run with normal logger and log level restriction to warning and above.
 ----------------------------------------
@@ -99,6 +100,11 @@ Second run with normal logger and log level restriction to warning and above.
 [1382566548] [alert] [can not unlock and schedule processing to id 5]
 [1382566548] [critical] [lost connection to storage]
 [1382566548] [alert] [can not unlock and schedule processing to id 6]
+```
+
+The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
+
+```shell
 ----------------------------------------
 Third run with manipulate buffer logger.
 ----------------------------------------
