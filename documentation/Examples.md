@@ -97,26 +97,38 @@ $logger->error('the server made a boo boo');
 
 ## Use Buffer Logger Inside A Process That Iterates Over A Collection Of Items
 
+Take from [Example03](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/Documentation/Example03.php).
+
 ```php
 <?php
+namespace Example\Documentation;
+
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\LoggerAwareInterface;
+use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Psr\Log\LoggerInterface;
+use RuntimeException;
+
 /**
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-09
  */
 
-use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactory;
+//easy up autoloading by using composer autoloader
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
-//it is assumed that a logger is returned,
-// that implements the \Psr\Log\LoggerInterface
-$realLogger = $this->getMyLogger();
-$bufferLoggerFactory = BufferLoggerFactory($realLogger);
+//create a psr3 logger
+$realLogger = new OutputToConsoleLogger();
+$bufferLoggerFactory = new BufferLoggerFactory();
+$bufferLoggerFactory->setLogRequestFactory(new LogRequestFactory());
+$bufferLoggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
 
-$bufferLogger = $bufferLoggerFactory->create();
+$bufferLogger = $bufferLoggerFactory->create($realLogger);
 
 //it is assumed that a collection object or a plain array with items is returned
-$collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
+$collectionOfItemsToProcess = getCollectionOfItemsToProcess();
 
 //it is assumed that a class is returned,
 // that can handle a item from the collection of items
@@ -124,11 +136,13 @@ $collectionOfItemsToProcess = $this->getCollectionOfItemsToProcess();
 // that implements the LoggerAwareInterface
 //it is assumed that a class throws an RuntimeException
 // if a item could not be processed
-$itemProcessor = $this->getItemProcessor();
+$itemProcessor = new ItemProcessor();
 $itemProcessor->setLogger($bufferLogger);
 
 //this example shows the benefit of reclaimed silence and freedom on your log
-//only if something happens, log requests are send to your logger
+// only if something happens, log requests are send to your logger
+//since i am using the random function to throw an exception, it is possible that
+// no exception is thrown. If this happens, please try again
 foreach ($collectionOfItemsToProcess as $itemToProcess) {
     try {
         $itemProcessor->setItem($itemToProcess);
@@ -143,5 +157,19 @@ foreach ($collectionOfItemsToProcess as $itemToProcess) {
     }
 }
 
-```
+//----------------
+// this is code that makes upper example working
+//----------------
+function getCollectionOfItemsToProcess()
+{
+    $collection = array();
+    $numberOfItems = rand(5, 15);
 
+    for ($iterator = 0; $iterator < $numberOfItems; $iterator++) {
+        $collection[] = 'id-' . $iterator;
+    }
+
+    return $collection;
+}
+
+```
