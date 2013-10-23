@@ -156,20 +156,4 @@ foreach ($collectionOfItemsToProcess as $itemToProcess) {
         $itemProcessor->getLogger()->flush();
     }
 }
-
-//----------------
-// this is code that makes upper example working
-//----------------
-function getCollectionOfItemsToProcess()
-{
-    $collection = array();
-    $numberOfItems = rand(5, 15);
-
-    for ($iterator = 0; $iterator < $numberOfItems; $iterator++) {
-        $collection[] = 'id-' . $iterator;
-    }
-
-    return $collection;
-}
-
 ```
