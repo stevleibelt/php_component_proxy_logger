@@ -6,10 +6,10 @@
 
 namespace Example\Documentation;
 
+use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
@@ -24,21 +24,21 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 //create a psr3 logger
 $innerLogger = new OutputToConsoleLogger();
 
-//create the trigger
-$triggerFactory = new UpwardFlushBufferTriggerFactory();
-//set trigger to log level \Psr\Log\LogLevel::ERROR
-$triggerFactory->setTriggerToLogLevel(LogLevel::ERROR);
+//create bypass
+$bypassBufferFactory = new BypassBufferFactory();
+//set log Level \Psr\Log\LogLevel::INFO to bypass
+$bypassBufferFactory->setLogLevelsToBypass(array(LogLevel::INFO));
 
 //use factory to create manipulate buffer logger
-$loggerFactory = new ManipulateBufferLoggerFactory($innerLogger);
+$loggerFactory = new ManipulateBufferLoggerFactory();
 $loggerFactory->setLogRequestFactory(new LogRequestFactory());
 $loggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
-$loggerFactory->setFlushBufferTriggerFactory($triggerFactory);
+$loggerFactory->setBypassBufferFactory($bypassBufferFactory);
 $logger = $loggerFactory->create($innerLogger);
 
 //log request is added to the buffer
 $logger->info('this is an info message');
-//log request is added to the buffer
+//log request is passed to all added real loggers
 $logger->debug('a debug information');
-//buffer flush is triggered
+//log request is added to the buffer
 $logger->error('the server made a boo boo');

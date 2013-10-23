@@ -26,7 +26,7 @@ use Psr\Log\LogLevel;
 //easy up autoloading by using composer autoloader
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-//craete a psr3 logger
+//create a psr3 logger
 $innerLogger = new OutputToConsoleLogger();
 
 //create the trigger
@@ -51,34 +51,48 @@ $logger->error('the server made a boo boo');
 
 ## Create A Buffer Logger That Bypass Configured Log Requests From Buffer
 
+Take from [Example02](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/Documentation/Example02.php).
+
 ```php
 <?php
+namespace Example\Documentation;
+
+use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Psr\Log\LogLevel;
+
 /**
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-09
  */
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulation\BypassBuffer;
-use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+//easy up autoloading by using composer autoloader
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
-//craete a psr3 logger
-$logger = MyPSR3Logger();
+//create a psr3 logger
+$innerLogger = new OutputToConsoleLogger();
 
 //create bypass
-$bypassBuffer = new BypassBuffer();
+$bypassBufferFactory = new BypassBufferFactory();
 //set log Level \Psr\Log\LogLevel::INFO to bypass
-$bypassBuffer->addBypassForLogLevelInfo();
+$bypassBufferFactory->setLogLevelsToBypass(array(LogLevel::INFO));
 
 //use factory to create manipulate buffer logger
-$bufferLogger = new ManipulateBufferLoggerFactory(
-    $logger, null, null, null, $bypassBuffer);
+$loggerFactory = new ManipulateBufferLoggerFactory();
+$loggerFactory->setLogRequestFactory(new LogRequestFactory());
+$loggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
+$loggerFactory->setBypassBufferFactory($bypassBufferFactory);
+$logger = $loggerFactory->create($innerLogger);
 
 //log request is added to the buffer
-$bufferLogger->info('this is an info message');
+$logger->info('this is an info message');
 //log request is passed to all added real loggers
-$bufferLogger->debug('a debug information');
+$logger->debug('a debug information');
 //log request is added to the buffer
-$bufferLogger->error('the server made a boo boo');
+$logger->error('the server made a boo boo');
 ```
 
 ## Use Buffer Logger Inside A Process That Iterates Over A Collection Of Items
