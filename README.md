@@ -47,9 +47,12 @@ Following an uncompleted list of available PSR3-Logger components.
 Taken from the example [upward flush buffer trigger versus normal logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php).
 
 This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example) shows an example process that is working on a collection of items.
-The first run outputs all logging information's. Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's. The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
 
-´´´shell
+The first run outputs all logging information's.
+Since the second run has a logger, that only displays log levels of warning and above, you do not fill up your logs with unnecessary log requests. But too bad, when something happens you are loosing information's.
+The third run is logging everything without any restriction only, if and for the area where something happens. You are not loosing information's but don't fill up your log with not needed log requests.
+
+```shell
 ----------------------------------------
 Setting trigger to warning
 ----------------------------------------
@@ -109,6 +112,6 @@ Third run with manipulate buffer logger.
 [1382566548] [debug] [processing id 6]
 [1382566548] [critical] [lost connection to storage]
 [1382566548] [alert] [can not unlock and schedule processing to id 6]
-´´´
+```
 
 As you can see, only the third run logs all the information you need to debug your code and fix possible bugs.
