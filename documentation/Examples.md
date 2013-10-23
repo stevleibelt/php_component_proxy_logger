@@ -7,7 +7,7 @@ This example shows an example output of a process that deals with some data. Fir
 
 ## Create A Buffer Logger That Flushs The Buffer If Log Level Error Or Above Is Used
 
-Take from (Example01)[https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/Documentation/Example01.php].
+Take from [Example01](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/Documentation/Example01.php).
 
 ```php
 <?php
