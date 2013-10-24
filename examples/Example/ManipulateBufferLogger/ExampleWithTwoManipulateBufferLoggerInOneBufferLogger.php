@@ -17,18 +17,18 @@ use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-ExampleWithTwoManipulateBufferLoggerInOneProxyLogger::create()
+ExampleWithTwoManipulateBufferLoggerInOneBufferLogger::create()
     ->setup()
     ->andRun();
 
 /**
- * Class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
+ * Class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
  *
  * @package Example\ManipulateBufferLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-10-24
  */
-class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
+class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
@@ -38,7 +38,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
     private $logger;
 
     /**
-     * @return ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
+     * @return ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-24
      */
@@ -90,6 +90,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'First run - adding info and error messages' . PHP_EOL;
+        echo PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
         $this->logger->error('Current line is ' . __LINE__);
         $this->logger->info('Current line is ' . __LINE__);
@@ -98,6 +99,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
         $this->cleanLogBuffer();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Second run - adding info, error and critical messages' . PHP_EOL;
+        echo PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
         $this->logger->error('Current line is ' . __LINE__);
         $this->logger->critical('Current line is ' . __LINE__);
@@ -107,6 +109,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
         $this->cleanLogBuffer();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Third run - adding info, error, critical and alert messages' . PHP_EOL;
+        echo PHP_EOL;
         $this->logger->info('Current line is ' . __LINE__);
         $this->logger->error('Current line is ' . __LINE__);
         $this->logger->critical('Current line is ' . __LINE__);
