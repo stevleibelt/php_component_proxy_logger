@@ -143,7 +143,6 @@ Furthermore, three runs are simulated in the example. The first run only adds lo
 ```shell
 ----------------------------------------
 First run - adding info and error messages
-
 ----------------------------------------
 cleaning log buffer
 ```
@@ -160,7 +159,6 @@ Second run - adding info, error and critical messages
 [1382643874] [info] [mail ] [Current line is 103]
 [1382643874] [error] [mail ] [Current line is 104]
 [1382643874] [critical] [mail ] [Current line is 105]
-
 ----------------------------------------
 cleaning log buffer
 ```
