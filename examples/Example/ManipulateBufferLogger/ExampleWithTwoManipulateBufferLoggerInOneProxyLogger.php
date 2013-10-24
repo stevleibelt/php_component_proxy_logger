@@ -12,6 +12,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\ProxyLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface;
 use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -87,6 +88,43 @@ class ExampleWithTwoManipulateBufferLoggerInOneProxyLogger
      */
     public function andRun()
     {
+        echo str_repeat('-', 40) . PHP_EOL;
+        echo 'First run - adding info and error messages' . PHP_EOL;
+        $this->logger->info('Current line is ' . __LINE__);
+        $this->logger->error('Current line is ' . __LINE__);
+        $this->logger->info('Current line is ' . __LINE__);
+        echo str_repeat('-', 40) . PHP_EOL;
+        echo 'cleaning log buffer' . PHP_EOL;
+        $this->cleanLogBuffer();
+        echo str_repeat('-', 40) . PHP_EOL;
+        echo 'Second run - adding info, error and critical messages' . PHP_EOL;
+        $this->logger->info('Current line is ' . __LINE__);
+        $this->logger->error('Current line is ' . __LINE__);
+        $this->logger->critical('Current line is ' . __LINE__);
+        $this->logger->info('Current line is ' . __LINE__);
+        echo str_repeat('-', 40) . PHP_EOL;
+        echo 'cleaning log buffer' . PHP_EOL;
+        $this->cleanLogBuffer();
+        echo str_repeat('-', 40) . PHP_EOL;
+        echo 'Third run - adding info, error, critical and alert messages' . PHP_EOL;
+        $this->logger->info('Current line is ' . __LINE__);
+        $this->logger->error('Current line is ' . __LINE__);
+        $this->logger->critical('Current line is ' . __LINE__);
+        $this->logger->info('Current line is ' . __LINE__);
+        $this->logger->alert('Current line is ' . __LINE__);
+        echo str_repeat('-', 40) . PHP_EOL;
+    }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-24
+     */
+    private function cleanLogBuffer()
+    {
+        foreach ($this->logger as $logger) {
+            if ($logger instanceof BufferLoggerInterface) {
+                $logger->clean();
+            }
+        }
     }
 }
