@@ -27,7 +27,8 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 ## Code Usage Examples
 
 To get a rough idea how you are able to regain freedom and silence in your logs, simple execute the [upward flush buffer versus normal logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php) example.
-This example shows an example output of a process that deals with some data. First, the normal logger is used. The normal logger outputs each logging request. Secondly, the normal logger is used but only well defined log levels are able to pass. Third time, the upward flush buffer is used as a part of the manipulate buffer logger. This time all information's are logged per data set if a given threshold level is reached. After each data set, the buffer is cleaned.
+
+This example shows an output of a process that deals with some data. First, the normal logger is used. The normal logger outputs each logging request. Secondly, the normal logger is used but only well defined log levels are able to pass. Third time, the upward flush buffer is used as a part of the manipulate buffer logger. This time all information's are logged per data set if a given threshold level is reached. After each data set, the buffer is cleaned.
 
 ## Create A Buffer Logger That Flushs The Buffer If Log Level Error Or Above Is Used
 
