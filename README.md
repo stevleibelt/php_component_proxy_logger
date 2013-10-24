@@ -44,6 +44,8 @@ Following an uncompleted list of available PSR3-Logger components.
 
 # Reason To Use This Component
 
+## Comparison Between Normal Logger And Trigger Flush Buffer Logger
+
 Taken from the example [upward flush buffer trigger versus normal logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php).
 
 This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example) shows a process that is working on a collection of items.
@@ -127,3 +129,66 @@ Third run with manipulate buffer logger.
 ```
 
 As you can see, only the third run logs all the information you need to debug your code and fix possible bugs.
+
+## Using Two Trigger Flush Buffer Logger As A Collection In One Buffer Logger
+
+This [example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithTwoManipulateBufferLoggerInOneBufferLogger.php) shows how you can use two trigger flush buffer logger as a collection.
+
+The example is using two manipulate buffer loggers injected in an buffer logger.
+The first manipulate buffer logger is flushing the buffer via a trigger on the log level *alert*.
+The second one triggers the buffer flush on log level *critical*.
+
+Furthermore, three runs are simulated in the example. The first run only adds log levels below critical or alert, meaning no buffer flush is triggered.
+
+```shell
+----------------------------------------
+First run - adding info and error messages
+
+----------------------------------------
+cleaning log buffer
+```
+
+The second run adds log levels up to critical, meaning the buffer flush for the first logger is triggered.
+
+```shell
+----------------------------------------
+Second run - adding info, error and critical messages
+
+[1382643874] [info] [mail ] [Current line is 94]
+[1382643874] [error] [mail ] [Current line is 95]
+[1382643874] [info] [mail ] [Current line is 96]
+[1382643874] [info] [mail ] [Current line is 103]
+[1382643874] [error] [mail ] [Current line is 104]
+[1382643874] [critical] [mail ] [Current line is 105]
+
+----------------------------------------
+cleaning log buffer
+```
+Finally, the third run is adding log levels up to alert, meaning a buffer flush is triggered for both loggers.
+
+```shell
+----------------------------------------
+Third run - adding info, error, critical and alert messages
+
+[1382643874] [info] [mail ] [Current line is 106]
+[1382643874] [info] [mail ] [Current line is 113]
+[1382643874] [error] [mail ] [Current line is 114]
+[1382643874] [critical] [mail ] [Current line is 115]
+[1382643874] [info] [mail ] [Current line is 116]
+[1382643874] [alert] [mail ] [Current line is 117]
+[1382643874] [info] [wakeup call ] [Current line is 94]
+[1382643874] [error] [wakeup call ] [Current line is 95]
+[1382643874] [info] [wakeup call ] [Current line is 96]
+[1382643874] [info] [wakeup call ] [Current line is 103]
+[1382643874] [error] [wakeup call ] [Current line is 104]
+[1382643874] [critical] [wakeup call ] [Current line is 105]
+[1382643874] [info] [wakeup call ] [Current line is 106]
+[1382643874] [info] [wakeup call ] [Current line is 113]
+[1382643874] [error] [wakeup call ] [Current line is 114]
+[1382643874] [critical] [wakeup call ] [Current line is 115]
+[1382643874] [info] [wakeup call ] [Current line is 116]
+[1382643874] [alert] [wakeup call ] [Current line is 117]
+----------------------------------------
+```
+
+What is this example all about? As the names of the logger requests are anticipating, you can implement this by sending an email if log level critical is reached and sending a wake up call if log level alert is reached.
