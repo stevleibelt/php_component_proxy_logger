@@ -21,7 +21,7 @@ ExampleWithBypassBuffer::create()
 /**
  * Class Example
  *
- * @package Example\BufferLogger
+ * @package Example\ManipulateBufferLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-07
  */

@@ -21,7 +21,7 @@ ExampleWithDateTimePrefixedMessageLogRequest::create()
 /**
  * Class Example
  *
- * @package Example\BufferLoggerWithDateTimePrefixedMessageLogRequest
+ * @package Example\BufferLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
