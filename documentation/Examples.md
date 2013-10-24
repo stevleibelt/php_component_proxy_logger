@@ -23,6 +23,7 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 * [using a upward flush buffer trigger manipulator](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTrigger.php)
 * [using a bypass buffer and a upward flush buffer trigger manipulator](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithBypassBufferAndUpwardFlushBufferTrigger.php)
 * [comparison of normal logger and manipulate buffer logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php)
+* [using two different trigger flushed buffer loggers as a collection in one buffer logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithTwoManipulateBufferLoggerInOneBufferLogger.php)
 
 ## Code Usage Examples
 
