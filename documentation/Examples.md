@@ -1,6 +1,30 @@
 # Examples
 
+## Console Examples
+
 This component is shipped with a lot of [examples](https://github.com/stevleibelt/php_component_proxy_logger/tree/master/examples/Example), so take a look inside. All examples can be called on the command line like 'php examples/Example/BufferLogger/Example.php'.
+
+### Proxy Logger Examples
+
+* [basic usage example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ProxyLogger/Example.php)
+* [using multiple loggers](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ProxyLogger/ExampleWithTwoLoggers.php)
+* [using a proxy logger in a proxy logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ProxyLogger/ExampleWithProxyLoggerInProxyLogger.php)
+
+### Buffer Logger Examples
+
+* [basic usage example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/Example.php)
+* [using a different log request factory](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/ExampleWithDateTimePrefixedMessageLogRequest.php)
+* [using a buffer logger in a buffer logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/ExampleWithBufferLoggerInBufferLoggerBufferLoggerInBufferLogger.php)
+
+### Manipulate Buffer Logger Examples
+
+* [basic usage example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/Example.php)
+* [using a bypass buffer manipulator](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithBypassBuffer.php)
+* [using a upward flush buffer trigger manipulator](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTrigger.php)
+* [using a bypass buffer and a upward flush buffer trigger manipulator](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithBypassBufferAndUpwardFlushBufferTrigger.php)
+* [comparison of normal logger and manipulate buffer logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php)
+
+## Code Usage Examples
 
 To get a rough idea how you are able to regain freedom and silence in your logs, simple execute the [upward flush buffer versus normal logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/ManipulateBufferLogger/ExampleWithUpwardFlushBufferTriggerVersusNormalLogger.php) example.
 This example shows an example output of a process that deals with some data. First, the normal logger is used. The normal logger outputs each logging request. Secondly, the normal logger is used but only well defined log levels are able to pass. Third time, the upward flush buffer is used as a part of the manipulate buffer logger. This time all information's are logged per data set if a given threshold level is reached. After each data set, the buffer is cleaned.
