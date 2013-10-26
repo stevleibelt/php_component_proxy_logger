@@ -13,6 +13,7 @@ This component is shipped with a lot of [examples](https://github.com/stevleibel
 ### Buffer Logger Examples
 
 * [basic usage example](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/Example.php)
+* [using default factory](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/ExampleWithDefaultBufferLoggerFactory.php)
 * [using a different log request factory](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/ExampleWithDateTimePrefixedMessageLogRequest.php)
 * [using a buffer logger in a buffer logger](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/examples/Example/BufferLogger/ExampleWithBufferLoggerInBufferLoggerBufferLoggerInBufferLogger.php)
 
