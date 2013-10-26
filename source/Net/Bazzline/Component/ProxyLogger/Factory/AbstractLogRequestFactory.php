@@ -81,7 +81,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
      */
     public function setIsValidLogLevel(IsValidLogLevel $isValidLogLevel)
     {
-        $this->isValidLogLevel;
+        $this->isValidLogLevel = $isValidLogLevel;
 
         return $this;
     }
