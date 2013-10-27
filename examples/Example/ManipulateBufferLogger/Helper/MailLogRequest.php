@@ -26,7 +26,7 @@ class MailLogRequest extends LogRequest
      */
     public function __construct($logLevel, $message, array $context = array())
     {
-        $message = 'mail ] [' . $message;
+        $message = 'mail] [' . $message;
         parent::__construct($logLevel, $message, $context);
     }
 }

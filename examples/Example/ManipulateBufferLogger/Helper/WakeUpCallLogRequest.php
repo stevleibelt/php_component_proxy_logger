@@ -26,7 +26,7 @@ class WakeUpCallLogRequest extends LogRequest
      */
     public function __construct($logLevel, $message, array $context = array())
     {
-        $message = 'wakeup call ] [' . $message;
+        $message = 'wakeup call] [' . $message;
         parent::__construct($logLevel, $message, $context);
     }
 }
