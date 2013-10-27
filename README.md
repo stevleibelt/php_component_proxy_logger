@@ -153,12 +153,12 @@ The second run adds log levels up to critical, meaning the buffer flush for the 
 ----------------------------------------
 Second run - adding info, error and critical messages
 
-[1382643874] [info] [mail ] [Current line is 94]
-[1382643874] [error] [mail ] [Current line is 95]
-[1382643874] [info] [mail ] [Current line is 96]
-[1382643874] [info] [mail ] [Current line is 103]
-[1382643874] [error] [mail ] [Current line is 104]
-[1382643874] [critical] [mail ] [Current line is 105]
+[1382643874] [info] [mail] [Current line is 94]
+[1382643874] [error] [mail] [Current line is 95]
+[1382643874] [info] [mail] [Current line is 96]
+[1382643874] [info] [mail] [Current line is 103]
+[1382643874] [error] [mail] [Current line is 104]
+[1382643874] [critical] [mail] [Current line is 105]
 ----------------------------------------
 cleaning log buffer
 ```
@@ -168,24 +168,24 @@ Finally, the third run is adding log levels up to alert, meaning a buffer flush 
 ----------------------------------------
 Third run - adding info, error, critical and alert messages
 
-[1382643874] [info] [mail ] [Current line is 106]
-[1382643874] [info] [mail ] [Current line is 113]
-[1382643874] [error] [mail ] [Current line is 114]
-[1382643874] [critical] [mail ] [Current line is 115]
-[1382643874] [info] [mail ] [Current line is 116]
-[1382643874] [alert] [mail ] [Current line is 117]
-[1382643874] [info] [wakeup call ] [Current line is 94]
-[1382643874] [error] [wakeup call ] [Current line is 95]
-[1382643874] [info] [wakeup call ] [Current line is 96]
-[1382643874] [info] [wakeup call ] [Current line is 103]
-[1382643874] [error] [wakeup call ] [Current line is 104]
-[1382643874] [critical] [wakeup call ] [Current line is 105]
-[1382643874] [info] [wakeup call ] [Current line is 106]
-[1382643874] [info] [wakeup call ] [Current line is 113]
-[1382643874] [error] [wakeup call ] [Current line is 114]
-[1382643874] [critical] [wakeup call ] [Current line is 115]
-[1382643874] [info] [wakeup call ] [Current line is 116]
-[1382643874] [alert] [wakeup call ] [Current line is 117]
+[1382643874] [info] [mail] [Current line is 106]
+[1382643874] [info] [mail] [Current line is 113]
+[1382643874] [error] [mail] [Current line is 114]
+[1382643874] [critical] [mail] [Current line is 115]
+[1382643874] [info] [mail] [Current line is 116]
+[1382643874] [alert] [mail] [Current line is 117]
+[1382643874] [info] [wakeup call] [Current line is 94]
+[1382643874] [error] [wakeup call] [Current line is 95]
+[1382643874] [info] [wakeup call] [Current line is 96]
+[1382643874] [info] [wakeup call] [Current line is 103]
+[1382643874] [error] [wakeup call] [Current line is 104]
+[1382643874] [critical] [wakeup call] [Current line is 105]
+[1382643874] [info] [wakeup call] [Current line is 106]
+[1382643874] [info] [wakeup call] [Current line is 113]
+[1382643874] [error] [wakeup call] [Current line is 114]
+[1382643874] [critical] [wakeup call] [Current line is 115]
+[1382643874] [info] [wakeup call] [Current line is 116]
+[1382643874] [alert] [wakeup call] [Current line is 117]
 ----------------------------------------
 ```
 
