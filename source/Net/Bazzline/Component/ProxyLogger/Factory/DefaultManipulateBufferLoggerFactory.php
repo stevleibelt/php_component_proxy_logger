@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
+
 /**
  * Class DefaultManipulateBufferLoggerFactory
  *
@@ -21,9 +23,13 @@ class DefaultManipulateBufferLoggerFactory extends ManipulateBufferLoggerFactory
      */
     public function __construct()
     {
+        $isValidLogLevel = new IsValidLogLevel();
+        $logRequestFactory = new LogRequestFactory();
+        $logRequestFactory->setIsValidLogLevel($isValidLogLevel);
+
         $this->setBypassBufferFactory(new BypassBufferFactory());
         $this->setFlushBufferTriggerFactory(new UpwardFlushBufferTriggerFactory());
-        $this->setLogRequestFactory(new LogRequestFactory());
+        $this->setLogRequestFactory($logRequestFactory);
         $this->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
     }
 } 
