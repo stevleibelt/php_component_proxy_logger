@@ -1,7 +1,8 @@
 # Version History
 
-* [next](https://github.com/stevleibelt/php_component_proxy_logger)
-    * add factories with default/standard factories if dependencies exists (covered with unittest also)
+* [next](https://github.com/stevleibelt/php_component_proxy_logger))
+    * implement an event based handling for buffer logger to easy up creation of future buffer manipulators
+    * add factories with default/standard factories if dependencies exists (covered with unit test also)
 * [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0) - not yet released
     * add example for using two manipulate buffer loggers in a proxy logger to act on different log levels (sending mail or sending sms/wake up call)
     * add example how to add a proxy logger in a proxy logger
