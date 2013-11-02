@@ -29,10 +29,15 @@ class DefaultManipulateBufferLoggerFactoryTest extends TestCase
         $logger->shouldReceive('log')
             ->with('info', 'test message', array())
             ->once();
+        $logger->shouldReceive('log')
+            ->with('error', 'test message', array())
+            ->once();
 
         $bufferLogger = $factory->create($logger);
+        $bufferLogger->getFlushBufferTrigger()
+            ->setTriggerToError();
         $bufferLogger->info('test message');
-        $bufferLogger->flush();
+        $bufferLogger->error('test message');
 
         $this->assertTrue($bufferLogger->hasBypassBuffer());
         $this->assertTrue($bufferLogger->hasFlushBufferTrigger());
