@@ -34,6 +34,8 @@ class DefaultManipulateBufferLoggerFactoryTest extends TestCase
         $bufferLogger->info('test message');
         $bufferLogger->flush();
 
+        $this->assertTrue($bufferLogger->hasBypassBuffer());
+        $this->assertTrue($bufferLogger->hasFlushBufferTrigger());
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface', $bufferLogger);
         $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger', $bufferLogger);
     }
