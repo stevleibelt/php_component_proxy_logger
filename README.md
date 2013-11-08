@@ -24,7 +24,7 @@ The full licence text is shipped [within](https://github.com/stevleibelt/php_com
 
 ## Documentation
 
-* [Common Terms](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/documentation/CommonTerms.md)
+# [Common Terms](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/documentation/CommonTerms.md)
 * [Components](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/documentation/Components.md)
 * [Installation](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/documentation/Installation.md)
 * [Migration Tutorial](https://github.com/stevleibelt/php_component_proxy_logger/blob/master/documentation/MigrationTutorial.md)
