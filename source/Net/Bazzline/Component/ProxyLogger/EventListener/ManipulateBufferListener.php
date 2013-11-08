@@ -46,6 +46,7 @@ class ManipulateBufferListener implements EventListenerInterface
      * @param ManipulateBufferEvent $event
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
+     * @todo split this two buffer manipulators up into two to gain advantage of "stopPropagation"
      */
     public function logLogRequestPre(ManipulateBufferEvent $event)
     {
