@@ -10,6 +10,13 @@ use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
 use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 
+/**
+ * Class BufferListener
+ *
+ * @package Net\Bazzline\Component\ProxyLogger\EventListener
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-11-09
+ */
 class BufferListener implements EventListenerInterface
 {
     /**
@@ -36,8 +43,8 @@ class BufferListener implements EventListenerInterface
     public function detach(EventDispatcher $eventDispatcher)
     {
         $eventDispatcher->removeListener(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, array($this, 'addLogRequestToBuffer'));
-        $eventDispatcher->addListener(BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean'));
-        $eventDispatcher->addListener(BufferEvent::BUFFER_FLUSH, array($this, 'bufferFlush'));
+        $eventDispatcher->removeListener(BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean'));
+        $eventDispatcher->removeListener(BufferEvent::BUFFER_FLUSH, array($this, 'bufferFlush'));
 
         return $this;
     }
@@ -82,12 +89,7 @@ class BufferListener implements EventListenerInterface
             $dispatcher = $event->getDispatcher();
 
             foreach ($buffer as $logRequest) {
-                $proxyEvent = new ProxyEvent(
-                    $logRequest,
-                    $event->getLoggerCollection()
-                );
-
-                $dispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $proxyEvent);
+                $dispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
             }
 
             $dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $event);
