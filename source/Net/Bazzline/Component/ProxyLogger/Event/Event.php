@@ -18,13 +18,4 @@ use Symfony\Component\EventDispatcher\Event as ParentClass;
  */
 class Event extends ParentClass
 {
-    /**
-     * @param $name
-     * @param EventDispatcherInterface $dispatcher
-     */
-    public function __construct($name, EventDispatcherInterface $dispatcher)
-    {
-        $this->setName($name);
-        $this->setDispatcher($dispatcher);
-    }
-} 
+}

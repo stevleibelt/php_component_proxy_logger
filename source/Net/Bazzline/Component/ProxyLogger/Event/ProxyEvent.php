@@ -37,14 +37,11 @@ class ProxyEvent extends Event
     private $loggerCollection;
 
     /**
-     * @param $name
-     * @param EventDispatcherInterface $dispatcher
      * @param LogRequestInterface $logRequest
      * @param LoggerInterface[] $loggerCollection
      */
-    public function __construct($name, EventDispatcherInterface $dispatcher, LogRequestInterface $logRequest, array $loggerCollection)
+    public function __construct(LogRequestInterface $logRequest, array $loggerCollection)
     {
-        parent::__construct($name, $dispatcher);
         $this->setLogRequest($logRequest);
         $this->setLoggerCollection($loggerCollection);
     }
