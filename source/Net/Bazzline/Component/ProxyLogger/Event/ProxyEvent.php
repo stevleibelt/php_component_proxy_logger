@@ -23,14 +23,14 @@ class ProxyEvent extends Event
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
      */
-    protected $logRequest;
+    private $logRequest;
 
     /**
      * @var array
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
      */
-    protected $loggerCollection;
+    private $loggerCollection;
 
     /**
      * @return array
