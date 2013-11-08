@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\ProxyLogger\BufferManipulator;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-02
  */
-interface BypassBufferInterface
+interface BypassBufferInterface extends BufferManipulatorInterface
 {
     /**
      * @return $this

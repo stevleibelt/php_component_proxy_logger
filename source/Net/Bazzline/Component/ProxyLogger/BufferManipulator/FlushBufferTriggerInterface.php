@@ -16,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-29
  */
-interface FlushBufferTriggerInterface extends IsValidLogLevelAwareInterface
+interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsValidLogLevelAwareInterface
 {
     /**
      * @return $this
