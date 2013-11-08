@@ -6,7 +6,10 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Event;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BufferManipulatorInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferAwareInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerAwareInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
 
 /**
  * Class ManipulateBufferEvent
@@ -15,47 +18,84 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BufferManipulatorInterf
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
  */
-class ManipulateBufferEvent extends BufferEvent
+class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInterface, FlushBufferTriggerAwareInterface
 {
     /**
-     * @var BufferManipulatorInterface[]
+     * @var BypassBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
      */
-    private $bufferManipulators = array();
+    private $bypassBuffer;
 
     /**
-     * @param BufferManipulatorInterface $bufferManipulator
-     * @return $this
+     * @var FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
      */
-    public function addBufferManipulator(BufferManipulatorInterface $bufferManipulator)
+    private $flushBufferTrigger;
+
+    /**
+     * @return null|BypassBufferInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function getBypassBuffer()
     {
-        $this->bufferManipulators[] = $bufferManipulator;
+        return $this->bypassBuffer;
+    }
+
+    /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasBypassBuffer()
+    {
+        return (!is_null($this->bypassBuffer));
+    }
+
+    /**
+     * @param BypassBufferInterface $bypassBuffer
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function setBypassBuffer(BypassBufferInterface $bypassBuffer)
+    {
+        $this->bypassBuffer = $bypassBuffer;
 
         return $this;
     }
 
     /**
-     * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\BufferManipulatorInterface[]
+     * @return null|FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-09
+     * @since 2013-09-03
      */
-    public function getBufferManipulators()
+    public function getFlushBufferTrigger()
     {
-        return $this->bufferManipulators;
+        return $this->flushBufferTrigger;
     }
 
     /**
-     * @param array|BufferManipulatorInterface[] $bufferManipulators
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-03
+     */
+    public function hasFlushBufferTrigger()
+    {
+        return (!is_null($this->flushBufferTrigger));
+    }
+
+    /**
+     * @param FlushBufferTriggerInterface $flushBufferTrigger
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-09
+     * @since 2013-09-03
      */
-    public function setBufferManipulators(array $bufferManipulators)
+    public function setFlushBufferTrigger(FlushBufferTriggerInterface $flushBufferTrigger)
     {
-        $this->bufferManipulators = $bufferManipulators;
+        $this->flushBufferTrigger = $flushBufferTrigger;
 
         return $this;
     }
