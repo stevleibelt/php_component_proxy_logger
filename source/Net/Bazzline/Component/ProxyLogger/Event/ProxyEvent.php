@@ -19,6 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ProxyEvent extends Event
 {
+    const LOG_LOG_REQUEST_PRE = 'proxyEvent.logLogRequestPre';
     const LOG_LOG_REQUEST = 'proxyEvent.logLogRequest';
     const LOG_LOG_REQUEST_POST = 'proxyEvent.logLogRequestPost';
 
@@ -30,15 +31,15 @@ class ProxyEvent extends Event
     private $logRequest;
 
     /**
-     * @var LoggerInterface[]
+     * @var array|LoggerInterface[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
      */
-    private $loggerCollection;
+    private $loggerCollection = array();
 
     /**
      * @param LogRequestInterface $logRequest
-     * @param LoggerInterface[] $loggerCollection
+     * @param array|LoggerInterface[] $loggerCollection
      */
     public function __construct(LogRequestInterface $logRequest, array $loggerCollection)
     {
@@ -47,7 +48,7 @@ class ProxyEvent extends Event
     }
 
     /**
-     * @return LoggerInterface[]
+     * @return array|LoggerInterface[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
      */

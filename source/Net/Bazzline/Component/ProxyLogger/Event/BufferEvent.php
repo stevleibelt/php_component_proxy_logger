@@ -33,7 +33,7 @@ class BufferEvent extends ProxyEvent
 
     /**
      * @param LogRequestInterface $logRequest
-     * @param LoggerInterface[] $loggerCollection
+     * @param array|LoggerInterface[] $loggerCollection
      * @param LogRequestBufferInterface $logRequestBuffer
      */
     public function __construct(LogRequestInterface $logRequest, array $loggerCollection, LogRequestBufferInterface $logRequestBuffer)
