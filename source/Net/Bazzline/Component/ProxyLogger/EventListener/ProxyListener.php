@@ -51,17 +51,19 @@ class ProxyListener implements EventListenerInterface
      */
     public function logRequest(ProxyEvent $event)
     {
-        $loggerCollection = $event->getLoggerCollection();
-        $logRequest = $event->getLogRequest();
+        if (!$event->isPropagationStopped()) {
+            $loggerCollection = $event->getLoggerCollection();
+            $logRequest = $event->getLogRequest();
 
-        foreach ($loggerCollection as $logger) {
-            $logger->log(
-                $logRequest->getLevel(),
-                $logRequest->getMessage(),
-                $logRequest->getContext()
-            );
+            foreach ($loggerCollection as $logger) {
+                $logger->log(
+                    $logRequest->getLevel(),
+                    $logRequest->getMessage(),
+                    $logRequest->getContext()
+                );
+            }
+
+            $event->getDispatcher()->dispatch(ProxyEvent::LOG_LOG_REQUEST_POST, $event);
         }
-
-        $event->getDispatcher()->dispatch(ProxyEvent::LOG_LOG_REQUEST_POST, $event);
     }
 }
