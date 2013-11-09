@@ -46,29 +46,30 @@ class ManipulateBufferListener implements EventListenerInterface
      * @param ManipulateBufferEvent $event
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
-     * @todo split this two buffer manipulators up into two to gain advantage of "stopPropagation"
      */
     public function addLogRequestToBufferPre(ManipulateBufferEvent $event)
     {
         if (!$event->isPropagationStopped()) {
             $logRequest = $event->getLogRequest();
             $dispatcher = $event->getDispatcher();
-            $wasNotHandledByFlushBufferTrigger = true;
+            $logRequestWasLogged = false;
 
-            if ($event->hasFlushBufferTrigger()) {
-                $flushBufferTrigger = $event->getFlushBufferTrigger();
-                if ($flushBufferTrigger->triggerBufferFlush($logRequest->getLevel())) {
-                    $dispatcher->dispatch(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event);
-                    $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
-                    $wasNotHandledByFlushBufferTrigger = false;
-                }
-            }
-
-            if ($wasNotHandledByFlushBufferTrigger
+            if ($logRequestWasLogged
                 && $event->hasBypassBuffer()) {
                 $bypassBuffer = $event->getBypassBuffer();
                 if ($bypassBuffer->bypassBuffer($logRequest->getLevel())) {
                     $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
+                    $logRequestWasLogged = true;
+                }
+            }
+
+            if ($event->hasFlushBufferTrigger()) {
+                $flushBufferTrigger = $event->getFlushBufferTrigger();
+                if ($flushBufferTrigger->triggerBufferFlush($logRequest->getLevel())) {
+                    if (!$logRequestWasLogged) {
+                        $dispatcher->dispatch(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event);
+                    }
+                    $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
                 }
             }
         }
