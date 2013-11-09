@@ -28,7 +28,7 @@ class ManipulateBufferListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->addListener(ProxyEvent::LOG_LOG_REQUEST_PRE, array($this, 'logLogRequestPre'));
+        $eventDispatcher->addListener(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER_PRE, array($this, 'addLogRequestToBufferPre'));
     }
 
     /**
@@ -39,7 +39,7 @@ class ManipulateBufferListener implements EventListenerInterface
      */
     public function detach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->removeListener(ManipulateBufferEvent::LOG_LOG_REQUEST_PRE, array($this, 'logLogRequestPre'));
+        $eventDispatcher->removeListener(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER_PRE, array($this, 'addLogRequestToBufferPre'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ManipulateBufferListener implements EventListenerInterface
      * @since 2013-11-09
      * @todo split this two buffer manipulators up into two to gain advantage of "stopPropagation"
      */
-    public function logLogRequestPre(ManipulateBufferEvent $event)
+    public function addLogRequestToBufferPre(ManipulateBufferEvent $event)
     {
         if (!$event->isPropagationStopped()) {
             $logRequest = $event->getLogRequest();

@@ -19,9 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ProxyEvent extends Event
 {
-    const LOG_LOG_REQUEST_PRE = 'proxyEvent.logLogRequestPre';
     const LOG_LOG_REQUEST = 'proxyEvent.logLogRequest';
-    const LOG_LOG_REQUEST_POST = 'proxyEvent.logLogRequestPost';
 
     /**
      * @var LogRequestInterface
