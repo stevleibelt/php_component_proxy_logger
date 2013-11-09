@@ -6,9 +6,7 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\EventListener;
 
-use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
 use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
-use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 
 /**
@@ -17,6 +15,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @package Net\Bazzline\Component\ProxyLogger\EventListener
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
+ * @todo think about if it makes more sense to use the ADD_LOG_REQUEST_TO_BUFFER event with priority and stop propagation
  */
 class ManipulateBufferListener implements EventListenerInterface
 {
