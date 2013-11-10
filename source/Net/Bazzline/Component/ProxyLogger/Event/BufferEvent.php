@@ -22,7 +22,6 @@ class BufferEvent extends ProxyEvent
 {
     const BUFFER_FLUSH = 'bufferEvent.bufferFlush';
     const BUFFER_CLEAN = 'bufferEvent.bufferClean';
-    const ADD_LOG_REQUEST_TO_BUFFER_PRE = 'bufferEvent.addLogRequestToBufferPre';
     const ADD_LOG_REQUEST_TO_BUFFER = 'bufferEvent.addLogRequestToBuffer';
 
     /**

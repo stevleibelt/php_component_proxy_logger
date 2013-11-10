@@ -15,7 +15,6 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @package Net\Bazzline\Component\ProxyLogger\EventListener
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
- * @todo think about if it makes more sense to use the ADD_LOG_REQUEST_TO_BUFFER event with priority and stop propagation
  */
 class ManipulateBufferListener implements EventListenerInterface
 {
@@ -27,7 +26,11 @@ class ManipulateBufferListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->addListener(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER_PRE, array($this, 'addLogRequestToBufferPre'));
+        $eventDispatcher->addListener(
+            ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
+            array($this, 'addLogRequestToBuffer'),
+            100
+        );
     }
 
     /**
@@ -38,7 +41,10 @@ class ManipulateBufferListener implements EventListenerInterface
      */
     public function detach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->removeListener(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER_PRE, array($this, 'addLogRequestToBufferPre'));
+        $eventDispatcher->removeListener(
+            ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
+            array($this, 'addLogRequestToBuffer')
+        );
     }
 
     /**
@@ -46,7 +52,7 @@ class ManipulateBufferListener implements EventListenerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
      */
-    public function addLogRequestToBufferPre(ManipulateBufferEvent $event)
+    public function addLogRequestToBuffer(ManipulateBufferEvent $event)
     {
         if (!$event->isPropagationStopped()) {
             $logRequest = $event->getLogRequest();
