@@ -21,5 +21,5 @@ interface EventDispatcherDependInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function setEventDispatch(EventDispatcherInterface $eventDispatcher);
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher);
 } 

@@ -6,8 +6,9 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
-use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcherInterface;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\ProxyEventFactoryInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -22,13 +23,6 @@ use Psr\Log\LogLevel;
 class ProxyLogger implements ProxyLoggerInterface
 {
     /**
-     * @var ProxyEventFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-10
-     */
-    protected $proxyEventFactory;
-
-    /**
      * @var EventDispatcherInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
@@ -41,6 +35,20 @@ class ProxyLogger implements ProxyLoggerInterface
      * @since 2013-08-26
      */
     protected $loggers;
+
+    /**
+     * @var LogRequestFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $logRequestFactory;
+
+    /**
+     * @var ProxyEventFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $proxyEventFactory;
 
     /**
      * @param LoggerInterface $logger
@@ -182,9 +190,10 @@ class ProxyLogger implements ProxyLoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        $this->pushToLoggers($level, $message, $context);
-        //$logRequest = $this->logRequestFactory()->create();
-        //$this->eventDispatcher->dispatch(ProxyEvent::BUFFER_CLEAN, $event);
+        //$this->pushToLoggers($level, $message, $context);
+        $logRequest = $this->logRequestFactory->create($level, $message, $context);
+        $event = $this->proxyEventFactory->create($this->loggers, $logRequest);
+        $this->eventDispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
     }
 
     /**
@@ -204,9 +213,20 @@ class ProxyLogger implements ProxyLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function setEventDispatch(EventDispatcherInterface $eventDispatcher)
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
     {
         return $this->eventDispatcher = $eventDispatcher;
+    }
+
+    /**
+     * @param LogRequestFactoryInterface $factory
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    public function setLogRequestFactory(LogRequestFactoryInterface $factory)
+    {
+        return $this->logRequestFactory = $factory;
     }
 
     /**

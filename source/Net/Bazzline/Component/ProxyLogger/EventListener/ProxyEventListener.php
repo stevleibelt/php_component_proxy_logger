@@ -16,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-08
  */
-class ProxyListener implements EventListenerInterface
+class ProxyEventListener implements EventListenerInterface
 {
     /**
      * @param EventDispatcher $eventDispatcher
@@ -57,19 +57,15 @@ class ProxyListener implements EventListenerInterface
      */
     public function logRequest(ProxyEvent $event)
     {
-        if (!$event->isPropagationStopped()) {
-            $loggerCollection = $event->getLoggerCollection();
-            $logRequest = $event->getLogRequest();
+        $loggerCollection = $event->getLoggerCollection();
+        $logRequest = $event->getLogRequest();
 
-            foreach ($loggerCollection as $logger) {
-                $logger->log(
-                    $logRequest->getLevel(),
-                    $logRequest->getMessage(),
-                    $logRequest->getContext()
-                );
-            }
-
-            $event->getDispatcher()->dispatch(ProxyEvent::LOG_LOG_REQUEST_POST, $event);
+        foreach ($loggerCollection as $logger) {
+            $logger->log(
+                $logRequest->getLevel(),
+                $logRequest->getMessage(),
+                $logRequest->getContext()
+            );
         }
     }
 }

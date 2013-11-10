@@ -16,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
  */
-class ManipulateBufferListener implements EventListenerInterface
+class ManipulateBufferEventListener implements EventListenerInterface
 {
     /**
      * @param EventDispatcher $eventDispatcher
