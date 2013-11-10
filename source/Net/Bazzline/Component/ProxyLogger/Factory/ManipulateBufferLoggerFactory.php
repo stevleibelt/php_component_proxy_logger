@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -46,23 +46,27 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      */
     public function create(LoggerInterface $logger)
     {
-        $manipulateBufferLogger = new ManipulateBufferLogger();
+        $bufferLogger = new BufferLogger();
+        $eventFactory = new ManipulateBufferEventFactory();
+        $dispatcher = new EventDispatcher();
+        $listener = new BufferEventListener();
+        $listener->attach($dispatcher);
 
-        $manipulateBufferLogger->addLogger($logger);
-        $manipulateBufferLogger->setLogRequestFactory($this->logRequestFactory);
-        $manipulateBufferLogger->setLogRequestBufferFactory($this->logRequestBufferFactory);
+        $bufferLogger->addLogger($logger);
+        $bufferLogger->setLogRequestFactory($this->logRequestFactory);
+        $bufferLogger->setLogRequestBufferFactory($this->logRequestBufferFactory);
 
         if ($this->hasFlushBufferTriggerFactory()) {
             $flushBufferTrigger = $this->flushBufferTriggerFactory->create();
-            $manipulateBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
+            $bufferLogger->setFlushBufferTrigger($flushBufferTrigger);
         }
 
         if ($this->hasBypassBufferFactory()) {
             $bypassBuffer = $this->bypassBufferFactory->create();
-            $manipulateBufferLogger->setBypassBuffer($bypassBuffer);
+            $bufferLogger->setBypassBuffer($bypassBuffer);
         }
 
-        return $manipulateBufferLogger;
+        return $bufferLogger;
     }
 
     /**

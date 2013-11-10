@@ -16,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
  */
-class ManipulateBufferEventListener implements EventListenerInterface
+class ManipulateBufferEventListener extends ProxyEventListener implements EventListenerInterface
 {
     /**
      * @param EventDispatcher $eventDispatcher
@@ -26,11 +26,22 @@ class ManipulateBufferEventListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
+        parent::attach($eventDispatcher);
         $eventDispatcher->addListener(
             ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
             array($this, 'addLogRequestToBuffer'),
             100
         );
+        $eventDispatcher->addListener(
+            ManipulateBufferEvent::BUFFER_CLEAN,
+            array($this, 'bufferClean')
+        );
+        $eventDispatcher->addListener(
+            ManipulateBufferEvent::BUFFER_FLUSH,
+            array($this, 'bufferFlush')
+        );
+
+        return $this;
     }
 
     /**
@@ -45,6 +56,16 @@ class ManipulateBufferEventListener implements EventListenerInterface
             ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
             array($this, 'addLogRequestToBuffer')
         );
+        $eventDispatcher->removeListener(
+            ManipulateBufferEvent::BUFFER_CLEAN, array($this, 'bufferClean')
+        );
+        $eventDispatcher->removeListener(
+            ManipulateBufferEvent::BUFFER_FLUSH,
+            array($this, 'bufferFlush')
+        );
+        parent::detach($eventDispatcher);
+
+        return $this;
     }
 
     /**
@@ -78,5 +99,35 @@ class ManipulateBufferEventListener implements EventListenerInterface
                 }
             }
         }
+    }
+
+    /**
+     * @param ManipulateBufferEvent $event
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    public function bufferClean(ManipulateBufferEvent $event)
+    {
+        $buffer = $event->getLogRequestBuffer();
+        $clonedBuffer = clone $buffer;
+        $event->setLogRequestBuffer($clonedBuffer);
+    }
+
+    /**
+     * @param ManipulateBufferEvent $event
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    public function bufferFlush(ManipulateBufferEvent $event)
+    {
+        $buffer = $event->getLogRequestBuffer();
+        $dispatcher = $event->getDispatcher();
+
+        foreach ($buffer as $logRequest) {
+            $event->setLogRequest($logRequest);
+            $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
+        }
+
+        $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_CLEAN, $event);
     }
 }
