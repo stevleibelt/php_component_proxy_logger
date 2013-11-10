@@ -36,10 +36,11 @@ class ProxyEvent extends Event
     private $loggerCollection = array();
 
     /**
-     * @param LogRequestInterface $logRequest
-     * @param array|LoggerInterface[] $loggerCollection
+     * @param null|LogRequestInterface $logRequest
+     * @param null|array|LoggerInterface[] $loggerCollection
+     * @todo remove this?
      */
-    public function __construct(LogRequestInterface $logRequest, array $loggerCollection)
+    public function __construct(LogRequestInterface $logRequest = null, array $loggerCollection = null)
     {
         $this->setLogRequest($logRequest);
         $this->setLoggerCollection($loggerCollection);
