@@ -26,7 +26,10 @@ class ProxyListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->addListener(ProxyEvent::LOG_LOG_REQUEST, array($this, 'logRequest'));
+        $eventDispatcher->addListener(
+            ProxyEvent::LOG_LOG_REQUEST,
+            array($this, 'logRequest')
+        );
 
         return $this;
     }
@@ -39,7 +42,10 @@ class ProxyListener implements EventListenerInterface
      */
     public function detach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->removeListener(ProxyEvent::LOG_LOG_REQUEST, array($this, 'logRequest'));
+        $eventDispatcher->removeListener(
+            ProxyEvent::LOG_LOG_REQUEST,
+            array($this, 'logRequest')
+        );
 
         return $this;
     }

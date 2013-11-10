@@ -27,9 +27,18 @@ class BufferListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->addListener(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, array($this, 'addLogRequestToBuffer'));
-        $eventDispatcher->addListener(BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean'));
-        $eventDispatcher->addListener(BufferEvent::BUFFER_FLUSH, array($this, 'bufferFlush'));
+        $eventDispatcher->addListener(
+            BufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
+            array($this, 'addLogRequestToBuffer')
+        );
+        $eventDispatcher->addListener(
+            BufferEvent::BUFFER_CLEAN,
+            array($this, 'bufferClean')
+        );
+        $eventDispatcher->addListener(
+            BufferEvent::BUFFER_FLUSH,
+            array($this, 'bufferFlush')
+        );
 
         return $this;
     }
@@ -42,9 +51,17 @@ class BufferListener implements EventListenerInterface
      */
     public function detach(EventDispatcher $eventDispatcher)
     {
-        $eventDispatcher->removeListener(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, array($this, 'addLogRequestToBuffer'));
-        $eventDispatcher->removeListener(BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean'));
-        $eventDispatcher->removeListener(BufferEvent::BUFFER_FLUSH, array($this, 'bufferFlush'));
+        $eventDispatcher->removeListener(
+            BufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
+            array($this, 'addLogRequestToBuffer')
+        );
+        $eventDispatcher->removeListener(
+            BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean')
+        );
+        $eventDispatcher->removeListener(
+            BufferEvent::BUFFER_FLUSH,
+            array($this, 'bufferFlush')
+        );
 
         return $this;
     }
