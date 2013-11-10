@@ -8,7 +8,11 @@ namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
+use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferEventFactoryInterface;
+use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 
 /**
  * Class ManipulateBufferLogger
@@ -17,8 +21,29 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLoggerInterface
+class ManipulateBufferLogger extends AbstractLogger implements ManipulateBufferLoggerInterface
 {
+    /**
+     * @var ManipulateBufferEventFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $manipulateBufferEventFactory;
+
+    /**
+     * @var LogRequestBufferFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $logRequestBufferFactory;
+
+    /**
+     * @var LogRequestBufferInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $logRequestBuffer;
+
     /**
      * @var FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
@@ -32,31 +57,6 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
      * @since 2013-09-02
      */
     protected $bypassBuffer;
-
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return null
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    public function log($level, $message, array $context = array())
-    {
-        if ($this->letItPassThrough($level)) {
-            $this->pushToLoggers($level, $message, $context);
-        } else {
-            $this->logRequestBuffer->attach(
-                $this->logRequestFactory->create($level, $message, $context)
-            );
-
-            if ($this->flushTheBuffer($level)) {
-                $this->flush();
-            }
-        }
-    }
 
     /**
      * @param LogRequestFactoryInterface $factory
@@ -138,26 +138,75 @@ class ManipulateBufferLogger extends BufferLogger implements ManipulateBufferLog
     }
 
     /**
-     * @param $level
-     * @return bool
+     * @param LogRequestBufferFactoryInterface $factory
+     * @return mixed
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-03
+     * @since 2013-08-27
      */
-    protected function letItPassThrough($level)
+    public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory)
     {
-        return ($this->hasBypassBuffer()
-            && $this->bypassBuffer->bypassBuffer($level));
+        $this->logRequestBufferFactory = $factory;
+        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
+
+        return $this;
     }
 
     /**
+     * @param ManipulateBufferEventFactoryInterface $factory
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-11
+     */
+    public function setManipulateBufferEventFactory(ManipulateBufferEventFactoryInterface $factory)
+    {
+        $this->manipulateBufferEventFactory = $factory;
+    }
+
+    /**
+     * Logs with an arbitrary level.
+     *
      * @param mixed $level
-     * @return bool
+     * @param string $message
+     * @param array $context
+     * @return null
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
-    protected function flushTheBuffer($level)
+    public function log($level, $message, array $context = array())
     {
-        return ($this->hasFlushBufferTrigger()
-            && $this->flushBufferTrigger->triggerBufferFlush($level));
+        $logRequest = $this->logRequestFactory->create($level, $message, $context);
+        $event = $this->manipulateBufferEventFactory->create($this->loggers, $this->logRequestBuffer, $logRequest);
+        $this->eventDispatcher->dispatch(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event);
+    }
+
+    /**
+     * Flushs buffer content to logger
+     *
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function flush()
+    {
+        $event = $this->manipulateBufferEventFactory->create($this->loggers, $this->logRequestBuffer);
+        $this->eventDispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
+
+        return $this;
+    }
+
+    /**
+     * Cleans buffer
+     *
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-27
+     */
+    public function clean()
+    {
+        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
+        $event = $this->manipulateBufferEventFactory->create($this->loggers, $this->logRequestBuffer);
+        $this->eventDispatcher->dispatch(ManipulateBufferEvent::BUFFER_CLEAN, $event);
+
+        return $this;
     }
 }

@@ -6,9 +6,6 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferAwareInterface;
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerAwareInterface;
-
 /**
  * Class ManipulateBufferLoggerFactoryInterface
  *

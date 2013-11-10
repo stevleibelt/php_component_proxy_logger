@@ -16,10 +16,10 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 interface ManipulateBufferEventFactoryDependInterface
 {
     /**
-     * @param ManipulateBufferEventFactoryIterface $factory
+     * @param ManipulateBufferEventFactoryInterface $factory
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-11
      */
-    public function setManipulateBufferEventFactory(ManipulateBufferEventFactoryIterface $factory);
+    public function setManipulateBufferEventFactory(ManipulateBufferEventFactoryInterface $factory);
 } 

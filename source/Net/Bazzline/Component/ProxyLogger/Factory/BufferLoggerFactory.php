@@ -69,9 +69,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
      */
     public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory)
     {
-        $this->logRequestBufferFactory = $factory;
-
-        return $this;
+        return $this->logRequestBufferFactory = $factory;
     }
 
     /**
@@ -82,8 +80,6 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
      */
     public function setLogRequestFactory(LogRequestFactoryInterface $factory)
     {
-        $this->logRequestFactory = $factory;
-
-        return $this;
+        return $this->logRequestFactory = $factory;
     }
 }
