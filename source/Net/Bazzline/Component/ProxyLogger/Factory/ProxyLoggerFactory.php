@@ -17,6 +17,7 @@ use Psr\Log\LoggerInterface;
  * @package Net\Bazzline\Component\ProxyLogger\Factory
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-09-08
+ * @todo implement setLogRequestFactory of BufferLoggerFactory?
  */
 class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
 {

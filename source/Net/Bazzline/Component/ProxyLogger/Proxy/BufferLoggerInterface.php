@@ -6,8 +6,11 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
+use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcherDependInterface;
+use Net\Bazzline\Component\ProxyLogger\Factory\BufferEventFactoryDependInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryDependInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryDependInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class BufferLoggerInterface
@@ -16,7 +19,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryDependInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface BufferLoggerInterface extends ProxyLoggerInterface, LogRequestBufferFactoryDependInterface, LogRequestFactoryDependInterface
+interface BufferLoggerInterface extends LoggerInterface, BufferEventFactoryDependInterface, EventDispatcherDependInterface, LogRequestBufferFactoryDependInterface, LogRequestFactoryDependInterface
 {
     /**
      * Flushs buffer content to logger

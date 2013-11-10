@@ -45,10 +45,12 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
     public function create(LoggerInterface $logger)
     {
         $bufferLogger = new BufferLogger();
+        //$bufferEventFactory = new BufferEventFactory();
 
         $bufferLogger->addLogger($logger);
         $bufferLogger->setLogRequestFactory($this->logRequestFactory);
         $bufferLogger->setLogRequestBufferFactory($this->logRequestBufferFactory);
+        //$bufferLogger->setBufferEventFactory($bufferEventFactory);
 
         return $bufferLogger;
     }
