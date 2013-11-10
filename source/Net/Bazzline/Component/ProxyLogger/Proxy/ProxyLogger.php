@@ -7,6 +7,7 @@
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
+use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -25,6 +26,13 @@ class ProxyLogger implements ProxyLoggerInterface
      * @since 2013-11-10
      */
     protected $event;
+
+    /**
+     * @var EventDispatcherInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $eventDispatcher;
 
     /**
      * @var \Psr\Log\LoggerInterface[]
@@ -185,6 +193,17 @@ class ProxyLogger implements ProxyLoggerInterface
     public function setEvent(EventInterface $event)
     {
         return $this->event = $event;
+    }
+
+    /**
+     * @param EventDispatcherInterface $eventDispatcher
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    public function setEventDispatch(EventDispatcherInterface $eventDispatcher)
+    {
+        return $this->eventDispatcher = $eventDispatcher;
     }
 
     /**

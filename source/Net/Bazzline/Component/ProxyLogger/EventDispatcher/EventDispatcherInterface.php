@@ -1,20 +1,20 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-11-08
+ * @since 2013-11-10
  */
 
 namespace Net\Bazzline\Component\ProxyLogger\EventDispatcher;
 
-use Symfony\Component\EventDispatcher\EventDispatcher as ParentClass;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface as ParentInterface;
 
 /**
- * Class EventDispatcher
+ * Interface EventDispatcherInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventDispatcher
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-11-08
+ * @since 2013-11-10
  */
-class EventDispatcher extends ParentClass implements EventDispatcherInterface
+interface EventDispatcherInterface extends ParentInterface
 {
 } 
