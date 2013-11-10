@@ -182,6 +182,8 @@ class ProxyLogger implements ProxyLoggerInterface
     public function log($level, $message, array $context = array())
     {
         $this->pushToLoggers($level, $message, $context);
+        //$logRequest = $this->logRequestFactory()->create();
+        //$this->eventDispatcher->dispatch(ProxyEvent::BUFFER_CLEAN, $event);
     }
 
     /**

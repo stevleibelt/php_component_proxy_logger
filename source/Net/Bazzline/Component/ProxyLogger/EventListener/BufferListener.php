@@ -106,6 +106,7 @@ class BufferListener implements EventListenerInterface
             $dispatcher = $event->getDispatcher();
 
             foreach ($buffer as $logRequest) {
+                $event->setLogRequest($logRequest);
                 $dispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
             }
 

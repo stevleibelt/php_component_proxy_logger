@@ -8,7 +8,6 @@ namespace Net\Bazzline\Component\ProxyLogger\Event;
 
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ProxyEvent
@@ -34,17 +33,6 @@ class ProxyEvent extends Event
      * @since 2013-11-08
      */
     private $loggerCollection = array();
-
-    /**
-     * @param null|LogRequestInterface $logRequest
-     * @param null|array|LoggerInterface[] $loggerCollection
-     * @todo remove this?
-     */
-    public function __construct(LogRequestInterface $logRequest = null, array $loggerCollection = null)
-    {
-        $this->setLogRequest($logRequest);
-        $this->setLoggerCollection($loggerCollection);
-    }
 
     /**
      * @return array|LoggerInterface[]
