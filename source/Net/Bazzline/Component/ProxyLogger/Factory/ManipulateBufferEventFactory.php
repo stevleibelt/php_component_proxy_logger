@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
+use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
 use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
@@ -24,11 +26,13 @@ class ManipulateBufferEventFactory implements ManipulateBufferEventFactoryInterf
      * @param null|array|LoggerInterface[] $loggerCollection
      * @param null|LogRequestBufferInterface $logRequestBuffer
      * @param null|LogRequestInterface $logRequest
+     * @param null|FlushBufferTriggerInterface $flushBufferTrigger
+     * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function create(array $loggerCollection = null, LogRequestBufferInterface $logRequestBuffer = null, LogRequestInterface $logRequest = null)
+    public function create(array $loggerCollection = null, LogRequestBufferInterface $logRequestBuffer = null, LogRequestInterface $logRequest = null, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null)
     {
         $event = new ManipulateBufferEvent();
 
@@ -42,6 +46,14 @@ class ManipulateBufferEventFactory implements ManipulateBufferEventFactoryInterf
 
         if (!is_null($logRequest)) {
             $event->setLogRequest($logRequest);
+        }
+
+        if (!is_null($bypassBuffer)) {
+            $event->setBypassBuffer($bypassBuffer);
+        }
+
+        if (!is_null($flushBufferTrigger)) {
+            $event->setFlushBufferTrigger($flushBufferTrigger);
         }
 
         return $event;
