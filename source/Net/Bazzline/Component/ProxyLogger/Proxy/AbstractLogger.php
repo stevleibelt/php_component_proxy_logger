@@ -11,6 +11,13 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
+/**
+ * Class AbstractLogger
+ *
+ * @package Net\Bazzline\Component\ProxyLogger\Proxy
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-11-10
+ */
 abstract class AbstractLogger implements AbstractLoggerInterface
 {
     /**

@@ -31,17 +31,6 @@ class BufferEvent extends ProxyEvent
     private $logRequestBuffer;
 
     /**
-     * @param null|LogRequestInterface $logRequest
-     * @param null|array|LoggerInterface[] $loggerCollection
-     * @param null|LogRequestBufferInterface $logRequestBuffer
-     */
-    public function __construct(LogRequestInterface $logRequest = null, array $loggerCollection = null, LogRequestBufferInterface $logRequestBuffer = null)
-    {
-        parent::__construct($logRequest, $loggerCollection);
-        $this->setLogRequestBuffer($logRequestBuffer);
-    }
-
-    /**
      * @return LogRequestBufferInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08

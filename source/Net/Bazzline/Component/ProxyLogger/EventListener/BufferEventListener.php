@@ -17,7 +17,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-09
  */
-class BufferEventListener implements EventListenerInterface
+class BufferEventListener extends ProxyEventListener implements EventListenerInterface
 {
     /**
      * @param EventDispatcher $eventDispatcher
@@ -27,6 +27,7 @@ class BufferEventListener implements EventListenerInterface
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
+        parent::attach($eventDispatcher);
         $eventDispatcher->addListener(
             BufferEvent::ADD_LOG_REQUEST_TO_BUFFER,
             array($this, 'addLogRequestToBuffer')
@@ -62,6 +63,7 @@ class BufferEventListener implements EventListenerInterface
             BufferEvent::BUFFER_FLUSH,
             array($this, 'bufferFlush')
         );
+        parent::detach($eventDispatcher);
 
         return $this;
     }
@@ -73,11 +75,9 @@ class BufferEventListener implements EventListenerInterface
      */
     public function addLogRequestToBuffer(BufferEvent $event)
     {
-        if (!$event->isPropagationStopped()) {
-            $request = $event->getLogRequest();
-            $buffer = $event->getLogRequestBuffer();
-            $buffer->add($request);
-        }
+        $request = $event->getLogRequest();
+        $buffer = $event->getLogRequestBuffer();
+        $buffer->add($request);
     }
 
     /**
@@ -87,11 +87,9 @@ class BufferEventListener implements EventListenerInterface
      */
     public function bufferClean(BufferEvent $event)
     {
-        if (!$event->isPropagationStopped()) {
-            $buffer = $event->getLogRequestBuffer();
-            $clonedBuffer = clone $buffer;
-            $event->setLogRequestBuffer($clonedBuffer);
-        }
+        $buffer = $event->getLogRequestBuffer();
+        $clonedBuffer = clone $buffer;
+        $event->setLogRequestBuffer($clonedBuffer);
     }
 
     /**
@@ -101,16 +99,14 @@ class BufferEventListener implements EventListenerInterface
      */
     public function bufferFlush(BufferEvent $event)
     {
-        if (!$event->isPropagationStopped()) {
-            $buffer = $event->getLogRequestBuffer();
-            $dispatcher = $event->getDispatcher();
+        $buffer = $event->getLogRequestBuffer();
+        $dispatcher = $event->getDispatcher();
 
-            foreach ($buffer as $logRequest) {
-                $event->setLogRequest($logRequest);
-                $dispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
-            }
-
-            $dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $event);
+        foreach ($buffer as $logRequest) {
+            $event->setLogRequest($logRequest);
+            $dispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
         }
+
+        $dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $event);
     }
 }
