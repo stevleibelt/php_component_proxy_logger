@@ -52,10 +52,11 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
         $dispatcher = new EventDispatcher();
         $listener = new BufferEventListener();
         $listener->attach($dispatcher);
+        $buffer = $this->logRequestBufferFactory->create();
+        $event->setLogRequestBuffer($buffer);
 
         $bufferLogger->addLogger($logger);
         $bufferLogger->setLogRequestFactory($this->logRequestFactory);
-        $bufferLogger->setLogRequestBufferFactory($this->logRequestBufferFactory);
         $bufferLogger->setEvent($event);
         $bufferLogger->setEventDispatcher($dispatcher);
 
