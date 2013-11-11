@@ -12,7 +12,6 @@ use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 use Net\Bazzline\Component\ProxyLogger\EventListener\ManipulateBufferEventListener;
 use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -44,7 +43,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      *  - LogRequestRuntimeBufferFactory
      *
      * @param LoggerInterface $logger
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLoggerInterface
+     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
