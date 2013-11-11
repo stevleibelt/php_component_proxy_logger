@@ -7,25 +7,25 @@
 namespace Net\Bazzline\Component\ProxyLogger\Event;
 
 /**
- * Class BufferEventDependInterface
+ * Class EventAwareInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\Event
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-11
  */
-interface BufferEventAwareInterface
+interface EventAwareInterface
 {
     /**
-     * @return BufferEvent
+     * @return EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-11
      */
-    public function getBufferEvent();
+    public function getEvent();
 
     /**
-     * @param BufferEvent $event
+     * @param EventInterface $event
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-11
      */
-    public function setBufferEvent(BufferEvent $event);
+    public function setEvent(EventInterface $event);
 } 

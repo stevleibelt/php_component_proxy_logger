@@ -6,7 +6,7 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
-use Net\Bazzline\Component\ProxyLogger\Factory\ProxyEventFactoryDependInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\EventAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface ProxyLoggerInterface extends ProxyEventFactoryDependInterface, AbstractLoggerInterface
+interface ProxyLoggerInterface extends EventAwareInterface, AbstractLoggerInterface
 {
     /**
      * @param LoggerInterface $logger

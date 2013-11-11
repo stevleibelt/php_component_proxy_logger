@@ -6,6 +6,7 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
+use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 use Net\Bazzline\Component\ProxyLogger\EventListener\ProxyEventListener;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLogger;
@@ -30,14 +31,15 @@ class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
     public function create(LoggerInterface $logger)
     {
         $proxyLogger = new ProxyLogger();
-        $proxyEventFactory = new ProxyEventFactory();
+
+        $event = new ProxyEvent();
         $logRequestFactory = new LogRequestFactory();
         $dispatcher = new EventDispatcher();
         $listener = new ProxyEventListener();
         $listener->attach($dispatcher);
 
         $proxyLogger->addLogger($logger);
-        $proxyLogger->setProxyEventFactory($proxyEventFactory);
+        $proxyLogger->setEvent($event);
         $proxyLogger->setEventDispatcher($dispatcher);
         $proxyLogger->setLogRequestFactory($logRequestFactory);
 

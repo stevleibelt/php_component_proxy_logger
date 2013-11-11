@@ -71,7 +71,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
 
         $bufferLogger->addLogger($logger);
         $bufferLogger->setLogRequestFactory($this->logRequestFactory);
-        $bufferLogger->setBufferEvent($event);
+        $bufferLogger->setEvent($event);
         $bufferLogger->setEventDispatcher($dispatcher);
 
         return $bufferLogger;

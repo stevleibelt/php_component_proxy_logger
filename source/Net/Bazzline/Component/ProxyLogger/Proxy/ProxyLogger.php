@@ -6,8 +6,10 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
+use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
+use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
 use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
-use Net\Bazzline\Component\ProxyLogger\Factory\ProxyEventFactoryInterface;
 
 /**
  * Class AbstractProxyLogger
@@ -19,21 +21,31 @@ use Net\Bazzline\Component\ProxyLogger\Factory\ProxyEventFactoryInterface;
 class ProxyLogger extends AbstractLogger implements ProxyLoggerInterface
 {
     /**
-     * @var ProxyEventFactoryInterface
+     * @var ProxyEvent
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    protected $proxyEventFactory;
+    protected $event;
 
     /**
-     * @param ProxyEventFactoryInterface $factory
+     * @return EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-11
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param EventInterface $event
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function setProxyEventFactory(ProxyEventFactoryInterface $factory)
+    public function setEvent(EventInterface $event)
     {
-        return $this->proxyEventFactory = $factory;
+        return $this->event = $event;
     }
 
     /**
@@ -47,7 +59,8 @@ class ProxyLogger extends AbstractLogger implements ProxyLoggerInterface
     public function log($level, $message, array $context = array())
     {
         $logRequest = $this->logRequestFactory->create($level, $message, $context);
-        $event = $this->proxyEventFactory->create($this->loggers, $logRequest);
-        $this->eventDispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $event);
+        $this->event->setLoggerCollection($this->loggers);
+        $this->event->setLogRequest($logRequest);
+        $this->eventDispatcher->dispatch(ProxyEvent::LOG_LOG_REQUEST, $this->event);
     }
 }
