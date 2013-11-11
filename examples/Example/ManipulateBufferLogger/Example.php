@@ -29,11 +29,11 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return Example
@@ -63,7 +63,7 @@ class Example
         $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTriggerFactory);
         $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBufferFactory);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger);
+        $this->bufferLogger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }
@@ -76,16 +76,19 @@ class Example
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to critical' . PHP_EOL;
-        //$this->logger->getBufferEvent()->getFlushBufferTrigger()->setTriggerToCritical();
+        $this->bufferLogger
+            ->getEvent()
+            ->getFlushBufferTrigger()
+            ->setTriggerToCritical();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->alert('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
-        $this->logger->flush();
+        $this->bufferLogger->flush();
         echo str_repeat('-', 40) . PHP_EOL;
     }
 }

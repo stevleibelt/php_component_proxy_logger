@@ -29,11 +29,11 @@ ExampleWithUpwardFlushBufferTriggerVersusNormalLogger::create()
 class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-03
      */
-    private $manipulateBufferLogger;
+    private $bufferLogger;
 
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger
@@ -68,7 +68,7 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
         $manipulateBufferLoggerFactory->setLogRequestBufferFactory($logRequestBufferFactory);
         $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTriggerFactory);
 
-        $this->manipulateBufferLogger = $manipulateBufferLoggerFactory->create($logger);
+        $this->bufferLogger = $manipulateBufferLoggerFactory->create($logger);
         $this->normalLogger = new OutputToConsoleLogger();
 
         return $this;
@@ -82,7 +82,8 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to warning' . PHP_EOL;
-        $this->manipulateBufferLogger
+        $this->bufferLogger
+            ->getEvent()
             ->getFlushBufferTrigger()
             ->setTriggerToWarning();
 
@@ -167,9 +168,9 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
 
         foreach ($preparedMessagesWithLogLevelsPerItemToProcess as $messagesWithLogLevels) {
             foreach ($messagesWithLogLevels as $message => $logLevel) {
-                $this->manipulateBufferLogger->$logLevel($message);
+                $this->bufferLogger->$logLevel($message);
             }
-            $this->manipulateBufferLogger->clean();
+            $this->bufferLogger->clean();
         }
     }
 }

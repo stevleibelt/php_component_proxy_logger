@@ -28,11 +28,11 @@ ExampleWithBypassBuffer::create()
 class ExampleWithBypassBuffer
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return ExampleWithBypassBuffer
@@ -60,7 +60,7 @@ class ExampleWithBypassBuffer
         $manipulateBufferLoggerFactory->setLogRequestBufferFactory($logRequestBufferFactory);
         $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBufferFactory);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger);
+        $this->bufferLogger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }
@@ -73,18 +73,19 @@ class ExampleWithBypassBuffer
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting bypass buffer level to info' . PHP_EOL;
-        $this->logger
+        $this->bufferLogger
+            ->getEvent()
             ->getBypassBuffer()
             ->addBypassForLogLevelInfo();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->alert('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
-        $this->logger->flush();
+        $this->bufferLogger->flush();
         echo str_repeat('-', 40) . PHP_EOL;
     }
 }

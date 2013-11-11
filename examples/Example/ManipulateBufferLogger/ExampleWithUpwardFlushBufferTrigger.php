@@ -28,11 +28,11 @@ ExampleWithUpwardFlushBufferTrigger::create()
 class ExampleWithUpwardFlushBufferTrigger
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return ExampleWithUpwardFlushBufferTrigger
@@ -60,7 +60,7 @@ class ExampleWithUpwardFlushBufferTrigger
         $manipulateBufferLoggerFactory->setLogRequestBufferFactory($logRequestBufferFactory);
         $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTriggerFactory);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger);
+        $this->bufferLogger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }
@@ -73,18 +73,19 @@ class ExampleWithUpwardFlushBufferTrigger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to warning' . PHP_EOL;
-        $this->logger
+        $this->bufferLogger
+            ->getEvent()
             ->getFlushBufferTrigger()
             ->setTriggerToWarning();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->alert('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
-        $this->logger->flush();
+        $this->bufferLogger->flush();
         echo str_repeat('-', 40) . PHP_EOL;
     }
 }

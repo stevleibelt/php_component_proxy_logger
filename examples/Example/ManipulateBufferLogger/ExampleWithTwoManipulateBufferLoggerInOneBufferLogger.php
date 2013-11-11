@@ -31,11 +31,11 @@ ExampleWithTwoManipulateBufferLoggerInOneBufferLogger::create()
 class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-24
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
@@ -67,17 +67,23 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
         $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTriggerFactory);
 
         $mailLogger = $manipulateBufferLoggerFactory->create($realLoggerOne);
-        $mailLogger->getFlushBufferTrigger()->setTriggerToCritical();
+        $mailLogger
+            ->getEvent()
+            ->getFlushBufferTrigger()
+            ->setTriggerToCritical();
 
         $manipulateBufferLoggerFactory->setLogRequestFactory($wakeUpCallLogRequestFactory);
 
         $wakeUpCallLogger = $manipulateBufferLoggerFactory->create($realLoggerTwo);
-        $wakeUpCallLogger->getFlushBufferTrigger()->setTriggerToAlert();
+        $wakeUpCallLogger
+            ->getEvent()
+            ->getFlushBufferTrigger()
+            ->setTriggerToAlert();
 
         $loggerCollection = $proxyLoggerFactory->create($mailLogger);
         $loggerCollection->addLogger($wakeUpCallLogger);
 
-        $this->logger = $loggerCollection;
+        $this->bufferLogger = $loggerCollection;
 
         return $this;
     }
@@ -91,30 +97,30 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'First run - adding info and error messages' . PHP_EOL;
         echo PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->error('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->error('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'cleaning log buffer' . PHP_EOL;
         $this->cleanLogBuffer();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Second run - adding info, error and critical messages' . PHP_EOL;
         echo PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->error('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->error('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'cleaning log buffer' . PHP_EOL;
         $this->cleanLogBuffer();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Third run - adding info, error, critical and alert messages' . PHP_EOL;
         echo PHP_EOL;
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->error('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->alert('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->error('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->alert('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
     }
 
@@ -124,7 +130,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
      */
     private function cleanLogBuffer()
     {
-        foreach ($this->logger as $logger) {
+        foreach ($this->bufferLogger as $logger) {
             if ($logger instanceof BufferLoggerInterface) {
                 $logger->clean();
             }

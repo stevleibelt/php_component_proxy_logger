@@ -29,11 +29,11 @@ ExampleWithBypassBufferAndUpwardFlushBufferTrigger::create()
 class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-07
      */
-    private $logger;
+    private $bufferLogger;
 
     /**
      * @return ExampleWithBypassBuffer
@@ -63,7 +63,7 @@ class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
         $manipulateBufferLoggerFactory->setFlushBufferTriggerFactory($flushBufferTriggerFactory);
         $manipulateBufferLoggerFactory->setBypassBufferFactory($bypassBufferFactory);
 
-        $this->logger = $manipulateBufferLoggerFactory->create($logger);
+        $this->bufferLogger = $manipulateBufferLoggerFactory->create($logger);
 
         return $this;
     }
@@ -76,25 +76,27 @@ class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
     {
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Setting trigger to error' . PHP_EOL;
-        $this->logger
+        $this->bufferLogger
+            ->getEvent()
             ->getFlushBufferTrigger()
             ->setTriggerToError();
         echo 'Setting bypass buffer level to Notice' . PHP_EOL;
-        $this->logger
+        $this->bufferLogger
+            ->getEvent()
             ->getBypassBuffer()
             ->addBypassForLevelNotice();
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Adding logging messages' . PHP_EOL;
-        $this->logger->notice('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
-        $this->logger->notice('Current line is ' . __LINE__);
-        $this->logger->warning('Current line is ' . __LINE__);
-        $this->logger->critical('Current line is ' . __LINE__);
-        $this->logger->notice('Current line is ' . __LINE__);
-        $this->logger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->notice('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
+        $this->bufferLogger->notice('Current line is ' . __LINE__);
+        $this->bufferLogger->warning('Current line is ' . __LINE__);
+        $this->bufferLogger->critical('Current line is ' . __LINE__);
+        $this->bufferLogger->notice('Current line is ' . __LINE__);
+        $this->bufferLogger->info('Current line is ' . __LINE__);
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Flush buffer' . PHP_EOL;
-        $this->logger->flush();
+        $this->bufferLogger->flush();
         echo str_repeat('-', 40) . PHP_EOL;
     }
 }
