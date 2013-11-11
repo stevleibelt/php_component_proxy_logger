@@ -8,8 +8,10 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 use Net\Bazzline\Component\ProxyLogger\EventListener\ManipulateBufferEventListener;
+use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
 use Psr\Log\LoggerInterface;
 
@@ -48,29 +50,31 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      */
     public function create(LoggerInterface $logger)
     {
-        $manipulateBufferLogger = new ManipulateBufferLogger();
-        $eventFactory = new ManipulateBufferEventFactory();
+        $bufferLogger = new BufferLogger();
+        $event = new ManipulateBufferEvent();
         $dispatcher = new EventDispatcher();
         $listener = new ManipulateBufferEventListener();
         $listener->attach($dispatcher);
 
-        $manipulateBufferLogger->addLogger($logger);
-        $manipulateBufferLogger->setLogRequestFactory($this->logRequestFactory);
-        $manipulateBufferLogger->setLogRequestBufferFactory($this->logRequestBufferFactory);
-        $manipulateBufferLogger->setManipulateBufferEventFactory($eventFactory);
-        $manipulateBufferLogger->setEventDispatcher($dispatcher);
-
         if ($this->hasFlushBufferTriggerFactory()) {
             $flushBufferTrigger = $this->flushBufferTriggerFactory->create();
-            $manipulateBufferLogger->setFlushBufferTrigger($flushBufferTrigger);
+            $event->setFlushBufferTrigger($flushBufferTrigger);
         }
 
         if ($this->hasBypassBufferFactory()) {
             $bypassBuffer = $this->bypassBufferFactory->create();
-            $manipulateBufferLogger->setBypassBuffer($bypassBuffer);
+            $event->setBypassBuffer($bypassBuffer);
         }
 
-        return $manipulateBufferLogger;
+        $buffer = $this->logRequestBufferFactory->create();
+        $event->setLogRequestBuffer($buffer);
+
+        $bufferLogger->addLogger($logger);
+        $bufferLogger->setLogRequestFactory($this->logRequestFactory);
+        $bufferLogger->setBufferEvent($event);
+        $bufferLogger->setEventDispatcher($dispatcher);
+
+        return $bufferLogger;
     }
 
     /**

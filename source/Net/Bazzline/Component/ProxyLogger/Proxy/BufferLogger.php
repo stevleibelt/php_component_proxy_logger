@@ -7,7 +7,6 @@
 namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
-use Net\Bazzline\Component\ProxyLogger\Factory\BufferEventFactoryInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 
@@ -21,11 +20,11 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 class BufferLogger extends AbstractLogger implements BufferLoggerInterface
 {
     /**
-     * @var BufferEventFactoryInterface
+     * @var BufferEvent
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    protected $bufferEventFactory;
+    protected $bufferEvent;
 
     /**
      * @var LogRequestBufferFactoryInterface
@@ -76,14 +75,24 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     }
 
     /**
-     * @param BufferEventFactoryInterface $factory
+     * @return BufferEvent
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-11
+     */
+    public function getBufferEvent()
+    {
+        return $this->bufferEvent;
+    }
+
+    /**
+     * @param BufferEvent $event
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function setBufferEventFactory(BufferEventFactoryInterface $factory)
+    public function setBufferEvent(BufferEvent $event)
     {
-        return $this->bufferEventFactory = $factory;
+        return $this->bufferEvent = $event;
     }
 
     /**
@@ -99,8 +108,10 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     public function log($level, $message, array $context = array())
     {
         $logRequest = $this->logRequestFactory->create($level, $message, $context);
-        $event = $this->bufferEventFactory->create($this->loggers, $this->logRequestBuffer, $logRequest);
-        $this->eventDispatcher->dispatch(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event);
+        $this->bufferEvent->setLogRequest($logRequest);
+        //$this->bufferEvent->setLogRequestBuffer($this->logRequestBuffer);
+        $this->bufferEvent->setLoggerCollection($this->loggers);
+        $this->eventDispatcher->dispatch(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $this->bufferEvent);
     }
 
     /**
@@ -112,8 +123,9 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
      */
     public function flush()
     {
-        $event = $this->bufferEventFactory->create($this->loggers, $this->logRequestBuffer);
-        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_FLUSH, $event);
+        //$this->bufferEvent->setLogRequestBuffer($this->logRequestBuffer);
+        $this->bufferEvent->setLoggerCollection($this->loggers);
+        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_FLUSH, $this->bufferEvent);
 
         return $this;
     }
@@ -127,9 +139,10 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
      */
     public function clean()
     {
-        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
-        $event = $this->bufferEventFactory->create($this->loggers, $this->logRequestBuffer);
-        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $event);
+        //$this->logRequestBuffer = $this->logRequestBufferFactory->create();
+        //$this->bufferEvent->setLogRequestBuffer($this->logRequestBuffer);
+        $this->bufferEvent->setLoggerCollection($this->loggers);
+        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $this->bufferEvent);
 
         return $this;
     }

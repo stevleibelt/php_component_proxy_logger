@@ -75,28 +75,32 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
      */
     public function addLogRequestToBuffer(ManipulateBufferEvent $event)
     {
-        if (!$event->isPropagationStopped()) {
-            $logRequest = $event->getLogRequest();
-            $dispatcher = $event->getDispatcher();
-            $logRequestWasLogged = false;
+        $request = $event->getLogRequest();
+        $dispatcher = $event->getDispatcher();
+        $logRequestWasLogged = false;
+        $buffer = $event->getLogRequestBuffer();
 
-            if ($logRequestWasLogged
-                && $event->hasBypassBuffer()) {
-                $bypassBuffer = $event->getBypassBuffer();
-                if ($bypassBuffer->bypassBuffer($logRequest->getLevel())) {
-                    $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
-                    $logRequestWasLogged = true;
-                }
+        if ($event->hasBypassBuffer()) {
+            $bypassBuffer = $event->getBypassBuffer();
+            if ($bypassBuffer->bypassBuffer($request->getLevel())) {
+                $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
+                $logRequestWasLogged = true;
             }
+        }
 
-            if ($event->hasFlushBufferTrigger()) {
-                $flushBufferTrigger = $event->getFlushBufferTrigger();
-                if ($flushBufferTrigger->triggerBufferFlush($logRequest->getLevel())) {
-                    if (!$logRequestWasLogged) {
-                        $dispatcher->dispatch(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event);
-                    }
-                    $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
+        if ($event->hasFlushBufferTrigger()) {
+            $flushBufferTrigger = $event->getFlushBufferTrigger();
+            if ($flushBufferTrigger->triggerBufferFlush($request->getLevel())) {
+                if (!$logRequestWasLogged) {
+                    $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
                 }
+                $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
+            } else {
+                $buffer->add($request);
+            }
+        } else {
+            if (!$logRequestWasLogged) {
+                $buffer->add($request);
             }
         }
     }

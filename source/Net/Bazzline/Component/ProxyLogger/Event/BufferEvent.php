@@ -48,8 +48,6 @@ class BufferEvent extends ProxyEvent
      */
     public function setLogRequestBuffer(LogRequestBufferInterface $logRequestBuffer)
     {
-        $this->logRequestBuffer = $logRequestBuffer;
-
-        return $this;
+        return $this->logRequestBuffer = $logRequestBuffer;
     }
 }
