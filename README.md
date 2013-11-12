@@ -1,6 +1,8 @@
 # Logger Proxy Component
 
-This component ships a collection of enhanced proxy logger handling tools.
+This component ships a collection of enhanced proxy logger handling tools.  
+
+Current stable version is [1.1.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.1.0).  
 
 The build status of the current master branch is tracked by Travis CI:
 [![Build Status](https://travis-ci.org/stevleibelt/php_component_proxy_logger.png?branch=master)](http://travis-ci.org/stevleibelt/php_component_proxy_logger)
