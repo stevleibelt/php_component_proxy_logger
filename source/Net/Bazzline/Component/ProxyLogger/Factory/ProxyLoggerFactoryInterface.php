@@ -19,7 +19,7 @@ interface ProxyLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLoggerInterface
+     * @return \Net\Bazzline\Component\ProxyLogger\Logger\ProxyLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-09
      */

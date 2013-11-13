@@ -4,7 +4,7 @@
  * @since 2013-08-26
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\Proxy;
+namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
 use Net\Bazzline\Component\ProxyLogger\Event\EventAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  * Class ProxyLoggerInterface
  * based on: http://en.wikipedia.org/wiki/Proxy_pattern
  *
- * @package Net\Bazzline\Component\ProxyLogger\Proxy
+ * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */

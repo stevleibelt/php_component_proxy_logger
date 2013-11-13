@@ -4,7 +4,7 @@
  * @since 2013-08-27
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\Proxy;
+namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
 use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
@@ -14,7 +14,7 @@ use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 /**
  * Class AbstractProxyLogger
  *
- * @package Net\Bazzline\Component\ProxyLogger\Proxy
+ * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */

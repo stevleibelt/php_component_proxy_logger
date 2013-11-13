@@ -28,7 +28,7 @@ class ProxyLoggerFactoryTest extends TestCase
         $realLogger = $this->getNewPsr3LoggerMock();
         $proxyLogger = $proxyLoggerFactory->create($realLogger);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLoggerInterface', $proxyLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLogger', $proxyLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\ProxyLoggerInterface', $proxyLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\ProxyLogger', $proxyLogger);
     }
 }

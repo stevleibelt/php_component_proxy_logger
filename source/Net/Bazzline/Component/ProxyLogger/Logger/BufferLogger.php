@@ -4,7 +4,7 @@
  * @since 8/27/13
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\Proxy;
+namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
 use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
@@ -16,7 +16,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 /**
  * Class BufferLogger
  *
- * @package Net\Bazzline\Component\ProxyLogger\Proxy
+ * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  * @todo replace logRequestBufferFactory or try to remove it

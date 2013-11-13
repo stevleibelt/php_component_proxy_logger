@@ -9,7 +9,7 @@ namespace Net\Bazzline\Component\ProxyLogger\Factory;
 use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 use Net\Bazzline\Component\ProxyLogger\EventListener\ProxyEventListener;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\ProxyLogger;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -24,7 +24,7 @@ class ProxyLoggerFactory implements ProxyLoggerFactoryInterface
 {
     /**
      * @param LoggerInterface $logger
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\ProxyLoggerInterface
+     * @return \Net\Bazzline\Component\ProxyLogger\Logger\ProxyLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-09
      */

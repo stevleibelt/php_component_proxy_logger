@@ -4,17 +4,17 @@
  * @since 2013-08-28 
  */
 
-namespace Test\Net\Bazzline\Component\ProxyLogger\Proxy;
+namespace Test\Net\Bazzline\Component\ProxyLogger\Logger;
 
 use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger;
-use Net\Bazzline\Component\ProxyLogger\Proxy\ManipulateBufferLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\ManipulateBufferLogger;
 use Psr\Log\LogLevel;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
  * Class ManipulateBufferLoggerTest
  *
- * @package Test\Net\Bazzline\Component\ProxyLogger\Proxy
+ * @package Test\Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-28
  */

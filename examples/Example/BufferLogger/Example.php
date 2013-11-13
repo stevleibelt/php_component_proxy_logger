@@ -9,7 +9,7 @@ namespace Example\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
-use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
@@ -27,7 +27,7 @@ Example::create()
 class Example
 {
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-28
      */

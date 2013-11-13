@@ -9,7 +9,7 @@ namespace Example\Documentation;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use RuntimeException;
 
 /**
@@ -90,19 +90,19 @@ class ItemProcessor
     private $item;
 
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
+     * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-23
      */
     private $logger;
 
     /**
-     * @param \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface $logger
+     * @param \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface $logger
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-23
      */
-    public function setLogger(\Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface $logger)
+    public function setLogger(\Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface $logger)
     {
         $this->logger = $logger;
 
@@ -110,7 +110,7 @@ class ItemProcessor
     }
 
     /**
-     * @return null|\Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
+     * @return null|\Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-23
      */

@@ -1,23 +1,73 @@
 <?php
 /**
  * @author stev leibelt <artodeto@arcor.de>
- * @since 8/28/13
+ * @since 2013-11-10
  */
 
-namespace Net\Bazzline\Component\ProxyLogger\Proxy;
+namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
+use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcherInterface;
+use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 /**
- * Class OutputToConsoleLogger
+ * Class AbstractLogger
  *
- * @package Example
+ * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
- * @since 2013-08-28
+ * @since 2013-11-10
  */
-class OutputToConsoleLogger implements LoggerInterface
+abstract class AbstractLogger implements AbstractLoggerInterface
 {
+    /**
+     * @var EventDispatcherInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $eventDispatcher;
+
+    /**
+     * @var \Psr\Log\LoggerInterface[]
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
+     */
+    protected $loggers;
+
+    /**
+     * @var LogRequestFactoryInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $logRequestFactory;
+
+    /**
+     * @param LoggerInterface $logger
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-29
+     */
+    public function addLogger(LoggerInterface $logger)
+    {
+        if (is_null($this->loggers)) {
+            $this->loggers = array($logger);
+        } else {
+            $this->loggers[] = $logger;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return null|LoggerInterface[]
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-10-23
+     */
+    public function getLoggers()
+    {
+        return $this->loggers;
+    }
+
     /**
      * System is unusable.
      *
@@ -122,20 +172,24 @@ class OutputToConsoleLogger implements LoggerInterface
     }
 
     /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param LogRequestFactoryInterface $factory
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-08-26
      */
-    public function log($level, $message, array $context = array())
+    public function setLogRequestFactory(LogRequestFactoryInterface $factory)
     {
-        echo '[' . time() . '] [' . $level . '] [' . $message . ']' . PHP_EOL;
-        if (!empty($context)) {
-            foreach ($context as $value) {
-                echo "\t" . $value . PHP_EOL;
-            }
-        }
+        return $this->logRequestFactory = $factory;
+    }
+
+    /**
+     * @param EventDispatcherInterface $eventDispatcher
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
+    {
+        return $this->eventDispatcher = $eventDispatcher;
     }
 }

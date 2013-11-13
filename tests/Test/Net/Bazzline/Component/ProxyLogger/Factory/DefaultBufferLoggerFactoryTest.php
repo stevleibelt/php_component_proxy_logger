@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\DefaultBufferLoggerFactory;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
@@ -35,7 +35,7 @@ class DefaultBufferLoggerFactoryTest extends TestCase
         $bufferLogger->info('test message');
         $bufferLogger->flush();
 
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger', $bufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $bufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $bufferLogger);
     }
 } 

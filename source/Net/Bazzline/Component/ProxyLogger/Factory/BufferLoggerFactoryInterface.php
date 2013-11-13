@@ -19,7 +19,7 @@ interface BufferLoggerFactoryInterface extends LogRequestFactoryDependInterface,
 {
     /**
      * @param LoggerInterface $logger
-     * @return \Net\Bazzline\Component\ProxyLogger\Proxy\BufferLoggerInterface
+     * @return \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-09-08
      */
