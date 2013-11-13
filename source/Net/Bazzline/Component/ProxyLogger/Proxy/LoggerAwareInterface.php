@@ -4,7 +4,7 @@
  * @since 2013-09-08 
  */
 
-namespace Net\Bazzline\Component\ProxyLogger;
+namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface as ParentInterface;
