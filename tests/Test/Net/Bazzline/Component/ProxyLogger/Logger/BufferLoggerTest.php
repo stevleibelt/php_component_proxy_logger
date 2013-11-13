@@ -41,7 +41,7 @@ class BufferLoggerTest extends TestCase
             ->with(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event)
             ->once();
 
-        $logger = $this->getNewBufferLogger();
+        $logger = $this->getNewLogger();
         $logger->setEvent($event);
         $logger->setEventDispatcher($eventDispatcher);
         $logger->setLogRequestFactory($this->getNewLogRequestFactoryMock($request));
@@ -74,7 +74,7 @@ class BufferLoggerTest extends TestCase
             ->with(BufferEvent::BUFFER_CLEAN, $event)
             ->once();
 
-        $logger = $this->getNewBufferLogger();
+        $logger = $this->getNewLogger();
         $logger->setEvent($event);
         $logger->setEventDispatcher($eventDispatcher);
         $logger->setLogRequestFactory($requestFactory);
@@ -102,7 +102,7 @@ class BufferLoggerTest extends TestCase
         $factory->shouldReceive('create')
             ->never();
 
-        $logger = $this->getNewBufferLogger();
+        $logger = $this->getNewLogger();
         $logger->setEvent($event);
         $logger->setEventDispatcher($dispatcher);
         $logger->setLogRequestFactory($factory);
@@ -136,7 +136,7 @@ class BufferLoggerTest extends TestCase
         $factory = $this->getNewLogRequestFactoryMock($request);
         $realLogger = $this->getNewPsr3LoggerMock();
 
-        $logger = $this->getNewBufferLogger();
+        $logger = $this->getNewLogger();
         $logger->setEvent($event);
         $logger->setEventDispatcher($dispatcher);
         $logger->addLogger($realLogger);
@@ -148,69 +148,11 @@ class BufferLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-06
-     */
-    public function testSetLogRequestFactory()
-    {
-        $logger = $this->getNewBufferLogger();
-
-        $factory = $this->getNewPlainLogRequestFactoryMock();
-        $this->assertEquals($logger, $logger->setLogRequestFactory($factory));
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-13
-     */
-    public function testSetEvent()
-    {
-        $logger = $this->getNewBufferLogger();
-        $event = $this->getNewEventMock();
-
-        $this->assertEquals($logger, $logger->setEvent($event));
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-13
-     */
-    public function testSetEventDispatcher()
-    {
-        $logger = $this->getNewBufferLogger();
-        $dispatcher = $this->getNewEventDispatcherMock();
-
-        $this->assertEquals($logger, $logger->setEventDispatcher($dispatcher));
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-06
-     */
-    public function testGetHasSetLogRequestBufferFactory()
-    {
-        $logger = $this->getNewBufferLogger();
-        $this->assertNull($logger->getLogRequestBufferFactory());
-        $this->assertFalse($logger->hasLogRequestBufferFactory());
-
-        $request = $this->getNewLogRequestMock();
-        $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
-        $factory = $this->getNewLogRequestBufferFactoryMock($buffer);
-        $factory->shouldReceive('create')
-            ->andReturn($buffer)
-            ->once();
-        $logger->setLogRequestBufferFactory($factory);
-
-        $this->assertTrue($logger->hasLogRequestBufferFactory());
-        $this->assertEquals($factory, $logger->getLogRequestBufferFactory());
-    }
-
-    /**
      * @return BufferLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getNewBufferLogger()
+    protected function getNewLogger()
     {
         return new BufferLogger();
     }
