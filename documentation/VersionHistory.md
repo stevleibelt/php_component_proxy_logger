@@ -1,25 +1,6 @@
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger) - not yet released
-BufferManipulator
-  BypassBuffer
-  FlushBufferTrigger
-Factory
-  ...
-LogRequest
-  LogRequest
-  LogRequestBuffer
-EventManager
-EventListener
-Exception
-  InvalidArgumentException
-  RuntimeException
-Validator
-  IsValidLogLevel
-Logger
-  ProxyLogger
-  BufferLogger
-  ManipulateBufferLogger
 * [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - not yet released
     * added AbstractLogger
     * implement an event based handling for buffer logger to easy up creation of future buffer manipulators
