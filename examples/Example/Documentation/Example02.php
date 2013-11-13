@@ -10,7 +10,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
 /**

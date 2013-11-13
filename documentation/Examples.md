@@ -42,7 +42,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -88,7 +88,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -134,7 +134,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Logger\LoggerAwareInterface;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 

@@ -10,7 +10,7 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -36,7 +36,7 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
     private $bufferLogger;
 
     /**
-     * @var \Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger
+     * @var \Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-03
      */

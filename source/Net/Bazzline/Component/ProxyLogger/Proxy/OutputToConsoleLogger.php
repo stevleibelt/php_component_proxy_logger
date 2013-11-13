@@ -4,7 +4,7 @@
  * @since 8/28/13
  */
 
-namespace Net\Bazzline\Component\ProxyLogger;
+namespace Net\Bazzline\Component\ProxyLogger\Proxy;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;

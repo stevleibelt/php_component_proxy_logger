@@ -10,7 +10,7 @@ use Net\Bazzline\Component\ProxyLogger\Proxy\BufferLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\BufferLoggerFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\DateTimePrefixedMessageLogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 

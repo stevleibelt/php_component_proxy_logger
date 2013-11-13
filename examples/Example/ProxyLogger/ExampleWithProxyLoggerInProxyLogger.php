@@ -7,7 +7,7 @@
 namespace Example\ProxyLogger;
 
 use Net\Bazzline\Component\ProxyLogger\Factory\ProxyLoggerFactory;
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 

@@ -6,7 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\Factory;
 
-use Net\Bazzline\Component\ProxyLogger\OutputToConsoleLogger;
+use Net\Bazzline\Component\ProxyLogger\Proxy\OutputToConsoleLogger;
 use Net\Bazzline\Component\ProxyLogger\Factory\DefaultBufferLoggerFactory;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
