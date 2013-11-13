@@ -21,6 +21,7 @@ Logger
   BufferLogger
   ManipulateBufferLogger
 * [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - not yet released
+    * added AbstractLogger
     * implement an event based handling for buffer logger to easy up creation of future buffer manipulators
     * moved files in component root to same hierarchy level like the loggers
     * renamed namespace "proxy" to "logger"

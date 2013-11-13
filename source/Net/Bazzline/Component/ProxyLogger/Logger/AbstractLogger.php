@@ -6,6 +6,10 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
+use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
+use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
+use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
+use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcherInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryInterface;
 use Psr\Log\LoggerInterface;
@@ -21,11 +25,18 @@ use Psr\Log\LogLevel;
 abstract class AbstractLogger implements AbstractLoggerInterface
 {
     /**
+     * @var EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    protected $event;
+
+    /**
      * @var EventDispatcherInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    protected $eventDispatcher;
+    protected $dispatcher;
 
     /**
      * @var \Psr\Log\LoggerInterface[]
@@ -192,7 +203,30 @@ abstract class AbstractLogger implements AbstractLoggerInterface
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
     {
-        $this->eventDispatcher = $eventDispatcher;
+        $this->dispatcher = $eventDispatcher;
+
+        return $this;
+    }
+
+    /**
+     * @return EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-11
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param EventInterface $event
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-10
+     */
+    public function setEvent(EventInterface $event)
+    {
+        $this->event = $event;
 
         return $this;
     }

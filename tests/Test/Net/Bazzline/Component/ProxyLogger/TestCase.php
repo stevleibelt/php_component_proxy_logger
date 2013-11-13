@@ -21,6 +21,7 @@ use PHPUnit_Framework_TestCase;
  * @package Test\Net\Bazzline\Component\ProxyLogger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
+ * @todo remove unused get methods
  */
 class TestCase extends PHPUnit_Framework_TestCase
 {
@@ -218,5 +219,16 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function getNewEventDispatcherMock()
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher');
+    }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Logger\AbstractLogger
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    protected function getNewAbstractLogger()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Logger\AbstractLogger[log:w
+        ]');
     }
 }

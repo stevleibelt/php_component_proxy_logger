@@ -6,10 +6,7 @@
 
 namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
-use Net\Bazzline\Component\ProxyLogger\Event\EventInterface;
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
-use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
-use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 
@@ -23,13 +20,6 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
  */
 class BufferLogger extends AbstractLogger implements BufferLoggerInterface
 {
-    /**
-     * @var BufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-10
-     */
-    protected $event;
-
     /**
      * @var LogRequestBufferFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
@@ -45,26 +35,6 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     protected $logRequestBuffer;
 
     /**
-     * @return null|LogRequestBufferFactoryInterface $factory
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function getLogRequestBufferFactory()
-    {
-        return $this->logRequestBufferFactory;
-    }
-
-    /**
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-09-05
-     */
-    public function hasLogRequestBufferFactory()
-    {
-        return (!is_null($this->logRequestBufferFactory));
-    }
-
-    /**
      * @param LogRequestBufferFactoryInterface $factory
      * @return mixed
      * @author stev leibelt <artodeto@arcor.de>
@@ -74,29 +44,6 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     {
         $this->logRequestBufferFactory = $factory;
         $this->logRequestBuffer = $this->logRequestBufferFactory->create();
-
-        return $this;
-    }
-
-    /**
-     * @return EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-11
-     */
-    public function getEvent()
-    {
-        return $this->event;
-    }
-
-    /**
-     * @param EventInterface $event
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-10
-     */
-    public function setEvent(EventInterface $event)
-    {
-        $this->event = $event;
 
         return $this;
     }
@@ -116,7 +63,7 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
         $logRequest = $this->logRequestFactory->create($level, $message, $context);
         $this->event->setLogRequest($logRequest);
         $this->event->setLoggerCollection($this->loggers);
-        $this->eventDispatcher->dispatch(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $this->event);
+        $this->dispatcher->dispatch(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $this->event);
     }
 
     /**
@@ -129,7 +76,7 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     public function flush()
     {
         $this->event->setLoggerCollection($this->loggers);
-        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_FLUSH, $this->event);
+        $this->dispatcher->dispatch(BufferEvent::BUFFER_FLUSH, $this->event);
 
         return $this;
     }
@@ -144,7 +91,7 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
     public function clean()
     {
         $this->event->setLoggerCollection($this->loggers);
-        $this->eventDispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $this->event);
+        $this->dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $this->event);
 
         return $this;
     }
