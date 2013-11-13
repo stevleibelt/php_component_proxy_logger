@@ -6,6 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\Logger;
 
+use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
 use Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger;
 use Mockery;
 use Psr\Log\LogLevel;
@@ -30,14 +31,25 @@ class BufferLoggerTest extends TestCase
         $message = 'the message is love';
         $request = $this->getNewLogRequestMock();
         $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
+        $event = $this->getNewEventMock();
+        $event->shouldReceive('setLogRequest')
+            ->once();
+        $event->shouldReceive('setLoggerCollection')
+            ->once();
+        $eventDispatcher = $this->getNewEventDispatcherMock();
+        $eventDispatcher->shouldReceive('dispatch')
+            ->with(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event)
+            ->once();
 
         $logger = $this->getNewBufferLogger();
+        $logger->setEvent($event);
+        $logger->setEventDispatcher($eventDispatcher);
         $logger->setLogRequestFactory($this->getNewLogRequestFactoryMock($request));
-        $bufferFactory = $this->getNewLogRequestBufferFactoryMock($buffer);
-        $bufferFactory->shouldReceive('create')
+        $factory = $this->getNewLogRequestBufferFactoryMock($buffer);
+        $factory->shouldReceive('create')
             ->andReturn($buffer)
             ->once();
-        $logger->setLogRequestBufferFactory($bufferFactory);
+        $logger->setLogRequestBufferFactory($factory);
 
         $logger->log($level, $message);
     }
@@ -50,18 +62,23 @@ class BufferLoggerTest extends TestCase
     {
         $request = $this->getNewLogRequestMock();
         $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
-        $buffer->shouldReceive('attach')
-            ->never();
         $requestFactory = $this->getNewLogRequestFactoryMock($request);
         $requestFactory->shouldReceive('create')
             ->never();
-        $bufferFactory = $this->getNewLogRequestBufferFactoryMock($buffer);
-        $bufferFactory->shouldReceive('create')
-            ->twice();
+        $factory = $this->getNewLogRequestBufferFactoryMock($buffer);
+        $event = $this->getNewEventMock();
+        $event->shouldReceive('setLoggerCollection')
+            ->once();
+        $eventDispatcher = $this->getNewEventDispatcherMock();
+        $eventDispatcher->shouldReceive('dispatch')
+            ->with(BufferEvent::BUFFER_CLEAN, $event)
+            ->once();
 
         $logger = $this->getNewBufferLogger();
+        $logger->setEvent($event);
+        $logger->setEventDispatcher($eventDispatcher);
         $logger->setLogRequestFactory($requestFactory);
-        $logger->setLogRequestBufferFactory($bufferFactory);
+        $logger->setLogRequestBufferFactory($factory);
 
         $logger->clean();
     }
@@ -74,19 +91,21 @@ class BufferLoggerTest extends TestCase
     {
         $request = $this->getNewLogRequestMock();
         $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
-        $buffer->shouldReceive('rewind')
+        $event = $this->getNewEventMock();
+        $event->shouldReceive('setLoggerCollection')
             ->once();
-        $buffer->shouldReceive('valid')
-            ->andReturn(false)
+        $dispatcher = $this->getNewEventDispatcherMock();
+        $dispatcher->shouldReceive('dispatch')
+            ->with(BufferEvent::BUFFER_FLUSH, $event)
             ->once();
-        $buffer->shouldReceive('attach')
-            ->never();
-        $requestFactory = $this->getNewLogRequestFactoryMock($request);
-        $requestFactory->shouldReceive('create')
+        $factory = $this->getNewLogRequestFactoryMock($request);
+        $factory->shouldReceive('create')
             ->never();
 
         $logger = $this->getNewBufferLogger();
-        $logger->setLogRequestFactory($requestFactory);
+        $logger->setEvent($event);
+        $logger->setEventDispatcher($dispatcher);
+        $logger->setLogRequestFactory($factory);
         $logger->setLogRequestBufferFactory($this->getNewLogRequestBufferFactoryMock($buffer));
 
         $logger->flush();
@@ -101,39 +120,31 @@ class BufferLoggerTest extends TestCase
         $level = LogLevel::WARNING;
         $message = 'the message is love';
         $request = $this->getNewLogRequestMock();
-        $request->shouldReceive('getLevel')
-            ->andReturn($level)
-            ->once();
-        $request->shouldReceive('getMessage')
-            ->andReturn($message)
-            ->once();
-        $request->shouldReceive('getContext')
-            ->andReturn(array())
-            ->once();
         $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
-        $buffer->shouldReceive('rewind')
+        $event = $this->getNewEventMock();
+        $event->shouldReceive('setLogRequest')
             ->once();
-        $buffer->shouldReceive('valid')
-            ->andReturn(true, false)
-            ->times(2);
-        $buffer->shouldReceive('current')
-            ->andReturn($request)
+        $event->shouldReceive('setLoggerCollection')
+            ->twice();
+        $dispatcher = $this->getNewEventDispatcherMock();
+        $dispatcher->shouldReceive('dispatch')
+            ->with(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event)
             ->once();
-        $buffer->shouldReceive('next')
+        $dispatcher->shouldReceive('dispatch')
+            ->with(BufferEvent::BUFFER_FLUSH, $event)
             ->once();
-        $requestFactory = $this->getNewLogRequestFactoryMock($request);
+        $factory = $this->getNewLogRequestFactoryMock($request);
         $realLogger = $this->getNewPsr3LoggerMock();
-        $realLogger->shouldReceive('log')
-            ->with($level, $message, array())
-            ->once();
 
-        $bufferLogger = $this->getNewBufferLogger();
-        $bufferLogger->addLogger($realLogger);
-        $bufferLogger->setLogRequestFactory($requestFactory);
-        $bufferLogger->setLogRequestBufferFactory($this->getNewLogRequestBufferFactoryMock($buffer));
+        $logger = $this->getNewBufferLogger();
+        $logger->setEvent($event);
+        $logger->setEventDispatcher($dispatcher);
+        $logger->addLogger($realLogger);
+        $logger->setLogRequestFactory($factory);
+        $logger->setLogRequestBufferFactory($this->getNewLogRequestBufferFactoryMock($buffer));
 
-        $bufferLogger->log($level, $message);
-        $bufferLogger->flush();
+        $logger->log($level, $message);
+        $logger->flush();
     }
 
     /**
@@ -142,10 +153,34 @@ class BufferLoggerTest extends TestCase
      */
     public function testSetLogRequestFactory()
     {
-        $bufferLogger = $this->getNewBufferLogger();
+        $logger = $this->getNewBufferLogger();
 
-        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
-        $this->assertEquals($bufferLogger, $bufferLogger->setLogRequestFactory($logRequestFactory));
+        $factory = $this->getNewPlainLogRequestFactoryMock();
+        $this->assertEquals($logger, $logger->setLogRequestFactory($factory));
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    public function testSetEvent()
+    {
+        $logger = $this->getNewBufferLogger();
+        $event = $this->getNewEventMock();
+
+        $this->assertEquals($logger, $logger->setEvent($event));
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    public function testSetEventDispatcher()
+    {
+        $logger = $this->getNewBufferLogger();
+        $dispatcher = $this->getNewEventDispatcherMock();
+
+        $this->assertEquals($logger, $logger->setEventDispatcher($dispatcher));
     }
 
     /**
@@ -154,23 +189,20 @@ class BufferLoggerTest extends TestCase
      */
     public function testGetHasSetLogRequestBufferFactory()
     {
-        $bufferLogger = $this->getNewBufferLogger();
-        $this->assertNull($bufferLogger->getLogRequestBufferFactory());
-        $this->assertFalse($bufferLogger->hasLogRequestBufferFactory());
+        $logger = $this->getNewBufferLogger();
+        $this->assertNull($logger->getLogRequestBufferFactory());
+        $this->assertFalse($logger->hasLogRequestBufferFactory());
 
-        $logRequest = $this->getNewLogRequestMock();
-        $logRequestBuffer = $this->getNewLogRequestRuntimeBufferMock($logRequest);
-        $logRequestBuffer->shouldReceive('attach')
-            ->with($logRequest)
-            ->never();
-        $logRequestBufferFactory = $this->getNewLogRequestBufferFactoryMock($logRequestBuffer);
-        $logRequestBufferFactory->shouldReceive('create')
-            ->andReturn($logRequestBuffer)
+        $request = $this->getNewLogRequestMock();
+        $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
+        $factory = $this->getNewLogRequestBufferFactoryMock($buffer);
+        $factory->shouldReceive('create')
+            ->andReturn($buffer)
             ->once();
-        $bufferLogger->setLogRequestBufferFactory($logRequestBufferFactory);
+        $logger->setLogRequestBufferFactory($factory);
 
-        $this->assertTrue($bufferLogger->hasLogRequestBufferFactory());
-        $this->assertEquals($logRequestBufferFactory, $bufferLogger->getLogRequestBufferFactory());
+        $this->assertTrue($logger->hasLogRequestBufferFactory());
+        $this->assertEquals($factory, $logger->getLogRequestBufferFactory());
     }
 
     /**

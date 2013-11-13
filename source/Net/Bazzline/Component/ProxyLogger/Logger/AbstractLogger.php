@@ -179,7 +179,9 @@ abstract class AbstractLogger implements AbstractLoggerInterface
      */
     public function setLogRequestFactory(LogRequestFactoryInterface $factory)
     {
-        return $this->logRequestFactory = $factory;
+        $this->logRequestFactory = $factory;
+
+        return $this;
     }
 
     /**
@@ -190,6 +192,8 @@ abstract class AbstractLogger implements AbstractLoggerInterface
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
     {
-        return $this->eventDispatcher = $eventDispatcher;
+        $this->eventDispatcher = $eventDispatcher;
+
+        return $this;
     }
 }

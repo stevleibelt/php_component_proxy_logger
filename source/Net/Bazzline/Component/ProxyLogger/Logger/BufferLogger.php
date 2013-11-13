@@ -96,7 +96,9 @@ class BufferLogger extends AbstractLogger implements BufferLoggerInterface
      */
     public function setEvent(EventInterface $event)
     {
-        return $this->event = $event;
+        $this->event = $event;
+
+        return $this;
     }
 
     /**

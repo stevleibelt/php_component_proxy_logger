@@ -62,10 +62,6 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function getNewLogRequestRuntimeBufferMock(LogRequestInterface $logRequest)
     {
         $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer');
-        $mock->shouldReceive('attach')
-            ->with($logRequest)
-            ->once()
-            ->byDefault();
 
         return $mock;
     }
@@ -118,7 +114,7 @@ class TestCase extends PHPUnit_Framework_TestCase
         $mock = $this->getNewPlainLogRequestBufferFactoryMock();
         $mock->shouldReceive('create')
             ->andReturn($buffer)
-            ->twice()
+            ->once()
             ->byDefault();
 
         return $mock;
@@ -202,5 +198,25 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function getNewFlushBufferTriggerFactoryMock()
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactory');
+    }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Event\Event'
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    protected function getNewEventMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Event\Event');
+    }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    protected function getNewEventDispatcherMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher');
     }
 }
