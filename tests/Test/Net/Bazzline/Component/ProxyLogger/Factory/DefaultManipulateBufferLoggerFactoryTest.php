@@ -7,6 +7,7 @@
 namespace Test\Net\Bazzline\Component\ProxyLogger\Factory;
 
 use Net\Bazzline\Component\ProxyLogger\Factory\DefaultManipulateBufferLoggerFactory;
+use Net\Bazzline\Component\ProxyLogger\Factory\UpwardFlushBufferTriggerFactory;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
@@ -25,23 +26,24 @@ class DefaultManipulateBufferLoggerFactoryTest extends TestCase
     public function testCreate()
     {
         $factory = new DefaultManipulateBufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
-        $logger->shouldReceive('log')
+        $realLogger = $this->getNewPsr3LoggerMock();
+        $realLogger->shouldReceive('log')
             ->with('info', 'test message', array())
             ->once();
-        $logger->shouldReceive('log')
+        $realLogger->shouldReceive('log')
             ->with('error', 'test message', array())
             ->once();
 
-        $bufferLogger = $factory->create($logger);
-        $bufferLogger->getFlushBufferTrigger()
+        $logger = $factory->create($realLogger);
+        $logger->getEvent()
+            ->getFlushBufferTrigger()
             ->setTriggerToError();
-        $bufferLogger->info('test message');
-        $bufferLogger->error('test message');
+        $logger->info('test message');
+        $logger->error('test message');
 
-        $this->assertTrue($bufferLogger->hasBypassBuffer());
-        $this->assertTrue($bufferLogger->hasFlushBufferTrigger());
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\ManipulateBufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\ManipulateBufferLogger', $bufferLogger);
+        $this->assertTrue($logger->getEvent()->hasBypassBuffer());
+        $this->assertTrue($logger->getEvent()->hasFlushBufferTrigger());
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $logger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $logger);
     }
 }
