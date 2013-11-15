@@ -26,16 +26,16 @@ class DefaultBufferLoggerFactoryTest extends TestCase
     public function testCreate()
     {
         $factory = new DefaultBufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
-        $logger->shouldReceive('log')
+        $realLogger = $this->getNewPsr3LoggerMock();
+        $realLogger->shouldReceive('log')
             ->with('info', 'test message', array())
             ->once();
 
-        $bufferLogger = $factory->create($logger);
-        $bufferLogger->info('test message');
-        $bufferLogger->flush();
+        $logger = $factory->create($realLogger);
+        $logger->info('test message');
+        $logger->flush();
 
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $bufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $logger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $logger);
     }
 } 
