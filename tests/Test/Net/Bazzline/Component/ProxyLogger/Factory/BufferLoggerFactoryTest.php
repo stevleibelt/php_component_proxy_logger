@@ -25,17 +25,21 @@ class BufferLoggerFactoryTest extends TestCase
     public function testCreateWithLogger()
     {
         $factory = new BufferLoggerFactory();
-        $logger = $this->getNewPsr3LoggerMock();
-        $logRequestFactory = $this->getNewPlainLogRequestFactoryMock();
-        $logRequestBufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
-        $logRequestBufferFactory->shouldReceive('create')
+        $realLogger = $this->getNewPsr3LoggerMock();
+        $request = $this->getNewLogRequestMock();
+        $requestFactory = $this->getNewPlainLogRequestFactoryMock();
+        $buffer = $this->getNewLogRequestRuntimeBufferMock($request);
+        $bufferFactory = $this->getNewPlainLogRequestBufferFactoryMock();
+        $bufferFactory->shouldReceive('create')
+            ->andReturn($buffer)
             ->once();
-        $factory->setLogRequestFactory($logRequestFactory);
-        $factory->setLogRequestBufferFactory($logRequestBufferFactory);
+        $factory->setLogRequestFactory($requestFactory);
+        $factory->setLogRequestBufferFactory($bufferFactory);
 
-        $bufferLogger = $factory->create($logger);
+        $logger = $factory->create($realLogger);
 
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $bufferLogger);
-        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $bufferLogger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface', $logger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger', $logger);
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Event\BufferEvent', $logger->getEvent());
     }
 }
