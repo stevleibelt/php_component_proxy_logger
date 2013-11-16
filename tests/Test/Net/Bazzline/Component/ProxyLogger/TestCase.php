@@ -6,11 +6,8 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger;
 
-use Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer;
-use Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactory;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
-use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer;
 use Mockery;
 use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
 use PHPUnit_Framework_TestCase;
@@ -55,12 +52,11 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param LogRequestInterface $logRequest
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
      */
-    protected function getNewLogRequestRuntimeBufferMock(LogRequestInterface $logRequest)
+    protected function getNewLogRequestRuntimeBufferMock()
     {
         $mock = Mockery::mock('Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer');
 
