@@ -224,7 +224,6 @@ class TestCase extends PHPUnit_Framework_TestCase
      */
     protected function getNewAbstractLogger()
     {
-        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Logger\AbstractLogger[log:w
-        ]');
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Logger\AbstractLogger[log]');
     }
 }
