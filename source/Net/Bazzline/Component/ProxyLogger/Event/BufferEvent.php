@@ -17,9 +17,9 @@ use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
  */
 class BufferEvent extends ProxyEvent
 {
-    const BUFFER_FLUSH = 'bufferEvent.bufferFlush';
-    const BUFFER_CLEAN = 'bufferEvent.bufferClean';
-    const ADD_LOG_REQUEST_TO_BUFFER = 'bufferEvent.addLogRequestToBuffer';
+    const BUFFER_FLUSH = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferFlush';
+    const BUFFER_CLEAN = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferClean';
+    const ADD_LOG_REQUEST_TO_BUFFER = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.addLogRequestToBuffer';
 
     /**
      * @var LogRequestBufferInterface

@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
  */
 class ProxyEvent extends Event
 {
-    const LOG_LOG_REQUEST = 'proxyEvent.logLogRequest';
+    const LOG_LOG_REQUEST = 'netBazzlineComponentProxyLoggerEvent.proxyEvent.logLogRequest';
 
     /**
      * @var LogRequestInterface
