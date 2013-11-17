@@ -35,6 +35,16 @@ class ProxyEvent extends Event
     private $loggerCollection = array();
 
     /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-17
+     */
+    public function getLogLogRequest()
+    {
+        return self::LOG_LOG_REQUEST;
+    }
+
+    /**
      * @return array|LoggerInterface[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08

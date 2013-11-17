@@ -17,9 +17,9 @@ use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
  */
 class BufferEvent extends ProxyEvent
 {
-    const BUFFER_FLUSH = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferFlush';
-    const BUFFER_CLEAN = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferClean';
     const ADD_LOG_REQUEST_TO_BUFFER = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.addLogRequestToBuffer';
+    const BUFFER_CLEAN = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferClean';
+    const BUFFER_FLUSH = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferFlush';
 
     /**
      * @var LogRequestBufferInterface
@@ -27,6 +27,36 @@ class BufferEvent extends ProxyEvent
      * @since 2013-11-08
      */
     private $logRequestBuffer;
+
+    /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-17
+     */
+    public function getAddLogRequestToBuffer()
+    {
+        return self::ADD_LOG_REQUEST_TO_BUFFER;
+    }
+
+    /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-17
+     */
+    public function getBufferClear()
+    {
+        return self::BUFFER_CLEAN;
+    }
+
+    /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-17
+     */
+    public function getBufferFlush()
+    {
+        return self::BUFFER_FLUSH;
+    }
 
     /**
      * @return LogRequestBufferInterface
