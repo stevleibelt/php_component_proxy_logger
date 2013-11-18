@@ -7,8 +7,6 @@
 namespace Net\Bazzline\Component\ProxyLogger\Logger;
 
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
-use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
-use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
 
 /**
  * Class BufferLogger
@@ -16,38 +14,9 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestBufferFactoryInterface;
  * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
- * @todo replace logRequestBufferFactory or try to remove it
  */
 class BufferLogger extends AbstractLogger implements BufferLoggerInterface
 {
-    /**
-     * @var LogRequestBufferFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected $logRequestBufferFactory;
-
-    /**
-     * @var LogRequestBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-26
-     */
-    protected $logRequestBuffer;
-
-    /**
-     * @param LogRequestBufferFactoryInterface $factory
-     * @return mixed
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-08-27
-     */
-    public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory)
-    {
-        $this->logRequestBufferFactory = $factory;
-        $this->logRequestBuffer = $this->logRequestBufferFactory->create();
-
-        return $this;
-    }
-
     /**
      * Logs with an arbitrary level.
      *
