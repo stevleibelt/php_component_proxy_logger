@@ -24,6 +24,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
+     * @todo rename bufferClean to cleanBuffer and bufferFlush to flushBuffer
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
