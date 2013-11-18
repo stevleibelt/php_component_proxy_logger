@@ -2,7 +2,7 @@
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger) - not yet released
 * [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - not yet released
-    * added AbstractLogger
+    * added AbstractProxyLogger
     * implement an event based handling for buffer logger to easy up creation of future buffer manipulators
     * moved files in component root to same hierarchy level like the loggers
     * removed "LogRequestBufferFactory" in "BufferLogger" (buffer is now only needed in the event)

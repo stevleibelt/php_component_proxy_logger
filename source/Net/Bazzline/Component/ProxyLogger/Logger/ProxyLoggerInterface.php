@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-26
  */
-interface ProxyLoggerInterface extends EventAwareInterface, AbstractLoggerInterface
+interface ProxyLoggerInterface extends EventAwareInterface, AbstractProxyLoggerInterface
 {
     /**
      * @param LoggerInterface $logger

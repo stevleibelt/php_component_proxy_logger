@@ -15,7 +15,7 @@ use Net\Bazzline\Component\ProxyLogger\Event\EventAwareInterface;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-interface BufferLoggerInterface extends AbstractLoggerInterface, EventAwareInterface
+interface BufferLoggerInterface extends AbstractProxyLoggerInterface, EventAwareInterface
 {
     /**
      * Flushs buffer content to logger

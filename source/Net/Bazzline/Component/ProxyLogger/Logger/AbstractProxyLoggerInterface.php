@@ -11,12 +11,12 @@ use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactoryDependInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Interface AbstractLoggerInterface
+ * Interface AbstractProxyLoggerInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\Logger
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-11-10
  */
-interface AbstractLoggerInterface extends LoggerInterface, LogRequestFactoryDependInterface, EventDispatcherDependInterface
+interface AbstractProxyLoggerInterface extends LoggerInterface, LogRequestFactoryDependInterface, EventDispatcherDependInterface
 {
 } 

@@ -15,7 +15,7 @@ use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-27
  */
-class ProxyLogger extends AbstractLogger implements ProxyLoggerInterface
+class ProxyLogger extends AbstractProxyLogger implements ProxyLoggerInterface
 {
     /**
      * Logs with an arbitrary level.
