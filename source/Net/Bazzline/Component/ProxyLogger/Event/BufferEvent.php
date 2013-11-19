@@ -27,7 +27,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
      */
-    private $logRequestBuffer;
+    protected $logRequestBuffer;
 
     /**
      * @return string
@@ -87,6 +87,8 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
      */
     public function setLogRequestBuffer(LogRequestBufferInterface $logRequestBuffer)
     {
-        return $this->logRequestBuffer = $logRequestBuffer;
+        $this->logRequestBuffer = $logRequestBuffer;
+
+        return $this;
     }
 }

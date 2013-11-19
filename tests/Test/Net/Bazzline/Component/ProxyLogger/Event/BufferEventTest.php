@@ -56,7 +56,15 @@ class BufferEventTest extends TestCase
      */
     public function testGetHasSetLogRequestBuffer()
     {
-        $this->markTestIncomplete('todo');
+        $event = $this->getNewEvent();
+        $buffer = $this->getNewLogRequestRuntimeBufferMock();
+
+        $this->assertNull($event->getLogRequestBuffer());
+        $this->assertFalse($event->hasLogRequestBuffer());
+        $this->assertEquals($event, $event->setLogRequestBuffer($buffer));
+        $this->assertTrue($event->hasLogRequestBuffer());
+        //@todo figure out why comparison based on the object instance breaks the test
+        $this->assertEquals(spl_object_hash($buffer), spl_object_hash($event->getLogRequestBuffer()));
     }
 
     /**

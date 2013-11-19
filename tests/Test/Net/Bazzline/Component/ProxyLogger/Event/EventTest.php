@@ -6,6 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\Event;
 
+use Net\Bazzline\Component\ProxyLogger\Event\Event;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
@@ -22,6 +23,8 @@ class EventTest extends TestCase
      */
     public function testConstructor()
     {
-        $this->markTestIncomplete('todo');
+        $event = new Event;
+
+        $this->assertInstanceOf('Net\Bazzline\Component\ProxyLogger\Event\EventInterface', $event);
     }
 } 

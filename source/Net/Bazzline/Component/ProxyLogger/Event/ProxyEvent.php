@@ -55,6 +55,19 @@ class ProxyEvent extends Event
     }
 
     /**
+     * @param array|LoggerInterface[] $loggerCollection
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-08
+     */
+    public function setLoggerCollection(array $loggerCollection)
+    {
+        $this->loggerCollection = $loggerCollection;
+
+        return $this;
+    }
+
+    /**
      * @return LogRequestInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
@@ -62,19 +75,6 @@ class ProxyEvent extends Event
     public function getLogRequest()
     {
         return $this->logRequest;
-    }
-
-    /**
-     * @param LoggerInterface[] $loggerCollection
-     * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-08
-     */
-    public function setLoggerCollection($loggerCollection)
-    {
-        $this->loggerCollection = $loggerCollection;
-
-        return $this;
     }
 
     /**
