@@ -7,7 +7,10 @@
          stopOnError="false"
          stopOnFailure="false"
          stopOnIncomplete="false"
-         stopOnSkipped="false">
+         stopOnSkipped="false"
+         printerFile="vendor/whatthejeff/nyancat-phpunit-resultprinter/src/NyanCat/PHPUnit/ResultPrinter.php"
+         printerClass="NyanCat\PHPUnit\ResultPrinter"
+         >
 
     <testsuites>
         <testsuite name="ProxyLogger Test Suite">
