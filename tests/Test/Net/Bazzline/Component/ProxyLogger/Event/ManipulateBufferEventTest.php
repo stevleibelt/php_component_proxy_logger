@@ -23,7 +23,14 @@ class ManipulateBufferEventTest extends TestCase
      */
     public function testGetHasSetBypassBuffer()
     {
-        $this->markTestIncomplete('todo');
+        $event = $this->getNewEvent();
+        $bypassBuffer = $this->getNewBypassBufferMock();
+
+        $this->assertFalse($event->hasBypassBuffer());
+        $this->assertNull($event->getBypassBuffer());
+        $this->assertSame($event, $event->setBypassBuffer($bypassBuffer));
+        $this->assertTrue($event->hasBypassBuffer());
+        $this->assertSame($bypassBuffer, $event->getBypassBuffer());
     }
 
     /**
@@ -32,6 +39,23 @@ class ManipulateBufferEventTest extends TestCase
      */
     public function testGetHasSetFlushBufferTrigger()
     {
-        $this->markTestIncomplete('todo');
+        $event = $this->getNewEvent();
+        $flushBufferTrigger = $this->getNewAbstractFlushBufferTriggerMock();
+
+        $this->assertFalse($event->hasFlushBufferTrigger());
+        $this->assertNull($event->getFlushBufferTrigger());
+        $this->assertSame($event, $event->setFlushBufferTrigger($flushBufferTrigger));
+        $this->assertTrue($event->hasFlushBufferTrigger());
+        $this->assertSame($flushBufferTrigger, $event->getFlushBufferTrigger());
     }
-} 
+
+    /**
+     * @return ManipulateBufferEvent
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-20
+     */
+    private function getNewEvent()
+    {
+        return new ManipulateBufferEvent();
+    }
+}
