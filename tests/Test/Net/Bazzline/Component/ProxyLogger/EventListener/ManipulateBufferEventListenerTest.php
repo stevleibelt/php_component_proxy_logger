@@ -6,6 +6,8 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\EventListener;
 
+use Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent;
+use Net\Bazzline\Component\ProxyLogger\EventListener\ManipulateBufferEventListener;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 
 /**
@@ -22,7 +24,14 @@ class ManipulateBufferEventListenerTest extends TestCase
      */
     public function testAttach()
     {
-        $this->markTestIncomplete('todo');
+        $listener = $this->getNewEventListener();
+        $dispatcher = $this->getNewEventDispatcher();
+
+        $this->assertSame($listener, $listener->attach($dispatcher));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::LOG_LOG_REQUEST));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_CLEAN));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_FLUSH));
     }
 
     /**
@@ -31,16 +40,53 @@ class ManipulateBufferEventListenerTest extends TestCase
      */
     public function testDetach()
     {
-        $this->markTestIncomplete('todo');
+        $listener = $this->getNewEventListener();
+        $dispatcher = $this->getNewEventDispatcher();
+        $listener->attach($dispatcher);
+
+        $this->assertSame($listener, $listener->detach($dispatcher));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::LOG_LOG_REQUEST));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_CLEAN));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_FLUSH));
     }
 
     /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
+     * @todo extend with all test cases
+     *  - (hasBypassBuffer^!hasFlushBuffer)
+     *  - (!hasBypassBuffer^hasFlushBuffer)
+     *  - (hasBypassBuffer^hasFlushBuffer)
      */
-    public function testLogRequest()
+    public function testAddLogRequestToBuffer()
     {
-        $this->markTestIncomplete('todo');
+        $buffer = $this->getNewLogRequestRuntimeBufferMock();
+        $dispatcher = $this->getNewEventDispatcher();
+        $event = $this->getNewManipulateBufferEventMock();
+        $listener = $this->getNewEventListener();
+        $request = $this->getNewLogRequestMock();
+
+        $buffer->shouldReceive('add')
+            ->withArgs(array($request))
+            ->once();
+        $event->shouldReceive('getLogRequestBuffer')
+            ->andReturn($buffer)
+            ->once();
+        $event->shouldReceive('getLogRequest')
+            ->andReturn($request)
+            ->once();
+        $event->shouldReceive('hasBypassBuffer')
+            ->andReturn(false)
+            ->once();
+        $event->shouldReceive('hasFlushBufferTrigger')
+            ->andReturn(false)
+            ->once();
+        $event->shouldReceive('getDispatcher')
+            ->andReturn($dispatcher)
+            ->once();
+
+        $listener->addLogRequestToBuffer($event);
     }
 
     /**
@@ -49,7 +95,17 @@ class ManipulateBufferEventListenerTest extends TestCase
      */
     public function testBufferClean()
     {
-        $this->markTestIncomplete('todo');
+        $listener = $this->getNewEventListener();
+        $event = $this->getNewManipulateBufferEventMock();
+        $buffer = $this->getNewLogRequestRuntimeBufferMock();
+
+        $event->shouldReceive('getLogRequestBuffer')
+            ->andReturn($buffer)
+            ->once();
+        $event->shouldReceive('setLogRequestBuffer')
+            ->once();
+
+        $listener->bufferClean($event);
     }
 
     /**
@@ -58,6 +114,35 @@ class ManipulateBufferEventListenerTest extends TestCase
      */
     public function testBufferFlush()
     {
-        $this->markTestIncomplete('todo');
+        $listener = $this->getNewEventListener();
+        $event = $this->getNewManipulateBufferEventMock();
+        $dispatcher = $this->getNewEventDispatcherMock();
+        $buffer = $this->getNewLogRequestRuntimeBufferMock();
+        $buffer->shouldReceive('rewind')
+            ->once();
+        $buffer->shouldReceive('valid')
+            ->once();
+
+        $dispatcher->shouldReceive('dispatch')
+            ->withArgs(array(ManipulateBufferEvent::BUFFER_CLEAN, $event))
+            ->once();
+        $event->shouldReceive('getLogRequestBuffer')
+            ->andReturn($buffer)
+            ->once();
+        $event->shouldReceive('getDispatcher')
+            ->andReturn($dispatcher)
+            ->once();
+
+        $listener->bufferFlush($event);
     }
-} 
+
+    /**
+     * @return ManipulateBufferEventListener
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-21
+     */
+    private function getNewEventListener()
+    {
+        return new ManipulateBufferEventListener();
+    }
+}

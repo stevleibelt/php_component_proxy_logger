@@ -6,7 +6,6 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger\EventListener;
 
-use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
 use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
 use Net\Bazzline\Component\ProxyLogger\EventListener\BufferEventListener;
 use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
@@ -29,7 +28,7 @@ class BufferEventListenerTest extends TestCase
         $dispatcher = $this->getNewEventDispatcher();
 
         $this->assertSame($listener, $listener->attach($dispatcher));
-        $this->assertTrue($dispatcher->hasListeners(ProxyEvent::LOG_LOG_REQUEST));
+        $this->assertTrue($dispatcher->hasListeners(BufferEvent::LOG_LOG_REQUEST));
         $this->assertTrue($dispatcher->hasListeners(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
         $this->assertTrue($dispatcher->hasListeners(BufferEvent::BUFFER_CLEAN));
         $this->assertTrue($dispatcher->hasListeners(BufferEvent::BUFFER_FLUSH));
@@ -46,7 +45,7 @@ class BufferEventListenerTest extends TestCase
         $listener->attach($dispatcher);
 
         $this->assertSame($listener, $listener->detach($dispatcher));
-        $this->assertFalse($dispatcher->hasListeners(ProxyEvent::LOG_LOG_REQUEST));
+        $this->assertFalse($dispatcher->hasListeners(BufferEvent::LOG_LOG_REQUEST));
         $this->assertFalse($dispatcher->hasListeners(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
         $this->assertFalse($dispatcher->hasListeners(BufferEvent::BUFFER_CLEAN));
         $this->assertFalse($dispatcher->hasListeners(BufferEvent::BUFFER_FLUSH));

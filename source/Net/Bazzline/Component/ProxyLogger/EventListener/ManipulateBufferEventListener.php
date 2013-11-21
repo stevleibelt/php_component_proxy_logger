@@ -75,10 +75,10 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
      */
     public function addLogRequestToBuffer(ManipulateBufferEvent $event)
     {
-        $request = $event->getLogRequest();
+        $buffer = $event->getLogRequestBuffer();
         $dispatcher = $event->getDispatcher();
         $logRequestWasLogged = false;
-        $buffer = $event->getLogRequestBuffer();
+        $request = $event->getLogRequest();
 
         if ($event->hasBypassBuffer()) {
             $bypassBuffer = $event->getBypassBuffer();
