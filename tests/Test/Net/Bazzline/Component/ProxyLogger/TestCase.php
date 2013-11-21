@@ -267,4 +267,14 @@ class TestCase extends PHPUnit_Framework_TestCase
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Logger\AbstractProxyLogger[log]');
     }
+
+    /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\AbstractLogRequestFactory
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-21
+     */
+    protected function getNewAbstractLogRequestFactory()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Factory\AbstractLogRequestFactory[createNewLogRequestInstance]');
+    }
 }

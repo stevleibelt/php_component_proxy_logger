@@ -20,17 +20,17 @@ class AbstractLogRequestFactoryTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
      */
-    public function testCreate()
-    {
-        $this->markTestIncomplete('todo');
-    }
-
-    /**
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-11-18
-     */
     public function testGetHasSetIsValidLogLevel()
     {
-        $this->markTestIncomplete('todo');
+        $factory = $this->getNewAbstractLogRequestFactory();
+        $isValidLogLevel = $this->getNewIsValidLogLevelMock();
+
+        $this->assertFalse($factory->hasIsValidLogLevel());
+        $this->assertNull($factory->getIsValidLogLevel());
+
+        $factory->setIsValidLogLevel($isValidLogLevel);
+
+        $this->assertTrue($factory->hasIsValidLogLevel());
+        $this->assertEquals($isValidLogLevel, $factory->getIsValidLogLevel());
     }
 }
