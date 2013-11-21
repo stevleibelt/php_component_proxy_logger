@@ -6,6 +6,7 @@
 
 namespace Test\Net\Bazzline\Component\ProxyLogger;
 
+use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
 use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestInterface;
 use Mockery;
@@ -208,6 +209,16 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Event\BufferEvent'
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-13
+     */
+    protected function getNewBufferEventMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\Event\BufferEvent');
+    }
+
+    /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-13
@@ -215,6 +226,16 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function getNewEventDispatcherMock()
     {
         return Mockery::mock('Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher');
+    }
+
+    /**
+     * @return EventDispatcher
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-21
+     */
+    protected function getNewEventDispatcher()
+    {
+        return new EventDispatcher();
     }
 
     /**
