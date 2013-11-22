@@ -69,6 +69,10 @@ class ProxyEventFactoryTest extends TestCase
     }
 
     /**
+     * @dataProvider createTestCaseDataProvider
+     *
+     * @param array $preconditions
+     * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
      * @todo create testcases
@@ -76,12 +80,22 @@ class ProxyEventFactoryTest extends TestCase
      *  - (!loggerCollection^logRequest)
      *  - (loggerCollection^logRequest)
      */
-    public function testCreate()
+    public function testCreate(array $preconditions, array $expectations)
     {
         $factory = new ProxyEventFactory();
-        $event = $factory->create();
 
-        $this->assertSame(array(), $event->getLoggerCollection());
-        $this->assertNull($event->getLogRequest());
+        $loggerCollection = ($preconditions['setLoggerCollection'])
+            ? array(
+                $this->getNewPsr3LoggerMock(),
+                $this->getNewPsr3LoggerMock()
+            )
+            : array();
+        $logRequest = ($preconditions['setLogRequest'])
+            ? $this->getNewLogRequestMock()
+            : null;
+        $event = $factory->create($loggerCollection, $logRequest);
+
+        $this->assertEquals($loggerCollection, $event->getLoggerCollection());
+        $this->assertEquals($logRequest, $event->getLogRequest());
     }
 } 
