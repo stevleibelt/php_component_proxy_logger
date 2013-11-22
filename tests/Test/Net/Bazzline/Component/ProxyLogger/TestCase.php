@@ -187,6 +187,16 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-09-06
+     */
+    protected function getNewFlushBufferTriggerMock()
+    {
+        return Mockery::mock('Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger');
+    }
+
+    /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactoryInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-20

@@ -75,10 +75,6 @@ class ProxyEventFactoryTest extends TestCase
      * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
-     * @todo create testcases
-     *  - (loggerCollection^!logRequest)
-     *  - (!loggerCollection^logRequest)
-     *  - (loggerCollection^logRequest)
      */
     public function testCreate(array $preconditions, array $expectations)
     {

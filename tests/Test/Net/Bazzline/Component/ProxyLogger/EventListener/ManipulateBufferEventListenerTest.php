@@ -52,6 +52,61 @@ class ManipulateBufferEventListenerTest extends TestCase
     }
 
     /**
+     * @return array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-22
+     */
+    public static function createAddLogRequestToBufferTestCase()
+    {
+        $preconditions = array(
+            'setBypassBuffer' => true,
+            'setFlushBufferTrigger' => true
+        );
+        $expectations = array(
+            'hasBypassBuffer' => true,
+            'hasFlushBufferTrigger' => true
+        );
+        $testCases = array(
+            'bypass buffer and flush buffer trigger' => array(
+                'preconditions' => array(),
+                'expectations' => array()
+            ),
+            'bypass buffer and no flush buffer trigger' => array(
+                'preconditions' => array(
+                    'setFlushBufferTrigger' => false
+                ),
+                'expectations' => array(
+                    'hasFlushBufferTrigger' => false
+                )
+            ),
+            'no bypass buffer and flush buffer trigger' => array(
+                'preconditions' => array(
+                    'setBypassBuffer' => false
+                ),
+                'expectations' => array(
+                    'hasBypassBuffer' => false
+                )
+            ),
+            'no bypass buffer and no flush buffer trigger' => array(
+                'preconditions' => array(
+                    'setBypassBuffer' => false,
+                    'setFlushBufferTrigger' => false
+                ),
+                'expectations' => array(
+                    'hasBypassBuffer' => false,
+                    'hasFlushBufferTrigger' => false
+                )
+            )
+        );
+
+        return self::mergeTestCasesWithDefaults($testCases, $preconditions, $expectations);
+    }
+
+    /**
+     * @dataProvider createAddLogRequestToBufferTestCase
+     *
+     * @param array $preconditions
+     * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
      * @todo extend with all test cases
@@ -59,13 +114,43 @@ class ManipulateBufferEventListenerTest extends TestCase
      *  - (!hasBypassBuffer^hasFlushBuffer)
      *  - (hasBypassBuffer^hasFlushBuffer)
      */
-    public function testAddLogRequestToBuffer()
+    public function testAddLogRequestToBuffer(array $preconditions, array $expectations)
     {
         $buffer = $this->getNewLogRequestRuntimeBufferMock();
         $dispatcher = $this->getNewEventDispatcher();
         $event = $this->getNewManipulateBufferEventMock();
         $listener = $this->getNewEventListener();
         $request = $this->getNewLogRequestMock();
+        $level = 'test_level';
+        $numberOfGetRequestCalls = 0;
+
+        if ($preconditions['setBypassBuffer']) {
+            $bypassBuffer = $this->getNewBypassBufferMock();
+            $numberOfGetRequestCalls++;
+            //@todo create test case that defines return value
+            $bypassBuffer->shouldReceive('bypassBuffer')
+                ->andReturn(false)
+                ->once();
+            $event->shouldReceive('getBypassBuffer')
+                ->andReturn($bypassBuffer)
+                ->once();
+        }
+
+        if ($preconditions['setFlushBufferTrigger']) {
+            $flushBufferTrigger = $this->getNewFlushBufferTriggerMock();
+            $numberOfGetRequestCalls++;
+            //@todo create test case that defines return value
+            $flushBufferTrigger->shouldReceive('triggerBufferFlush')
+                ->andReturn(false)
+                ->once();
+            $event->shouldReceive('getFlushBufferTrigger')
+                ->andReturn($flushBufferTrigger)
+                ->once();
+        }
+
+        $request->shouldReceive('getLevel')
+            ->andReturn($level)
+            ->times($numberOfGetRequestCalls);
 
         $buffer->shouldReceive('add')
             ->withArgs(array($request))
@@ -77,10 +162,10 @@ class ManipulateBufferEventListenerTest extends TestCase
             ->andReturn($request)
             ->once();
         $event->shouldReceive('hasBypassBuffer')
-            ->andReturn(false)
+            ->andReturn($expectations['hasBypassBuffer'])
             ->once();
         $event->shouldReceive('hasFlushBufferTrigger')
-            ->andReturn(false)
+            ->andReturn($expectations['hasFlushBufferTrigger'])
             ->once();
         $event->shouldReceive('getDispatcher')
             ->andReturn($dispatcher)
