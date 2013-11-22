@@ -24,6 +24,34 @@ use PHPUnit_Framework_TestCase;
 class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
+    * Merge data with default preconditions and expectations
+    *
+    * @param array $testCases
+    * @param array $preconditions
+    * @param array $expectations
+    * @return array
+    * @author stev leibelt <artodeto@arcor.de>
+    * @since 2013-11-22
+    */
+    protected static function mergeTestCasesWithDefaults(array $testCases, array $preconditions, array $expectations)
+    {
+        foreach ($testCases as &$testCase) {
+            if (isset($testCase['preconditions'])) {
+                $testCase['preconditions'] = array_merge($preconditions, $testCase['preconditions']);
+            } else {
+                $testCase['preconditions'] = $preconditions;
+            }
+            if (isset($testCase['expectations'])) {
+                $testCase['expectations'] = array_merge($expectations, $testCase['expectations']);
+            } else {
+                $testCase['expectations'] = $expectations;
+            }
+        }
+
+        return $testCases;
+    }
+
+    /**
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-26
      */
