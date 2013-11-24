@@ -56,7 +56,7 @@ class ManipulateBufferEventListenerTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-22
      */
-    public static function createAddLogRequestToBufferTestCase()
+    public static function addLogRequestToBufferTestCaseProvider()
     {
         $preconditions = array(
             'setBypassBuffer' => true,
@@ -142,12 +142,13 @@ class ManipulateBufferEventListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider createAddLogRequestToBufferTestCase
-     *
+     * @dataProvider addLogRequestToBufferTestCaseProvider
+
      * @param array $preconditions
      * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
+     * @todo move numberOf* calls to test case data provider?
      */
     public function testAddLogRequestToBuffer(array $preconditions, array $expectations)
     {
