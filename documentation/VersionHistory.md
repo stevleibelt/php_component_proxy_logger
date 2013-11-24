@@ -1,6 +1,7 @@
 # Version History
 
 * [next](https://github.com/stevleibelt/php_component_proxy_logger) - not yet released
+    * added getCreatedAt to a LogRequest
     * added LoggerCollection
     * implement bridge to use zend framework 2 evend dispatcher also (to not install a second event dispatcher if your are using the component in a zf2 environment)
 * [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - not yet released
