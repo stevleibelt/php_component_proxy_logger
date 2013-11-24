@@ -43,6 +43,44 @@ class ManipulateBufferEventFactoryTest extends TestCase
                 'preconditions' => array(),
                 'expectations' => array()
             ),
+            'has no bypass buffer' => array(
+                'preconditions' => array(
+                    'setBypassBuffer' => false
+                ),
+                'expectations' => array(
+                    'hasBypassBuffer' => false
+                )
+            ),
+            'has no flush buffer trigger' => array(
+                'preconditions' => array(
+                    'setFlushBufferTrigger' => false
+                ),
+                'expectations' => array(
+                    'hasFlushBufferTrigger' => false
+                )
+            ),
+            'has no logger collection' => array(
+                'preconditions' => array(
+                    'setLoggerCollection' => false
+                ),
+                'expectations' => array(
+                    'hasLoggerCollection' => false
+                )
+            ),
+            'has no log request buffer' => array(
+                'preconditions' => array(
+                    'setLogRequestBuffer' => false
+                ),
+                'expectations' => array(
+                    'hasLogRequestBuffer' => false
+                )
+            ),
+            'has no log request' => array(
+                'preconditions' => array(
+                    'setLogRequest' => false
+                ),
+                'expectations' => array()
+            ),
             'has none' => array(
                 'preconditions' => array(
                     'setBypassBuffer' => false,
@@ -69,11 +107,6 @@ class ManipulateBufferEventFactoryTest extends TestCase
      * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-19
-     * @todo implement test cases
-     *  - (hasBypassBuffer^!hasFlushBufferTrigger^!hasLoggerCollection^!hasLogRequestBuffer^!hasLogRequest)
-     *  - (!hasBypassBuffer^hasFlushBufferTrigger^!hasLoggerCollection^!hasLogRequestBuffer^!hasLogRequest)
-     *  - ...
-     *  - (hasBypassBuffer^hasFlushBufferTrigger^hasLoggerCollection^hasLogRequestBuffer^hasLogRequest)
      */
     public function testCreate(array $preconditions, array $expectations)
     {
