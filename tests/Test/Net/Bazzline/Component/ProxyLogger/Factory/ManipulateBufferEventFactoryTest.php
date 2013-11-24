@@ -18,6 +18,35 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 class ManipulateBufferEventFactoryTest extends TestCase
 {
     /**
+     * @return array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-24
+     */
+    public static function createTestCaseProvider()
+    {
+        $preconditions = array(
+            'hasBypassBuffer' => true,
+            'hasFlushBufferTrigger' => true,
+            'hasLoggerCollection' => true,
+            'hasLogRequestBuffer' => true,
+            'hasLogRequest' => true
+        );
+        $expectations = array();
+
+        $testCases = array(
+            'has all' => array(
+                'preconditions' => array(),
+                'expectations' => array()
+            )
+        );
+
+        return self::mergeTestCasesWithDefaults($testCases, $preconditions, $expectations);
+    }
+
+    /**
+     * @dataProvider createTestCaseProvider
+     * @param array $preconditions
+     * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-19
      * @todo implement test cases
@@ -26,7 +55,7 @@ class ManipulateBufferEventFactoryTest extends TestCase
      *  - ...
      *  - (hasBypassBuffer^hasFlushBufferTrigger^hasLoggerCollection^hasLogRequestBuffer^hasLogRequest)
      */
-    public function testCreate()
+    public function testCreate(array $preconditions, array $expectations)
     {
         $factory = new ManipulateBufferEventFactory();
         $event = $factory->create();
