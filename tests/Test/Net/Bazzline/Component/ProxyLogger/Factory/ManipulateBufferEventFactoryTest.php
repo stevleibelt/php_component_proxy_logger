@@ -35,14 +35,28 @@ class ManipulateBufferEventFactoryTest extends TestCase
             'hasBypassBuffer' => true,
             'hasFlushBufferTrigger' => true,
             'hasLoggerCollection' => true,
-            'hasLogRequestBuffer' => true,
-            'hasLogRequest' => true
+            'hasLogRequestBuffer' => true
         );
 
         $testCases = array(
             'has all' => array(
                 'preconditions' => array(),
                 'expectations' => array()
+            ),
+            'has none' => array(
+                'preconditions' => array(
+                    'setBypassBuffer' => false,
+                    'setFlushBufferTrigger' => false,
+                    'setLoggerCollection' => false,
+                    'setLogRequestBuffer' => false,
+                    'setLogRequest' => false
+                ),
+                'expectations' => array(
+                    'hasBypassBuffer' => false,
+                    'hasFlushBufferTrigger' => false,
+                    'hasLoggerCollection' => false,
+                    'hasLogRequestBuffer' => false
+                )
             )
         );
 
@@ -64,14 +78,39 @@ class ManipulateBufferEventFactoryTest extends TestCase
     public function testCreate(array $preconditions, array $expectations)
     {
         $factory = new ManipulateBufferEventFactory();
-        $event = $factory->create();
 
-        $this->assertFalse($event->hasBypassBuffer());
-        $this->assertFalse($event->hasFlushBufferTrigger());
-        $this->assertSame(array(), $event->getLoggerCollection());
-        $this->assertNull($event->getBypassBuffer());
-        $this->assertNull($event->getFlushBufferTrigger());
-        $this->assertNull($event->getLogRequestBuffer());
-        $this->assertNull($event->getLogRequest());
+        $bypassBuffer =  ($preconditions['setBypassBuffer'])
+            ? $bypassBuffer = $this->getNewBypassBufferMock()
+            : null;
+        $flushBufferTrigger =  ($preconditions['setFlushBufferTrigger'])
+            ? $flushBufferTrigger = $this->getNewFlushBufferTriggerMock()
+            : null;
+        $loggerCollection =  ($preconditions['setLoggerCollection'])
+            ? $loggerCollection = array($this->getNewPsr3LoggerMock())
+            : array();
+        $logRequestBuffer =  ($preconditions['setLogRequestBuffer'])
+            ? $logRequestBuffer = $this->getNewLogRequestRuntimeBufferMock()
+            : null;
+        $logRequest =  ($preconditions['setLogRequest'])
+            ? $logRequest = $this->getNewLogRequestMock()
+            : null;
+
+        $event = $factory->create(
+            $loggerCollection,
+            $logRequestBuffer,
+            $logRequest,
+            $flushBufferTrigger,
+            $bypassBuffer
+        );
+
+        $this->assertEquals($expectations['hasBypassBuffer'], $event->hasBypassBuffer());
+        $this->assertSame($bypassBuffer, $event->getBypassBuffer());
+        $this->assertEquals($expectations['hasFlushBufferTrigger'], $event->hasFlushBufferTrigger());
+        $this->assertSame($flushBufferTrigger, $event->getFlushBufferTrigger());
+        $this->assertEquals($expectations['hasLoggerCollection'], (count($event->getLoggerCollection()) > 0));
+        $this->assertSame($loggerCollection, $event->getLoggerCollection());
+        $this->assertEquals($expectations['hasLogRequestBuffer'], $event->hasLogRequestBuffer());
+        $this->assertSame($logRequestBuffer, $event->getLogRequestBuffer());
+        $this->assertSame($logRequest, $event->getLogRequest());
     }
 }
