@@ -25,13 +25,19 @@ class ManipulateBufferEventFactoryTest extends TestCase
     public static function createTestCaseProvider()
     {
         $preconditions = array(
+            'setBypassBuffer' => true,
+            'setFlushBufferTrigger' => true,
+            'setLoggerCollection' => true,
+            'setLogRequestBuffer' => true,
+            'setLogRequest' => true
+        );
+        $expectations = array(
             'hasBypassBuffer' => true,
             'hasFlushBufferTrigger' => true,
             'hasLoggerCollection' => true,
             'hasLogRequestBuffer' => true,
             'hasLogRequest' => true
         );
-        $expectations = array();
 
         $testCases = array(
             'has all' => array(
