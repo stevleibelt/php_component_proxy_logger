@@ -86,7 +86,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                 ),
                 'expectations' => array()
             ),
-            'TODO::setBypassBuffer and bypassBuffer and setFlushBufferTrigger' => array(
+            'setBypassBuffer and bypassBuffer and setFlushBufferTrigger' => array(
                 'preconditions' => array(
                     'bypassBuffer' => true
                 ),
@@ -117,7 +117,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasBypassBuffer' => false
                 )
             ),
-            'TODO::no BypassBuffer and setFlushBufferTrigger and flushBufferTrigger' => array(
+            'no BypassBuffer and setFlushBufferTrigger and flushBufferTrigger' => array(
                 'preconditions' => array(
                     'triggerBufferFlush' => true,
                     'setBypassBuffer' => false
