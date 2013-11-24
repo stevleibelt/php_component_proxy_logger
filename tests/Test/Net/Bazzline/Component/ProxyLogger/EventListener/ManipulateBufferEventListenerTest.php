@@ -60,18 +60,39 @@ class ManipulateBufferEventListenerTest extends TestCase
     {
         $preconditions = array(
             'setBypassBuffer' => true,
-            'setFlushBufferTrigger' => true
+            'setFlushBufferTrigger' => true,
+            'triggerBufferFlush' => false,
+            'bypassBuffer' => false
         );
         $expectations = array(
             'hasBypassBuffer' => true,
             'hasFlushBufferTrigger' => true
         );
         $testCases = array(
-            'bypass buffer and flush buffer trigger' => array(
+            'setBypassBuffer and setFlushBufferTrigger' => array(
                 'preconditions' => array(),
                 'expectations' => array()
             ),
-            'bypass buffer and no flush buffer trigger' => array(
+            'setBypassBuffer and bypassBuffer and setFlushBufferTrigger and flushBufferTrigger' => array(
+                'preconditions' => array(
+                    'triggerBufferFlush' => true,
+                    'bypassBuffer' => true
+                ),
+                'expectations' => array()
+            ),
+            'setBypassBuffer and setFlushBufferTrigger and flushBufferTrigger' => array(
+                'preconditions' => array(
+                    'triggerBufferFlush' => true
+                ),
+                'expectations' => array()
+            ),
+            'TODO::setBypassBuffer and bypassBuffer and setFlushBufferTrigger' => array(
+                'preconditions' => array(
+                    'bypassBuffer' => true
+                ),
+                'expectations' => array()
+            ),
+            'setBypassBuffer and no setFlushBufferTrigger' => array(
                 'preconditions' => array(
                     'setFlushBufferTrigger' => false
                 ),
@@ -79,7 +100,16 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasFlushBufferTrigger' => false
                 )
             ),
-            'no bypass buffer and flush buffer trigger' => array(
+            'setBypassBuffer and bypassBuffer and no setFlushBufferTrigger' => array(
+                'preconditions' => array(
+                    'bypassBuffer' => true,
+                    'setFlushBufferTrigger' => false
+                ),
+                'expectations' => array(
+                    'hasFlushBufferTrigger' => false
+                )
+            ),
+            'no setBypassBuffer and setFlushBufferTrigger' => array(
                 'preconditions' => array(
                     'setBypassBuffer' => false
                 ),
@@ -87,7 +117,16 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasBypassBuffer' => false
                 )
             ),
-            'no bypass buffer and no flush buffer trigger' => array(
+            'TODO::no BypassBuffer and setFlushBufferTrigger and flushBufferTrigger' => array(
+                'preconditions' => array(
+                    'triggerBufferFlush' => true,
+                    'setBypassBuffer' => false
+                ),
+                'expectations' => array(
+                    'hasBypassBuffer' => false
+                )
+            ),
+            'no setBypassBuffer and no setFlushBufferTrigger' => array(
                 'preconditions' => array(
                     'setBypassBuffer' => false,
                     'setFlushBufferTrigger' => false
@@ -109,10 +148,6 @@ class ManipulateBufferEventListenerTest extends TestCase
      * @param array $expectations
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-18
-     * @todo extend with all test cases
-     *  - (hasBypassBuffer^!hasFlushBuffer)
-     *  - (!hasBypassBuffer^hasFlushBuffer)
-     *  - (hasBypassBuffer^hasFlushBuffer)
      */
     public function testAddLogRequestToBuffer(array $preconditions, array $expectations)
     {
@@ -123,13 +158,16 @@ class ManipulateBufferEventListenerTest extends TestCase
         $request = $this->getNewLogRequestMock();
         $level = 'test_level';
         $numberOfGetRequestCalls = 0;
+        $numberOfSetDispatcher = 0;
+        $numberOfAddCalls = 0;
+        $numberOfSetNameLogLogRequest = 0;
+        $numberOfSetNameBufferFlush = 0;
 
         if ($preconditions['setBypassBuffer']) {
             $bypassBuffer = $this->getNewBypassBufferMock();
             $numberOfGetRequestCalls++;
-            //@todo create test case that defines return value
             $bypassBuffer->shouldReceive('bypassBuffer')
-                ->andReturn(false)
+                ->andReturn($preconditions['bypassBuffer'])
                 ->once();
             $event->shouldReceive('getBypassBuffer')
                 ->andReturn($bypassBuffer)
@@ -139,22 +177,76 @@ class ManipulateBufferEventListenerTest extends TestCase
         if ($preconditions['setFlushBufferTrigger']) {
             $flushBufferTrigger = $this->getNewFlushBufferTriggerMock();
             $numberOfGetRequestCalls++;
-            //@todo create test case that defines return value
             $flushBufferTrigger->shouldReceive('triggerBufferFlush')
-                ->andReturn(false)
+                ->andReturn($preconditions['triggerBufferFlush'])
                 ->once();
             $event->shouldReceive('getFlushBufferTrigger')
                 ->andReturn($flushBufferTrigger)
                 ->once();
         }
 
+        if ($preconditions['setBypassBuffer']
+            && !$preconditions['setFlushBufferTrigger']) {
+            if ($preconditions['bypassBuffer']) {
+                ++$numberOfSetDispatcher;
+                ++$numberOfSetNameLogLogRequest;
+            }
+        }
+        if ($preconditions['setFlushBufferTrigger']
+            && !$preconditions['setBypassBuffer']) {
+            if ($preconditions['triggerBufferFlush']) {
+                ++$numberOfSetNameLogLogRequest;
+                ++$numberOfSetNameBufferFlush;
+                $numberOfSetDispatcher += 2;
+            }
+        }
+        if ($preconditions['setBypassBuffer']
+            && $preconditions['setFlushBufferTrigger']) {
+            if ($preconditions['bypassBuffer']
+                && $preconditions['triggerBufferFlush']) {
+                ++$numberOfSetNameLogLogRequest;
+                ++$numberOfSetNameBufferFlush;
+                $numberOfSetDispatcher += 2;
+            }
+            if (!$preconditions['bypassBuffer']
+                && !$preconditions['triggerBufferFlush']) {
+                ++$numberOfAddCalls;
+            }
+            if ($preconditions['bypassBuffer']
+                && !$preconditions['triggerBufferFlush']) {
+                ++$numberOfAddCalls;
+                ++$numberOfSetDispatcher;
+                ++$numberOfSetNameLogLogRequest;
+            }
+            if (!$preconditions['bypassBuffer']
+                && $preconditions['triggerBufferFlush']) {
+                $numberOfSetDispatcher += 2;
+                ++$numberOfSetNameLogLogRequest;
+                ++$numberOfSetNameBufferFlush;
+            }
+        } else {
+            if (!$preconditions['bypassBuffer']
+                && !$preconditions['triggerBufferFlush']) {
+                ++$numberOfAddCalls;
+            }
+        }
+
+        $event->shouldReceive('setName')
+            ->with(ManipulateBufferEvent::LOG_LOG_REQUEST)
+            ->times($numberOfSetNameLogLogRequest);
+        $event->shouldReceive('setName')
+            ->with(ManipulateBufferEvent::BUFFER_FLUSH)
+            ->times($numberOfSetNameBufferFlush);
         $request->shouldReceive('getLevel')
             ->andReturn($level)
             ->times($numberOfGetRequestCalls);
+        $event->shouldReceive('setDispatcher')
+            ->with($dispatcher)
+            ->times($numberOfSetDispatcher);
 
         $buffer->shouldReceive('add')
             ->withArgs(array($request))
-            ->once();
+            ->times($numberOfAddCalls);
         $event->shouldReceive('getLogRequestBuffer')
             ->andReturn($buffer)
             ->once();
