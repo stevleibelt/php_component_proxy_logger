@@ -73,7 +73,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                 'preconditions' => array(),
                 'expectations' => array()
             ),
-            'setBypassBuffer and bypassBuffer and setFlushBufferTrigger and triggerBufferFlush' => array(
+            'setBypassBuffer and setFlushBufferTrigger and bypassBuffer and triggerBufferFlush' => array(
                 'preconditions' => array(
                     'triggerBufferFlush' => true,
                     'bypassBuffer' => true
@@ -86,13 +86,13 @@ class ManipulateBufferEventListenerTest extends TestCase
                 ),
                 'expectations' => array()
             ),
-            'setBypassBuffer and bypassBuffer and setFlushBufferTrigger' => array(
+            'setBypassBuffer and setFlushBufferTrigger and bypassBuffer' => array(
                 'preconditions' => array(
                     'bypassBuffer' => true
                 ),
                 'expectations' => array()
             ),
-            'setBypassBuffer and no setFlushBufferTrigger' => array(
+            'setBypassBuffer' => array(
                 'preconditions' => array(
                     'setFlushBufferTrigger' => false
                 ),
@@ -100,7 +100,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasFlushBufferTrigger' => false
                 )
             ),
-            'setBypassBuffer and bypassBuffer and no setFlushBufferTrigger' => array(
+            'setBypassBuffer and bypassBuffer' => array(
                 'preconditions' => array(
                     'bypassBuffer' => true,
                     'setFlushBufferTrigger' => false
@@ -109,7 +109,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasFlushBufferTrigger' => false
                 )
             ),
-            'no setBypassBuffer and setFlushBufferTrigger' => array(
+            'setFlushBufferTrigger' => array(
                 'preconditions' => array(
                     'setBypassBuffer' => false
                 ),
@@ -117,7 +117,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasBypassBuffer' => false
                 )
             ),
-            'no BypassBuffer and setFlushBufferTrigger and triggerBufferFlush' => array(
+            'setFlushBufferTrigger and triggerBufferFlush' => array(
                 'preconditions' => array(
                     'triggerBufferFlush' => true,
                     'setBypassBuffer' => false
@@ -126,7 +126,7 @@ class ManipulateBufferEventListenerTest extends TestCase
                     'hasBypassBuffer' => false
                 )
             ),
-            'no setBypassBuffer and no setFlushBufferTrigger' => array(
+            'nothing set' => array(
                 'preconditions' => array(
                     'setBypassBuffer' => false,
                     'setFlushBufferTrigger' => false
@@ -193,12 +193,12 @@ class ManipulateBufferEventListenerTest extends TestCase
                 ++$numberOfSetNameLogLogRequest;
             }
         }
-        if ($preconditions['setFlushBufferTrigger']
-            && !$preconditions['setBypassBuffer']) {
+        if (!$preconditions['setBypassBuffer']
+            && $preconditions['setFlushBufferTrigger']) {
             if ($preconditions['triggerBufferFlush']) {
-                ++$numberOfSetNameLogLogRequest;
                 ++$numberOfSetNameBufferFlush;
-                $numberOfSetDispatcher += 2;
+                ++$numberOfAddCalls;
+                ++$numberOfSetDispatcher;
             }
         }
         if ($preconditions['setBypassBuffer']
@@ -215,15 +215,14 @@ class ManipulateBufferEventListenerTest extends TestCase
             }
             if ($preconditions['bypassBuffer']
                 && !$preconditions['triggerBufferFlush']) {
-                ++$numberOfAddCalls;
                 ++$numberOfSetDispatcher;
                 ++$numberOfSetNameLogLogRequest;
             }
             if (!$preconditions['bypassBuffer']
                 && $preconditions['triggerBufferFlush']) {
-                $numberOfSetDispatcher += 2;
-                ++$numberOfSetNameLogLogRequest;
+                ++$numberOfSetDispatcher;
                 ++$numberOfSetNameBufferFlush;
+                ++$numberOfAddCalls;
             }
         } else {
             if (!$preconditions['bypassBuffer']
