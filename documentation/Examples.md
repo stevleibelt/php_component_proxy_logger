@@ -38,6 +38,13 @@ Take from [Example01](https://github.com/stevleibelt/php_component_proxy_logger/
 
 ```php
 <?php
+/**
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-10-23
+ */
+
+namespace Example\Documentation;
+
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory;
 use Net\Bazzline\Component\ProxyLogger\Factory\ManipulateBufferLoggerFactory;
@@ -61,12 +68,15 @@ $triggerFactory = new UpwardFlushBufferTriggerFactory();
 //set trigger to log level \Psr\Log\LogLevel::ERROR
 $triggerFactory->setTriggerToLogLevel(LogLevel::ERROR);
 
+$logRequestFactory = new LogRequestFactory();
+$logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
+
 //use factory to create manipulate buffer logger
-$loggerFactory = new ManipulateBufferLoggerFactory($innerLogger);
-$loggerFactory->setLogRequestFactory(new LogRequestFactory());
-$loggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
-$loggerFactory->setFlushBufferTriggerFactory($triggerFactory);
-$logger = $loggerFactory->create($innerLogger);
+$factory = new ManipulateBufferLoggerFactory();
+$factory->setLogRequestFactory($logRequestFactory);
+$factory->setLogRequestBufferFactory($logRequestBufferFactory);
+$factory->setFlushBufferTriggerFactory($triggerFactory);
+$logger = $factory->create($innerLogger);
 
 //log request is added to the buffer
 $logger->info('this is an info message');
