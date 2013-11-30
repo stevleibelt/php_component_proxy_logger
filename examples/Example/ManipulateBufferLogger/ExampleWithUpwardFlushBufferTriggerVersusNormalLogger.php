@@ -132,9 +132,11 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
             )
         );
 
+        echo PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'First run with normal logger without log level restriction.' . PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
+        echo PHP_EOL;
 
         foreach ($preparedMessagesWithLogLevelsPerItemToProcess as $messagesWithLogLevels) {
             foreach ($messagesWithLogLevels as $message => $logLevel) {
@@ -162,9 +164,11 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
             }
         }
 
+        echo PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Third run with manipulate buffer logger.' . PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
+        echo PHP_EOL;
 
         foreach ($preparedMessagesWithLogLevelsPerItemToProcess as $messagesWithLogLevels) {
             foreach ($messagesWithLogLevels as $message => $logLevel) {
