@@ -49,12 +49,10 @@ class ExampleWithProxyLoggerInProxyLogger
     public function setup()
     {
         $factory = new ProxyLoggerFactory();
-        $loggerOne = new OutputToConsoleLogger();
-        $loggerTwo = new OutputToConsoleLogger();
+        $realLogger = new OutputToConsoleLogger();
 
-        $innerProxyLogger = $factory->create($loggerOne);
+        $innerProxyLogger = $factory->create($realLogger);
         $this->logger = $factory->create($innerProxyLogger);
-        $this->logger->addLogger($loggerTwo);
 
         return $this;
     }
