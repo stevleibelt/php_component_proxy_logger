@@ -29,12 +29,15 @@ $triggerFactory = new UpwardFlushBufferTriggerFactory();
 //set trigger to log level \Psr\Log\LogLevel::ERROR
 $triggerFactory->setTriggerToLogLevel(LogLevel::ERROR);
 
+$logRequestFactory = new LogRequestFactory();
+$logRequestBufferFactory = new LogRequestRuntimeBufferFactory();
+
 //use factory to create manipulate buffer logger
-$loggerFactory = new ManipulateBufferLoggerFactory($innerLogger);
-$loggerFactory->setLogRequestFactory(new LogRequestFactory());
-$loggerFactory->setLogRequestBufferFactory(new LogRequestRuntimeBufferFactory());
-$loggerFactory->setFlushBufferTriggerFactory($triggerFactory);
-$logger = $loggerFactory->create($innerLogger);
+$factory = new ManipulateBufferLoggerFactory();
+$factory->setLogRequestFactory($logRequestFactory);
+$factory->setLogRequestBufferFactory($logRequestBufferFactory);
+$factory->setFlushBufferTriggerFactory($triggerFactory);
+$logger = $factory->create($innerLogger);
 
 //log request is added to the buffer
 $logger->info('this is an info message');
