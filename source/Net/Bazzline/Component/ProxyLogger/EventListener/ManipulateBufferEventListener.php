@@ -88,19 +88,13 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
             }
         }
 
+        if (!$logRequestWasLogged) {
+            $buffer->add($request);
+        }
         if ($event->hasFlushBufferTrigger()) {
             $flushBufferTrigger = $event->getFlushBufferTrigger();
             if ($flushBufferTrigger->triggerBufferFlush($request->getLevel())) {
-                if (!$logRequestWasLogged) {
-                    $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
-                }
                 $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
-            } else {
-                $buffer->add($request);
-            }
-        } else {
-            if (!$logRequestWasLogged) {
-                $buffer->add($request);
             }
         }
     }

@@ -18,7 +18,7 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigge
 class UpwardFlushBufferTriggerFactory extends AbstractFlushBufferTriggerFactory
 {
     /**
-     * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
+     * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\UpwardFlushBufferTrigger|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-10-20
      */

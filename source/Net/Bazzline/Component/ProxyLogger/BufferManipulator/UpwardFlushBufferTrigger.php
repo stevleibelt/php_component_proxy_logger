@@ -56,6 +56,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
             LogLevel::ALERT => 6,
             LogLevel::EMERGENCY => 7
         );
+
         $this->logLevelDefaultWeight = $this->mapLogLevelToWeight(LogLevel::DEBUG);
     }
 
