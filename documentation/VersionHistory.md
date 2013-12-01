@@ -4,7 +4,7 @@
     * added getCreatedAt to a LogRequest
     * added LoggerCollection
     * implement bridge to use zend framework 2 evend dispatcher also (to not install a second event dispatcher if your are using the component in a zf2 environment)
-* [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - not yet released
+* [1.2.0](https://github.com/stevleibelt/php_component_proxy_logger/tree/1.2.0) - released at 2013-12-01
     * added AbstractProxyLogger
     * added "removeAll" to LogRequestBufferInterface
     * implement an event based handling for buffer logger to easy up creation of future buffer manipulators
