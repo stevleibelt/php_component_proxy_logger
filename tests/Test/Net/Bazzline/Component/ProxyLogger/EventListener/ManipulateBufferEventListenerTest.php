@@ -275,6 +275,9 @@ class ManipulateBufferEventListenerTest extends TestCase
         $listener = $this->getNewEventListener();
         $event = $this->getNewManipulateBufferEventMock();
         $buffer = $this->getNewLogRequestRuntimeBufferMock();
+        $buffer->shouldReceive('removeAll')
+            ->andReturn($buffer)
+            ->once();
 
         $event->shouldReceive('getLogRequestBuffer')
             ->andReturn($buffer)

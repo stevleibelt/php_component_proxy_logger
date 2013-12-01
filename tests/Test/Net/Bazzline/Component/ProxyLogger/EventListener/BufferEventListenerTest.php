@@ -84,6 +84,9 @@ class BufferEventListenerTest extends TestCase
         $listener = $this->getNewEventListener();
         $event = $this->getNewBufferEventMock();
         $buffer = $this->getNewLogRequestRuntimeBufferMock();
+        $buffer->shouldReceive('removeAll')
+            ->andReturn($buffer)
+            ->once();
 
         $event->shouldReceive('getLogRequestBuffer')
             ->andReturn($buffer)
