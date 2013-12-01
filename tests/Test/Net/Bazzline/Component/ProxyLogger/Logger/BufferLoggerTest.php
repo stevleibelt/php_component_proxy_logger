@@ -64,7 +64,7 @@ class BufferLoggerTest extends TestCase
             ->once();
         $eventDispatcher = $this->getNewEventDispatcherMock();
         $eventDispatcher->shouldReceive('dispatch')
-            ->with(BufferEvent::BUFFER_CLEAN, $event)
+            ->with(BufferEvent::CLEAN_BUFFER, $event)
             ->once();
 
         $logger = $this->getNewLogger();
@@ -87,7 +87,7 @@ class BufferLoggerTest extends TestCase
             ->once();
         $dispatcher = $this->getNewEventDispatcherMock();
         $dispatcher->shouldReceive('dispatch')
-            ->with(BufferEvent::BUFFER_FLUSH, $event)
+            ->with(BufferEvent::FLUSH_BUFFER, $event)
             ->once();
         $factory = $this->getNewLogRequestFactoryMock($request);
         $factory->shouldReceive('create')
@@ -120,7 +120,7 @@ class BufferLoggerTest extends TestCase
             ->with(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER, $event)
             ->once();
         $dispatcher->shouldReceive('dispatch')
-            ->with(BufferEvent::BUFFER_FLUSH, $event)
+            ->with(BufferEvent::FLUSH_BUFFER, $event)
             ->once();
         $factory = $this->getNewLogRequestFactoryMock($request);
         $realLogger = $this->getNewPsr3LoggerMock();

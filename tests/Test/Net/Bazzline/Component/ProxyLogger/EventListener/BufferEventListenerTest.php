@@ -30,8 +30,8 @@ class BufferEventListenerTest extends TestCase
         $this->assertSame($listener, $listener->attach($dispatcher));
         $this->assertTrue($dispatcher->hasListeners(BufferEvent::LOG_LOG_REQUEST));
         $this->assertTrue($dispatcher->hasListeners(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
-        $this->assertTrue($dispatcher->hasListeners(BufferEvent::BUFFER_CLEAN));
-        $this->assertTrue($dispatcher->hasListeners(BufferEvent::BUFFER_FLUSH));
+        $this->assertTrue($dispatcher->hasListeners(BufferEvent::CLEAN_BUFFER));
+        $this->assertTrue($dispatcher->hasListeners(BufferEvent::FLUSH_BUFFER));
     }
 
     /**
@@ -47,8 +47,8 @@ class BufferEventListenerTest extends TestCase
         $this->assertSame($listener, $listener->detach($dispatcher));
         $this->assertFalse($dispatcher->hasListeners(BufferEvent::LOG_LOG_REQUEST));
         $this->assertFalse($dispatcher->hasListeners(BufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
-        $this->assertFalse($dispatcher->hasListeners(BufferEvent::BUFFER_CLEAN));
-        $this->assertFalse($dispatcher->hasListeners(BufferEvent::BUFFER_FLUSH));
+        $this->assertFalse($dispatcher->hasListeners(BufferEvent::CLEAN_BUFFER));
+        $this->assertFalse($dispatcher->hasListeners(BufferEvent::FLUSH_BUFFER));
     }
 
     /**
@@ -113,7 +113,7 @@ class BufferEventListenerTest extends TestCase
             ->once();
 
         $dispatcher->shouldReceive('dispatch')
-            ->withArgs(array(BufferEvent::BUFFER_CLEAN, $event))
+            ->withArgs(array(BufferEvent::CLEAN_BUFFER, $event))
             ->once();
         $event->shouldReceive('getLogRequestBuffer')
             ->andReturn($buffer)

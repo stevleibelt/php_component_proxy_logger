@@ -30,8 +30,8 @@ class ManipulateBufferEventListenerTest extends TestCase
         $this->assertSame($listener, $listener->attach($dispatcher));
         $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::LOG_LOG_REQUEST));
         $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
-        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_CLEAN));
-        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_FLUSH));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::CLEAN_BUFFER));
+        $this->assertTrue($dispatcher->hasListeners(ManipulateBufferEvent::FLUSH_BUFFER));
     }
 
     /**
@@ -47,8 +47,8 @@ class ManipulateBufferEventListenerTest extends TestCase
         $this->assertSame($listener, $listener->detach($dispatcher));
         $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::LOG_LOG_REQUEST));
         $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::ADD_LOG_REQUEST_TO_BUFFER));
-        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_CLEAN));
-        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::BUFFER_FLUSH));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::CLEAN_BUFFER));
+        $this->assertFalse($dispatcher->hasListeners(ManipulateBufferEvent::FLUSH_BUFFER));
     }
 
     /**
@@ -235,7 +235,7 @@ class ManipulateBufferEventListenerTest extends TestCase
             ->with(ManipulateBufferEvent::LOG_LOG_REQUEST)
             ->times($numberOfSetNameLogLogRequest);
         $event->shouldReceive('setName')
-            ->with(ManipulateBufferEvent::BUFFER_FLUSH)
+            ->with(ManipulateBufferEvent::FLUSH_BUFFER)
             ->times($numberOfSetNameBufferFlush);
         $request->shouldReceive('getLevel')
             ->andReturn($level)
@@ -304,7 +304,7 @@ class ManipulateBufferEventListenerTest extends TestCase
             ->once();
 
         $dispatcher->shouldReceive('dispatch')
-            ->withArgs(array(ManipulateBufferEvent::BUFFER_CLEAN, $event))
+            ->withArgs(array(ManipulateBufferEvent::CLEAN_BUFFER, $event))
             ->once();
         $event->shouldReceive('getLogRequestBuffer')
             ->andReturn($buffer)

@@ -45,7 +45,7 @@ class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
     public function flush()
     {
         $this->event->setLoggerCollection($this->loggers);
-        $this->dispatcher->dispatch(BufferEvent::BUFFER_FLUSH, $this->event);
+        $this->dispatcher->dispatch(BufferEvent::FLUSH_BUFFER, $this->event);
 
         return $this;
     }
@@ -60,7 +60,7 @@ class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
     public function clean()
     {
         $this->event->setLoggerCollection($this->loggers);
-        $this->dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $this->event);
+        $this->dispatcher->dispatch(BufferEvent::CLEAN_BUFFER, $this->event);
 
         return $this;
     }

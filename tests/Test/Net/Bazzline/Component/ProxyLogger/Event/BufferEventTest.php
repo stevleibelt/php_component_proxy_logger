@@ -36,7 +36,7 @@ class BufferEventTest extends TestCase
     {
         $event = $this->getNewEvent();
 
-        $this->assertEquals($event->getBufferClean(), BufferEvent::BUFFER_CLEAN);
+        $this->assertEquals($event->getCleanBuffer(), BufferEvent::CLEAN_BUFFER);
     }
 
     /**
@@ -47,7 +47,7 @@ class BufferEventTest extends TestCase
     {
         $event = $this->getNewEvent();
 
-        $this->assertEquals($event->getBufferFlush(), BufferEvent::BUFFER_FLUSH);
+        $this->assertEquals($event->getFlushBuffer(), BufferEvent::FLUSH_BUFFER);
     }
 
     /**

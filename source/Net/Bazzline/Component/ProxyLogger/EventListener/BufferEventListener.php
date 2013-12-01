@@ -34,11 +34,11 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
             array($this, 'addLogRequestToBuffer')
         );
         $eventDispatcher->addListener(
-            BufferEvent::BUFFER_CLEAN,
+            BufferEvent::CLEAN_BUFFER,
             array($this, 'bufferClean')
         );
         $eventDispatcher->addListener(
-            BufferEvent::BUFFER_FLUSH,
+            BufferEvent::FLUSH_BUFFER,
             array($this, 'bufferFlush')
         );
 
@@ -58,10 +58,10 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
             array($this, 'addLogRequestToBuffer')
         );
         $eventDispatcher->removeListener(
-            BufferEvent::BUFFER_CLEAN, array($this, 'bufferClean')
+            BufferEvent::CLEAN_BUFFER, array($this, 'bufferClean')
         );
         $eventDispatcher->removeListener(
-            BufferEvent::BUFFER_FLUSH,
+            BufferEvent::FLUSH_BUFFER,
             array($this, 'bufferFlush')
         );
         parent::detach($eventDispatcher);
@@ -109,6 +109,6 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
             $dispatcher->dispatch(BufferEvent::LOG_LOG_REQUEST, $event);
         }
 
-        $dispatcher->dispatch(BufferEvent::BUFFER_CLEAN, $event);
+        $dispatcher->dispatch(BufferEvent::CLEAN_BUFFER, $event);
     }
 }

@@ -19,8 +19,8 @@ use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferAwareInterface
 class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 {
     const ADD_LOG_REQUEST_TO_BUFFER = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.addLogRequestToBuffer';
-    const BUFFER_CLEAN = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferClean';
-    const BUFFER_FLUSH = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.bufferFlush';
+    const CLEAN_BUFFER = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.cleanBuffer';
+    const FLUSH_BUFFER = 'netBazzlineComponentProxyLoggerEvent.bufferEvent.flushBuffer';
 
     /**
      * @var LogRequestBufferInterface
@@ -44,9 +44,9 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-17
      */
-    public function getBufferClean()
+    public function getCleanBuffer()
     {
-        return self::BUFFER_CLEAN;
+        return self::CLEAN_BUFFER;
     }
 
     /**
@@ -54,9 +54,9 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-17
      */
-    public function getBufferFlush()
+    public function getFlushBuffer()
     {
-        return self::BUFFER_FLUSH;
+        return self::FLUSH_BUFFER;
     }
 
     /**

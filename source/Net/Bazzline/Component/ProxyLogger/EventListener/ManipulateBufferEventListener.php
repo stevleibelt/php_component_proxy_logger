@@ -33,11 +33,11 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
             100
         );
         $eventDispatcher->addListener(
-            ManipulateBufferEvent::BUFFER_CLEAN,
+            ManipulateBufferEvent::CLEAN_BUFFER,
             array($this, 'bufferClean')
         );
         $eventDispatcher->addListener(
-            ManipulateBufferEvent::BUFFER_FLUSH,
+            ManipulateBufferEvent::FLUSH_BUFFER,
             array($this, 'bufferFlush')
         );
 
@@ -57,10 +57,10 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
             array($this, 'addLogRequestToBuffer')
         );
         $eventDispatcher->removeListener(
-            ManipulateBufferEvent::BUFFER_CLEAN, array($this, 'bufferClean')
+            ManipulateBufferEvent::CLEAN_BUFFER, array($this, 'bufferClean')
         );
         $eventDispatcher->removeListener(
-            ManipulateBufferEvent::BUFFER_FLUSH,
+            ManipulateBufferEvent::FLUSH_BUFFER,
             array($this, 'bufferFlush')
         );
         parent::detach($eventDispatcher);
@@ -94,7 +94,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
         if ($event->hasFlushBufferTrigger()) {
             $flushBufferTrigger = $event->getFlushBufferTrigger();
             if ($flushBufferTrigger->triggerBufferFlush($request->getLevel())) {
-                $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_FLUSH, $event);
+                $dispatcher->dispatch(ManipulateBufferEvent::FLUSH_BUFFER, $event);
             }
         }
     }
@@ -127,6 +127,6 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
             $dispatcher->dispatch(ManipulateBufferEvent::LOG_LOG_REQUEST, $event);
         }
 
-        $dispatcher->dispatch(ManipulateBufferEvent::BUFFER_CLEAN, $event);
+        $dispatcher->dispatch(ManipulateBufferEvent::CLEAN_BUFFER, $event);
     }
 }
