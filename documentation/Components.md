@@ -16,13 +16,35 @@
 * forwards all buffered log requests to all added real loggers when *flush* is called
 * deletes all buffered log requests when *clean* is called
 
-### ManipulateBufferLoggerInterface
+## Available Events
 
-* based on *BufferLoggerInterface*
-* implements aware interface for *FlushBufferTriggerInterface* which enables automatically buffer flushing if a well defined log level is reached
-* implements aware interface for *BypassBufferInterface* which enables mechanism to bypass the buffer and send the log requests directly to the available real loggers
+### ProxyEvent
 
-## BufferManipulation
+* The simplest event only used to trigger the "log log request" event
+
+### BufferEvent
+
+* Adds buffer specific events like "add log request to buffer", "clean buffer" or "flush buffer"
+
+### ManipulateBufferEvent
+
+* Adds setter and getter for all available buffer manipulators
+
+## Available Event Listeners
+
+### ProxyEventListener
+
+* Handles the event to log a log request
+
+### BufferEventListener
+
+* Handles the available buffer event flow
+
+### ManipulateBufferEventListener
+
+* Extends the buffer concept a bit further by changing the event flow available buffer manipulators
+
+## Buffer Manipulators
 
 ### BypassBufferInterface
 
