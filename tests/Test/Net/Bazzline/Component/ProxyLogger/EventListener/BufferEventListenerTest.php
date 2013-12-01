@@ -94,7 +94,7 @@ class BufferEventListenerTest extends TestCase
         $event->shouldReceive('setLogRequestBuffer')
             ->once();
 
-        $listener->bufferClean($event);
+        $listener->cleanBuffer($event);
     }
 
     /**
@@ -122,7 +122,7 @@ class BufferEventListenerTest extends TestCase
             ->andReturn($dispatcher)
             ->once();
 
-        $listener->bufferFlush($event);
+        $listener->flushBuffer($event);
     }
 
     /**

@@ -285,7 +285,7 @@ class ManipulateBufferEventListenerTest extends TestCase
         $event->shouldReceive('setLogRequestBuffer')
             ->once();
 
-        $listener->bufferClean($event);
+        $listener->cleanBuffer($event);
     }
 
     /**
@@ -313,7 +313,7 @@ class ManipulateBufferEventListenerTest extends TestCase
             ->andReturn($dispatcher)
             ->once();
 
-        $listener->bufferFlush($event);
+        $listener->flushBuffer($event);
     }
 
     /**

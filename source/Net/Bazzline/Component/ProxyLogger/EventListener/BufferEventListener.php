@@ -24,7 +24,6 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
      * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-08
-     * @todo rename bufferClean to cleanBuffer and bufferFlush to flushBuffer
      */
     public function attach(EventDispatcher $eventDispatcher)
     {
@@ -35,11 +34,11 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
         );
         $eventDispatcher->addListener(
             BufferEvent::CLEAN_BUFFER,
-            array($this, 'bufferClean')
+            array($this, 'cleanBuffer')
         );
         $eventDispatcher->addListener(
             BufferEvent::FLUSH_BUFFER,
-            array($this, 'bufferFlush')
+            array($this, 'flushBuffer')
         );
 
         return $this;
@@ -58,11 +57,11 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
             array($this, 'addLogRequestToBuffer')
         );
         $eventDispatcher->removeListener(
-            BufferEvent::CLEAN_BUFFER, array($this, 'bufferClean')
+            BufferEvent::CLEAN_BUFFER, array($this, 'cleanBuffer')
         );
         $eventDispatcher->removeListener(
             BufferEvent::FLUSH_BUFFER,
-            array($this, 'bufferFlush')
+            array($this, 'flushBuffer')
         );
         parent::detach($eventDispatcher);
 
@@ -86,7 +85,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
      */
-    public function bufferClean(BufferEvent $event)
+    public function cleanBuffer(BufferEvent $event)
     {
         $buffer = $event->getLogRequestBuffer();
         $clonedBuffer = clone $buffer;
@@ -99,7 +98,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-09
      */
-    public function bufferFlush(BufferEvent $event)
+    public function flushBuffer(BufferEvent $event)
     {
         $buffer = $event->getLogRequestBuffer();
         $dispatcher = $event->getDispatcher();

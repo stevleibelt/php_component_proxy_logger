@@ -34,11 +34,11 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
         );
         $eventDispatcher->addListener(
             ManipulateBufferEvent::CLEAN_BUFFER,
-            array($this, 'bufferClean')
+            array($this, 'cleanBuffer')
         );
         $eventDispatcher->addListener(
             ManipulateBufferEvent::FLUSH_BUFFER,
-            array($this, 'bufferFlush')
+            array($this, 'flushBuffer')
         );
 
         return $this;
@@ -57,11 +57,11 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
             array($this, 'addLogRequestToBuffer')
         );
         $eventDispatcher->removeListener(
-            ManipulateBufferEvent::CLEAN_BUFFER, array($this, 'bufferClean')
+            ManipulateBufferEvent::CLEAN_BUFFER, array($this, 'cleanBuffer')
         );
         $eventDispatcher->removeListener(
             ManipulateBufferEvent::FLUSH_BUFFER,
-            array($this, 'bufferFlush')
+            array($this, 'flushBuffer')
         );
         parent::detach($eventDispatcher);
 
@@ -104,7 +104,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function bufferClean(ManipulateBufferEvent $event)
+    public function cleanBuffer(ManipulateBufferEvent $event)
     {
         $buffer = $event->getLogRequestBuffer();
         $clonedBuffer = clone $buffer;
@@ -117,7 +117,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-11-10
      */
-    public function bufferFlush(ManipulateBufferEvent $event)
+    public function flushBuffer(ManipulateBufferEvent $event)
     {
         $buffer = $event->getLogRequestBuffer();
         $dispatcher = $event->getDispatcher();
