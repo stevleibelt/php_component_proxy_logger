@@ -108,6 +108,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
     {
         $buffer = $event->getLogRequestBuffer();
         $clonedBuffer = clone $buffer;
+        $clonedBuffer->removeAll();
         $event->setLogRequestBuffer($clonedBuffer);
     }
 

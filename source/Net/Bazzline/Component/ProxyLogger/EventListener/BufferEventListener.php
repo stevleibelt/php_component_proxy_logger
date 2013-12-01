@@ -90,6 +90,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
     {
         $buffer = $event->getLogRequestBuffer();
         $clonedBuffer = clone $buffer;
+        $clonedBuffer->removeAll();
         $event->setLogRequestBuffer($clonedBuffer);
     }
 

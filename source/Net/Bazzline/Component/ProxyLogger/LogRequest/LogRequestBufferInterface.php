@@ -40,6 +40,13 @@ interface LogRequestBufferInterface
     public function remove(LogRequestInterface $request);
 
     /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-01
+     */
+    public function removeAll();
+
+    /**
      * @return int
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27

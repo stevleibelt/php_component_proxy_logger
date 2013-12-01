@@ -57,6 +57,18 @@ class LogRequestRuntimeBuffer extends SplObjectStorage implements LogRequestBuff
     }
 
     /**
+     * @return $this
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-11-01
+     */
+    public function removeAll()
+    {
+        parent::removeAll($this);
+
+        return $this;
+    }
+
+    /**
      * @return int
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-08-27
