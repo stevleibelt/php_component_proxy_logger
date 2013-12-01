@@ -1,8 +1,5 @@
 # Future Thoughts
 
-* think about using a numbers internal instead of log level arrays for validating if current log level is below or in (in the hierarchy point of view) the trigger
-* add description about benefits of using *UpwardFlushBufferTrigger*
-* add constants or well named setter methods for LogRequestFactoryInterface::setLogRequestClassName
 * style output - if level is reached, wrap the buffer output with something like "==== log level buffer flush triggered ====" or "==== log level buffer bypassed ===="
 * implement locking
 * implement "unsetFlushBufferTrigger" to AwareInterface
