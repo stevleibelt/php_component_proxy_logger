@@ -1,7 +1,7 @@
 # Future Thoughts
 
 * style output - if level is reached, wrap the buffer output with something like "==== log level buffer flush triggered ====" or "==== log level buffer bypassed ===="
-* implement locking
+* implement locking - no changes to buffer manipulator are allowed after lock
 * implement "unsetFlushBufferTrigger" to AwareInterface
 * implement "unsetBypassBuffer" to AwareInterface
 * validate if [monolog](https://github.com/Seldaek/monolog) is not doing the same thing
