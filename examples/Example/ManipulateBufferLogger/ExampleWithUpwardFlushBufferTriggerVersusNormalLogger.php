@@ -144,9 +144,11 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
             }
         }
 
+        echo PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
         echo 'Second run with normal logger and log level restriction to warning and above.' . PHP_EOL;
         echo str_repeat('-', 40) . PHP_EOL;
+        echo PHP_EOL;
 
         $allowedLogLevels = array(
             LogLevel::WARNING => true,
