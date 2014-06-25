@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 
@@ -14,14 +14,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class NeverBypassBufferTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 class NeverBypassBufferTest extends TestCase
 {
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public static function testCaseDataProvider()
@@ -56,7 +56,7 @@ class NeverBypassBufferTest extends TestCase
      * @param mixed $logLevel
      * @param mixed $logLevelToBypass
      * @param bool $expectedBypassBufferValue
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)

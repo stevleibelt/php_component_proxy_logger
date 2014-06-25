@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 
@@ -23,21 +23,21 @@ Example::create()
  * Class Example
  *
  * @package Example\ManipulateBufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class Example
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     private $bufferLogger;
 
     /**
      * @return Example
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public static function create()
@@ -47,7 +47,7 @@ class Example
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function setup()
@@ -69,7 +69,7 @@ class Example
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function andRun()

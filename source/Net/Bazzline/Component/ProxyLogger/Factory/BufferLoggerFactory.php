@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08 
  */
 
@@ -16,21 +16,21 @@ use Psr\Log\LoggerInterface;
  * Class BufferLoggerFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08
  */
 class BufferLoggerFactory implements BufferLoggerFactoryInterface
 {
     /**
      * @var LogRequestFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-10
      */
     protected $logRequestFactory;
 
     /**
      * @var LogRequestBufferFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-10
      */
     protected $logRequestBufferFactory;
@@ -42,7 +42,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
      *
      * @param LoggerInterface $logger
      * @return \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-08
      */
     public function create(LoggerInterface $logger)
@@ -66,7 +66,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
     /**
      * @param LogRequestBufferFactoryInterface $factory
      * @return mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function setLogRequestBufferFactory(LogRequestBufferFactoryInterface $factory)
@@ -77,7 +77,7 @@ class BufferLoggerFactory implements BufferLoggerFactoryInterface
     /**
      * @param LogRequestFactoryInterface $factory
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setLogRequestFactory(LogRequestFactoryInterface $factory)

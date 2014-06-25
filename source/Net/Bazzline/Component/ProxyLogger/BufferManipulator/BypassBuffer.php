@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-05 
  */
 
@@ -12,20 +12,20 @@ use Psr\Log\LogLevel;
  * Class BypassBuffer
  *
  * @package Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-05
  */
 class BypassBuffer implements BypassBufferInterface
 {
     /**
      * @var array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     protected $logLevelsAsKeys;
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public function __construct()
@@ -35,7 +35,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelEmergency()
@@ -45,7 +45,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelAlert()
@@ -55,7 +55,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelCritical()
@@ -65,7 +65,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelError()
@@ -75,7 +75,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelWarning()
@@ -85,7 +85,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLevelNotice()
@@ -95,7 +95,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelInfo()
@@ -105,7 +105,7 @@ class BypassBuffer implements BypassBufferInterface
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelDebug()
@@ -116,7 +116,7 @@ class BypassBuffer implements BypassBufferInterface
     /**
      * @param $logLevel
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function addBypassForLogLevel($logLevel)
@@ -129,7 +129,7 @@ class BypassBuffer implements BypassBufferInterface
     /**
      * @param mixed $logLevel
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-01
      */
     public function bypassBuffer($logLevel)

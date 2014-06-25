@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 8/27/13
  */
 
@@ -12,14 +12,14 @@ use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferInterface;
  * Class LogRequestRuntimeBufferFactoryInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\LogRequest
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 interface LogRequestBufferFactoryInterface
 {
     /**
      * @return LogRequestBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function create();

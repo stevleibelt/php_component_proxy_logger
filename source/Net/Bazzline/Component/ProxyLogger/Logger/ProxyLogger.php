@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 
@@ -12,7 +12,7 @@ use Net\Bazzline\Component\ProxyLogger\Event\ProxyEvent;
  * Class AbstractProxyLogger
  *
  * @package Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 class ProxyLogger extends AbstractProxyLogger implements ProxyLoggerInterface

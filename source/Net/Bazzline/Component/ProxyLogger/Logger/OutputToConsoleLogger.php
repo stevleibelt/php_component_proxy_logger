@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 8/28/13
  */
 
@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
  * Class OutputToConsoleLogger
  *
  * @package Example
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class OutputToConsoleLogger extends AbstractLogger implements LoggerInterface

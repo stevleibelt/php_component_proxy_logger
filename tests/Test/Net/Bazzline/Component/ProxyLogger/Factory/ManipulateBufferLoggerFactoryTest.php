@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28 
  */
 
@@ -13,13 +13,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class ManipulateBufferLoggerFactoryTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class ManipulateBufferLoggerFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function testCreateWithLogger()
@@ -45,7 +45,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testCreateWithLoggerAndWithFlushBufferTriggerFactory()
@@ -77,7 +77,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testCreateWithLoggerAndWithAvoidBufferFactory()
@@ -109,7 +109,7 @@ class ManipulateBufferLoggerFactoryTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testCreateWithLoggerAndWithFlushBufferTriggerFactoryAndWithAvoidBufferFactory()

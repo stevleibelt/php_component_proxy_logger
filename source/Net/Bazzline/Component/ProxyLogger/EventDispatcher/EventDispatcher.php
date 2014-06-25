@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 
@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher as ParentClass;
  * Class EventDispatcher
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventDispatcher
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 class EventDispatcher extends ParentClass implements EventDispatcherInterface

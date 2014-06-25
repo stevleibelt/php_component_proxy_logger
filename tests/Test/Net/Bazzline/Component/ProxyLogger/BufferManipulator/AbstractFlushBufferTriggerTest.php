@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 
@@ -14,13 +14,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class AbstractFlushBufferTriggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 class AbstractFlushBufferTriggerTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToEmergency()
@@ -35,7 +35,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToAlert()
@@ -50,7 +50,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToCritical()
@@ -65,7 +65,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToError()
@@ -80,7 +80,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToWarning()
@@ -95,7 +95,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToNotice()
@@ -109,7 +109,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
         $this->assertEquals(LogLevel::NOTICE, $flushBufferTrigger->getTrigger());
     }
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToInfo()
@@ -124,7 +124,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerToDebug()
@@ -139,7 +139,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetTriggerTo()
@@ -154,7 +154,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetInvalidTriggerToWithoutIsValidLogLevel()
@@ -173,7 +173,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
      * @expectedException \Psr\Log\InvalidArgumentException
      * @expectedExceptionMessage no valid log level provided
      *
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetInvalidTriggerToWithIsValidLogLevel()
@@ -198,7 +198,7 @@ class AbstractFlushBufferTriggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testGetHasSetValidLogLevel()

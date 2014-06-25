@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 8/27/13
  */
 
@@ -16,13 +16,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class BufferLoggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 class BufferLoggerTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testLog()
@@ -50,7 +50,7 @@ class BufferLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testClean()
@@ -76,7 +76,7 @@ class BufferLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testFlushWithNoLogRequest()
@@ -102,7 +102,7 @@ class BufferLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testFlushWithLogRequest()
@@ -137,7 +137,7 @@ class BufferLoggerTest extends TestCase
 
     /**
      * @return BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewLogger()

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26 
  */
 
@@ -12,7 +12,7 @@ use InvalidArgumentException as ParentException;
  * Class InvalidArgumentException
  *
  * @package Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 class InvalidArgumentException extends ParentException {}

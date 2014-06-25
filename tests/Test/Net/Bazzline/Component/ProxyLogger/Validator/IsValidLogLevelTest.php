@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06 
  */
 
@@ -14,13 +14,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class IsValidLogLevelTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\Validator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 class IsValidLogLevelTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testIsMetWithValidLogLevel()
@@ -32,7 +32,7 @@ class IsValidLogLevelTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testIsMetWithoutValidLogLevel()

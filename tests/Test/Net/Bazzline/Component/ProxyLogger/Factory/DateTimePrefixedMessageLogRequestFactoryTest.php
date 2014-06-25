@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 
@@ -14,13 +14,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class DateTimePrefixedMessageLogRequestFactoryTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\LogRequest
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 class DateTimePrefixedMessageLogRequestFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function testCreate()
@@ -39,7 +39,7 @@ class DateTimePrefixedMessageLogRequestFactoryTest extends TestCase
     /**
      * @param $message
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     private function getPrefixedMessage($message)

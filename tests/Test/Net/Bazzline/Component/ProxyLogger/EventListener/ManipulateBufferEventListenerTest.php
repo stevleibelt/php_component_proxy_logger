@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -13,13 +13,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class ManipulateBufferEventListenerTest
  * @package Test\Net\Bazzline\Component\ProxyLogger\EventListener
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 class ManipulateBufferEventListenerTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testAttach()
@@ -35,7 +35,7 @@ class ManipulateBufferEventListenerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testDetach()
@@ -53,7 +53,7 @@ class ManipulateBufferEventListenerTest extends TestCase
 
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-22
      */
     public static function addLogRequestToBufferTestCaseProvider()
@@ -146,7 +146,7 @@ class ManipulateBufferEventListenerTest extends TestCase
 
      * @param array $preconditions
      * @param array $expectations
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      * @todo move numberOf* calls to test case data provider?
      */
@@ -267,7 +267,7 @@ class ManipulateBufferEventListenerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testBufferClean()
@@ -289,7 +289,7 @@ class ManipulateBufferEventListenerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testBufferFlush()
@@ -318,7 +318,7 @@ class ManipulateBufferEventListenerTest extends TestCase
 
     /**
      * @return ManipulateBufferEventListener
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-21
      */
     private function getNewEventListener()

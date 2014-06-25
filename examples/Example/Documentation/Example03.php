@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-23 
  */
 
@@ -13,7 +13,7 @@ use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use RuntimeException;
 
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-09
  */
 
@@ -77,21 +77,21 @@ function getCollectionOfItemsToProcess()
  * Class ItemProcessor
  *
  * @package Example\Documentation
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-23
  */
 class ItemProcessor
 {
     /**
      * @var string|mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     private $item;
 
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-23
      */
     private $logger;
@@ -99,7 +99,7 @@ class ItemProcessor
     /**
      * @param \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface $logger
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-23
      */
     public function setLogger(\Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface $logger)
@@ -111,7 +111,7 @@ class ItemProcessor
 
     /**
      * @return null|\Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-23
      */
     public function getLogger()
@@ -122,7 +122,7 @@ class ItemProcessor
     /**
      * @param string|mixed $item
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     public function setItem($item)
@@ -134,7 +134,7 @@ class ItemProcessor
 
     /**
      * @throws RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     public function execute()

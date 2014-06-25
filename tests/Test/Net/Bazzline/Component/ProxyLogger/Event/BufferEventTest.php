@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -12,13 +12,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class BufferEventTest
  * @package Test\Net\Bazzline\Component\ProxyLogger\Event
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 class BufferEventTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testGetAddLogRequestToBuffer()
@@ -29,7 +29,7 @@ class BufferEventTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function getBufferClear()
@@ -40,7 +40,7 @@ class BufferEventTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function getBufferFlush()
@@ -51,7 +51,7 @@ class BufferEventTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testGetHasSetLogRequestBuffer()
@@ -68,7 +68,7 @@ class BufferEventTest extends TestCase
 
     /**
      * @return BufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     private function getNewEvent()

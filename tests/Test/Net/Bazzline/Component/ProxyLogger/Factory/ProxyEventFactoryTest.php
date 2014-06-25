@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -12,14 +12,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class ProxyEventFactoryTest
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 class ProxyEventFactoryTest extends TestCase
 {
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-22
      */
     public static function createTestCaseDataProvider()
@@ -73,7 +73,7 @@ class ProxyEventFactoryTest extends TestCase
      *
      * @param array $preconditions
      * @param array $expectations
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testCreate(array $preconditions, array $expectations)

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -11,13 +11,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class AbstractLogRequestFactoryTest
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 class AbstractLogRequestFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testGetHasSetIsValidLogLevel()

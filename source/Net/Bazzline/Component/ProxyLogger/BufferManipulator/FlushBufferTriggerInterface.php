@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-29 
  */
 
@@ -13,7 +13,7 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
  * Class FlushBufferTriggerInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-29
  */
 interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsValidLogLevelAwareInterface
@@ -21,7 +21,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToEmergency();
@@ -29,7 +29,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToAlert();
@@ -37,7 +37,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToCritical();
@@ -45,7 +45,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToError();
@@ -53,7 +53,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToWarning();
@@ -61,7 +61,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToNotice();
@@ -69,7 +69,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToInfo();
@@ -77,7 +77,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
     /**
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerToDebug();
@@ -86,21 +86,21 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
      * @param mixed $logLevel
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public function setTriggerTo($logLevel);
 
     /**
      * @return null|mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public function getTrigger();
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public function hasTrigger();
@@ -109,7 +109,7 @@ interface FlushBufferTriggerInterface extends BufferManipulatorInterface, IsVali
      * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function triggerBufferFlush($logLevel);

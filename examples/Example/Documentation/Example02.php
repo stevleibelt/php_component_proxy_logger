@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-23 
  */
 
@@ -14,7 +14,7 @@ use Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger;
 use Psr\Log\LogLevel;
 
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-09
  */
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-13 
  */
 
@@ -12,14 +12,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class AbstractProxyLoggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-13
  */
 class AbstractProxyLoggerTest extends TestCase
 {
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function testAddLogger()
@@ -30,7 +30,7 @@ class AbstractProxyLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testGetLoggers()
@@ -43,7 +43,7 @@ class AbstractProxyLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testSetLogRequestFactory()
@@ -55,7 +55,7 @@ class AbstractProxyLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     public function testSetEvent()
@@ -67,7 +67,7 @@ class AbstractProxyLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     public function testSetEventDispatcher()
@@ -80,7 +80,7 @@ class AbstractProxyLoggerTest extends TestCase
 
     /**
      * @return \Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Logger\AbstractProxyLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewLogger()

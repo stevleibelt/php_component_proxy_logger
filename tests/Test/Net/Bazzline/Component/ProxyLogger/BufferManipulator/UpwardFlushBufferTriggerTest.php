@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06 
  */
 
@@ -14,14 +14,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class UpwardFlushBufferTriggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 class UpwardFlushBufferTriggerTest extends TestCase
 {
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public static function testCaseDataProvider()
@@ -66,7 +66,7 @@ class UpwardFlushBufferTriggerTest extends TestCase
      * @param mixed $logLevelToAdd
      * @param mixed $logLevelToTrigger
      * @param bool $expectedTriggerBufferFlush
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testTriggerBufferFlush($logLevelToAdd, $logLevelToTrigger, $expectedTriggerBufferFlush)

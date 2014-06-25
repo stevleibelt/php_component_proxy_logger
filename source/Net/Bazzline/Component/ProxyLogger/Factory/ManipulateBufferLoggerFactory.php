@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26 
  */
 
@@ -18,21 +18,21 @@ use Psr\Log\LoggerInterface;
  * Class ManipulateBufferLoggerFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements ManipulateBufferLoggerFactoryInterface
 {
     /**
      * @var BypassBufferFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-13
      */
     protected $bypassBufferFactory;
 
     /**
      * @var FlushBufferTriggerFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-13
      */
     protected $flushBufferTriggerFactory;
@@ -44,7 +44,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
      *
      * @param LoggerInterface $logger
      * @return \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function create(LoggerInterface $logger)
@@ -78,7 +78,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
 
     /**
      * @return null|BypassBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function getBypassBufferFactory()
@@ -88,7 +88,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function hasBypassBufferFactory()
@@ -99,7 +99,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
     /**
      * @param BypassBufferFactoryInterface $factory
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function setBypassBufferFactory(BypassBufferFactoryInterface $factory)
@@ -109,7 +109,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
 
     /**
      * @return null|FlushBufferTriggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function getFlushBufferTriggerFactory()
@@ -119,7 +119,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function hasFlushBufferTriggerFactory()
@@ -130,7 +130,7 @@ class ManipulateBufferLoggerFactory extends BufferLoggerFactory implements Manip
     /**
      * @param FlushBufferTriggerFactoryInterface $factory
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function setFlushBufferTriggerFactory(FlushBufferTriggerFactoryInterface $factory)

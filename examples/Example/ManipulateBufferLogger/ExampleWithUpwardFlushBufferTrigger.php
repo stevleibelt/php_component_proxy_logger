@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 
@@ -22,21 +22,21 @@ ExampleWithUpwardFlushBufferTrigger::create()
  * Class Example
  *
  * @package Example\ManipulateBufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class ExampleWithUpwardFlushBufferTrigger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     private $bufferLogger;
 
     /**
      * @return ExampleWithUpwardFlushBufferTrigger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public static function create()
@@ -46,7 +46,7 @@ class ExampleWithUpwardFlushBufferTrigger
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function setup()
@@ -66,7 +66,7 @@ class ExampleWithUpwardFlushBufferTrigger
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function andRun()

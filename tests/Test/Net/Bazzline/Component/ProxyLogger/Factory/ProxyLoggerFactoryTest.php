@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08 
  */
 
@@ -13,13 +13,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class ProxyLoggerFactoryTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08
  */
 class ProxyLoggerFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-08
      */
     public function testCreate()

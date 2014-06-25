@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 
@@ -13,7 +13,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * Class ProxyListener
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventListener
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 class ProxyEventListener implements EventListenerInterface
@@ -21,7 +21,7 @@ class ProxyEventListener implements EventListenerInterface
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function attach(EventDispatcher $eventDispatcher)
@@ -37,7 +37,7 @@ class ProxyEventListener implements EventListenerInterface
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function detach(EventDispatcher $eventDispatcher)
@@ -52,7 +52,7 @@ class ProxyEventListener implements EventListenerInterface
 
     /**
      * @param ProxyEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function logRequest(ProxyEvent $event)

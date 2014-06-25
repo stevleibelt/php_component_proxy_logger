@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 
@@ -19,21 +19,21 @@ ExampleWithDefaultBufferLoggerFactory::create()
  * Class Example
  *
  * @package Example\BufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class ExampleWithDefaultBufferLoggerFactory
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     private $bufferLogger;
 
     /**
      * @return Example
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public static function create()
@@ -43,7 +43,7 @@ class ExampleWithDefaultBufferLoggerFactory
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function setup()
@@ -57,7 +57,7 @@ class ExampleWithDefaultBufferLoggerFactory
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function andRun()

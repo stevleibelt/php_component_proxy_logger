@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-09
  */
 
@@ -15,28 +15,28 @@ use Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInter
  * Class ManipulateBufferEvent
  *
  * @package Net\Bazzline\Component\ProxyLogger\Event
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-09
  */
 class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInterface, FlushBufferTriggerAwareInterface
 {
     /**
      * @var BypassBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     private $bypassBuffer;
 
     /**
      * @var FlushBufferTriggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     private $flushBufferTrigger;
 
     /**
      * @return null|BypassBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function getBypassBuffer()
@@ -46,7 +46,7 @@ class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInte
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function hasBypassBuffer()
@@ -57,7 +57,7 @@ class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInte
     /**
      * @param BypassBufferInterface $bypassBuffer
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function setBypassBuffer(BypassBufferInterface $bypassBuffer)
@@ -69,7 +69,7 @@ class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInte
 
     /**
      * @return null|FlushBufferTriggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function getFlushBufferTrigger()
@@ -79,7 +79,7 @@ class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInte
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function hasFlushBufferTrigger()
@@ -90,7 +90,7 @@ class ManipulateBufferEvent extends BufferEvent implements BypassBufferAwareInte
     /**
      * @param FlushBufferTriggerInterface $flushBufferTrigger
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-03
      */
     public function setFlushBufferTrigger(FlushBufferTriggerInterface $flushBufferTrigger)

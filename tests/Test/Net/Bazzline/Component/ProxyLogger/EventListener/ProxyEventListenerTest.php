@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -13,13 +13,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
 /**
  * Class ProxyEventListenerTest
  * @package Test\Net\Bazzline\Component\ProxyLogger\EventListener
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 class ProxyEventListenerTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testAttach()
@@ -32,7 +32,7 @@ class ProxyEventListenerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testDetach()
@@ -46,7 +46,7 @@ class ProxyEventListenerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function testLogRequest()
@@ -65,7 +65,7 @@ class ProxyEventListenerTest extends TestCase
 
     /**
      * @return ProxyEventListener
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-21
      */
     private function getNewEventListener()

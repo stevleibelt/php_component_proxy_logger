@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26 
  */
 
@@ -15,14 +15,14 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel;
  * Class AbstractLogRequestFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
 {
     /**
      * @var IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-21
      */
     protected $isValidLogLevel;
@@ -33,7 +33,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
      * @param array $context
      * @return LogRequestInterface
      * @throws InvalidArgumentException|RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function create($level, $message, array $context = array())
@@ -55,7 +55,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
 
     /**
      * @return null|IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function getIsValidLogLevel()
@@ -65,7 +65,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function hasIsValidLogLevel()
@@ -76,7 +76,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
     /**
      * @param IsValidLogLevel $isValidLogLevel
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function setIsValidLogLevel(IsValidLogLevel $isValidLogLevel)
@@ -91,7 +91,7 @@ abstract class AbstractLogRequestFactory implements LogRequestFactoryInterface
      * @param string $message
      * @param array $context
      * @return LogRequestInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-21
      */
     abstract protected function createNewLogRequestInstance($level, $message, array $context = array());

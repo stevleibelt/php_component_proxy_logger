@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06 
  */
 
@@ -14,14 +14,14 @@ use Psr\Log\LogLevel;
  * Class AlwaysFlushBufferTriggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-06
  */
 class AlwaysFlushBufferTriggerTest extends TestCase
 {
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public static function testCaseDataProvider()
@@ -56,7 +56,7 @@ class AlwaysFlushBufferTriggerTest extends TestCase
      * @param mixed $logLevelToAdd
      * @param mixed $logLevelToTrigger
      * @param bool $expectedTriggerBufferFlush
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     public function testTriggerBufferFlush($logLevelToAdd, $logLevelToTrigger, $expectedTriggerBufferFlush)

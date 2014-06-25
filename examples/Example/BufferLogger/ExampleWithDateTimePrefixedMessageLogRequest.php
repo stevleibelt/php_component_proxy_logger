@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 
@@ -22,21 +22,21 @@ ExampleWithDateTimePrefixedMessageLogRequest::create()
  * Class Example
  *
  * @package Example\BufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-29
  */
 class ExampleWithDateTimePrefixedMessageLogRequest
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     private $bufferLogger;
 
     /**
      * @return ExampleWithDateTimePrefixedMessageLogRequest
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public static function create()
@@ -46,7 +46,7 @@ class ExampleWithDateTimePrefixedMessageLogRequest
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function setup()
@@ -64,7 +64,7 @@ class ExampleWithDateTimePrefixedMessageLogRequest
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function andRun()

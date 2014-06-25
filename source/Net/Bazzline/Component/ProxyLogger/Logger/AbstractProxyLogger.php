@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 
@@ -18,35 +18,35 @@ use Psr\Log\LoggerInterface;
  * Class AbstractProxyLogger
  *
  * @package Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 abstract class AbstractProxyLogger extends AbstractLogger implements AbstractProxyLoggerInterface
 {
     /**
      * @var EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     protected $event;
 
     /**
      * @var EventDispatcherInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     protected $dispatcher;
 
     /**
      * @var \Psr\Log\LoggerInterface[]
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     protected $loggers;
 
     /**
      * @var LogRequestFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     protected $logRequestFactory;
@@ -54,7 +54,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
     /**
      * @param LoggerInterface $logger
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function addLogger(LoggerInterface $logger)
@@ -70,7 +70,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
 
     /**
      * @return null|LoggerInterface[]
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-23
      */
     public function getLoggers()
@@ -82,7 +82,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
     /**
      * @param LogRequestFactoryInterface $factory
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setLogRequestFactory(LogRequestFactoryInterface $factory)
@@ -95,7 +95,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
     /**
      * @param EventDispatcherInterface $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
@@ -107,7 +107,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
 
     /**
      * @return EventInterface|ProxyEvent|BufferEvent|ManipulateBufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-11
      */
     public function getEvent()
@@ -118,7 +118,7 @@ abstract class AbstractProxyLogger extends AbstractLogger implements AbstractPro
     /**
      * @param EventInterface $event
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     public function setEvent(EventInterface $event)

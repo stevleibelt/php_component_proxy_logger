@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-07 
  */
 
@@ -23,21 +23,21 @@ ExampleWithBypassBufferAndUpwardFlushBufferTrigger::create()
  * Class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
  *
  * @package Example\ManipulateBufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-07
  */
 class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     private $bufferLogger;
 
     /**
      * @return ExampleWithBypassBuffer
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public static function create()
@@ -47,7 +47,7 @@ class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function setup()
@@ -69,7 +69,7 @@ class ExampleWithBypassBufferAndUpwardFlushBufferTrigger
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function andRun()

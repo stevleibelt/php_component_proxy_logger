@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 
@@ -14,7 +14,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * Class BufferListener
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventListener
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-09
  */
 class BufferEventListener extends ProxyEventListener implements EventListenerInterface
@@ -22,7 +22,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function attach(EventDispatcher $eventDispatcher)
@@ -47,7 +47,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function detach(EventDispatcher $eventDispatcher)
@@ -70,7 +70,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
 
     /**
      * @param BufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     public function addLogRequestToBuffer(BufferEvent $event)
@@ -82,7 +82,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
 
     /**
      * @param BufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     public function cleanBuffer(BufferEvent $event)
@@ -95,7 +95,7 @@ class BufferEventListener extends ProxyEventListener implements EventListenerInt
 
     /**
      * @param BufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     public function flushBuffer(BufferEvent $event)

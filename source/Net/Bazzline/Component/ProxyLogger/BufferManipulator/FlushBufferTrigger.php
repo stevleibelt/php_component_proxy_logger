@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-04 
  */
 
@@ -12,7 +12,7 @@ use Net\Bazzline\Component\ProxyLogger\Exception\InvalidArgumentException;
  * Class FlushBufferTrigger
  *
  * @package Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-04
  */
 class FlushBufferTrigger extends AbstractFlushBufferTrigger
@@ -21,7 +21,7 @@ class FlushBufferTrigger extends AbstractFlushBufferTrigger
      * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function triggerBufferFlush($logLevel)

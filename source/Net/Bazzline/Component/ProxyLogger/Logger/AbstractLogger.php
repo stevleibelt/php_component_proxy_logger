@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18 
  */
 
@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Class AbstractLogger
  * @package Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-18
  */
 abstract class AbstractLogger implements LoggerInterface

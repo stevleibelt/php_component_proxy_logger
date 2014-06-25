@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 
@@ -14,13 +14,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class DateTimePrefixedMessageLogRequestTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 class DateTimePrefixedMessageLogRequestTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testGetLevel()
@@ -33,7 +33,7 @@ class DateTimePrefixedMessageLogRequestTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testGetMessage()
@@ -46,7 +46,7 @@ class DateTimePrefixedMessageLogRequestTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testGetContext()
@@ -61,7 +61,7 @@ class DateTimePrefixedMessageLogRequestTest extends TestCase
     /**
      * @param $message
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     private function getPrefixedMessage($message)

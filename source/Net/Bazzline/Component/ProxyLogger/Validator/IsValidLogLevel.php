@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-30
  */
 
@@ -14,14 +14,14 @@ use Net\Bazzline\Component\Requirement\IsMetInterface;
  * Class IsValidLogLevel
  *
  * @package Net\Bazzline\Component\ProxyLogger\Validator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 class IsValidLogLevel implements IsMetInterface
 {
     /**
      * @var mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     protected $logLevel;
@@ -29,7 +29,7 @@ class IsValidLogLevel implements IsMetInterface
     /**
      * @param mixed $logLevel
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setLogLevel($logLevel)
@@ -44,7 +44,7 @@ class IsValidLogLevel implements IsMetInterface
      *
      * @return boolean
      * @throws RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-06-25
      */
     public function isMet()

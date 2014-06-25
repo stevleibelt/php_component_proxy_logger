@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-20
  */
 
@@ -14,13 +14,13 @@ use Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactory;
  * Class BypassBufferFactoryTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-20
  */
 class BypassBufferFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     public function testCreate()
@@ -33,7 +33,7 @@ class BypassBufferFactoryTest extends TestCase
 
     /**
      * @return BypassBufferFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     private function getNewFactory()

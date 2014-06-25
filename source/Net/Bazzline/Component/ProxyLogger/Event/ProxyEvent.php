@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 
@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  * Class ProxyEvent
  *
  * @package Net\Bazzline\Component\ProxyLogger\Event
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 class ProxyEvent extends Event
@@ -22,21 +22,21 @@ class ProxyEvent extends Event
 
     /**
      * @var LogRequestInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     private $logRequest;
 
     /**
      * @var array|LoggerInterface[]
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     private $loggerCollection = array();
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-17
      */
     public function getLogLogRequest()
@@ -46,7 +46,7 @@ class ProxyEvent extends Event
 
     /**
      * @return array|LoggerInterface[]
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function getLoggerCollection()
@@ -57,7 +57,7 @@ class ProxyEvent extends Event
     /**
      * @param array|LoggerInterface[] $loggerCollection
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function setLoggerCollection(array $loggerCollection)
@@ -69,7 +69,7 @@ class ProxyEvent extends Event
 
     /**
      * @return LogRequestInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function getLogRequest()
@@ -80,7 +80,7 @@ class ProxyEvent extends Event
     /**
      * @param LogRequestInterface $logRequest
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function setLogRequest(LogRequestInterface $logRequest)

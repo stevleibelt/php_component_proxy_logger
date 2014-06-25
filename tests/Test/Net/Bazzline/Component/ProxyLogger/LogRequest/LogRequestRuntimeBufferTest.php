@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 
@@ -14,13 +14,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class LogRequestRuntimeBufferTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\LogRequest
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 class LogRequestRuntimeBufferTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function testCreation()
@@ -33,7 +33,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function testAttach()
@@ -45,7 +45,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function testContains()
@@ -58,7 +58,7 @@ class LogRequestRuntimeBufferTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function testDetach()
@@ -76,7 +76,7 @@ class LogRequestRuntimeBufferTest extends TestCase
 
     /**
      * @return LogRequestRuntimeBuffer
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     private function getNewBuffer()

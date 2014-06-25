@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08 
  */
 
@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
  * Class BufferLoggerFactoryInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-08
  */
 interface BufferLoggerFactoryInterface extends LogRequestFactoryDependInterface, LogRequestBufferFactoryDependInterface
@@ -20,7 +20,7 @@ interface BufferLoggerFactoryInterface extends LogRequestFactoryDependInterface,
     /**
      * @param LoggerInterface $logger
      * @return \Net\Bazzline\Component\ProxyLogger\Logger\BufferLoggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-08
      */
     public function create(LoggerInterface $logger);

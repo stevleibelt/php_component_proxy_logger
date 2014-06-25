@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 
@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
  * Interface ManipulateBufferEventFactoryInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 interface ManipulateBufferEventFactoryInterface 
@@ -28,7 +28,7 @@ interface ManipulateBufferEventFactoryInterface
      * @param null|FlushBufferTriggerInterface $flushBufferTrigger
      * @param null|BypassBufferInterface $bypassBuffer
      * @return \Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     public function create(array $loggerCollection = null, LogRequestBufferInterface $logRequestBuffer = null, LogRequestInterface $logRequest = null, FlushBufferTriggerInterface $flushBufferTrigger = null, BypassBufferInterface $bypassBuffer = null);

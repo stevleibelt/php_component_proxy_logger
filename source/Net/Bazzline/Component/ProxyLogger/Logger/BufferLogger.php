@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 8/27/13
  */
 
@@ -12,7 +12,7 @@ use Net\Bazzline\Component\ProxyLogger\Event\BufferEvent;
  * Class BufferLogger
  *
  * @package Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27
  */
 class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
@@ -24,7 +24,7 @@ class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
      * @param string $message
      * @param array $context
      * @return null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function log($level, $message, array $context = array())
@@ -39,7 +39,7 @@ class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
      * Flush buffer content to logger
      *
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function flush()
@@ -54,7 +54,7 @@ class BufferLogger extends AbstractProxyLogger implements BufferLoggerInterface
      * Cleans buffer
      *
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     public function clean()

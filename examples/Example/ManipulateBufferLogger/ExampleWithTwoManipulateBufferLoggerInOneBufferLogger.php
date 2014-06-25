@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-24 
  */
 
@@ -25,21 +25,21 @@ ExampleWithTwoManipulateBufferLoggerInOneBufferLogger::create()
  * Class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
  *
  * @package Example\ManipulateBufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-24
  */
 class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     private $bufferLogger;
 
     /**
      * @return ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     public static function create()
@@ -49,7 +49,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     public function setup()
@@ -89,7 +89,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     public function andRun()
@@ -125,7 +125,7 @@ class ExampleWithTwoManipulateBufferLoggerInOneBufferLogger
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-24
      */
     private function cleanLogBuffer()

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 
@@ -14,7 +14,7 @@ use Psr\Log\LoggerInterface;
  * Interface AbstractProxyLoggerInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\Logger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 interface AbstractProxyLoggerInterface extends LoggerInterface, LogRequestFactoryDependInterface, EventDispatcherDependInterface

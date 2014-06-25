@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-09
  */
 
@@ -13,7 +13,7 @@ use Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher;
  * Class ManipulateBufferListener
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventListener
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-09
  */
 class ManipulateBufferEventListener extends ProxyEventListener implements EventListenerInterface
@@ -21,7 +21,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function attach(EventDispatcher $eventDispatcher)
@@ -47,7 +47,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
     /**
      * @param EventDispatcher $eventDispatcher
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function detach(EventDispatcher $eventDispatcher)
@@ -70,7 +70,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
 
     /**
      * @param ManipulateBufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-09
      */
     public function addLogRequestToBuffer(ManipulateBufferEvent $event)
@@ -101,7 +101,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
 
     /**
      * @param ManipulateBufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     public function cleanBuffer(ManipulateBufferEvent $event)
@@ -114,7 +114,7 @@ class ManipulateBufferEventListener extends ProxyEventListener implements EventL
 
     /**
      * @param ManipulateBufferEvent $event
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-10
      */
     public function flushBuffer(ManipulateBufferEvent $event)

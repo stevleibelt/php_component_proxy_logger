@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 
@@ -17,7 +17,7 @@ use PHPUnit_Framework_TestCase;
  * Class TestCase
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  * @todo remove unused get methods
  */
@@ -30,7 +30,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     * @param array $preconditions
     * @param array $expectations
     * @return array
-    * @author stev leibelt <artodeto@arcor.de>
+    * @author stev leibelt <artodeto@bazzline.net>
     * @since 2013-11-22
     */
     protected static function mergeTestCasesWithDefaults(array $testCases, array $preconditions, array $expectations)
@@ -52,7 +52,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     protected function tearDown()
@@ -62,7 +62,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Psr\Log\NullLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewPsr3LoggerMock()
@@ -72,7 +72,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequest
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewLogRequestMock()
@@ -82,7 +82,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestRuntimeBuffer
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewLogRequestRuntimeBufferMock()
@@ -94,7 +94,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     protected function getNewPlainLogRequestFactoryMock()
@@ -105,7 +105,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * @param LogRequestInterface $logRequest
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since
      */
     protected function getNewLogRequestFactoryMock(LogRequestInterface $logRequest)
@@ -121,7 +121,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewPlainLogRequestBufferFactoryMock()
@@ -132,7 +132,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * @param LogRequestBufferInterface $buffer
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\LogRequestRuntimeBufferFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-27
      */
     protected function getNewLogRequestBufferFactoryMock(LogRequestBufferInterface $buffer)
@@ -148,7 +148,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTriggerInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     protected function getNewAbstractFlushBufferTriggerMock()
@@ -158,7 +158,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     protected function getNewIsValidLogLevelMock()
@@ -168,7 +168,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected function getNewIsValidLogLevel()
@@ -178,7 +178,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBuffer
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     protected function getNewBypassBufferMock()
@@ -188,7 +188,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\BufferManipulator\FlushBufferTrigger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-06
      */
     protected function getNewFlushBufferTriggerMock()
@@ -198,7 +198,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected function getNewAbstractBypassBufferFactoryMock()
@@ -208,7 +208,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\BypassBufferFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected function getNewBypassBufferFactoryMock()
@@ -218,7 +218,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected function getNewAbstractFlushBufferTriggerFactoryMock()
@@ -228,7 +228,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\FlushBufferTriggerFactoryInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected function getNewFlushBufferTriggerFactoryMock()
@@ -238,7 +238,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Event\Event'
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewEventMock()
@@ -248,7 +248,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Event\BufferEvent'
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewBufferEventMock()
@@ -258,7 +258,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Event\ManipulateBufferEvent'
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewManipulateBufferEventMock()
@@ -268,7 +268,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\EventDispatcher\EventDispatcher
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewEventDispatcherMock()
@@ -278,7 +278,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return EventDispatcher
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-21
      */
     protected function getNewEventDispatcher()
@@ -288,7 +288,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Logger\AbstractLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewAbstractLogger()
@@ -298,7 +298,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Logger\AbstractProxyLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-13
      */
     protected function getNewAbstractProxyLogger()
@@ -308,7 +308,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\ProxyLogger\Factory\AbstractLogRequestFactory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-21
      */
     protected function getNewAbstractLogRequestFactory()

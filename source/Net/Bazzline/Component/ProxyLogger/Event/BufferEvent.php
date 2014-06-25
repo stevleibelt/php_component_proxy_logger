@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 
@@ -13,7 +13,7 @@ use Net\Bazzline\Component\ProxyLogger\LogRequest\LogRequestBufferAwareInterface
  * Class BufferEvent
  *
  * @package Net\Bazzline\Component\ProxyLogger\Event
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-08
  */
 class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
@@ -24,14 +24,14 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 
     /**
      * @var LogRequestBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     protected $logRequestBuffer;
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-17
      */
     public function getAddLogRequestToBuffer()
@@ -41,7 +41,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-17
      */
     public function getCleanBuffer()
@@ -51,7 +51,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-17
      */
     public function getFlushBuffer()
@@ -61,7 +61,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 
     /**
      * @return LogRequestBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function getLogRequestBuffer()
@@ -71,7 +71,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-18
      */
     public function hasLogRequestBuffer()
@@ -82,7 +82,7 @@ class BufferEvent extends ProxyEvent implements LogRequestBufferAwareInterface
     /**
      * @param LogRequestBufferInterface $logRequestBuffer
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-11-08
      */
     public function setLogRequestBuffer(LogRequestBufferInterface $logRequestBuffer)

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 
@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface as ParentInterfac
  * Interface EventDispatcherInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger\EventDispatcher
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-11-10
  */
 interface EventDispatcherInterface extends ParentInterface

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-03
  */
 
@@ -23,28 +23,28 @@ ExampleWithUpwardFlushBufferTriggerVersusNormalLogger::create()
  * Class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
  *
  * @package Example\ManipulateBufferLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-03
  */
 class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\BufferLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-03
      */
     private $bufferLogger;
 
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Logger\OutputToConsoleLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-03
      */
     private $normalLogger;
 
     /**
      * @return ExampleWithUpwardFlushBufferTrigger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-03
      */
     public static function create()
@@ -54,7 +54,7 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
 
     /**
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-03
      */
     public function setup()
@@ -75,7 +75,7 @@ class ExampleWithUpwardFlushBufferTriggerVersusNormalLogger
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-03
      */
     public function andRun()

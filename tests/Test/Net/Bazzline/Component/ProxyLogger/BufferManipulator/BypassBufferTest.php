@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-05 
  */
 
@@ -14,14 +14,14 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class BypassBufferTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-05
  */
 class BypassBufferTest extends TestCase
 {
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public static function testCaseDataProvider()
@@ -56,7 +56,7 @@ class BypassBufferTest extends TestCase
      * @param mixed $logLevel
      * @param mixed $logLevelToBypass
      * @param bool $expectedBypassBufferValue
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     public function testBypassBuffer($logLevel, $logLevelToBypass, $expectedBypassBufferValue)
@@ -71,7 +71,7 @@ class BypassBufferTest extends TestCase
 
     /**
      * @return array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public static function logLevelProvider()
@@ -92,7 +92,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelEmergency($logLevel)
@@ -111,7 +111,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelAlert($logLevel)
@@ -130,7 +130,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelCritical($logLevel)
@@ -149,7 +149,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelError($logLevel)
@@ -168,7 +168,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelWarning($logLevel)
@@ -187,7 +187,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelNotice($logLevel)
@@ -206,7 +206,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelInfo($logLevel)
@@ -225,7 +225,7 @@ class BypassBufferTest extends TestCase
      * @dataProvider logLevelProvider
      *
      * @param mixed $logLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     public function addBypassForLogLevelDebug($logLevel)
@@ -242,7 +242,7 @@ class BypassBufferTest extends TestCase
 
     /**
      * @return BypassBuffer
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-07
      */
     private function getNewBuffer()

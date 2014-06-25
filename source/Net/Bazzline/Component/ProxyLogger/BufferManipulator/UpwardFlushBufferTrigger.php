@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 9/2/13
  */
 
@@ -13,35 +13,35 @@ use Psr\Log\LogLevel;
  * Class UpwardFlushBufferTrigger
  *
  * @package Net\Bazzline\Component\ProxyLogger\BufferManipulator
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-09-02
  */
 class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
 {
     /**
      * @var int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     private $logLevelDefaultWeight;
 
     /**
      * @var int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-05
      */
     private $logLevelMinimumWeight;
 
     /**
      * @var array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     private $logLevelToWeight;
 
     /**
      * @param array $logLevelsToPass
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-02
      */
     public function __construct(array $logLevelsToPass = array())
@@ -64,7 +64,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      * @param mixed $logLevel
      * @return $this
      * @throws \Psr\Log\InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function setTriggerTo($logLevel)
@@ -80,7 +80,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
      * @param string $logLevel
      * @return bool
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-29
      */
     public function triggerBufferFlush($logLevel)
@@ -93,7 +93,7 @@ class UpwardFlushBufferTrigger extends AbstractFlushBufferTrigger
     /**
      * @param $logLevel
      * @return int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-05
      */
     protected function mapLogLevelToWeight($logLevel)

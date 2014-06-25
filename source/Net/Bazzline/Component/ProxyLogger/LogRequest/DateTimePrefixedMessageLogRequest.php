@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-29
  */
 
@@ -10,7 +10,7 @@ namespace Net\Bazzline\Component\ProxyLogger\LogRequest;
  * Class DateTimePrefixedMessageLogRequest
  *
  * @package Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-29
  */
 class DateTimePrefixedMessageLogRequest extends LogRequest
@@ -21,7 +21,7 @@ class DateTimePrefixedMessageLogRequest extends LogRequest
      * @param mixed $logLevel
      * @param string $message
      * @param array $context
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function __construct($logLevel, $message, array $context = array())

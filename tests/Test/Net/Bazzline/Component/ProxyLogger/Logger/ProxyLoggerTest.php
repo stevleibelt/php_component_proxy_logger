@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-27 
  */
 
@@ -15,20 +15,20 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class ProxyLoggerTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-28
  */
 class ProxyLoggerTest extends TestCase
 {
     /**
      * @var string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     private $message;
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     protected function setUp()
@@ -37,7 +37,7 @@ class ProxyLoggerTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     public function testLog()
@@ -65,7 +65,7 @@ class ProxyLoggerTest extends TestCase
 
     /**
      * @return ProxyLogger
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-28
      */
     private function getNewLogger()

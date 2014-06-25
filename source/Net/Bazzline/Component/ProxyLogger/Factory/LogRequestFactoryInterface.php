@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26 
  */
 
@@ -14,7 +14,7 @@ use Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevelAwareInterface;
  * Class LogRequestFactoryInterface
  *
  * @package Net\Bazzline\Component\ProxyLogger
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-08-26
  */
 interface LogRequestFactoryInterface extends IsValidLogLevelAwareInterface
@@ -25,7 +25,7 @@ interface LogRequestFactoryInterface extends IsValidLogLevelAwareInterface
      * @param array $context
      * @return LogRequestInterface
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-08-26
      */
     public function create($level, $message, array $context = array());

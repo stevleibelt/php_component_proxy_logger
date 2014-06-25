@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-14
  */
 
@@ -13,28 +13,28 @@ use Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException;
  * Class AbstractBypassBufferFactory
  *
  * @package Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-14
  */
 abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterface
 {
     /**
      * @var \Net\Bazzline\Component\ProxyLogger\Validator\IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     protected $isValidLogLevel;
 
     /**
      * @var array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-14
      */
     protected $logLevelsToBypass;
 
     /**
      * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-13
      */
     public function create()
@@ -54,7 +54,7 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
      * @param array $logLevelsToBypass
      * @return $this
      * @throws \Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-14
      */
     public function setLogLevelsToBypass(array $logLevelsToBypass)
@@ -78,7 +78,7 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
 
     /**
      * @return null|IsValidLogLevel
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function getIsValidLogLevel()
@@ -88,7 +88,7 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function hasIsValidLogLevel()
@@ -99,7 +99,7 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
     /**
      * @param IsValidLogLevel $isValidLogLevel
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-09-04
      */
     public function setIsValidLogLevel(IsValidLogLevel $isValidLogLevel)
@@ -111,7 +111,7 @@ abstract class AbstractBypassBufferFactory implements BypassBufferFactoryInterfa
 
     /**
      * @return \Net\Bazzline\Component\ProxyLogger\BufferManipulator\BypassBufferInterface
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     abstract protected function createNewBypassBufferInstance();

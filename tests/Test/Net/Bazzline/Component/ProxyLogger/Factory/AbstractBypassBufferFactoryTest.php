@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-20
  */
 
@@ -12,13 +12,13 @@ use Test\Net\Bazzline\Component\ProxyLogger\TestCase;
  * Class AbstractBypassBufferFactoryTest
  *
  * @package Test\Net\Bazzline\Component\ProxyLogger\Factory
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-10-20
  */
 class AbstractBypassBufferFactoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     public function testIsValidLogLevelAwareInterface()
@@ -36,7 +36,7 @@ class AbstractBypassBufferFactoryTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     public function testSetInvalidLogLevelsToBypassWithoutIsValidLogLevel()
@@ -50,7 +50,7 @@ class AbstractBypassBufferFactoryTest extends TestCase
      * @expectedException \Net\Bazzline\Component\ProxyLogger\Exception\RuntimeException
      * @expectedExceptionMessage invalid log level provided
      *
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-10-20
      */
     public function testSetInvalidLogLevelsToBypassWithIsValidLogLevel()
